@@ -157,9 +157,9 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 
 /* LOCATIONS */
 .loc-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
-.loc-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:4rem; align-items:stretch; }
-.loc-grid > .sr { display:flex; flex-direction:column; }
-.llist { display:flex; flex-direction:column; gap:0.5rem; margin-top:2.5rem; max-height:520px; overflow-y:auto; padding-right:4px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+.loc-header { display:flex; align-items:flex-end; justify-content:space-between; gap:3rem; margin-bottom:2.5rem; }
+.loc-body { display:grid; grid-template-columns:380px 1fr; gap:1.5rem; align-items:stretch; }
+.llist { display:flex; flex-direction:column; gap:0.5rem; max-height:none; overflow-y:auto; padding-right:4px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
 .li { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:0.5px solid var(--border); border-radius:9px; padding:1rem 1.25rem; cursor:pointer; transition:all 0.22s cubic-bezier(0.22,1,0.36,1); }
 .li:hover { transform:translateX(5px); border-color:rgba(234,109,16,0.3); box-shadow:0 4px 16px rgba(0,0,0,0.05); }
 .li.active { border-color:rgba(234,109,16,0.45); background:rgba(234,109,16,0.05); }
@@ -167,6 +167,9 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 .lcity { font-size:0.7rem; color:var(--textS); margin-top:2px; }
 .larr { color:var(--orange); font-size:0.85rem; transition:transform 0.2s; }
 .li:hover .larr { transform:translateX(4px); }
+.loc-map-col { display:flex; flex-direction:column; min-height:0; }
+#leaflet-map { flex:1; width:100%; min-height:0; border-radius:14px; overflow:hidden; border:0.5px solid var(--border); }
+.loc-map-label { margin-top:0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--textM); text-align:center; flex-shrink:0; }
 
 
 /* BRAND PARTNERS */
@@ -241,7 +244,10 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
   nav{padding:0 1.5rem;} .nav-links{display:none;}
   section{padding:4rem 1.5rem;}
   .hero{padding:7rem 1.5rem 4rem;}
-  .about-grid,.loc-grid{grid-template-columns:1fr;gap:3rem;}
+  .about-grid{grid-template-columns:1fr;gap:3rem;}
+  .loc-header{flex-direction:column;align-items:flex-start;gap:1rem;}
+  .loc-body{grid-template-columns:1fr;}
+  #leaflet-map{min-height:320px !important;}
   .fgrid,.mgrid{grid-template-columns:1fr;}
   .mgrid{grid-template-columns:repeat(2,1fr);}
   .metrics-strip{grid-template-columns:repeat(2,1fr);}
@@ -499,32 +505,40 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
 <!-- LOCATIONS -->
 <div class="loc-wrap" id="locations">
   <section>
-    <div class="loc-grid">
+
+    <!-- Full-width header -->
+    <div class="loc-header">
       <div class="sl">
         <span class="eyebrow">Find a CraveBot</span>
         <div class="rw"><h2 class="sec-title"><span class="rl">CraveBots near you</span></h2></div>
-        <p class="sec-sub fu" style="transition-delay:0.15s">18 machines deployed across 14 venues in Southern California — on campuses, at tech companies, and in hotels.</p>
-        <div class="llist sg" style="margin-top:2.5rem;">
-          <div class="li active" data-loc="0"><div><div class="lname">Cal State LA</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="1"><div><div class="lname">University of Southern California</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="2"><div><div class="lname">Cal State Long Beach</div><div class="lcity">Long Beach, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="3"><div><div class="lname">Cal State Dominguez Hills — 3 machines</div><div class="lcity">Carson, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="4"><div><div class="lname">Cerritos College — 2 machines</div><div class="lcity">Norwalk, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="5"><div><div class="lname">Cal State San Bernardino — 2 machines</div><div class="lcity">San Bernardino &amp; Palm Desert, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="6"><div><div class="lname">Relativity Space — 2 machines</div><div class="lcity">Long Beach, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="7"><div><div class="lname">Cal Poly Pomona</div><div class="lcity">Pomona, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="8"><div><div class="lname">ArtCenter College of Design</div><div class="lcity">Pasadena, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="9"><div><div class="lname">Golden West College</div><div class="lcity">Huntington Beach, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="10"><div><div class="lname">Embassy Suites by Hilton</div><div class="lcity">Santa Ana, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="11"><div><div class="lname">California College of Hospitality Management</div><div class="lcity">Pomona, CA</div></div><span class="larr">→</span></div>
-          <div class="li" data-loc="12"><div><div class="lname">Deckers</div><div class="lcity">Moreno Valley, CA</div></div><span class="larr">→</span></div>
-        </div>
       </div>
-      <div class="sr">
-        <div id="leaflet-map" style="width:100%;flex:1;min-height:480px;border-radius:14px;overflow:hidden;border:0.5px solid var(--border);"></div>
-        <div style="margin-top:0.75rem;font-size:0.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--textM);text-align:center;">Southern California · 18 active machines</div>
+      <p class="sec-sub fu" style="max-width:480px;transition-delay:0.15s;align-self:flex-end;">18 machines deployed across 14 venues in Southern California — on campuses, at tech companies, and in hotels.</p>
+    </div>
+
+    <!-- List + Map -->
+    <div class="loc-body">
+      <div class="llist sg">
+        <div class="li active" data-loc="0"><div><div class="lname">Cal State LA</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="1"><div><div class="lname">University of Southern California</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="2"><div><div class="lname">Cal State Long Beach</div><div class="lcity">Long Beach, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="3"><div><div class="lname">Cal State Dominguez Hills — 3 machines</div><div class="lcity">Carson, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="4"><div><div class="lname">Cerritos College — 2 machines</div><div class="lcity">Norwalk, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="5"><div><div class="lname">Cal State San Bernardino — 2 machines</div><div class="lcity">San Bernardino &amp; Palm Desert, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="6"><div><div class="lname">Relativity Space — 2 machines</div><div class="lcity">Long Beach, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="7"><div><div class="lname">Cal Poly Pomona</div><div class="lcity">Pomona, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="8"><div><div class="lname">ArtCenter College of Design</div><div class="lcity">Pasadena, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="9"><div><div class="lname">Golden West College</div><div class="lcity">Huntington Beach, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="10"><div><div class="lname">Embassy Suites by Hilton</div><div class="lcity">Santa Ana, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="11"><div><div class="lname">California College of Hospitality Management</div><div class="lcity">Pomona, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="12"><div><div class="lname">Deckers</div><div class="lcity">Moreno Valley, CA</div></div><span class="larr">→</span></div>
+      </div>
+
+      <div class="loc-map-col fu" style="transition-delay:0.2s;">
+        <div id="leaflet-map"></div>
+        <div class="loc-map-label">Southern California · 18 active machines</div>
       </div>
     </div>
+
   </section>
 </div>
 
@@ -692,6 +706,10 @@ const io=new IntersectionObserver(entries=>{
         }
       }
     });
+    // also catch the map column directly
+    if(el.id==='leaflet-map'||el.classList.contains('loc-map-col')){
+      setTimeout(()=>{ if(typeof map!=='undefined'&&map) map.invalidateSize(); },450);
+    }
     // stagger
     if(el.classList.contains('sg')){
       el.classList.add('vis');
