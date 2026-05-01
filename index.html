@@ -157,7 +157,8 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 
 /* LOCATIONS */
 .loc-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
-.loc-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:4rem; align-items:start; }
+.loc-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:4rem; align-items:stretch; }
+.loc-grid > .sr { display:flex; flex-direction:column; }
 .llist { display:flex; flex-direction:column; gap:0.5rem; margin-top:2.5rem; max-height:520px; overflow-y:auto; padding-right:4px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
 .li { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:0.5px solid var(--border); border-radius:9px; padding:1rem 1.25rem; cursor:pointer; transition:all 0.22s cubic-bezier(0.22,1,0.36,1); }
 .li:hover { transform:translateX(5px); border-color:rgba(234,109,16,0.3); box-shadow:0 4px 16px rgba(0,0,0,0.05); }
@@ -520,7 +521,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
         </div>
       </div>
       <div class="sr">
-        <div id="leaflet-map" style="width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;border:0.5px solid var(--border);"></div>
+        <div id="leaflet-map" style="width:100%;flex:1;min-height:480px;border-radius:14px;overflow:hidden;border:0.5px solid var(--border);"></div>
         <div style="margin-top:0.75rem;font-size:0.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--textM);text-align:center;">Southern California · 18 active machines</div>
       </div>
     </div>
@@ -683,7 +684,14 @@ const io=new IntersectionObserver(entries=>{
     // clip reveal
     if(el.classList.contains('rw')) el.classList.add('vis');
     // simple
-    ['fu','sl','sr','su'].forEach(c=>{if(el.classList.contains(c))el.classList.add('vis');});
+    ['fu','sl','sr','su'].forEach(c=>{
+      if(el.classList.contains(c)){
+        el.classList.add('vis');
+        if(el.querySelector && el.querySelector('#leaflet-map')){
+          setTimeout(()=>{ if(typeof map!=='undefined'&&map) map.invalidateSize(); },450);
+        }
+      }
+    });
     // stagger
     if(el.classList.contains('sg')){
       el.classList.add('vis');
@@ -849,6 +857,9 @@ if(strip)cio.observe(strip);
 
     // open first popup on load
     markers[0].openPopup();
+
+    // invalidate after any scroll-triggered reveal animation finishes
+    setTimeout(() => map && map.invalidateSize(), 900);
 
     // wire up list items
     document.querySelectorAll('.li[data-loc]').forEach(item => {
