@@ -157,7 +157,7 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 
 /* LOCATIONS */
 .loc-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
-.loc-header { display:flex; align-items:flex-end; justify-content:space-between; gap:3rem; margin-bottom:2.5rem; }
+.loc-header { display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem; }
 .loc-body { display:grid; grid-template-columns:380px 1fr; gap:1.5rem; align-items:stretch; }
 .llist { display:flex; flex-direction:column; gap:0.5rem; max-height:none; overflow-y:auto; padding-right:4px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
 .li { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:0.5px solid var(--border); border-radius:9px; padding:1rem 1.25rem; cursor:pointer; transition:all 0.22s cubic-bezier(0.22,1,0.36,1); }
@@ -512,7 +512,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
         <span class="eyebrow">Find a CraveBot</span>
         <div class="rw"><h2 class="sec-title"><span class="rl">CraveBots near you</span></h2></div>
       </div>
-      <p class="sec-sub fu" style="max-width:480px;transition-delay:0.15s;align-self:flex-end;">18 machines deployed across 14 venues in Southern California — on campuses, at tech companies, and in hotels.</p>
+      <p class="sec-sub fu" style="transition-delay:0.15s;">18 machines deployed across 14 venues in Southern California — on campuses, at tech companies, and in hotels.</p>
     </div>
 
     <!-- List + Map -->
