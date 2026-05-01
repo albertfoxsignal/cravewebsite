@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<link rel="icon" type="image/svg+xml" href="/icon.svg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/svg+xml" href="/icon.svg" />
 <title>Menu — Crave Robotics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,7 +12,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
-  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.16);
+  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.15);
   --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12);
   --lemon:#c79500; --lemonD:rgba(199,149,0,0.1);
   --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
@@ -21,7 +21,7 @@
 html { scroll-behavior:smooth; }
 body { font-family:var(--font); background:var(--bg); color:var(--text); overflow-x:hidden; min-height:100vh; }
 
-/* ── NAV ── */
+/* NAV */
 nav {
   position:sticky; top:0; z-index:200;
   display:flex; align-items:center; justify-content:space-between;
@@ -29,189 +29,147 @@ nav {
   background:rgba(245,244,240,0.92); backdrop-filter:blur(20px);
   border-bottom:0.5px solid var(--border);
 }
+.nav-logo { display:flex; align-items:center; text-decoration:none; }
 .nav-logo img { height:34px; width:auto; display:block; }
 .nav-links { display:flex; gap:2rem; list-style:none; }
 .nav-links a { font-size:0.75rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--textS); text-decoration:none; transition:color 0.2s; }
-.nav-links a:hover, .nav-links a.active { color:var(--orange); }
-.nav-cta { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.73rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; padding:0.55rem 1.3rem; border-radius:6px; cursor:pointer; text-decoration:none; display:inline-block; transition:opacity 0.2s,transform 0.15s; }
-.nav-cta:hover { opacity:0.88; transform:translateY(-1px); }
+.nav-links a:hover { color:var(--text); }
+.nav-links a.active { color:var(--orange); }
+.nav-cta { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.73rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; padding:0.55rem 1.3rem; border-radius:6px; cursor:pointer; transition:opacity 0.2s; text-decoration:none; display:inline-block; }
+.nav-cta:hover { opacity:0.88; }
 
-/* ── PAGE HEADER ── */
-.page-header {
-  max-width:1280px; margin:0 auto; padding:4rem 3rem 3rem;
-  display:flex; align-items:flex-end; justify-content:space-between; gap:2rem;
-  border-bottom:0.5px solid var(--border);
-}
-.page-header-left { position:relative; overflow:hidden; }
+/* PAGE HEADER */
+.page-header { max-width:1280px; margin:0 auto; padding:4rem 3rem 3rem; border-bottom:0.5px solid var(--border); }
 .header-eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:0.75rem; display:block; opacity:0; transform:translateY(14px); animation:hIn 0.65s cubic-bezier(0.22,1,0.36,1) 0.05s forwards; }
 .header-h1 { font-family:var(--serif); font-size:clamp(3rem,6vw,5rem); font-weight:700; line-height:1.02; letter-spacing:-0.025em; opacity:0; transform:translateY(20px); animation:hIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.18s forwards; }
 .header-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.header-meta { opacity:0; transform:translateY(12px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.32s forwards; }
-.product-count { font-family:var(--serif); font-size:2.8rem; font-weight:700; color:var(--text); line-height:1; }
-.product-count-label { font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--textM); margin-top:4px; }
+.header-meta { opacity:0; transform:translateY(12px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.32s forwards; display:flex; align-items:flex-end; justify-content:space-between; margin-top:1.5rem; }
+.header-sub { font-size:0.9rem; color:var(--textS); }
 @keyframes hIn { to { opacity:1; transform:translateY(0); } }
 
-/* ── LAYOUT ── */
-.shop-layout { max-width:1280px; margin:0 auto; padding:0 3rem 6rem; display:grid; grid-template-columns:220px 1fr; gap:3rem; align-items:start; margin-top:3rem; }
+/* LAYOUT */
+.shop-layout { max-width:1280px; margin:0 auto; padding:3rem 3rem 6rem; display:grid; grid-template-columns:220px 1fr; gap:3rem; align-items:start; }
 
-/* ── SIDEBAR ── */
+/* SIDEBAR */
 .sidebar { position:sticky; top:88px; display:flex; flex-direction:column; gap:2rem; }
-
-.filter-block { }
 .filter-title { font-size:0.65rem; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:var(--textM); margin-bottom:0.9rem; padding-bottom:0.7rem; border-bottom:0.5px solid var(--border); }
 .cat-list { display:flex; flex-direction:column; gap:2px; }
-.cat-btn {
-  width:100%; text-align:left; padding:0.55rem 0.8rem; border-radius:7px;
-  font-family:var(--font); font-size:0.8rem; font-weight:600; color:var(--textS);
-  background:transparent; border:none; cursor:pointer;
-  transition:background 0.18s, color 0.18s;
-  display:flex; align-items:center; justify-content:space-between; gap:0.5rem;
-}
+.cat-btn { width:100%; text-align:left; padding:0.55rem 0.8rem; border-radius:7px; font-family:var(--font); font-size:0.8rem; font-weight:600; color:var(--textS); background:transparent; border:none; cursor:pointer; transition:background 0.18s,color 0.18s; display:flex; align-items:center; justify-content:space-between; gap:0.5rem; }
 .cat-btn:hover { background:rgba(0,0,0,0.04); color:var(--text); }
 .cat-btn.active { background:var(--orangeD); color:var(--orange); }
 .cat-count { font-size:0.65rem; font-weight:700; color:var(--textM); background:var(--bg2); border-radius:100px; padding:1px 7px; }
 .cat-btn.active .cat-count { background:rgba(234,109,16,0.15); color:var(--orange); }
 
-.price-filter { }
-.price-range-display { display:flex; justify-content:space-between; font-size:0.78rem; font-weight:600; color:var(--textS); margin-bottom:0.75rem; }
-.price-slider { -webkit-appearance:none; width:100%; height:3px; border-radius:2px; background:linear-gradient(to right, var(--orange) 0%, var(--orange) 50%, var(--border) 50%); outline:none; cursor:pointer; }
-.price-slider::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:var(--orange); border:2px solid white; box-shadow:0 2px 6px rgba(0,0,0,0.15); cursor:pointer; }
-
-/* ── PRODUCT GRID ── */
+/* GRID */
 .grid-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; }
 .grid-result-count { font-size:0.78rem; font-weight:600; color:var(--textM); }
 .sort-select { font-family:var(--font); font-size:0.75rem; font-weight:600; color:var(--textS); background:var(--white); border:0.5px solid var(--border); border-radius:6px; padding:0.45rem 0.8rem; outline:none; cursor:pointer; }
-
 .product-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
 
-/* ── PRODUCT CARD ── */
+/* PRODUCT CARD */
 .pc {
   background:var(--white); border:0.5px solid var(--border); border-radius:14px;
-  overflow:hidden; cursor:pointer; position:relative;
-  transition:transform 0.32s cubic-bezier(0.22,1,0.36,1), box-shadow 0.32s, border-color 0.2s;
-  text-decoration:none; color:inherit; display:block;
+  overflow:hidden; display:block; position:relative;
+  transition:transform 0.32s cubic-bezier(0.22,1,0.36,1),box-shadow 0.32s,border-color 0.2s;
+  opacity:0; transform:translateY(24px) scale(0.97);
 }
+.pc.shown { opacity:1; transform:none; transition:opacity 0.5s cubic-bezier(0.22,1,0.36,1),transform 0.5s cubic-bezier(0.22,1,0.36,1),box-shadow 0.32s,border-color 0.2s; }
 .pc:hover { transform:translateY(-8px) scale(1.01); box-shadow:0 20px 48px rgba(0,0,0,0.09); border-color:rgba(234,109,16,0.3); }
-.pc-img-wrap { overflow:hidden; aspect-ratio:1; background:var(--bg2); position:relative; }
-.pc-img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); }
-.pc:hover .pc-img { transform:scale(1.07); }
-.pc-overlay { position:absolute; inset:0; background:rgba(17,17,17,0); display:flex; align-items:center; justify-content:center; transition:background 0.25s; }
-.pc:hover .pc-overlay { background:rgba(17,17,17,0.18); }
-.pc-overlay-btn { opacity:0; transform:translateY(6px) scale(0.95); transition:opacity 0.22s,transform 0.22s; background:var(--white); color:var(--text); font-family:var(--font); font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; border:none; padding:0.55rem 1.1rem; border-radius:6px; cursor:pointer; white-space:nowrap; }
-.pc:hover .pc-overlay-btn { opacity:1; transform:none; }
 
-.pc-tag { position:absolute; top:0.7rem; left:0.7rem; font-size:0.58rem; font-weight:800; letter-spacing:0.09em; text-transform:uppercase; padding:3px 8px; border-radius:4px; }
-.pc-tag.asian { background:rgba(234,109,16,0.9); color:#fff; }
-.pc-tag.breakfast { background:rgba(199,149,0,0.9); color:#fff; }
-.pc-tag.western { background:rgba(59,130,246,0.85); color:#fff; }
-.pc-tag.dessert { background:rgba(168,85,247,0.85); color:#fff; }
-.pc-tag.snacks { background:rgba(34,197,94,0.85); color:#fff; }
-.pc-tag.vegan { background:rgba(22,163,74,0.9); color:#fff; }
+/* PLACEHOLDER IMAGE */
+.pc-img-wrap { aspect-ratio:1; position:relative; overflow:hidden; }
+.pc-placeholder {
+  width:100%; height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem;
+  background:var(--bg2);
+}
+.pc-placeholder-icon { font-size:2.4rem; line-height:1; }
+.pc-placeholder-label { font-size:0.6rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--textM); }
+.pc-tag { position:absolute; top:0.7rem; left:0.7rem; font-size:0.58rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; color:#fff; }
+.tag-breakfast { background:rgba(199,149,0,0.85); }
+.tag-entree    { background:rgba(234,109,16,0.85); }
+.tag-snack     { background:rgba(59,130,246,0.85); }
+.tag-dessert   { background:rgba(168,85,247,0.85); }
 
 .pc-body { padding:1rem 1.1rem 1.2rem; }
-.pc-name { font-size:0.85rem; font-weight:700; line-height:1.4; margin-bottom:0.5rem; color:var(--text); }
+.pc-name { font-size:0.83rem; font-weight:700; line-height:1.4; margin-bottom:0.5rem; color:var(--text); }
 .pc-footer { display:flex; align-items:center; justify-content:space-between; }
 .pc-price { font-family:var(--serif); font-size:1.3rem; font-weight:700; color:var(--orange); }
 .pc-cat-label { font-size:0.62rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textM); }
 
-/* ── EMPTY STATE ── */
+/* EMPTY */
 .empty { grid-column:1/-1; text-align:center; padding:5rem 2rem; }
-.empty-title { font-family:var(--serif); font-size:2rem; font-weight:700; margin-bottom:0.75rem; color:var(--textM); }
+.empty-title { font-family:var(--serif); font-size:2rem; font-weight:700; color:var(--textM); margin-bottom:0.5rem; }
 .empty-sub { font-size:0.9rem; color:var(--textM); }
 
-/* ── SCROLL ANIMS ── */
-.pc { opacity:0; transform:translateY(24px) scale(0.97); }
-.pc.shown { opacity:1; transform:none; }
-
-/* ── FOOTER ── */
+/* FOOTER */
 footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
 .foot-links { display:flex; gap:2rem; list-style:none; }
 .foot-links a { font-size:0.75rem; color:var(--textM); text-decoration:none; transition:color 0.2s; }
 .foot-links a:hover { color:var(--text); }
 .foot-copy { font-size:0.72rem; color:var(--textM); }
 
-/* ── MOBILE ── */
+/* MOBILE */
 @media(max-width:960px){
   nav { padding:0 1.5rem; } .nav-links { display:none; }
-  .page-header { padding:3rem 1.5rem 2rem; flex-direction:column; align-items:flex-start; }
-  .shop-layout { grid-template-columns:1fr; padding:0 1.5rem 4rem; margin-top:1.5rem; }
-  .sidebar { position:static; flex-direction:row; flex-wrap:wrap; gap:1.2rem; }
+  .page-header { padding:3rem 1.5rem 2rem; }
+  .shop-layout { grid-template-columns:1fr; padding:0 1.5rem 4rem; }
+  .sidebar { position:static; }
   .cat-list { flex-direction:row; flex-wrap:wrap; }
   .cat-btn { width:auto; }
   .product-grid { grid-template-columns:repeat(2,1fr); }
   footer { flex-direction:column; gap:1.5rem; text-align:center; padding:2rem 1.5rem; }
+  .foot-links { flex-wrap:wrap; justify-content:center; }
 }
-@media(max-width:480px){
-  .product-grid { grid-template-columns:1fr; }
-}
+@media(max-width:480px){ .product-grid { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a href="/">
-    <img class="nav-logo" src="/icon.svg" alt="Crave Robotics" style="height:34px;width:auto;display:block;" />
-  </a>
+  <a href="/" class="nav-logo"><img src="/icon.svg" alt="Crave Robotics" /></a>
   <ul class="nav-links">
     <li><a href="/#about">About</a></li>
-    <li><a href="/#platform">Platform</a></li>
-    <li><a href="#" class="active">Menu</a></li>
+    <li><a href="/menu" class="active">Menu</a></li>
     <li><a href="/#locations">Locations</a></li>
     <li><a href="/cravebot">CraveBot</a></li>
+    <li><a href="/craveos">CraveOS</a></li>
   </ul>
   <a href="/" class="nav-cta">← Back to Home</a>
 </nav>
 
-<!-- PAGE HEADER -->
+<!-- HEADER -->
 <div class="page-header">
-  <div class="page-header-left">
-    <span class="header-eyebrow">Private Label Menu</span>
-    <h1 class="header-h1">Gourmet<br>on the <em>Go</em></h1>
-  </div>
+  <span class="header-eyebrow">CraveBot Menu</span>
+  <h1 class="header-h1">Gourmet on the <em>Go</em></h1>
   <div class="header-meta">
-    <div class="product-count" id="visibleCount">24</div>
-    <div class="product-count-label">Items available</div>
+    <p class="header-sub">Hot, fresh meals ready in under 3 minutes — available 24/7 at a CraveBot near you.</p>
+    <span id="countBadge" style="font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--text);"></span>
   </div>
 </div>
 
-<!-- SHOP LAYOUT -->
+<!-- SHOP -->
 <div class="shop-layout">
-
-  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="filter-block">
-      <div class="filter-title">Browse by</div>
-      <div class="cat-list">
-        <button class="cat-btn active" data-cat="all" onclick="setCategory(this,'all')">All Products <span class="cat-count">24</span></button>
-        <button class="cat-btn" data-cat="breakfast" onclick="setCategory(this,'breakfast')">Breakfast <span class="cat-count" id="cnt-breakfast">0</span></button>
-        <button class="cat-btn" data-cat="asian" onclick="setCategory(this,'asian')">Asian Meals <span class="cat-count" id="cnt-asian">0</span></button>
-        <button class="cat-btn" data-cat="western" onclick="setCategory(this,'western')">Western Meals <span class="cat-count" id="cnt-western">0</span></button>
-        <button class="cat-btn" data-cat="snacks" onclick="setCategory(this,'snacks')">Snacks <span class="cat-count" id="cnt-snacks">0</span></button>
-        <button class="cat-btn" data-cat="dessert" onclick="setCategory(this,'dessert')">Dessert <span class="cat-count" id="cnt-dessert">0</span></button>
-        <button class="cat-btn" data-cat="vegan" onclick="setCategory(this,'vegan')">Vegan <span class="cat-count" id="cnt-vegan">0</span></button>
-      </div>
+    <div>
+      <div class="filter-title">Category</div>
+      <div class="cat-list" id="catList"></div>
     </div>
-
-    <div class="filter-block price-filter">
-      <div class="filter-title">Max price</div>
-      <div class="price-range-display">
-        <span>$4</span><span id="priceLabel">$15</span>
-      </div>
-      <input type="range" class="price-slider" id="priceSlider" min="4" max="15" value="15" step="1" oninput="setPrice(this.value)" />
+    <div>
+      <div class="filter-title">Sort by</div>
+      <select class="sort-select" id="sortSelect" onchange="render()" style="width:100%;margin-top:0;">
+        <option value="default">Featured</option>
+        <option value="price-asc">Price: Low → High</option>
+        <option value="price-desc">Price: High → Low</option>
+        <option value="az">Name A–Z</option>
+      </select>
     </div>
   </aside>
 
-  <!-- PRODUCT AREA -->
   <div>
     <div class="grid-header">
-      <span class="grid-result-count" id="resultLabel">Showing all 24 products</span>
-      <select class="sort-select" id="sortSelect" onchange="applyFilters()">
-        <option value="default">Featured</option>
-        <option value="price-asc">Price: Low to High</option>
-        <option value="price-desc">Price: High to Low</option>
-        <option value="name">Name A–Z</option>
-      </select>
+      <span class="grid-result-count" id="resultLabel"></span>
     </div>
     <div class="product-grid" id="grid"></div>
   </div>
@@ -220,7 +178,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 <!-- FOOTER -->
 <div style="border-top:0.5px solid var(--border);">
   <footer>
-    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <a href="/" style="display:flex;align-items:center;text-decoration:none;">
       <img src="/icon.svg" alt="Crave Robotics" style="height:26px;width:auto;" />
     </a>
     <ul class="foot-links">
@@ -234,146 +192,128 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 </div>
 
 <script>
-const BASE = 'https://static.wixstatic.com/media/';
-const IMG = id => `${BASE}${id}~mv2.png/v1/fill/w_600,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/${id}~mv2.png`;
-const WIX = 'https://www.craverobotics.co/product-page/';
-
 const PRODUCTS = [
-  // Asian Meals
-  { id:'6daf3f_5b237e92d49b4e15b3608f37335fdc4b', name:'Chicken & Shrimp Chow Mein', price:13, cats:['asian'], slug:'chicken-shrimp-chow-mein' },
-  { id:'6daf3f_bc5e8d5472614e3795fe92c1921d23d6', name:'Wagyu Beef Bowl', price:15, cats:['asian'], slug:'waygu-beef-bowl' },
-  { id:'6daf3f_880b66ea8a77434f96d0bb9d0dac1137', name:'Chicken Fried Rice', price:13, cats:['asian'], slug:'chicken-fried-rice' },
-  { id:'6daf3f_fc1a1dc4391942dbb10188d37c512491', name:'Teriyaki Chicken Rice Box', price:13, cats:['asian'], slug:'teriyaki-chicken-rice-box', badge:'Gourmet Now' },
-  { id:'6daf3f_58890fbcd89b4c129dfb2bb4ef14cb52', name:'Gyudon Rice Box', price:14, cats:['asian'], slug:'gyudon-rice-box-japanese-beef-rice-bowl', badge:'Gourmet Now' },
-  { id:'6daf3f_df831c95f4934bfe8553a9addc7ca04e', name:'Chicken Soup Dumplings', price:8, cats:['asian','snacks'], slug:'chicken-soup-dumplings' },
-  { id:'6daf3f_747901fe97c047099fd583d0cb8efddb', name:'Shrimp Fried Rice', price:13, cats:['asian'], slug:'shrimp-fried-rice' },
-  // Western Meals
-  { id:'6daf3f_d4d7be0c87e04567a6e7e8003ce2f81d', name:'Sweet Corn Elote Bowl', price:15, cats:['western','vegan'], slug:'sweet-corn-elote-bowl' },
-  { id:'6daf3f_dca47cd280204a688838c4a4c501f176', name:'Plant-Based Meatball Marinara', price:15, cats:['western','vegan'], slug:'plant-based-meatball-marinara' },
-  // Breakfast
-  { id:'6daf3f_14e481bd54d34dd09073e63e034fc89e', name:'Sausage, Egg & Cheese Croissant', price:6, cats:['breakfast'], slug:'sausage-egg-cheese-croissant-sandwich' },
-  { id:'6daf3f_073d550a2b6a41a88a2a86ecf1c82ad8', name:'Gyudon Beef Bowl', price:9, cats:['breakfast','asian'], slug:'gyudon-beef-bowl-1' },
-  // Dessert
-  { id:'6daf3f_103e59664d744798a260e350cd69a183', name:'Apple Pie', price:6, cats:['dessert'], slug:'apple-pie' },
-  { id:'6daf3f_4cb4b5c7f5934230aad5dd69a9091a34', name:'New York Style Cheesecake', price:6, cats:['dessert'], slug:'new-york-style-cheesecake' },
-  // Additional items to reach full 24 count - using best-guess slugs
-  { id:'6daf3f_28a432bd3cad4a7a865e94e5bd5b183c', name:'Breakfast Burrito', price:8, cats:['breakfast'], slug:'breakfast-burrito' },
-  { id:'6daf3f_9acb75590f854811b3543df4aff2187f', name:'Veggie Stir Fry', price:12, cats:['asian','vegan'], slug:'veggie-stir-fry' },
-  { id:'6daf3f_55d7b8319a0a49dc800355c5d61863c6', name:'Classic Beef Burger', price:11, cats:['western'], slug:'classic-beef-burger' },
-  { id:'6daf3f_4162c347df654ccca220f4f56541915b', name:'BBQ Pulled Pork Bowl', price:13, cats:['western'], slug:'bbq-pulled-pork-bowl' },
-  { id:'6daf3f_53ea6a7c6f074baca855810526b8f629', name:'Spicy Ramen', price:12, cats:['asian'], slug:'spicy-ramen' },
-  { id:'6daf3f_98c7cc5df056433c85b5999b1b361767', name:'Matcha Lava Cake', price:7, cats:['dessert'], slug:'matcha-lava-cake' },
-  { id:'6daf3f_073d550a2b6a41a88a2a86ecf1c82ad9', name:'Pineapple Fried Rice', price:12, cats:['asian','vegan'], slug:'pineapple-fried-rice' },
-  { id:'6daf3f_73d550a2b6a41a88a2a86ecf1c82ad81', name:'Cheese & Herb Omelette', price:7, cats:['breakfast'], slug:'cheese-herb-omelette' },
-  { id:'6daf3f_d4d7be0c87e04567a6e7e8003ce2f81e', name:'Protein Snack Box', price:5, cats:['snacks'], slug:'protein-snack-box' },
-  { id:'6daf3f_dca47cd280204a688838c4a4c501f177', name:'Popcorn Chicken', price:7, cats:['snacks'], slug:'popcorn-chicken' },
-  { id:'6daf3f_103e59664d744798a260e350cd69a184', name:'Mango Sticky Rice', price:6, cats:['dessert','asian'], slug:'mango-sticky-rice' },
+  // ── BREAKFAST ──
+  { name:"Meat Lover's Breakfast Bowl",                      cat:"Breakfast", price:9,  icon:"🍳" },
+  { name:"Sausage, Egg & Cheese Croissant Sandwich",         cat:"Breakfast", price:6,  icon:"🥐" },
+  { name:"Sausage, Egg & Cheese Maple Griddle Cake Sandwich",cat:"Breakfast", price:7,  icon:"🧇" },
+  { name:"Turkey Sausage, Egg White & Cheese English Muffin",cat:"Breakfast", price:6,  icon:"🍳" },
+  { name:"Cinnamon French Toast Sticks (4 Pieces)",          cat:"Breakfast", price:5,  icon:"🍞" },
+
+  // ── ENTREES ──
+  { name:"Beef Bulgogi Fried Rice (14 oz)",  cat:"Entree", price:14, icon:"🍚" },
+  { name:"Blackened Chicken Alfredo",        cat:"Entree", price:14, icon:"🍝" },
+  { name:"Chicken & Shrimp Chow Mein",       cat:"Entree", price:13, icon:"🍜" },
+  { name:"Chicken Fried Rice",               cat:"Entree", price:13, icon:"🍚" },
+  { name:"Chicken Shawarma Bowl",            cat:"Entree", price:14, icon:"🥙" },
+  { name:"Curry Rice Bowl",                  cat:"Entree", price:13, icon:"🍛" },
+  { name:"Four Cheese Mac & Cheese",         cat:"Entree", price:11, icon:"🧀" },
+  { name:"Gyudon Beef Rice Box",             cat:"Entree", price:14, icon:"🥩" },
+  { name:"Kimchi Fried Rice",                cat:"Entree", price:13, icon:"🍚" },
+  { name:"Meat Lasagna",                     cat:"Entree", price:13, icon:"🍝" },
+  { name:"Plant-Based Meatball Marinara",    cat:"Entree", price:15, icon:"🌱" },
+  { name:"Shrimp Alfredo",                   cat:"Entree", price:14, icon:"🍝" },
+  { name:"Spaghetti With Meat Sauce",        cat:"Entree", price:13, icon:"🍝" },
+  { name:"Spinach Artichoke Cavatappi",      cat:"Entree", price:13, icon:"🥦" },
+  { name:"Sweet Corn Elote Bowl",            cat:"Entree", price:15, icon:"🌽" },
+  { name:"Teriyaki Chicken Rice Box",        cat:"Entree", price:13, icon:"🍗" },
+  { name:"Wagyu Beef Bowl",                  cat:"Entree", price:15, icon:"🥩" },
+
+  // ── SNACKS ──
+  { name:"Angus Cheeseburger",                      cat:"Snack", price:9,  icon:"🍔" },
+  { name:"Chicken & Cheese Quesadilla",             cat:"Snack", price:8,  icon:"🫓" },
+  { name:"Chicken & Cheese Taquitos (4 Pieces)",    cat:"Snack", price:7,  icon:"🌯" },
+  { name:"Chicken, Cheese & Rice Chimichanga",      cat:"Snack", price:8,  icon:"🌯" },
+  { name:"Deep Dish Four Cheese Pizza (5-Inch)",    cat:"Snack", price:8,  icon:"🍕" },
+  { name:"Deep Dish Pepperoni Pizza (5-Inch)",      cat:"Snack", price:8,  icon:"🍕" },
+  { name:"Deep Dish Supreme Pizza (5-Inch)",        cat:"Snack", price:9,  icon:"🍕" },
+  { name:"Pepperoni Pizza Hot Pocket",              cat:"Snack", price:5,  icon:"🍕" },
+  { name:"Philly Cheesesteak Sandwich",             cat:"Snack", price:9,  icon:"🥪" },
+  { name:"Pizza Rolls (8 Pieces)",                  cat:"Snack", price:6,  icon:"🍕" },
+  { name:"Chicken Nuggets (8 Pieces)",              cat:"Snack", price:7,  icon:"🍗" },
+  { name:"Dinosaur Shaped Chicken Nuggets (8 Pieces)",cat:"Snack", price:7, icon:"🦕" },
+  { name:"Chicken Soup Dumplings (6 Pieces)",       cat:"Snack", price:8,  icon:"🥟" },
+
+  // ── DESSERT ──
+  { name:"Apple Pie",                                    cat:"Dessert", price:6,  icon:"🥧" },
+  { name:"New York Style Cheesecake",                    cat:"Dessert", price:6,  icon:"🍰" },
+  { name:"Peanut Butter & Strawberry Jam Uncrustables",  cat:"Dessert", price:4,  icon:"🥜" },
+  { name:"Brown Sugar Boba Ice Cream Bar",               cat:"Dessert", price:5,  icon:"🧋" },
+  { name:"Haagen-Dazs Vanilla Milk Chocolate Almond Bar",cat:"Dessert", price:6,  icon:"🍫" },
+  { name:"M&M's Vanilla Cookie Ice Cream Sandwich",      cat:"Dessert", price:5,  icon:"🍪" },
+  { name:"Melona Ice Bar (Melon)",                       cat:"Dessert", price:4,  icon:"🍈" },
+  { name:"Snickers Ice Cream Bars (2 Pack)",             cat:"Dessert", price:5,  icon:"🍫" },
+  { name:"Vanilla Milkshake",                            cat:"Dessert", price:6,  icon:"🥛" },
 ];
 
-const CAT_LABELS = { asian:'Asian', breakfast:'Breakfast', western:'Western', dessert:'Dessert', snacks:'Snacks', vegan:'Vegan' };
-const CAT_ORDER = ['asian','breakfast','western','snacks','dessert','vegan'];
+const TAG_CLASS = { Breakfast:"tag-breakfast", Entree:"tag-entree", Snack:"tag-snack", Dessert:"tag-dessert" };
+const CATS = ["All", "Breakfast", "Entree", "Snack", "Dessert"];
+let activeCat = "All";
 
-let currentCat = 'all';
-let maxPrice = 15;
+/* build sidebar */
+const catList = document.getElementById("catList");
+CATS.forEach(cat => {
+  const count = cat === "All" ? PRODUCTS.length : PRODUCTS.filter(p => p.cat === cat).length;
+  const btn = document.createElement("button");
+  btn.className = "cat-btn" + (cat === "All" ? " active" : "");
+  btn.dataset.cat = cat;
+  btn.innerHTML = `${cat} <span class="cat-count">${count}</span>`;
+  btn.onclick = () => {
+    activeCat = cat;
+    document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    render();
+  };
+  catList.appendChild(btn);
+});
 
-function primaryCat(cats) {
-  for (const c of CAT_ORDER) { if (cats.includes(c)) return c; }
-  return cats[0];
-}
+function render() {
+  const sort = document.getElementById("sortSelect").value;
+  let items = PRODUCTS.filter(p => activeCat === "All" || p.cat === activeCat);
+  if (sort === "price-asc")  items = [...items].sort((a,b) => a.price - b.price);
+  if (sort === "price-desc") items = [...items].sort((a,b) => b.price - a.price);
+  if (sort === "az")         items = [...items].sort((a,b) => a.name.localeCompare(b.name));
 
-function tagLabel(cats) {
-  const c = primaryCat(cats);
-  return { cat: c, label: CAT_LABELS[c] || c };
-}
+  const grid = document.getElementById("grid");
+  const label = document.getElementById("resultLabel");
+  const badge = document.getElementById("countBadge");
 
-function applyFilters() {
-  const sort = document.getElementById('sortSelect').value;
-  let items = PRODUCTS.filter(p => {
-    const catOk = currentCat === 'all' || p.cats.includes(currentCat);
-    const priceOk = p.price <= maxPrice;
-    return catOk && priceOk;
-  });
+  badge.textContent = items.length;
+  label.textContent = items.length === PRODUCTS.length
+    ? `All ${items.length} items`
+    : `${items.length} item${items.length !== 1 ? "s" : ""}`;
 
-  if (sort === 'price-asc') items.sort((a,b) => a.price - b.price);
-  else if (sort === 'price-desc') items.sort((a,b) => b.price - a.price);
-  else if (sort === 'name') items.sort((a,b) => a.name.localeCompare(b.name));
-
-  renderGrid(items);
-
-  const total = items.length;
-  document.getElementById('visibleCount').textContent = total;
-  document.getElementById('resultLabel').textContent =
-    total === PRODUCTS.length ? `Showing all ${total} products` :
-    total === 0 ? 'No products match' : `Showing ${total} product${total !== 1 ? 's' : ''}`;
-}
-
-function renderGrid(items) {
-  const grid = document.getElementById('grid');
-  if (items.length === 0) {
-    grid.innerHTML = `<div class="empty"><div class="empty-title">No items found</div><p class="empty-sub">Try adjusting your filters</p></div>`;
+  if (!items.length) {
+    grid.innerHTML = `<div class="empty"><div class="empty-title">No items</div><p class="empty-sub">Try a different category</p></div>`;
     return;
   }
-  grid.innerHTML = items.map((p, i) => {
-    const { cat, label } = tagLabel(p.cats);
-    return `
-    <a class="pc" href="${WIX}${p.slug}" target="_blank" style="transition-delay:${i * 0.045}s">
+
+  grid.innerHTML = items.map(p => `
+    <div class="pc">
       <div class="pc-img-wrap">
-        <img class="pc-img" src="${IMG(p.id)}" alt="${p.name}" loading="lazy" onerror="this.parentElement.style.background='var(--bg3)';this.style.opacity=0" />
-        <span class="pc-tag ${cat}">${label}</span>
-        <div class="pc-overlay"><button class="pc-overlay-btn">View Product ↗</button></div>
+        <div class="pc-placeholder">
+          <div class="pc-placeholder-icon">${p.icon}</div>
+          <div class="pc-placeholder-label">Photo coming soon</div>
+        </div>
+        <span class="pc-tag ${TAG_CLASS[p.cat]}">${p.cat}</span>
       </div>
       <div class="pc-body">
         <div class="pc-name">${p.name}</div>
         <div class="pc-footer">
           <span class="pc-price">$${p.price.toFixed(2)}</span>
-          <span class="pc-cat-label">${p.cats.map(c => CAT_LABELS[c]||c).join(' · ')}</span>
+          <span class="pc-cat-label">${p.cat}</span>
         </div>
       </div>
-    </a>`;
-  }).join('');
+    </div>`).join("");
 
-  // animate in with stagger
   requestAnimationFrame(() => {
-    grid.querySelectorAll('.pc').forEach((el, i) => {
-      setTimeout(() => el.classList.add('shown'), i * 45);
+    grid.querySelectorAll(".pc").forEach((el, i) => {
+      setTimeout(() => el.classList.add("shown"), i * 35);
     });
   });
 }
 
-function setCategory(btn, cat) {
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  currentCat = cat;
-  applyFilters();
-}
-
-function setPrice(val) {
-  maxPrice = parseInt(val);
-  document.getElementById('priceLabel').textContent = `$${val}`;
-  // update slider gradient
-  const pct = ((val - 4) / 11) * 100;
-  document.getElementById('priceSlider').style.background =
-    `linear-gradient(to right, var(--orange) 0%, var(--orange) ${pct}%, rgba(0,0,0,0.1) ${pct}%)`;
-  applyFilters();
-}
-
-// populate category counts
-function updateCounts() {
-  ['breakfast','asian','western','snacks','dessert','vegan'].forEach(cat => {
-    const el = document.getElementById('cnt-' + cat);
-    if (el) el.textContent = PRODUCTS.filter(p => p.cats.includes(cat)).length;
-  });
-}
-
-// init
-updateCounts();
-applyFilters();
-
-// CSS transition for card show
-document.head.insertAdjacentHTML('beforeend', `<style>
-.pc { transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.32s, border-color 0.2s; }
-.pc.shown { opacity:1 !important; transform:none !important; }
-</style>`);
+render();
 </script>
 </body>
 </html>
