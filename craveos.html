@@ -144,10 +144,10 @@ section { padding:6rem 3rem; max-width:1280px; margin:0 auto; }
 
 /* ── APP SECTIONS ── */
 .app-wrap { border-top:0.5px solid var(--border); }
-.app-wrap:nth-child(even) { background:var(--bg2); }
+.app-wrap.alt { background:var(--bg2); }
 .app-layout { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
-.app-layout.flip { direction:rtl; }
-.app-layout.flip > * { direction:ltr; }
+.app-layout.flip .app-text  { order:2; }
+.app-layout.flip .app-screen { order:1; }
 
 .app-tag { display:inline-flex; align-items:center; gap:6px; background:var(--orangeD); border:0.5px solid rgba(234,109,16,0.25); border-radius:100px; padding:0.3rem 0.9rem; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin-bottom:1.2rem; }
 .app-num { font-family:var(--serif); font-size:0.9rem; font-weight:700; color:rgba(234,109,16,0.4); margin-right:4px; }
@@ -252,7 +252,9 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
   .hero-right { display:none; }
   .stats-inner { grid-template-columns:repeat(2,1fr); gap:1.5rem; padding:2rem 1.5rem; }
   section { padding:4rem 1.5rem; }
-  .app-layout,.app-layout.flip { grid-template-columns:1fr; direction:ltr; gap:3rem; }
+  .app-layout,.app-layout.flip { grid-template-columns:1fr; gap:3rem; }
+  .app-layout.flip .app-text,
+  .app-layout.flip .app-screen { order:unset; }
   .cta-inner { grid-template-columns:1fr; padding:3rem 1.5rem; }
   footer { flex-direction:column; gap:1.5rem; text-align:center; padding:2rem 1.5rem; }
   .foot-links { flex-wrap:wrap; justify-content:center; }
@@ -370,7 +372,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 <div class="app-wrap">
   <section>
     <div class="app-layout">
-      <div class="sl">
+      <div class="app-text sl">
         <div class="app-tag"><span class="app-num">01</span> Analytics Dashboard</div>
         <div class="rw"><h2 class="sec-title"><span class="rl">Live revenue &</span><span class="rl">performance data</span></h2></div>
         <p class="sec-sub fu" style="transition-delay:0.1s;margin-bottom:0.5rem;">Every sale, every machine, every metric — surfaced in real time. The CraveOS Dashboard aggregates order data across the entire fleet and presents it in a single, unified view.</p>
@@ -393,7 +395,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
           </div>
         </div>
       </div>
-      <div class="sr">
+      <div class="app-screen sr">
         <div class="screen-frame">
           <div class="screen-topbar">
             <div class="screen-dot" style="background:#ff5f57"></div>
@@ -437,10 +439,10 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 </div>
 
 <!-- 02 — MACHINE MONITORING -->
-<div class="app-wrap">
+<div class="app-wrap alt">
   <section>
     <div class="app-layout flip">
-      <div class="sr">
+      <div class="app-screen sr">
         <div class="screen-frame">
           <div class="screen-topbar">
             <div class="screen-dot" style="background:#ff5f57"></div>
@@ -460,7 +462,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
           </div>
         </div>
       </div>
-      <div class="sl">
+      <div class="app-text sl">
         <div class="app-tag"><span class="app-num">02</span> Machine Monitoring</div>
         <div class="rw"><h2 class="sec-title"><span class="rl">Every machine,</span><span class="rl">always in view</span></h2></div>
         <p class="sec-sub fu" style="transition-delay:0.1s;margin-bottom:0.5rem;">CraveOS tracks the operational status of every deployed unit in real time — surfacing alerts before they become problems and keeping the fleet at 96% uptime.</p>
@@ -487,7 +489,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 <div class="app-wrap">
   <section>
     <div class="app-layout">
-      <div class="sl">
+      <div class="app-text sl">
         <div class="app-tag"><span class="app-num">03</span> Content Management</div>
         <div class="rw"><h2 class="sec-title"><span class="rl">Menu, partners &</span><span class="rl">campaigns — one place</span></h2></div>
         <p class="sec-sub fu" style="transition-delay:0.1s;margin-bottom:0.5rem;">CraveOS lets operators manage what's served, to whom, and how it's promoted — without touching a line of code or filing a support ticket.</p>
@@ -510,7 +512,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
           </div>
         </div>
       </div>
-      <div class="sr">
+      <div class="app-screen sr">
         <div class="screen-frame">
           <div class="screen-topbar">
             <div class="screen-dot" style="background:#ff5f57"></div>
@@ -568,10 +570,10 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 </div>
 
 <!-- 04 — LOGISTICS & PLANNING -->
-<div class="app-wrap">
+<div class="app-wrap alt">
   <section>
     <div class="app-layout flip">
-      <div class="sr">
+      <div class="app-screen sr">
         <div class="screen-frame">
           <div class="screen-topbar">
             <div class="screen-dot" style="background:#ff5f57"></div>
@@ -605,7 +607,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
           </div>
         </div>
       </div>
-      <div class="sl">
+      <div class="app-text sl">
         <div class="app-tag"><span class="app-num">04</span> Logistics & Planning</div>
         <div class="rw"><h2 class="sec-title"><span class="rl">Cold chain, routes,</span><span class="rl">and replenishment</span></h2></div>
         <p class="sec-sub fu" style="transition-delay:0.1s;margin-bottom:0.5rem;">CraveOS gives operations teams full visibility into inventory levels, restocking schedules, and cold chain status — so no machine runs empty and no route is wasted.</p>
