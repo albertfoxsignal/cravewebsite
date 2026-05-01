@@ -323,22 +323,36 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       "@type": "Product",
       "@id": "https://www.craverobotics.co/cravebot#product",
       "name": "CraveBot Automated Food Kiosk",
-      "alternateName": ["CraveBot CON-3000", "CraveBot CR-108"],
-      "description": "CraveBot is a NSF-certified automated food kiosk that stores meals frozen and heats them to order in under 3 minutes. Available 24/7 with 96% fleet uptime. Zero cost and zero operational burden to the host venue — fully managed by Crave Robotics.",
+      "alternateName": "CraveBot Gen 2 Zeus",
+      "description": "CraveBot Gen 2 (Zeus) is a NSF-certified automated food kiosk that stores 76 meals frozen at −0.4°F and heats them to order in under 3 minutes using 3,000W triple-directional magnetrons. Features a 55-inch touchscreen, 4G LTE/Wi-Fi/Ethernet connectivity, and 96% fleet uptime. Available 24/7 with zero cost and zero operational burden to the host venue.",
       "brand": { "@type": "Brand", "name": "Crave Robotics" },
       "manufacturer": { "@id": "https://www.craverobotics.co/#organization" },
-      "model": "CON-3000, CR-108",
+      "model": "Gen 2 (Zeus)",
       "url": "https://www.craverobotics.co/cravebot",
       "image": "https://www.craverobotics.co/cravebot-machine.png",
       "additionalProperty": [
+        { "@type": "PropertyValue", "name": "Dimensions (HxLxD)", "value": "78.39\" × 60.24\" × 40.47\"" },
+        { "@type": "PropertyValue", "name": "Weight", "value": "1,610 lbs" },
+        { "@type": "PropertyValue", "name": "Input Voltage", "value": "Single phase AC 220V ±5% 60Hz" },
+        { "@type": "PropertyValue", "name": "Rated Current", "value": "30 Amps" },
+        { "@type": "PropertyValue", "name": "Plug Type", "value": "NEMA L6-30P" },
+        { "@type": "PropertyValue", "name": "Average Daily Power Consumption", "value": "≤21 kWh" },
+        { "@type": "PropertyValue", "name": "Heating Power", "value": "3,000W — triple-directional magnetrons" },
+        { "@type": "PropertyValue", "name": "Freezer Temperature", "value": "−0.4°F with automatic defrost" },
+        { "@type": "PropertyValue", "name": "Operating Temperature", "value": "0°C ~ 50°C" },
+        { "@type": "PropertyValue", "name": "Storage Temperature", "value": "−10°C ~ 70°C" },
+        { "@type": "PropertyValue", "name": "Relative Humidity", "value": "10% ~ 90% (non-condensing)" },
+        { "@type": "PropertyValue", "name": "Capacity", "value": "76 items" },
+        { "@type": "PropertyValue", "name": "Display", "value": "55-inch touchscreen" },
+        { "@type": "PropertyValue", "name": "Connectivity", "value": "4G LTE, Wi-Fi, Ethernet" },
+        { "@type": "PropertyValue", "name": "Install Footprint", "value": "98.4\"(W) × 56.04\"(D) × 94.14\"(H) including clearance" },
+        { "@type": "PropertyValue", "name": "Floor Space", "value": "~16.47 sq ft" },
         { "@type": "PropertyValue", "name": "Serve Time", "value": "Under 3 minutes" },
-        { "@type": "PropertyValue", "name": "Availability", "value": "24/7/365" },
         { "@type": "PropertyValue", "name": "Fleet Uptime", "value": "96% average" },
-        { "@type": "PropertyValue", "name": "Storage Method", "value": "Frozen — heated to order" },
+        { "@type": "PropertyValue", "name": "Availability", "value": "24/7/365" },
         { "@type": "PropertyValue", "name": "Installation Cost", "value": "$0 — fully turnkey" },
         { "@type": "PropertyValue", "name": "Operational Cost", "value": "$0" },
         { "@type": "PropertyValue", "name": "Staff Required", "value": "None" },
-        { "@type": "PropertyValue", "name": "Kitchen Required", "value": "None" },
         { "@type": "PropertyValue", "name": "Certification", "value": "NSF Certified" },
         { "@type": "PropertyValue", "name": "Replenishment", "value": "Vendor-managed cold chain" }
       ],
@@ -378,7 +392,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
         {
           "@type": "Question",
           "name": "What are the CraveBot machine models?",
-          "acceptedAnswer": { "@type": "Answer", "text": "CraveBot is available in two models: the CON-3000 and the CR-108. Both are NSF-certified automated food kiosks that store meals frozen and heat them to order in under 3 minutes. Full dimensional and electrical specifications are available in the downloadable spec sheet." }
+          "acceptedAnswer": { "@type": "Answer", "text": "The current CraveBot model is the Gen 2, codenamed Zeus. It measures 78.39\" × 60.24\" × 40.47\" (H×L×D), weighs 1,610 lbs, and requires a single phase AC 220V ±5% 60Hz electrical connection at 30 Amps (NEMA L6-30P plug). It holds 76 items, features a 55-inch touchscreen, and connects via 4G LTE, Wi-Fi, or Ethernet. The full spec sheet is available for download at craverobotics.co/cravebot." }
         },
         {
           "@type": "Question",
@@ -422,7 +436,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
   <a href="/" class="nav-back">← Back to Home</a>
   <div style="display:flex;align-items:center;gap:1.5rem;">
     <a href="/craveos" style="font-size:0.73rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--textS);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--textS)'">Crave<span style="color:var(--orange)">OS</span></a>
-    <a href="https://drive.google.com/file/d/1Qp8f0PwtkQn5PSz-MngYJkHY-rVI34dT/view" target="_blank" class="nav-cta">↓ Spec Sheet PDF</a>
+    <a href="/Cravebot_Gen2__Zeus__Specsheet.pdf" target="_blank" class="nav-cta">↓ Spec Sheet PDF</a>
   </div>
 </nav>
 
@@ -449,35 +463,46 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <p class="sec-sub">Engineered for reliability, designed for zero operational burden. CraveBot plugs into any high-traffic space and runs itself.</p>
       <div class="spec-note">
         <span class="spec-note-icon">📋</span>
-        <span>Full dimensional and electrical specifications are available in the downloadable spec sheet. Placeholder values below will be updated from the official document.</span>
+        <span>Specifications below are from the official CraveBot Gen 2 (Zeus) spec sheet. Download for full dimensional drawings and install requirements.</span>
       </div>
-      <div class="spec-actions" style="margin-top:2rem;">
-        <a href="https://drive.google.com/file/d/1B-ciNkH2H_UiZJXYakQbjgBHAsWBGObc/view" target="_blank" style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--orange);text-decoration:none;">View NSF Certification →</a>
+      <div class="spec-actions" style="margin-top:2rem;display:flex;flex-direction:column;gap:0.75rem;">
+        <a href="/Cravebot_Gen2__Zeus__Specsheet.pdf" target="_blank" style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--orange);text-decoration:none;">↓ Download Spec Sheet PDF →</a>
+        <a href="https://drive.google.com/file/d/1B-ciNkH2H_UiZJXYakQbjgBHAsWBGObc/view" target="_blank" style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--textS);text-decoration:none;">View NSF Certification →</a>
       </div>
     </div>
 
     <div class="sr">
       <div class="spec-group">
         <div class="spec-group-title">Machine</div>
-        <div class="spec-row"><span class="spec-key">Models</span><span class="spec-val">CON-3000 · CR-108</span></div>
-        <div class="spec-row"><span class="spec-key">Dimensions</span><span class="spec-val ph">See spec sheet</span></div>
-        <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val ph">See spec sheet</span></div>
-        <div class="spec-row"><span class="spec-key">Power requirements</span><span class="spec-val ph">See spec sheet</span></div>
+        <div class="spec-row"><span class="spec-key">Model</span><span class="spec-val">Gen 2 (Zeus)</span></div>
+        <div class="spec-row"><span class="spec-key">Dimensions (H×L×D)</span><span class="spec-val">78.39″ × 60.24″ × 40.47″</span></div>
+        <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val">1,610 lbs</span></div>
+        <div class="spec-row"><span class="spec-key">Input voltage</span><span class="spec-val">AC 220V ±5% · 60Hz</span></div>
+        <div class="spec-row"><span class="spec-key">Rated current</span><span class="spec-val">30 Amps</span></div>
+        <div class="spec-row"><span class="spec-key">Plug type</span><span class="spec-val">NEMA L6-30P</span></div>
+        <div class="spec-row"><span class="spec-key">Daily power draw</span><span class="spec-val">≤21 kWh</span></div>
+        <div class="spec-row"><span class="spec-key">Operating temperature</span><span class="spec-val">0°C ~ 50°C</span></div>
+        <div class="spec-row"><span class="spec-key">Relative humidity</span><span class="spec-val">10% ~ 90% (non-condensing)</span></div>
+        <div class="spec-row"><span class="spec-key">Connectivity</span><span class="spec-val">4G LTE · Wi-Fi · Ethernet</span></div>
+        <div class="spec-row"><span class="spec-key">Display</span><span class="spec-val">55-inch touchscreen</span></div>
         <div class="spec-row"><span class="spec-key">Fleet uptime</span><span class="spec-val hl">96% average</span></div>
         <div class="spec-row"><span class="spec-key">Availability</span><span class="spec-val hl">24 / 7 / 365</span></div>
       </div>
 
       <div class="spec-group">
         <div class="spec-group-title">Food System</div>
-        <div class="spec-row"><span class="spec-key">Storage method</span><span class="spec-val">Frozen — heated to order</span></div>
+        <div class="spec-row"><span class="spec-key">Storage method</span><span class="spec-val">Frozen at −0.4°F · auto-defrost</span></div>
+        <div class="spec-row"><span class="spec-key">Storage temperature</span><span class="spec-val">−10°C ~ 70°C</span></div>
+        <div class="spec-row"><span class="spec-key">Capacity</span><span class="spec-val hl">76 items</span></div>
+        <div class="spec-row"><span class="spec-key">Heating power</span><span class="spec-val">3,000W · triple magnetrons</span></div>
         <div class="spec-row"><span class="spec-key">Serve time</span><span class="spec-val hl">Under 3 minutes</span></div>
-        <div class="spec-row"><span class="spec-key">Capacity</span><span class="spec-val ph">See spec sheet</span></div>
-        <div class="spec-row"><span class="spec-key">Temperature range</span><span class="spec-val ph">See spec sheet</span></div>
-        <div class="spec-row"><span class="spec-key">Menu items</span><span class="spec-val">15+ SKUs · private label available</span></div>
+        <div class="spec-row"><span class="spec-key">Menu items</span><span class="spec-val">45+ SKUs · private label available</span></div>
       </div>
 
       <div class="spec-group">
-        <div class="spec-group-title">Host Requirements</div>
+        <div class="spec-group-title">Install Requirements</div>
+        <div class="spec-row"><span class="spec-key">Footprint (W×D×H)</span><span class="spec-val">98.4″ × 56.04″ × 94.14″</span></div>
+        <div class="spec-row"><span class="spec-key">Floor space</span><span class="spec-val">~16.47 sq ft</span></div>
         <div class="spec-row"><span class="spec-key">Installation cost</span><span class="spec-val hl">$0 — fully turnkey</span></div>
         <div class="spec-row"><span class="spec-key">Operational cost</span><span class="spec-val hl">$0</span></div>
         <div class="spec-row"><span class="spec-key">Staff required</span><span class="spec-val hl">None</span></div>
