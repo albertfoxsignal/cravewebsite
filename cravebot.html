@@ -44,27 +44,48 @@ nav {
 .eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:1rem; display:block; }
 
 /* ── HERO + IMAGE ── */
-.hero-outer { background:var(--bg); position:relative; overflow:hidden; border-bottom:0.5px solid var(--border); }
-.hero-blob { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
-.blob1 { width:600px;height:600px;top:-20%;right:0;background:radial-gradient(circle,rgba(234,109,16,0.16) 0%,transparent 70%);animation:b1 14s ease-in-out infinite alternate; }
-.blob2 { width:380px;height:380px;bottom:0;left:-5%;background:radial-gradient(circle,rgba(199,149,0,0.1) 0%,transparent 70%);animation:b2 18s ease-in-out infinite alternate; }
+.hero-outer {
+  position:relative; overflow:hidden;
+  border-bottom:0.5px solid var(--border);
+}
+.hero-blob { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:1; }
+.blob1 { width:600px;height:600px;top:-20%;right:0;background:radial-gradient(circle,rgba(234,109,16,0.2) 0%,transparent 70%);animation:b1 14s ease-in-out infinite alternate; }
+.blob2 { width:380px;height:380px;bottom:0;left:-5%;background:radial-gradient(circle,rgba(199,149,0,0.13) 0%,transparent 70%);animation:b2 18s ease-in-out infinite alternate; }
 @keyframes b1 { to { transform:translate(-40px,30px) scale(1.06); } }
 @keyframes b2 { to { transform:translate(30px,-40px) scale(1.05); } }
 
-.hero-wrap { max-width:1280px; margin:0 auto; padding:0 3rem; position:relative; z-index:1; }
-.hero-text { padding:5rem 0 3rem; }
-.hero-h1 { font-family:var(--serif); font-size:clamp(3rem,5.5vw,5.2rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; margin-bottom:1.5rem; }
-.hero-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.hero-sub { font-size:1rem; color:var(--textS); line-height:1.8; margin-bottom:2.5rem; max-width:480px; }
-
-.hero-image { width:100%; position:relative; z-index:1; }
 .machine-frame {
-  width:100%; overflow:hidden;
-  border-radius:14px 14px 0 0;
-  border:0.5px solid var(--border); border-bottom:none;
+  width:100%; position:relative;
   background:linear-gradient(175deg,#eef2f7 0%,#dde4ed 100%);
 }
-.machine-frame img { width:100%; display:block; object-fit:cover; max-height:480px; object-position:center 25%; }
+.machine-frame img {
+  width:100%; display:block; object-fit:cover;
+  height:clamp(380px,55vw,620px);
+  object-position:right center;
+}
+/* gradient scrim — covers left third only so machine stays fully visible */
+.machine-frame::after {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(90deg,
+    rgba(245,244,240,0.92) 0%,
+    rgba(245,244,240,0.75) 22%,
+    rgba(245,244,240,0.2)  42%,
+    transparent 58%
+  );
+  pointer-events:none;
+}
+
+/* text overlaid on top-left of the image */
+.hero-text {
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:3.5rem 3rem;
+  max-width:640px;
+}
+.hero-h1 { font-family:var(--serif); font-size:clamp(2.8rem,5vw,5rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; margin-bottom:1.2rem; color:var(--text); }
+.hero-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-sub { font-size:0.95rem; color:var(--textS); line-height:1.8; max-width:400px; }
 
 /* ── SPEC TABLE SECTION ── */
 .specs-section { background:var(--white); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
@@ -229,16 +250,17 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 .hero-text .hero-h1  { animation:hIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s forwards; }
 .hero-text .hero-sub { animation:hIn 0.75s cubic-bezier(0.22,1,0.36,1) 0.4s forwards; }
 .hero-text .hero-btns { animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.54s forwards; }
-.hero-image { opacity:0; transform:translateY(32px); animation:hIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s forwards; }
+.machine-frame { opacity:0; transform:translateY(24px); animation:hIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.15s forwards; }
 @keyframes hIn { to { opacity:1; transform:translateY(0); } }
 
 /* MOBILE */
 @media(max-width:900px){
   nav { padding:0 1.5rem; }
   nav { padding:0 1.5rem; }
-  .hero-wrap { padding:0 1.5rem; }
-  .hero-text { padding:4rem 0 2rem; }
-  .machine-frame img { max-height:280px; }
+  .hero-text { padding:2rem 1.5rem; max-width:100%; }
+  .hero-h1 { font-size:2.4rem; }
+  .machine-frame::after { background:linear-gradient(180deg, rgba(245,244,240,0.92) 0%, rgba(245,244,240,0.75) 40%, rgba(245,244,240,0.1) 70%, transparent 100%); }
+  .hero-text { justify-content:flex-start; padding-top:2.5rem; }
   .specs-inner,.tray-inner,.sukhi-layout { grid-template-columns:1fr; gap:2.5rem; }
   .steps { grid-template-columns:repeat(2,1fr); }
   .sukhi-kpi-row { grid-template-columns:repeat(3,1fr); }
@@ -264,22 +286,16 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
   </div>
 </nav>
 
-<!-- HERO + MACHINE IMAGE -->
+<!-- HERO -->
 <div class="hero-outer">
   <div class="hero-blob blob1"></div>
   <div class="hero-blob blob2"></div>
-  <div class="hero-wrap">
+  <div class="machine-frame">
+    <img src="/cravebot-machine.png" alt="CraveBot Machine" onerror="this.style.opacity=0" />
     <div class="hero-text">
       <span class="eyebrow">Machine Overview</span>
       <h1 class="hero-h1">The<br><em>CraveBot</em><br>kiosk</h1>
       <p class="hero-sub">An intelligent frozen-to-ready food kiosk built for high-traffic captive venues. No kitchen, no staff, no compromise on quality.</p>
-    </div>
-  </div>
-  <div class="hero-image">
-    <div class="hero-wrap" style="padding-bottom:0;">
-      <div class="machine-frame">
-        <img src="/cravebot-machine.png" alt="CraveBot Machine" onerror="this.style.opacity=0" />
-      </div>
     </div>
   </div>
 </div>
