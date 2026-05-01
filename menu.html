@@ -195,98 +195,93 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 
 <script>
 /* ────────────────────────────────────────────────────────────────────────────
-   PRODUCTS
-   ────────────────────────────────────────────────────────────────────────────
-   `img` is a path to a file at the repo root (deployed at cravewebsite.vercel.app).
-   If the image fails to load (wrong filename, missing, etc.), the card automatically
-   falls back to the emoji placeholder — no broken-image icons will ever show.
-
-   Filenames below are best-guess matches based on the GitHub repo listing.
-   The truncated ones (timestamps cut off in the file list) may need touchup —
-   just paste the exact filename from GitHub and you're done.
+   PRODUCTS — image filenames verified against the live GitHub repo.
+   `img` paths point to the repo root. Commas in filenames are URL-encoded
+   (%2C) for safety; parens and other chars are fine as-is on Vercel.
+   If an image fails to load, the card falls back to the emoji placeholder.
    ────────────────────────────────────────────────────────────────────────── */
 const PRODUCTS = [
   // ── BREAKFAST ──
   { name:"Meat Lover's Breakfast Bowl",                       cat:"Breakfast", price:9,  icon:"🍳",
     img:"/Meat_Lover-01-20250104161542.jpg" },
   { name:"Sausage, Egg & Cheese Croissant Sandwich",          cat:"Breakfast", price:6,  icon:"🥐",
-    img:"/Sausage,_Egg___Cheese_Croissant_Sandwich.png" },
+    img:"/Sausage%2C_Egg___Cheese_Croissant_Sandwich-20250704105211.png" },
   { name:"Sausage, Egg & Cheese Maple Griddle Cake Sandwich", cat:"Breakfast", price:7,  icon:"🧇",
-    img:"/lucasjun92_Pancake_sandwich_sausage_5.png" },
+    img:"/lucasjun92_Pancake_sandwich_sausage_5-20250104162126.png" },
   { name:"Turkey Sausage, Egg White & Cheese English Muffin", cat:"Breakfast", price:6,  icon:"🍳",
-    img:"/Turkey_Sausage,_Egg_White___Cheese_English_Muffin.png" },
+    img:"/Turkey_Sausage%2C_Egg_White___Cheese_English_Muffin_with_bg-20250814143541.png" },
   { name:"Cinnamon French Toast Sticks (4 Pieces)",           cat:"Breakfast", price:5,  icon:"🍞",
-    img:"/Cinnamon_French_Toast_Sticks-20250104161.png" },
+    img:"/Cinnamon_French_Toast_Sticks-20250104162302.png" },
 
   // ── ENTREES ──
   { name:"Beef Bulgogi Fried Rice (14 oz)",   cat:"Entree", price:14, icon:"🍚",
-    img:"/Beef_Bulgogi_Fried_Rice_(1)-20250814153.png" },
+    img:"/Beef_Bulgogi_Fried_Rice_(1)-20250814153323-20260209131318.png" },
   { name:"Blackened Chicken Alfredo",         cat:"Entree", price:14, icon:"🍝",
-    img:"/Blackened_Chicken_Alfredo3-20250104155.png" },
+    img:"/Blackened_Chicken_Alfredo3-20250104155523.png" },
   { name:"Chicken & Shrimp Chow Mein",        cat:"Entree", price:13, icon:"🍜" },
   { name:"Chicken Fried Rice",                cat:"Entree", price:13, icon:"🍚",
-    img:"/lucasjun92_chicken_fried_rice_new2-20250.png" },
+    img:"/lucasjun92_chicken_fried_rice_new2-20250104125149.png" },
   { name:"Chicken Shawarma Bowl",             cat:"Entree", price:14, icon:"🥙" },
   { name:"Curry Rice Bowl",                   cat:"Entree", price:13, icon:"🍛",
-    img:"/Chicken_Tikka_Masala_Curry_Rice_Bowl_op.png" },
+    img:"/Chicken_Tikka_Masala_Curry_Rice_Bowl_optimized_4000-20260408155446.png" },
   { name:"Four Cheese Mac & Cheese",          cat:"Entree", price:11, icon:"🧀",
-    img:"/lucasjun92_photorealistic_image_of_Mac_a.png" },
+    img:"/lucasjun92_photorealistic_image_of_Mac_and_cheese_in_a_white_pl_6b5fd588-002e-4d5f-b752-29062d020ce9-20250104154907.png" },
   { name:"Gyudon Beef Rice Box",              cat:"Entree", price:14, icon:"🥩",
     img:"/Gyudon_Rice_Box_(2)-20251029113536.png" },
   { name:"Kimchi Fried Rice",                 cat:"Entree", price:13, icon:"🍚",
-    img:"/kimchi_fried_rice-20250814154445-20260.png" },
+    img:"/kimchi_fried_rice-20250814154445-20260209131548.png" },
   { name:"Meat Lasagna",                      cat:"Entree", price:13, icon:"🍝",
-    img:"/lucasjun92_photorealistic_image_of_lasagna.png" },
+    img:"/lucasjun92_photorealistic_image_of_lasagna_in_a_white_plate_woo_3d4a9f1a-8864-4be7-835b-248ff7932196-20250104154221.png" },
   { name:"Plant-Based Meatball Marinara",     cat:"Entree", price:15, icon:"🌱" },
   { name:"Shrimp Alfredo",                    cat:"Entree", price:14, icon:"🍝",
-    img:"/Shrimp_Alfredo-with_baclground-20250104.png" },
+    img:"/Shrimp_Alfredo-with_baclground-20250104155642.png" },
   { name:"Spaghetti With Meat Sauce",         cat:"Entree", price:13, icon:"🍝",
-    img:"/meat_sauce_spaghetti-with_bg-202508051.png" },
+    img:"/meat_sauce_spaghetti-with_bg-20250805170556-20260209134411.png" },
   { name:"Spinach Artichoke Cavatappi",       cat:"Entree", price:13, icon:"🥦" },
   { name:"Sweet Corn Elote Bowl",             cat:"Entree", price:15, icon:"🌽" },
   { name:"Teriyaki Chicken Rice Box",         cat:"Entree", price:13, icon:"🍗",
-    img:"/Teriyaki_Chicken_Rice_Box_(1)-20251029113.png" },
+    img:"/Teriyaki_Chicken_Rice_Box_(1)-20251029113749-20260209130244.png" },
   { name:"Wagyu Beef Bowl",                   cat:"Entree", price:15, icon:"🥩",
     img:"/Waygu_Beef_Bowl_(3)-20251029113450.png" },
 
   // ── SNACKS ──
   { name:"Angus Cheeseburger",                       cat:"Snack", price:9,  icon:"🍔",
-    img:"/Angus_hamburger-with_background-20250.png" },
+    img:"/Angus_hamburger-with_background-20250117084228.png" },
   { name:"Chicken & Cheese Quesadilla",              cat:"Snack", price:8,  icon:"🫓",
-    img:"/Chicken_Quesadilla_with_bg-202507241410.png" },
+    img:"/Chicken_Quesadilla_with_bg-20250724141055.png" },
   { name:"Chicken & Cheese Taquitos (4 Pieces)",     cat:"Snack", price:7,  icon:"🌯",
-    img:"/chicken__cheese_taquitos-with_bg-20250.png" },
+    img:"/chicken___cheese_taquitos-with_bg-20250612180842-20260209141755.jpg" },
   { name:"Chicken, Cheese & Rice Chimichanga",       cat:"Snack", price:8,  icon:"🌯",
-    img:"/ChickenCheeseRiceChimichangawithbackground.png" },
+    img:"/ChickenCheeseRiceChimichangawithbackground-20250127172231.png" },
   { name:"Deep Dish Four Cheese Pizza (5-Inch)",     cat:"Snack", price:8,  icon:"🍕",
-    img:"/SinglesFour_CheeseDeepDishPizzawith_bg.png" },
+    img:"/SinglesFour_CheeseDeepDishPizzawith_bg-20250302143713.png" },
   { name:"Deep Dish Pepperoni Pizza (5-Inch)",       cat:"Snack", price:8,  icon:"🍕",
-    img:"/pepperoni_pizza-_with_background-202501.png" },
+    img:"/pepperoni_pizza-_with_background-20250117083749.png" },
   { name:"Deep Dish Supreme Pizza (5-Inch)",         cat:"Snack", price:9,  icon:"🍕" },
   { name:"Pepperoni Pizza Hot Pocket",               cat:"Snack", price:5,  icon:"🍕" },
   { name:"Philly Cheesesteak Sandwich",              cat:"Snack", price:9,  icon:"🥪",
-    img:"/Product_images_Philly_cheese_steak_1-20250.png" },
+    img:"/Product_images_Philly_cheese_steak_1-20250104163440.jpg" },
   { name:"Pizza Rolls (8 Pieces)",                   cat:"Snack", price:6,  icon:"🍕" },
   { name:"Chicken Nuggets (8 Pieces)",               cat:"Snack", price:7,  icon:"🍗",
     img:"/Chicken_Nuggets_x_6_1-20250316212653.png" },
   { name:"Dinosaur Shaped Chicken Nuggets (8 Pieces)", cat:"Snack", price:7, icon:"🦕" },
   { name:"Chicken Soup Dumplings (6 Pieces)",        cat:"Snack", price:8,  icon:"🥟",
-    img:"/Steamed_Chicken_Soup_Dumplings-with_bg.png" },
+    img:"/Steamed_Chicken_Soup_Dumplings-with_bg-20250513125922.png" },
 
   // ── DESSERT ──
   { name:"Apple Pie",                                      cat:"Dessert", price:6,  icon:"🥧" },
   { name:"New York Style Cheesecake",                      cat:"Dessert", price:6,  icon:"🍰",
-    img:"/lucasjun92_cheesecake_3-20250104165944.png" },
+    img:"/lucasjun92_cheesecake_3-20250104165944-20260209143409.png" },
   { name:"Peanut Butter & Strawberry Jam Uncrustables",    cat:"Dessert", price:4,  icon:"🥜" },
   { name:"Brown Sugar Boba Ice Cream Bar",                 cat:"Dessert", price:5,  icon:"🧋",
-    img:"/Brown_Sugar_Boba_Ice_Milk_Bar_(1)-20251.png" },
+    img:"/Brown_Sugar_Boba_Ice_Milk_Bar_(1)-20251029113339.png" },
   { name:"Haagen-Dazs Vanilla Milk Chocolate Almond Bar",  cat:"Dessert", price:6,  icon:"🍫" },
   { name:"M&M's Vanilla Cookie Ice Cream Sandwich",        cat:"Dessert", price:5,  icon:"🍪" },
   { name:"Melona Ice Bar (Melon)",                         cat:"Dessert", price:4,  icon:"🍈",
     img:"/melona_ice_bar-20250915105104.png" },
   { name:"Snickers Ice Cream Bars (2 Pack)",               cat:"Dessert", price:5,  icon:"🍫" },
   { name:"Vanilla Milkshake",                              cat:"Dessert", price:6,  icon:"🥛",
-    img:"/lotte_snow_ice_milk_shake-20250915105030.png" },
+    img:"/lotte_snow_ice_milk_shake-20250915105032.png" },
 ];
 
 const TAG_CLASS = { Breakfast:"tag-breakfast", Entree:"tag-entree", Snack:"tag-snack", Dessert:"tag-dessert" };
