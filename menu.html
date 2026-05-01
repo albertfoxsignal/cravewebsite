@@ -76,10 +76,12 @@ nav {
 .pc.shown { opacity:1; transform:none; transition:opacity 0.5s cubic-bezier(0.22,1,0.36,1),transform 0.5s cubic-bezier(0.22,1,0.36,1),box-shadow 0.32s,border-color 0.2s; }
 .pc:hover { transform:translateY(-8px) scale(1.01); box-shadow:0 20px 48px rgba(0,0,0,0.09); border-color:rgba(234,109,16,0.3); }
 
-/* PLACEHOLDER IMAGE */
-.pc-img-wrap { aspect-ratio:1; position:relative; overflow:hidden; }
+/* PRODUCT IMAGE */
+.pc-img-wrap { aspect-ratio:1; position:relative; overflow:hidden; background:var(--bg2); }
+.pc-img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+.pc:hover .pc-img { transform:scale(1.07); }
 .pc-placeholder {
-  width:100%; height:100%;
+  position:absolute; inset:0;
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem;
   background:var(--bg2);
 }
@@ -194,56 +196,56 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 <script>
 const PRODUCTS = [
   // ── BREAKFAST ──
-  { name:"Meat Lover's Breakfast Bowl",                      cat:"Breakfast", price:9,  icon:"🍳" },
-  { name:"Sausage, Egg & Cheese Croissant Sandwich",         cat:"Breakfast", price:6,  icon:"🥐" },
-  { name:"Sausage, Egg & Cheese Maple Griddle Cake Sandwich",cat:"Breakfast", price:7,  icon:"🧇" },
-  { name:"Turkey Sausage, Egg White & Cheese English Muffin",cat:"Breakfast", price:6,  icon:"🍳" },
-  { name:"Cinnamon French Toast Sticks (4 Pieces)",          cat:"Breakfast", price:5,  icon:"🍞" },
+  { name:"Meat Lover's Breakfast Bowl",                       cat:"Breakfast", price:9,  icon:"🍳", img:"/menu-meat-lovers-bowl.jpg" },
+  { name:"Sausage, Egg & Cheese Croissant Sandwich",          cat:"Breakfast", price:6,  icon:"🥐", img:"/menu-croissant-sandwich.png" },
+  { name:"Sausage, Egg & Cheese Maple Griddle Cake Sandwich", cat:"Breakfast", price:7,  icon:"🧇", img:"/menu-griddle-cake-sandwich.png" },
+  { name:"Turkey Sausage, Egg White & Cheese English Muffin", cat:"Breakfast", price:6,  icon:"🍳", img:"/menu-turkey-muffin.png" },
+  { name:"Cinnamon French Toast Sticks (4 Pieces)",           cat:"Breakfast", price:5,  icon:"🍞", img:"" },
 
   // ── ENTREES ──
-  { name:"Beef Bulgogi Fried Rice (14 oz)",  cat:"Entree", price:14, icon:"🍚" },
-  { name:"Blackened Chicken Alfredo",        cat:"Entree", price:14, icon:"🍝" },
-  { name:"Chicken & Shrimp Chow Mein",       cat:"Entree", price:13, icon:"🍜" },
-  { name:"Chicken Fried Rice",               cat:"Entree", price:13, icon:"🍚" },
-  { name:"Chicken Shawarma Bowl",            cat:"Entree", price:14, icon:"🥙" },
-  { name:"Curry Rice Bowl",                  cat:"Entree", price:13, icon:"🍛" },
-  { name:"Four Cheese Mac & Cheese",         cat:"Entree", price:11, icon:"🧀" },
-  { name:"Gyudon Beef Rice Box",             cat:"Entree", price:14, icon:"🥩" },
-  { name:"Kimchi Fried Rice",                cat:"Entree", price:13, icon:"🍚" },
-  { name:"Meat Lasagna",                     cat:"Entree", price:13, icon:"🍝" },
-  { name:"Plant-Based Meatball Marinara",    cat:"Entree", price:15, icon:"🌱" },
-  { name:"Shrimp Alfredo",                   cat:"Entree", price:14, icon:"🍝" },
-  { name:"Spaghetti With Meat Sauce",        cat:"Entree", price:13, icon:"🍝" },
-  { name:"Spinach Artichoke Cavatappi",      cat:"Entree", price:13, icon:"🥦" },
-  { name:"Sweet Corn Elote Bowl",            cat:"Entree", price:15, icon:"🌽" },
-  { name:"Teriyaki Chicken Rice Box",        cat:"Entree", price:13, icon:"🍗" },
-  { name:"Wagyu Beef Bowl",                  cat:"Entree", price:15, icon:"🥩" },
+  { name:"Beef Bulgogi Fried Rice (14 oz)",   cat:"Entree", price:14, icon:"🍚", img:"" },
+  { name:"Blackened Chicken Alfredo",         cat:"Entree", price:14, icon:"🍝", img:"" },
+  { name:"Chicken & Shrimp Chow Mein",        cat:"Entree", price:13, icon:"🍜", img:"" },
+  { name:"Chicken Fried Rice",                cat:"Entree", price:13, icon:"🍚", img:"/menu-chicken-fried-rice.png" },
+  { name:"Chicken Shawarma Bowl",             cat:"Entree", price:14, icon:"🥙", img:"" },
+  { name:"Curry Rice Bowl",                   cat:"Entree", price:13, icon:"🍛", img:"" },
+  { name:"Four Cheese Mac & Cheese",          cat:"Entree", price:11, icon:"🧀", img:"/menu-mac-cheese.png" },
+  { name:"Gyudon Beef Rice Box",              cat:"Entree", price:14, icon:"🥩", img:"/menu-wagyu.png" },
+  { name:"Kimchi Fried Rice",                 cat:"Entree", price:13, icon:"🍚", img:"" },
+  { name:"Meat Lasagna",                      cat:"Entree", price:13, icon:"🍝", img:"/menu-lasagna.png" },
+  { name:"Plant-Based Meatball Marinara",     cat:"Entree", price:15, icon:"🌱", img:"" },
+  { name:"Shrimp Alfredo",                    cat:"Entree", price:14, icon:"🍝", img:"/menu-shrimp-alfredo.png" },
+  { name:"Spaghetti With Meat Sauce",         cat:"Entree", price:13, icon:"🍝", img:"/menu-spaghetti-meat-sauce.png" },
+  { name:"Spinach Artichoke Cavatappi",       cat:"Entree", price:13, icon:"🥦", img:"" },
+  { name:"Sweet Corn Elote Bowl",             cat:"Entree", price:15, icon:"🌽", img:"" },
+  { name:"Teriyaki Chicken Rice Box",         cat:"Entree", price:13, icon:"🍗", img:"/menu-teriyaki-chicken.png" },
+  { name:"Wagyu Beef Bowl",                   cat:"Entree", price:15, icon:"🥩", img:"/menu-wagyu.png" },
 
   // ── SNACKS ──
-  { name:"Angus Cheeseburger",                      cat:"Snack", price:9,  icon:"🍔" },
-  { name:"Chicken & Cheese Quesadilla",             cat:"Snack", price:8,  icon:"🫓" },
-  { name:"Chicken & Cheese Taquitos (4 Pieces)",    cat:"Snack", price:7,  icon:"🌯" },
-  { name:"Chicken, Cheese & Rice Chimichanga",      cat:"Snack", price:8,  icon:"🌯" },
-  { name:"Deep Dish Four Cheese Pizza (5-Inch)",    cat:"Snack", price:8,  icon:"🍕" },
-  { name:"Deep Dish Pepperoni Pizza (5-Inch)",      cat:"Snack", price:8,  icon:"🍕" },
-  { name:"Deep Dish Supreme Pizza (5-Inch)",        cat:"Snack", price:9,  icon:"🍕" },
-  { name:"Pepperoni Pizza Hot Pocket",              cat:"Snack", price:5,  icon:"🍕" },
-  { name:"Philly Cheesesteak Sandwich",             cat:"Snack", price:9,  icon:"🥪" },
-  { name:"Pizza Rolls (8 Pieces)",                  cat:"Snack", price:6,  icon:"🍕" },
-  { name:"Chicken Nuggets (8 Pieces)",              cat:"Snack", price:7,  icon:"🍗" },
-  { name:"Dinosaur Shaped Chicken Nuggets (8 Pieces)",cat:"Snack", price:7, icon:"🦕" },
-  { name:"Chicken Soup Dumplings (6 Pieces)",       cat:"Snack", price:8,  icon:"🥟" },
+  { name:"Angus Cheeseburger",                       cat:"Snack", price:9,  icon:"🍔", img:"" },
+  { name:"Chicken & Cheese Quesadilla",              cat:"Snack", price:8,  icon:"🫓", img:"" },
+  { name:"Chicken & Cheese Taquitos (4 Pieces)",     cat:"Snack", price:7,  icon:"🌯", img:"" },
+  { name:"Chicken, Cheese & Rice Chimichanga",       cat:"Snack", price:8,  icon:"🌯", img:"" },
+  { name:"Deep Dish Four Cheese Pizza (5-Inch)",     cat:"Snack", price:8,  icon:"🍕", img:"/menu-four-cheese-pizza.png" },
+  { name:"Deep Dish Pepperoni Pizza (5-Inch)",       cat:"Snack", price:8,  icon:"🍕", img:"/menu-pepperoni-pizza.png" },
+  { name:"Deep Dish Supreme Pizza (5-Inch)",         cat:"Snack", price:9,  icon:"🍕", img:"" },
+  { name:"Pepperoni Pizza Hot Pocket",               cat:"Snack", price:5,  icon:"🍕", img:"" },
+  { name:"Philly Cheesesteak Sandwich",              cat:"Snack", price:9,  icon:"🥪", img:"/menu-philly-cheesesteak.jpg" },
+  { name:"Pizza Rolls (8 Pieces)",                   cat:"Snack", price:6,  icon:"🍕", img:"" },
+  { name:"Chicken Nuggets (8 Pieces)",               cat:"Snack", price:7,  icon:"🍗", img:"" },
+  { name:"Dinosaur Shaped Chicken Nuggets (8 Pieces)",cat:"Snack", price:7, icon:"🦕", img:"" },
+  { name:"Chicken Soup Dumplings (6 Pieces)",        cat:"Snack", price:8,  icon:"🥟", img:"/menu-soup-dumplings.png" },
 
   // ── DESSERT ──
-  { name:"Apple Pie",                                    cat:"Dessert", price:6,  icon:"🥧" },
-  { name:"New York Style Cheesecake",                    cat:"Dessert", price:6,  icon:"🍰" },
-  { name:"Peanut Butter & Strawberry Jam Uncrustables",  cat:"Dessert", price:4,  icon:"🥜" },
-  { name:"Brown Sugar Boba Ice Cream Bar",               cat:"Dessert", price:5,  icon:"🧋" },
-  { name:"Haagen-Dazs Vanilla Milk Chocolate Almond Bar",cat:"Dessert", price:6,  icon:"🍫" },
-  { name:"M&M's Vanilla Cookie Ice Cream Sandwich",      cat:"Dessert", price:5,  icon:"🍪" },
-  { name:"Melona Ice Bar (Melon)",                       cat:"Dessert", price:4,  icon:"🍈" },
-  { name:"Snickers Ice Cream Bars (2 Pack)",             cat:"Dessert", price:5,  icon:"🍫" },
-  { name:"Vanilla Milkshake",                            cat:"Dessert", price:6,  icon:"🥛" },
+  { name:"Apple Pie",                                     cat:"Dessert", price:6,  icon:"🥧", img:"" },
+  { name:"New York Style Cheesecake",                     cat:"Dessert", price:6,  icon:"🍰", img:"/menu-cheesecake.png" },
+  { name:"Peanut Butter & Strawberry Jam Uncrustables",   cat:"Dessert", price:4,  icon:"🥜", img:"" },
+  { name:"Brown Sugar Boba Ice Cream Bar",                cat:"Dessert", price:5,  icon:"🧋", img:"" },
+  { name:"Haagen-Dazs Vanilla Milk Chocolate Almond Bar", cat:"Dessert", price:6,  icon:"🍫", img:"" },
+  { name:"M&M's Vanilla Cookie Ice Cream Sandwich",       cat:"Dessert", price:5,  icon:"🍪", img:"" },
+  { name:"Melona Ice Bar (Melon)",                        cat:"Dessert", price:4,  icon:"🍈", img:"/menu-melona-bar.png" },
+  { name:"Snickers Ice Cream Bars (2 Pack)",              cat:"Dessert", price:5,  icon:"🍫", img:"" },
+  { name:"Vanilla Milkshake",                             cat:"Dessert", price:6,  icon:"🥛", img:"" },
 ];
 
 const TAG_CLASS = { Breakfast:"tag-breakfast", Entree:"tag-entree", Snack:"tag-snack", Dessert:"tag-dessert" };
@@ -291,10 +293,10 @@ function render() {
   grid.innerHTML = items.map(p => `
     <div class="pc">
       <div class="pc-img-wrap">
-        <div class="pc-placeholder">
-          <div class="pc-placeholder-icon">${p.icon}</div>
-          <div class="pc-placeholder-label">Photo coming soon</div>
-        </div>
+        ${p.img
+          ? `<img class="pc-img" src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" /><div class="pc-placeholder" style="display:none;position:absolute;inset:0;"><div class="pc-placeholder-icon">${p.icon}</div><div class="pc-placeholder-label">Photo coming soon</div></div>`
+          : `<div class="pc-placeholder"><div class="pc-placeholder-icon">${p.icon}</div><div class="pc-placeholder-label">Photo coming soon</div></div>`
+        }
         <span class="pc-tag ${TAG_CLASS[p.cat]}">${p.cat}</span>
       </div>
       <div class="pc-body">
