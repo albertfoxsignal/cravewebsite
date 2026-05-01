@@ -53,7 +53,7 @@ nav.scrolled { box-shadow:0 4px 32px rgba(0,0,0,0.06); }
 .hdot { width:6px; height:6px; background:var(--orange); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.65);} }
 .hero-h1 { font-family:var(--serif); font-size:clamp(3rem,6.5vw,6.2rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; max-width:900px; margin-bottom:1.8rem; opacity:0; transform:translateY(28px); animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.28s forwards; }
-.hero-h1 em { font-style:italic; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .hero-sub { font-size:1.05rem; color:var(--textS); max-width:540px; line-height:1.8; margin-bottom:2.5rem; opacity:0; transform:translateY(22px); animation:hIn 0.75s cubic-bezier(0.22,1,0.36,1) 0.44s forwards; }
 .hero-btns { display:flex; gap:1rem; align-items:center; margin-bottom:5rem; opacity:0; transform:translateY(18px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.58s forwards; }
 @keyframes hIn { to { opacity:1; transform:translateY(0); } }
@@ -205,7 +205,7 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 .ct-inner { text-align:center; }
 .ct-badge { display:inline-flex; align-items:center; gap:8px; background:var(--orangeD); border:0.5px solid rgba(234,109,16,0.28); border-radius:100px; padding:0.3rem 1rem; font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--orange); margin-bottom:1.2rem; }
 .ct-title { font-family:var(--serif); font-size:clamp(2rem,3.5vw,3rem); font-weight:700; line-height:1.08; letter-spacing:-0.025em; margin-bottom:1rem; }
-.ct-title em { font-style:italic; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.ct-title em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .ct-sub { font-size:0.95rem; color:var(--textS); max-width:480px; margin:0 auto 1.5rem; line-height:1.7; }
 .ct-form { display:flex; gap:0.75rem; max-width:440px; margin:0 auto; }
 .ct-input { flex:1; background:var(--white); border:0.5px solid var(--borderB); border-radius:7px; padding:0.85rem 1rem; font-family:var(--font); font-size:0.85rem; color:var(--text); outline:none; transition:border-color 0.2s,box-shadow 0.2s; }
@@ -324,6 +324,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
     <li><a href="#locations">Locations</a></li>
     <li><a href="#partners">Partners</a></li>
     <li><a href="/cravebot" target="_blank">CraveBot</a></li>
+    <li><a href="/craveos" target="_blank">CraveOS</a></li>
   </ul>
   <button class="nav-cta" onclick="openM()">Contact Us</button>
 </nav>

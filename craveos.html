@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CraveOS — Proprietary Operating Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
+  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.16);
+  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12); --orangeG:rgba(234,109,16,0.2);
+  --lemon:#c79500; --lemonD:rgba(199,149,0,0.1);
+  --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
+  --os-accent:#1a1a2e; /* deep navy for CraveOS brand */
+  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+}
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); overflow-x:hidden; line-height:1.6; }
+
+/* ── NAV ── */
+nav {
+  position:sticky; top:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 3rem; height:68px;
+  background:rgba(245,244,240,0.92); backdrop-filter:blur(20px);
+  border-bottom:0.5px solid var(--border);
+}
+.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-logo img { height:34px; width:auto; display:block; }
+.nav-links { display:flex; align-items:center; gap:2rem; }
+.nav-links a { font-size:0.73rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textS); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--orange); }
+.nav-links a.active { color:var(--orange); }
+.nav-back { font-size:0.73rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textS); text-decoration:none; display:flex; align-items:center; gap:6px; transition:color 0.2s; }
+.nav-back:hover { color:var(--orange); }
+
+/* ── BUTTONS ── */
+.btn { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.8rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; border:none; padding:0.85rem 2rem; border-radius:7px; cursor:pointer; text-decoration:none; display:inline-block; transition:opacity 0.2s,transform 0.18s; }
+.btn:hover { opacity:0.88; transform:translateY(-2px); }
+.btn-o { background:transparent; color:var(--textS); font-family:var(--font); font-size:0.8rem; font-weight:600; letter-spacing:0.04em; border:0.5px solid var(--borderB); padding:0.85rem 2rem; border-radius:7px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.2s; }
+.btn-o:hover { color:var(--text); border-color:rgba(0,0,0,0.28); background:rgba(255,255,255,0.6); }
+.btn-dark { background:var(--os-accent); color:#fff; font-family:var(--font); font-size:0.8rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; border:none; padding:0.85rem 2rem; border-radius:7px; cursor:pointer; text-decoration:none; display:inline-block; transition:opacity 0.2s,transform 0.18s; }
+.btn-dark:hover { opacity:0.85; transform:translateY(-2px); }
+
+/* ── SHARED ── */
+.eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:1rem; display:block; }
+.sec-title { font-family:var(--serif); font-size:clamp(2.2rem,4vw,3.4rem); font-weight:700; line-height:1.08; letter-spacing:-0.022em; margin-bottom:1.2rem; }
+.sec-sub { font-size:1rem; color:var(--textS); line-height:1.78; }
+section { padding:6rem 3rem; max-width:1280px; margin:0 auto; }
+
+/* ── SCROLL ANIMS ── */
+.fu  { opacity:0; transform:translateY(36px); transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+.sl  { opacity:0; transform:translateX(-48px); transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.sr  { opacity:0; transform:translateX(48px);  transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.vis { opacity:1 !important; transform:none !important; }
+.sg > * { opacity:0; transform:translateY(24px) scale(0.97); transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1) var(--d,0s),transform 0.6s cubic-bezier(0.22,1,0.36,1) var(--d,0s); }
+.sg.vis > * { opacity:1; transform:none; }
+.rw { overflow:hidden; }
+.rl { display:block; transform:translateY(105%); transition:transform 0.78s cubic-bezier(0.22,1,0.36,1); }
+.rw.vis .rl { transform:translateY(0); }
+.rw.vis .rl:nth-child(2) { transition-delay:0.09s; }
+.rw.vis .rl:nth-child(3) { transition-delay:0.18s; }
+
+/* hero entrance */
+.hero-txt > * { opacity:0; transform:translateY(20px); }
+.hero-txt .eyebrow { animation:hIn 0.65s cubic-bezier(0.22,1,0.36,1) 0.08s forwards; }
+.hero-txt .os-wordmark { animation:hIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.22s forwards; }
+.hero-txt .hero-sub { animation:hIn 0.75s cubic-bezier(0.22,1,0.36,1) 0.38s forwards; }
+.hero-txt .hero-btns { animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.52s forwards; }
+.hero-right { opacity:0; transform:translateY(32px); animation:hIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s forwards; }
+@keyframes hIn { to { opacity:1; transform:none; } }
+
+/* ── HERO ── */
+.hero-wrap {
+  background: linear-gradient(160deg, var(--bg) 0%, #e8ecf2 100%);
+  border-bottom:0.5px solid var(--border);
+  position:relative; overflow:hidden;
+}
+.hero-blob { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; }
+.blob1 { width:700px;height:700px;top:-20%;right:-5%;background:radial-gradient(circle,rgba(26,26,46,0.08) 0%,transparent 70%);animation:b1 16s ease-in-out infinite alternate; }
+.blob2 { width:500px;height:500px;bottom:0;left:-5%;background:radial-gradient(circle,rgba(234,109,16,0.1) 0%,transparent 70%);animation:b2 20s ease-in-out infinite alternate; }
+@keyframes b1 { to { transform:translate(-40px,30px) scale(1.06); } }
+@keyframes b2 { to { transform:translate(30px,-40px) scale(1.05); } }
+
+.hero-inner { max-width:1280px; margin:0 auto; padding:0 3rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; min-height:82vh; }
+.hero-txt { position:relative; z-index:1; }
+
+.os-wordmark { display:flex; align-items:baseline; gap:0.15em; margin-bottom:1.5rem; line-height:1; }
+.os-crave { font-family:var(--serif); font-size:clamp(4rem,8vw,7rem); font-weight:700; letter-spacing:-0.03em; color:var(--text); }
+.os-os { font-family:var(--serif); font-size:clamp(4rem,8vw,7rem); font-weight:700; letter-spacing:-0.03em; display:inline-block; padding-right:0.06em; background:linear-gradient(135deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.os-tagline { font-size:0.72rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--textM); margin-left:0.3rem; align-self:center; }
+
+.hero-sub { font-size:1.05rem; color:var(--textS); max-width:480px; line-height:1.8; margin-bottom:2.5rem; }
+.hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+
+/* dashboard mockup in hero */
+.hero-right { position:relative; z-index:1; }
+.os-screen {
+  background:var(--os-accent);
+  border-radius:16px;
+  overflow:hidden;
+  border:0.5px solid rgba(255,255,255,0.08);
+  box-shadow:0 32px 80px rgba(26,26,46,0.22), 0 8px 24px rgba(0,0,0,0.12);
+  aspect-ratio:16/10;
+  display:flex; flex-direction:column;
+}
+.os-topbar { display:flex; align-items:center; gap:0.5rem; padding:0.7rem 1rem; background:rgba(255,255,255,0.04); border-bottom:0.5px solid rgba(255,255,255,0.06); flex-shrink:0; }
+.os-dot { width:10px; height:10px; border-radius:50%; }
+.os-dot.r { background:#ff5f57; }
+.os-dot.y { background:#febc2e; }
+.os-dot.g { background:#28c840; }
+.os-url { flex:1; background:rgba(255,255,255,0.05); border-radius:4px; padding:3px 10px; font-size:0.62rem; color:rgba(255,255,255,0.3); font-family:monospace; margin:0 0.75rem; }
+.os-body { flex:1; display:grid; grid-template-columns:180px 1fr; overflow:hidden; }
+.os-sidebar { background:rgba(0,0,0,0.2); padding:1rem 0; border-right:0.5px solid rgba(255,255,255,0.05); display:flex; flex-direction:column; gap:2px; }
+.os-sitem { padding:0.5rem 1rem; font-size:0.6rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.3); cursor:pointer; display:flex; align-items:center; gap:0.5rem; }
+.os-sitem.active { background:rgba(234,109,16,0.15); color:rgba(234,109,16,0.9); border-right:2px solid var(--orange); }
+.os-sitem-dot { width:6px; height:6px; border-radius:50%; background:currentColor; opacity:0.5; flex-shrink:0; }
+.os-main { padding:1.2rem; display:flex; flex-direction:column; gap:0.8rem; overflow:hidden; }
+.os-kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem; }
+.os-kpi { background:rgba(255,255,255,0.04); border:0.5px solid rgba(255,255,255,0.07); border-radius:7px; padding:0.6rem 0.7rem; }
+.os-kpi-val { font-family:var(--serif); font-size:1.1rem; font-weight:700; color:rgba(255,255,255,0.9); line-height:1; margin-bottom:2px; }
+.os-kpi-lbl { font-size:0.5rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); }
+.os-chart { background:rgba(255,255,255,0.03); border:0.5px solid rgba(255,255,255,0.06); border-radius:7px; flex:1; display:flex; align-items:flex-end; padding:0.8rem; gap:0.3rem; overflow:hidden; }
+.os-bar { flex:1; border-radius:3px 3px 0 0; transition:height 0.6s; }
+.os-table-row { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:0.5rem; padding:0.4rem 0; border-bottom:0.5px solid rgba(255,255,255,0.05); }
+.os-table-row:last-child { border-bottom:none; }
+.os-td { font-size:0.52rem; color:rgba(255,255,255,0.45); font-weight:500; }
+.os-td.bright { color:rgba(255,255,255,0.8); font-weight:600; }
+.os-td.orange { color:var(--orange); }
+
+/* ── STATS STRIP ── */
+.stats-strip { background:var(--os-accent); }
+.stats-inner { max-width:1280px; margin:0 auto; padding:2.5rem 3rem; display:grid; grid-template-columns:repeat(4,1fr); border-left:0.5px solid rgba(255,255,255,0.06); }
+.stat-cell { padding:0 2rem; border-right:0.5px solid rgba(255,255,255,0.08); display:flex; flex-direction:column; gap:0.4rem; }
+.stat-cell:first-child { padding-left:0; }
+.stat-cell:last-child { border-right:none; }
+.stat-val { font-family:var(--serif); font-size:2.4rem; font-weight:700; color:#fff; line-height:1; }
+.stat-val .accent { color:var(--orange); }
+.stat-lbl { font-size:0.68rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); }
+
+/* ── APP SECTIONS ── */
+.app-wrap { border-top:0.5px solid var(--border); }
+.app-wrap:nth-child(even) { background:var(--bg2); }
+.app-layout { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+.app-layout.flip { direction:rtl; }
+.app-layout.flip > * { direction:ltr; }
+
+.app-tag { display:inline-flex; align-items:center; gap:6px; background:var(--orangeD); border:0.5px solid rgba(234,109,16,0.25); border-radius:100px; padding:0.3rem 0.9rem; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin-bottom:1.2rem; }
+.app-num { font-family:var(--serif); font-size:0.9rem; font-weight:700; color:rgba(234,109,16,0.4); margin-right:4px; }
+
+.feature-list { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+.feat-item { display:flex; align-items:flex-start; gap:1rem; padding:1rem 1.2rem; background:var(--white); border:0.5px solid var(--border); border-radius:10px; transition:transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s; }
+.feat-item:hover { transform:translateX(4px); box-shadow:0 6px 20px rgba(0,0,0,0.06); }
+.feat-icon { width:36px; height:36px; border-radius:8px; background:var(--orangeD); border:0.5px solid rgba(234,109,16,0.2); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.feat-label { font-size:0.85rem; font-weight:700; margin-bottom:3px; }
+.feat-desc { font-size:0.78rem; color:var(--textS); line-height:1.6; }
+
+/* ── SCREEN MOCKUPS ── */
+.screen-wrap { position:relative; }
+.screen-frame {
+  background:var(--os-accent);
+  border-radius:14px;
+  overflow:hidden;
+  border:0.5px solid rgba(255,255,255,0.08);
+  box-shadow:0 24px 60px rgba(26,26,46,0.18), 0 6px 20px rgba(0,0,0,0.1);
+  aspect-ratio:16/10;
+  display:flex; flex-direction:column;
+}
+.screen-topbar { display:flex; align-items:center; gap:0.4rem; padding:0.55rem 0.8rem; background:rgba(255,255,255,0.03); border-bottom:0.5px solid rgba(255,255,255,0.06); flex-shrink:0; }
+.screen-dot { width:8px; height:8px; border-radius:50%; }
+.screen-title { flex:1; text-align:center; font-size:0.55rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.25); }
+.screen-body { flex:1; padding:0.8rem; display:flex; flex-direction:column; gap:0.5rem; overflow:hidden; }
+
+/* monitoring screen */
+.mon-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.4rem; height:100%; }
+.mon-card { background:rgba(255,255,255,0.04); border:0.5px solid rgba(255,255,255,0.07); border-radius:7px; padding:0.6rem; display:flex; flex-direction:column; gap:0.3rem; }
+.mon-card.alert { border-color:rgba(239,68,68,0.35); background:rgba(239,68,68,0.06); }
+.mon-card.ok { border-color:rgba(34,197,94,0.3); background:rgba(34,197,94,0.05); }
+.mon-card-name { font-size:0.52rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:rgba(255,255,255,0.6); }
+.mon-status { display:flex; align-items:center; gap:4px; margin-top:auto; }
+.mon-dot-ok { width:6px; height:6px; border-radius:50%; background:#22c55e; }
+.mon-dot-al { width:6px; height:6px; border-radius:50%; background:#ef4444; animation:blink 1.4s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+.mon-status-txt { font-size:0.5rem; font-weight:600; color:rgba(255,255,255,0.4); }
+.mon-rev { font-family:var(--serif); font-size:0.9rem; font-weight:700; color:rgba(255,255,255,0.85); }
+
+/* content mgmt screen */
+.cms-layout { display:grid; grid-template-columns:120px 1fr; gap:0.6rem; height:100%; }
+.cms-sidebar { display:flex; flex-direction:column; gap:2px; }
+.cms-sitem { padding:0.35rem 0.5rem; font-size:0.5rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; color:rgba(255,255,255,0.3); border-radius:5px; cursor:pointer; }
+.cms-sitem.active { background:rgba(234,109,16,0.15); color:rgba(234,109,16,0.85); }
+.cms-main { display:flex; flex-direction:column; gap:0.4rem; }
+.cms-item { background:rgba(255,255,255,0.04); border:0.5px solid rgba(255,255,255,0.07); border-radius:6px; padding:0.5rem 0.7rem; display:flex; align-items:center; gap:0.6rem; }
+.cms-img { width:28px; height:28px; border-radius:4px; background:rgba(234,109,16,0.2); flex-shrink:0; }
+.cms-name { font-size:0.55rem; font-weight:600; color:rgba(255,255,255,0.75); }
+.cms-price { margin-left:auto; font-size:0.55rem; font-weight:700; color:var(--orange); }
+.cms-toggle { width:22px; height:12px; border-radius:6px; background:rgba(34,197,94,0.7); flex-shrink:0; position:relative; }
+.cms-toggle::after { content:''; position:absolute; width:8px; height:8px; border-radius:50%; background:#fff; top:2px; right:2px; }
+.cms-toggle.off { background:rgba(255,255,255,0.12); }
+.cms-toggle.off::after { left:2px; right:auto; }
+
+/* logistics screen */
+.log-cols { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; height:100%; }
+.log-panel { background:rgba(255,255,255,0.04); border:0.5px solid rgba(255,255,255,0.07); border-radius:7px; padding:0.6rem; display:flex; flex-direction:column; gap:0.4rem; overflow:hidden; }
+.log-head { font-size:0.52rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.35); padding-bottom:0.4rem; border-bottom:0.5px solid rgba(255,255,255,0.07); }
+.log-route { display:flex; align-items:center; gap:0.4rem; }
+.log-stop { width:6px; height:6px; border-radius:50%; background:var(--orange); flex-shrink:0; }
+.log-stop.last { background:rgba(34,197,94,0.8); }
+.log-line { flex:1; height:1px; background:rgba(255,255,255,0.08); }
+.log-loc { font-size:0.5rem; font-weight:600; color:rgba(255,255,255,0.55); margin-top:1px; }
+.log-inv-row { display:flex; align-items:center; justify-content:space-between; gap:0.4rem; }
+.log-inv-name { font-size:0.5rem; font-weight:500; color:rgba(255,255,255,0.5); }
+.log-inv-bar { flex:1; height:4px; border-radius:2px; background:rgba(255,255,255,0.08); overflow:hidden; }
+.log-inv-fill { height:100%; border-radius:2px; }
+.log-inv-fill.hi  { background:#22c55e; }
+.log-inv-fill.mid { background:var(--orange); }
+.log-inv-fill.lo  { background:#ef4444; }
+.log-inv-pct { font-size:0.5rem; font-weight:700; color:rgba(255,255,255,0.5); }
+
+/* ── PROPRIETARY BADGE ── */
+.prop-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(26,26,46,0.06); border:0.5px solid rgba(26,26,46,0.15); border-radius:100px; padding:0.3rem 0.9rem; font-size:0.65rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--os-accent); }
+.prop-lock { font-size:0.7rem; }
+
+/* ── CTA BAND ── */
+.cta-band { background:var(--os-accent); }
+.cta-inner { max-width:1280px; margin:0 auto; padding:5rem 3rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.cta-title { font-family:var(--serif); font-size:clamp(2.2rem,4vw,3.5rem); font-weight:700; line-height:1.08; letter-spacing:-0.025em; color:#fff; margin-bottom:1rem; }
+.cta-title em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.cta-sub { font-size:0.95rem; color:rgba(255,255,255,0.5); line-height:1.75; }
+.cta-right { display:flex; flex-direction:column; gap:1rem; }
+.cta-card { background:rgba(255,255,255,0.05); border:0.5px solid rgba(255,255,255,0.1); border-radius:10px; padding:1.5rem; }
+.cta-card-title { font-size:0.85rem; font-weight:700; color:#fff; margin-bottom:0.4rem; }
+.cta-card-sub { font-size:0.78rem; color:rgba(255,255,255,0.4); line-height:1.6; }
+.cta-card-link { display:inline-block; margin-top:0.8rem; font-size:0.72rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--orange); text-decoration:none; }
+.cta-card-link:hover { opacity:0.8; }
+
+/* ── FOOTER ── */
+footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.foot-links { display:flex; gap:2rem; list-style:none; }
+.foot-links a { font-size:0.75rem; color:var(--textM); text-decoration:none; transition:color 0.2s; }
+.foot-links a:hover { color:var(--text); }
+.foot-copy { font-size:0.72rem; color:var(--textM); }
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  nav { padding:0 1.5rem; }
+  .hero-inner { grid-template-columns:1fr; min-height:auto; padding:5rem 1.5rem 3rem; gap:3rem; }
+  .hero-right { display:none; }
+  .stats-inner { grid-template-columns:repeat(2,1fr); gap:1.5rem; padding:2rem 1.5rem; }
+  section { padding:4rem 1.5rem; }
+  .app-layout,.app-layout.flip { grid-template-columns:1fr; direction:ltr; gap:3rem; }
+  .cta-inner { grid-template-columns:1fr; padding:3rem 1.5rem; }
+  footer { flex-direction:column; gap:1.5rem; text-align:center; padding:2rem 1.5rem; }
+  .foot-links { flex-wrap:wrap; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="/icon.svg" alt="Crave Robotics" />
+  </a>
+  <div class="nav-links">
+    <a href="/" class="nav-back">← Home</a>
+    <a href="/cravebot">CraveBot</a>
+    <a href="/menu">Menu</a>
+    <a href="/craveos" class="active">CraveOS</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-wrap">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-txt">
+      <span class="eyebrow">Proprietary Operating Platform</span>
+      <div class="os-wordmark">
+        <span class="os-crave">Crave</span><span class="os-os">OS</span>
+        <span class="os-tagline">v2.0</span>
+      </div>
+      <p class="hero-sub">The intelligence layer behind every CraveBot. A unified platform for real-time analytics, machine monitoring, content management, and cold chain logistics — built entirely in-house.</p>
+      <div class="hero-btns">
+        <a href="mailto:help@craverobotics.co" class="btn-dark">Request Access</a>
+        <a href="/" class="btn-o">Back to Home</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- Dashboard mockup -->
+      <div class="os-screen">
+        <div class="os-topbar">
+          <div class="os-dot r"></div>
+          <div class="os-dot y"></div>
+          <div class="os-dot g"></div>
+          <div class="os-url">craveos.app / dashboard</div>
+        </div>
+        <div class="os-body">
+          <div class="os-sidebar">
+            <div class="os-sitem active"><span class="os-sitem-dot"></span>Dashboard</div>
+            <div class="os-sitem"><span class="os-sitem-dot"></span>Machines</div>
+            <div class="os-sitem"><span class="os-sitem-dot"></span>Orders</div>
+            <div class="os-sitem"><span class="os-sitem-dot"></span>Menu</div>
+            <div class="os-sitem"><span class="os-sitem-dot"></span>Logistics</div>
+            <div class="os-sitem"><span class="os-sitem-dot"></span>Campaigns</div>
+            <div class="os-sitem"><span class="os-sitem-dot"></span>Partners</div>
+            <div class="os-sitem"><span class="os-sitem-dot"></span>Insights</div>
+          </div>
+          <div class="os-main">
+            <div class="os-kpi-row">
+              <div class="os-kpi"><div class="os-kpi-val">$4.2k</div><div class="os-kpi-lbl">Today</div></div>
+              <div class="os-kpi"><div class="os-kpi-val">18</div><div class="os-kpi-lbl">Machines</div></div>
+              <div class="os-kpi"><div class="os-kpi-val">96%</div><div class="os-kpi-lbl">Uptime</div></div>
+              <div class="os-kpi"><div class="os-kpi-val" style="color:var(--orange)">2</div><div class="os-kpi-lbl">Alerts</div></div>
+            </div>
+            <div class="os-chart">
+              <div class="os-bar" style="height:40%;background:rgba(234,109,16,0.25)"></div>
+              <div class="os-bar" style="height:65%;background:rgba(234,109,16,0.35)"></div>
+              <div class="os-bar" style="height:50%;background:rgba(234,109,16,0.25)"></div>
+              <div class="os-bar" style="height:80%;background:rgba(234,109,16,0.45)"></div>
+              <div class="os-bar" style="height:60%;background:rgba(234,109,16,0.3)"></div>
+              <div class="os-bar" style="height:90%;background:rgba(234,109,16,0.6)"></div>
+              <div class="os-bar" style="height:72%;background:rgba(234,109,16,0.4)"></div>
+              <div class="os-bar" style="height:85%;background:rgba(234,109,16,0.55)"></div>
+              <div class="os-bar" style="height:45%;background:rgba(234,109,16,0.25)"></div>
+              <div class="os-bar" style="height:70%;background:rgba(234,109,16,0.4)"></div>
+              <div class="os-bar" style="height:95%;background:var(--orange)"></div>
+              <div class="os-bar" style="height:60%;background:rgba(234,109,16,0.35)"></div>
+            </div>
+            <div>
+              <div class="os-table-row"><div class="os-td bright">CSULA</div><div class="os-td orange">$612</div><div class="os-td">47 orders</div><div class="os-td" style="color:rgba(34,197,94,0.8)">● Online</div></div>
+              <div class="os-table-row"><div class="os-td bright">Relativity SP</div><div class="os-td orange">$489</div><div class="os-td">38 orders</div><div class="os-td" style="color:rgba(34,197,94,0.8)">● Online</div></div>
+              <div class="os-table-row"><div class="os-td bright">ArtCenter</div><div class="os-td orange">$201</div><div class="os-td">15 orders</div><div class="os-td" style="color:rgba(239,68,68,0.8)">● Alert</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-cell">
+      <div class="stat-val">18<span class="accent">+</span></div>
+      <div class="stat-lbl">Active machines monitored</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">Real<span class="accent">-</span>time</div>
+      <div class="stat-lbl">Data refresh rate</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">5<span class="accent">+</span></div>
+      <div class="stat-lbl">Integrated modules</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">100<span class="accent">%</span></div>
+      <div class="stat-lbl">Proprietary — built in-house</div>
+    </div>
+  </div>
+</div>
+
+<!-- 01 — ANALYTICS DASHBOARD -->
+<div class="app-wrap">
+  <section>
+    <div class="app-layout">
+      <div class="sl">
+        <div class="app-tag"><span class="app-num">01</span> Analytics Dashboard</div>
+        <div class="rw"><h2 class="sec-title"><span class="rl">Live revenue &</span><span class="rl">performance data</span></h2></div>
+        <p class="sec-sub fu" style="transition-delay:0.1s;margin-bottom:0.5rem;">Every sale, every machine, every metric — surfaced in real time. The CraveOS Dashboard aggregates order data across the entire fleet and presents it in a single, unified view.</p>
+        <div class="feature-list fu" style="transition-delay:0.2s;">
+          <div class="feat-item">
+            <div class="feat-icon">📊</div>
+            <div><div class="feat-label">Fleet-wide KPIs</div><div class="feat-desc">Gross sales, items sold, avg order value, revenue per hour — updated live across all deployed machines.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">📈</div>
+            <div><div class="feat-label">Revenue trend charts</div><div class="feat-desc">Day-by-day and hour-by-hour breakdowns with customisable date ranges and machine-level drill-down.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🏆</div>
+            <div><div class="feat-label">Product sales ranking</div><div class="feat-desc">See which SKUs are performing, which need repricing, and which should be pulled — by location.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🤖</div>
+            <div><div class="feat-label">AI-powered insights</div><div class="feat-desc">Claude-powered narrative summaries surface trends, anomalies, and opportunities automatically each week.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sr">
+        <div class="screen-frame">
+          <div class="screen-topbar">
+            <div class="screen-dot" style="background:#ff5f57"></div>
+            <div class="screen-dot" style="background:#febc2e"></div>
+            <div class="screen-dot" style="background:#28c840"></div>
+            <div class="screen-title">CraveOS · Analytics Dashboard</div>
+          </div>
+          <div class="screen-body">
+            <div class="os-kpi-row">
+              <div class="os-kpi"><div class="os-kpi-val" style="font-size:1rem;">$28.4k</div><div class="os-kpi-lbl">This month</div></div>
+              <div class="os-kpi"><div class="os-kpi-val" style="font-size:1rem;">2,190</div><div class="os-kpi-lbl">Orders</div></div>
+              <div class="os-kpi"><div class="os-kpi-val" style="font-size:1rem;">$12.97</div><div class="os-kpi-lbl">Avg order</div></div>
+              <div class="os-kpi"><div class="os-kpi-val" style="font-size:1rem;color:var(--orange)">↑ 14%</div><div class="os-kpi-lbl">vs last month</div></div>
+            </div>
+            <div class="os-chart" style="flex:2;">
+              <div class="os-bar" style="height:35%;background:rgba(234,109,16,0.2)"></div>
+              <div class="os-bar" style="height:55%;background:rgba(234,109,16,0.28)"></div>
+              <div class="os-bar" style="height:45%;background:rgba(234,109,16,0.22)"></div>
+              <div class="os-bar" style="height:70%;background:rgba(234,109,16,0.38)"></div>
+              <div class="os-bar" style="height:58%;background:rgba(234,109,16,0.3)"></div>
+              <div class="os-bar" style="height:88%;background:rgba(234,109,16,0.55)"></div>
+              <div class="os-bar" style="height:75%;background:rgba(234,109,16,0.45)"></div>
+              <div class="os-bar" style="height:92%;background:var(--orange)"></div>
+              <div class="os-bar" style="height:62%;background:rgba(234,109,16,0.35)"></div>
+              <div class="os-bar" style="height:78%;background:rgba(234,109,16,0.48)"></div>
+              <div class="os-bar" style="height:50%;background:rgba(234,109,16,0.28)"></div>
+              <div class="os-bar" style="height:68%;background:rgba(234,109,16,0.4)"></div>
+              <div class="os-bar" style="height:82%;background:rgba(234,109,16,0.52)"></div>
+              <div class="os-bar" style="height:44%;background:rgba(234,109,16,0.23)"></div>
+            </div>
+            <div>
+              <div class="os-table-row"><div class="os-td bright">Cal State LA</div><div class="os-td orange">$4,120</div><div class="os-td">317 orders</div><div class="os-td" style="color:rgba(34,197,94,0.8)">↑ 22%</div></div>
+              <div class="os-table-row"><div class="os-td bright">Relativity NP</div><div class="os-td orange">$3,840</div><div class="os-td">296 orders</div><div class="os-td" style="color:rgba(34,197,94,0.8)">↑ 8%</div></div>
+              <div class="os-table-row"><div class="os-td bright">ArtCenter</div><div class="os-td orange">$2,190</div><div class="os-td">169 orders</div><div class="os-td" style="color:rgba(239,68,68,0.7)">↓ 3%</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 02 — MACHINE MONITORING -->
+<div class="app-wrap">
+  <section>
+    <div class="app-layout flip">
+      <div class="sr">
+        <div class="screen-frame">
+          <div class="screen-topbar">
+            <div class="screen-dot" style="background:#ff5f57"></div>
+            <div class="screen-dot" style="background:#febc2e"></div>
+            <div class="screen-dot" style="background:#28c840"></div>
+            <div class="screen-title">CraveOS · Machine Monitor</div>
+          </div>
+          <div class="screen-body">
+            <div class="mon-grid">
+              <div class="mon-card ok"><div class="mon-card-name">CSULA</div><div class="mon-rev">$612</div><div class="mon-status"><div class="mon-dot-ok"></div><div class="mon-status-txt">Online · 24h</div></div></div>
+              <div class="mon-card ok"><div class="mon-card-name">USC</div><div class="mon-rev">$489</div><div class="mon-status"><div class="mon-dot-ok"></div><div class="mon-status-txt">Online · 18h</div></div></div>
+              <div class="mon-card alert"><div class="mon-card-name">ArtCenter</div><div class="mon-rev">$201</div><div class="mon-status"><div class="mon-dot-al"></div><div class="mon-status-txt">Low stock</div></div></div>
+              <div class="mon-card ok"><div class="mon-card-name">Relativity SP</div><div class="mon-rev">$380</div><div class="mon-status"><div class="mon-dot-ok"></div><div class="mon-status-txt">Online · 24h</div></div></div>
+              <div class="mon-card ok"><div class="mon-card-name">Cal Poly</div><div class="mon-rev">$290</div><div class="mon-status"><div class="mon-dot-ok"></div><div class="mon-status-txt">Online · 22h</div></div></div>
+              <div class="mon-card alert"><div class="mon-card-name">CSUDH SRH</div><div class="mon-rev">$0</div><div class="mon-status"><div class="mon-dot-al"></div><div class="mon-status-txt">Offline</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sl">
+        <div class="app-tag"><span class="app-num">02</span> Machine Monitoring</div>
+        <div class="rw"><h2 class="sec-title"><span class="rl">Every machine,</span><span class="rl">always in view</span></h2></div>
+        <p class="sec-sub fu" style="transition-delay:0.1s;margin-bottom:0.5rem;">CraveOS tracks the operational status of every deployed unit in real time — surfacing alerts before they become problems and keeping the fleet at 96% uptime.</p>
+        <div class="feature-list fu" style="transition-delay:0.2s;">
+          <div class="feat-item">
+            <div class="feat-icon">🟢</div>
+            <div><div class="feat-label">Live online / offline status</div><div class="feat-desc">Real-time connection status per machine with last-active timestamps and automatic alert escalation.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">⚠️</div>
+            <div><div class="feat-label">Low stock & error alerts</div><div class="feat-desc">Automated notifications when inventory drops below threshold or a machine encounters a hardware fault.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🕐</div>
+            <div><div class="feat-label">Operating hours management</div><div class="feat-desc">Configure per-machine active hours, track revenue per hour, and flag machines with unexpected downtime.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 03 — CONTENT MANAGEMENT -->
+<div class="app-wrap">
+  <section>
+    <div class="app-layout">
+      <div class="sl">
+        <div class="app-tag"><span class="app-num">03</span> Content Management</div>
+        <div class="rw"><h2 class="sec-title"><span class="rl">Menu, partners &</span><span class="rl">campaigns — one place</span></h2></div>
+        <p class="sec-sub fu" style="transition-delay:0.1s;margin-bottom:0.5rem;">CraveOS lets operators manage what's served, to whom, and how it's promoted — without touching a line of code or filing a support ticket.</p>
+        <div class="feature-list fu" style="transition-delay:0.2s;">
+          <div class="feat-item">
+            <div class="feat-icon">🍱</div>
+            <div><div class="feat-label">Per-machine menu control</div><div class="feat-desc">Enable or disable individual products by machine. Manage pricing, labels, and product order from a central console.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🏷️</div>
+            <div><div class="feat-label">Coupon & campaign management</div><div class="feat-desc">Create promo codes, set discount types, track redemptions, and measure campaign ROI by location and SKU.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🤝</div>
+            <div><div class="feat-label">Partner portal & scoped views</div><div class="feat-desc">Provision token-based partner dashboards with machine-level filtering, custom branding, and hidden tabs.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">📣</div>
+            <div><div class="feat-label">SMS campaign integration</div><div class="feat-desc">Connect Avochato campaigns directly to redemption data — see open rates, engagement, and promo-driven sales.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sr">
+        <div class="screen-frame">
+          <div class="screen-topbar">
+            <div class="screen-dot" style="background:#ff5f57"></div>
+            <div class="screen-dot" style="background:#febc2e"></div>
+            <div class="screen-dot" style="background:#28c840"></div>
+            <div class="screen-title">CraveOS · Content Management</div>
+          </div>
+          <div class="screen-body">
+            <div class="cms-layout">
+              <div class="cms-sidebar">
+                <div class="cms-sitem active">Menu Items</div>
+                <div class="cms-sitem">Coupons</div>
+                <div class="cms-sitem">Campaigns</div>
+                <div class="cms-sitem">Partners</div>
+                <div class="cms-sitem">Branding</div>
+              </div>
+              <div class="cms-main">
+                <div class="cms-item">
+                  <div class="cms-img"></div>
+                  <div><div class="cms-name">Teriyaki Chicken Rice Box</div></div>
+                  <div class="cms-price">$13</div>
+                  <div class="cms-toggle"></div>
+                </div>
+                <div class="cms-item">
+                  <div class="cms-img"></div>
+                  <div><div class="cms-name">Wagyu Beef Bowl</div></div>
+                  <div class="cms-price">$15</div>
+                  <div class="cms-toggle"></div>
+                </div>
+                <div class="cms-item" style="opacity:0.5">
+                  <div class="cms-img" style="background:rgba(255,255,255,0.05)"></div>
+                  <div><div class="cms-name">Apple Pie</div></div>
+                  <div class="cms-price" style="color:rgba(255,255,255,0.3)">$6</div>
+                  <div class="cms-toggle off"></div>
+                </div>
+                <div class="cms-item">
+                  <div class="cms-img"></div>
+                  <div><div class="cms-name">Gyudon Rice Box</div></div>
+                  <div class="cms-price">$14</div>
+                  <div class="cms-toggle"></div>
+                </div>
+                <div class="cms-item">
+                  <div class="cms-img"></div>
+                  <div><div class="cms-name">Chicken Fried Rice</div></div>
+                  <div class="cms-price">$13</div>
+                  <div class="cms-toggle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 04 — LOGISTICS & PLANNING -->
+<div class="app-wrap">
+  <section>
+    <div class="app-layout flip">
+      <div class="sr">
+        <div class="screen-frame">
+          <div class="screen-topbar">
+            <div class="screen-dot" style="background:#ff5f57"></div>
+            <div class="screen-dot" style="background:#febc2e"></div>
+            <div class="screen-dot" style="background:#28c840"></div>
+            <div class="screen-title">CraveOS · Logistics & Planning</div>
+          </div>
+          <div class="screen-body">
+            <div class="log-cols">
+              <div class="log-panel">
+                <div class="log-head">Today's restock route</div>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:0.3rem;">
+                  <div><div class="log-route"><div class="log-stop"></div><div class="log-line"></div><div class="log-stop"></div><div class="log-line"></div><div class="log-stop last"></div></div><div style="display:flex;justify-content:space-between;margin-top:3px;"><div class="log-loc">Warehouse</div><div class="log-loc">CSULA</div><div class="log-loc">USC</div></div></div>
+                  <div><div class="log-route"><div class="log-stop"></div><div class="log-line"></div><div class="log-stop"></div><div class="log-line"></div><div class="log-stop last"></div></div><div style="display:flex;justify-content:space-between;margin-top:3px;"><div class="log-loc">Warehouse</div><div class="log-loc">ArtCenter</div><div class="log-loc">CPP</div></div></div>
+                </div>
+                <div style="margin-top:auto;padding-top:0.5rem;border-top:0.5px solid rgba(255,255,255,0.07);">
+                  <div class="log-loc" style="color:rgba(34,197,94,0.7);">2 routes · 5 stops today</div>
+                </div>
+              </div>
+              <div class="log-panel">
+                <div class="log-head">Inventory levels</div>
+                <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:0.3rem;">
+                  <div class="log-inv-row"><div class="log-inv-name">Teriyaki Chicken</div><div class="log-inv-bar"><div class="log-inv-fill hi" style="width:72%"></div></div><div class="log-inv-pct">72%</div></div>
+                  <div class="log-inv-row"><div class="log-inv-name">Wagyu Bowl</div><div class="log-inv-bar"><div class="log-inv-fill hi" style="width:55%"></div></div><div class="log-inv-pct">55%</div></div>
+                  <div class="log-inv-row"><div class="log-inv-name">Gyudon Box</div><div class="log-inv-bar"><div class="log-inv-fill mid" style="width:28%"></div></div><div class="log-inv-pct">28%</div></div>
+                  <div class="log-inv-row"><div class="log-inv-name">Apple Pie</div><div class="log-inv-bar"><div class="log-inv-fill lo" style="width:9%"></div></div><div class="log-inv-pct">9%</div></div>
+                  <div class="log-inv-row"><div class="log-inv-name">Chow Mein</div><div class="log-inv-bar"><div class="log-inv-fill hi" style="width:61%"></div></div><div class="log-inv-pct">61%</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sl">
+        <div class="app-tag"><span class="app-num">04</span> Logistics & Planning</div>
+        <div class="rw"><h2 class="sec-title"><span class="rl">Cold chain, routes,</span><span class="rl">and replenishment</span></h2></div>
+        <p class="sec-sub fu" style="transition-delay:0.1s;margin-bottom:0.5rem;">CraveOS gives operations teams full visibility into inventory levels, restocking schedules, and cold chain status — so no machine runs empty and no route is wasted.</p>
+        <div class="feature-list fu" style="transition-delay:0.2s;">
+          <div class="feat-item">
+            <div class="feat-icon">📦</div>
+            <div><div class="feat-label">Inventory tracking per machine</div><div class="feat-desc">Live stock levels per SKU per machine. Color-coded thresholds trigger restock alerts before a machine runs out.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🚚</div>
+            <div><div class="feat-label">Restock route planning</div><div class="feat-desc">Plan and optimise delivery routes across the fleet. Assign stops, track driver progress, and log completed restocks.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">❄️</div>
+            <div><div class="feat-label">Cold chain compliance</div><div class="feat-desc">Temperature logging and chain-of-custody tracking ensures every frozen meal meets food safety standards.</div></div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-icon">🗓️</div>
+            <div><div class="feat-label">Demand forecasting</div><div class="feat-desc">Historical sales data drives automated replenishment suggestions — order the right quantity, at the right time.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-inner">
+    <div>
+      <span class="eyebrow" style="color:rgba(234,109,16,0.8);">Proprietary Technology</span>
+      <h2 class="cta-title">Operate smarter with <em>CraveOS</em></h2>
+      <p class="cta-sub">CraveOS is built exclusively for Crave Robotics operations and is not available as a standalone product. Contact us to learn how it powers your deployment.</p>
+    </div>
+    <div class="cta-right">
+      <div class="cta-card">
+        <div class="cta-card-title">Deploy a CraveBot</div>
+        <div class="cta-card-sub">Get a machine at your venue with full CraveOS monitoring and analytics included at no additional cost.</div>
+        <a href="mailto:help@craverobotics.co" class="cta-card-link">Contact us →</a>
+      </div>
+      <div class="cta-card">
+        <div class="cta-card-title">Become a brand partner</div>
+        <div class="cta-card-sub">Distribute your food brand through our kiosk network and access partner-scoped CraveOS analytics.</div>
+        <a href="/#partners" class="cta-card-link">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="border-top:0.5px solid var(--border);">
+  <footer>
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <img src="/icon.svg" alt="Crave Robotics" style="height:26px;width:auto;" />
+    </a>
+    <ul class="foot-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/cravebot">CraveBot</a></li>
+      <li><a href="/menu">Menu</a></li>
+      <li><a href="https://www.craverobotics.co/privacy-policy" target="_blank">Privacy Policy</a></li>
+      <li><a href="mailto:help@craverobotics.co">Contact</a></li>
+    </ul>
+    <div class="foot-copy">© 2025 Crave Robotics™</div>
+  </footer>
+</div>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    ['fu','sl','sr'].forEach(c => { if (e.target.classList.contains(c)) e.target.classList.add('vis'); });
+    if (e.target.classList.contains('sg')) {
+      e.target.classList.add('vis');
+      [...e.target.children].forEach((c,i) => c.style.setProperty('--d',(i*0.1)+'s'));
+    }
+    if (e.target.classList.contains('rw')) e.target.classList.add('vis');
+    io.unobserve(e.target);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fu,.sl,.sr,.sg,.rw').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

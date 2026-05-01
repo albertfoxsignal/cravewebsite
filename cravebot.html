@@ -59,7 +59,7 @@ nav {
 
 .hero-text { padding:6rem 0 4rem; position:relative; z-index:1; }
 .hero-h1 { font-family:var(--serif); font-size:clamp(3rem,5.5vw,5.2rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; margin-bottom:1.5rem; }
-.hero-h1 em { font-style:italic; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .hero-sub { font-size:1rem; color:var(--textS); line-height:1.8; margin-bottom:2.5rem; max-width:480px; }
 
 .hero-image {
@@ -270,7 +270,10 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
     <img src="/icon.svg" alt="Crave Robotics" />
   </a>
   <a href="/" class="nav-back">← Back to Home</a>
-  <a href="https://drive.google.com/file/d/1Qp8f0PwtkQn5PSz-MngYJkHY-rVI34dT/view" target="_blank" class="nav-cta">↓ Spec Sheet PDF</a>
+  <div style="display:flex;align-items:center;gap:1.5rem;">
+    <a href="/craveos" style="font-size:0.73rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--textS);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--orange)'" onmouseout="this.style.color='var(--textS)'">CraveOS</a>
+    <a href="https://drive.google.com/file/d/1Qp8f0PwtkQn5PSz-MngYJkHY-rVI34dT/view" target="_blank" class="nav-cta">↓ Spec Sheet PDF</a>
+  </div>
 </nav>
 
 <!-- HERO + MACHINE IMAGE -->
