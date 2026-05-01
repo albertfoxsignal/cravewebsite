@@ -44,40 +44,27 @@ nav {
 .eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:1rem; display:block; }
 
 /* ── HERO + IMAGE ── */
-.hero-wrap {
-  display:grid; grid-template-columns:1fr 1fr;
-  max-width:1280px; margin:0 auto;
-  padding:0 3rem;
-  align-items:end;
-  position:relative; overflow:hidden;
-}
+.hero-outer { background:var(--bg); position:relative; overflow:hidden; border-bottom:0.5px solid var(--border); }
 .hero-blob { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
 .blob1 { width:600px;height:600px;top:-20%;right:0;background:radial-gradient(circle,rgba(234,109,16,0.16) 0%,transparent 70%);animation:b1 14s ease-in-out infinite alternate; }
 .blob2 { width:380px;height:380px;bottom:0;left:-5%;background:radial-gradient(circle,rgba(199,149,0,0.1) 0%,transparent 70%);animation:b2 18s ease-in-out infinite alternate; }
 @keyframes b1 { to { transform:translate(-40px,30px) scale(1.06); } }
 @keyframes b2 { to { transform:translate(30px,-40px) scale(1.05); } }
 
-.hero-text { padding:6rem 0 4rem; position:relative; z-index:1; }
+.hero-wrap { max-width:1280px; margin:0 auto; padding:0 3rem; position:relative; z-index:1; }
+.hero-text { padding:5rem 0 3rem; }
 .hero-h1 { font-family:var(--serif); font-size:clamp(3rem,5.5vw,5.2rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; margin-bottom:1.5rem; }
 .hero-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .hero-sub { font-size:1rem; color:var(--textS); line-height:1.8; margin-bottom:2.5rem; max-width:480px; }
 
-.hero-image {
-  display:flex; align-items:flex-end; justify-content:center;
-  position:relative; z-index:1;
-  padding-top:3rem;
-}
+.hero-image { width:100%; position:relative; z-index:1; }
 .machine-frame {
-  width:100%; max-width:380px;
+  width:100%; overflow:hidden;
+  border-radius:14px 14px 0 0;
+  border:0.5px solid var(--border); border-bottom:none;
   background:linear-gradient(175deg,#eef2f7 0%,#dde4ed 100%);
-  border-radius:20px 20px 0 0;
-  border:0.5px solid var(--border);
-  border-bottom:none;
-  overflow:hidden;
-  display:flex; align-items:flex-end; justify-content:center;
-  min-height:520px;
 }
-.machine-frame img { width:100%; height:100%; object-fit:contain; object-position:bottom; display:block; padding:2rem 2rem 0; }
+.machine-frame img { width:100%; display:block; object-fit:cover; max-height:480px; object-position:center 25%; }
 
 /* ── SPEC TABLE SECTION ── */
 .specs-section { background:var(--white); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
@@ -248,9 +235,10 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 /* MOBILE */
 @media(max-width:900px){
   nav { padding:0 1.5rem; }
-  .hero-wrap { grid-template-columns:1fr; padding:0 1.5rem; }
-  .hero-text { padding:5rem 0 2rem; }
-  .machine-frame { max-width:260px; min-height:340px; margin:0 auto; }
+  nav { padding:0 1.5rem; }
+  .hero-wrap { padding:0 1.5rem; }
+  .hero-text { padding:4rem 0 2rem; }
+  .machine-frame img { max-height:280px; }
   .specs-inner,.tray-inner,.sukhi-layout { grid-template-columns:1fr; gap:2.5rem; }
   .steps { grid-template-columns:repeat(2,1fr); }
   .sukhi-kpi-row { grid-template-columns:repeat(3,1fr); }
@@ -277,7 +265,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 </nav>
 
 <!-- HERO + MACHINE IMAGE -->
-<div style="background:var(--bg);position:relative;overflow:hidden;">
+<div class="hero-outer">
   <div class="hero-blob blob1"></div>
   <div class="hero-blob blob2"></div>
   <div class="hero-wrap">
@@ -286,13 +274,11 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <h1 class="hero-h1">The<br><em>CraveBot</em><br>kiosk</h1>
       <p class="hero-sub">An intelligent frozen-to-ready food kiosk built for high-traffic captive venues. No kitchen, no staff, no compromise on quality.</p>
     </div>
-    <div class="hero-image">
+  </div>
+  <div class="hero-image">
+    <div class="hero-wrap" style="padding-bottom:0;">
       <div class="machine-frame">
-        <img
-          src="https://static.wixstatic.com/media/6daf3f_55d7b8319a0a49dc800355c5d61863c6~mv2.png/v1/fill/w_700,h_940,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_55d7b8319a0a49dc800355c5d61863c6~mv2.png"
-          alt="CraveBot Machine"
-          onerror="this.style.opacity=0"
-        />
+        <img src="/cravebot-machine.png" alt="CraveBot Machine" onerror="this.style.opacity=0" />
       </div>
     </div>
   </div>
