@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crave Robotics — Smart Food Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
+  --surface:rgba(255,255,255,0.72); --surface2:rgba(255,255,255,0.95);
+  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.15);
+  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12); --orangeG:rgba(234,109,16,0.22);
+  --lemon:#c79500; --lemonD:rgba(199,149,0,0.1);
+  --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
+  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+}
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 3rem; height:68px;
+  background:rgba(245,244,240,0.9); backdrop-filter:blur(20px);
+  border-bottom:0.5px solid var(--border);
+  transition:box-shadow 0.3s;
+}
+nav.scrolled { box-shadow:0 4px 32px rgba(0,0,0,0.06); }
+.nav-logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1rem; letter-spacing:0.04em; text-decoration:none; color:var(--text); }
+.logo-mark { width:36px; height:36px; background:linear-gradient(135deg,var(--orange),var(--lemon)); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.8rem; color:#fff; flex-shrink:0; }
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a { font-size:0.75rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--textS); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--text); }
+.nav-cta { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.73rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; padding:0.55rem 1.3rem; border-radius:6px; cursor:pointer; transition:opacity 0.2s,transform 0.15s; }
+.nav-cta:hover { opacity:0.88; transform:translateY(-1px); }
+
+/* HERO BLOBS */
+.hero-bg { position:fixed; inset:0; z-index:-1; pointer-events:none; background:var(--bg); overflow:hidden; }
+.blob { position:absolute; border-radius:50%; filter:blur(80px); }
+.blob1 { width:700px; height:700px; top:-10%; right:0%; background:radial-gradient(circle,rgba(234,109,16,0.18) 0%,transparent 70%); animation:b1 14s ease-in-out infinite alternate; }
+.blob2 { width:520px; height:520px; bottom:10%; left:-5%; background:radial-gradient(circle,rgba(199,149,0,0.12) 0%,transparent 70%); animation:b2 18s ease-in-out infinite alternate; }
+@keyframes b1 { to { transform:translate(-60px,40px) scale(1.08); } }
+@keyframes b2 { to { transform:translate(40px,-50px) scale(1.06); } }
+
+/* HERO ENTRANCE SEQUENCE */
+.hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:9rem 3rem 5rem; max-width:1280px; margin:0 auto; position:relative; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:0.5px solid var(--borderB); border-radius:100px; padding:0.35rem 1rem; font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin-bottom:2rem; width:fit-content; opacity:0; transform:translateY(16px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s forwards; }
+.hdot { width:6px; height:6px; background:var(--orange); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.65);} }
+.hero-h1 { font-family:var(--serif); font-size:clamp(3rem,6.5vw,6.2rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; max-width:900px; margin-bottom:1.8rem; opacity:0; transform:translateY(28px); animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.28s forwards; }
+.hero-h1 em { font-style:italic; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-sub { font-size:1.05rem; color:var(--textS); max-width:540px; line-height:1.8; margin-bottom:2.5rem; opacity:0; transform:translateY(22px); animation:hIn 0.75s cubic-bezier(0.22,1,0.36,1) 0.44s forwards; }
+.hero-btns { display:flex; gap:1rem; align-items:center; margin-bottom:5rem; opacity:0; transform:translateY(18px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.58s forwards; }
+@keyframes hIn { to { opacity:1; transform:translateY(0); } }
+
+/* METRICS STRIP */
+.metrics-strip { display:grid; grid-template-columns:repeat(4,1fr); border:0.5px solid var(--border); border-radius:14px; background:var(--surface); overflow:hidden; opacity:0; transform:translateY(24px) scale(0.98); animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.72s forwards; }
+.mcell { padding:1.6rem 2rem; border-right:0.5px solid var(--border); }
+.mcell:last-child { border-right:none; }
+.mlabel { font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--textM); margin-bottom:0.5rem; }
+.mval { font-family:var(--serif); font-size:2.4rem; font-weight:700; color:var(--text); line-height:1; margin-bottom:0.35rem; }
+.mdelta { font-size:0.7rem; font-weight:600; color:#16a34a; display:flex; align-items:center; gap:3px; }
+.mdelta::before { content:"↑"; }
+
+/* BUTTONS */
+.btn { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.8rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; border:none; padding:0.85rem 2rem; border-radius:7px; cursor:pointer; text-decoration:none; display:inline-block; transition:opacity 0.2s,transform 0.18s; }
+.btn:hover { opacity:0.88; transform:translateY(-2px); }
+.btn-o { background:transparent; color:var(--textS); font-family:var(--font); font-size:0.8rem; font-weight:500; letter-spacing:0.04em; border:0.5px solid var(--borderB); padding:0.85rem 2rem; border-radius:7px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.2s; }
+.btn-o:hover { color:var(--text); border-color:rgba(0,0,0,0.28); background:rgba(255,255,255,0.5); }
+
+/* SECTION */
+section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
+.eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:1rem; display:block; }
+.sec-title { font-family:var(--serif); font-size:clamp(2.2rem,4vw,3.4rem); font-weight:700; line-height:1.08; letter-spacing:-0.022em; margin-bottom:1.2rem; }
+.sec-sub { font-size:1rem; color:var(--textS); max-width:540px; line-height:1.78; }
+
+/* CLIP REVEAL — text wipes up from bottom */
+.rw { overflow:hidden; }
+.rl { display:block; transform:translateY(105%); transition:transform 0.78s cubic-bezier(0.22,1,0.36,1); }
+.rw.vis .rl { transform:translateY(0); }
+.rw.vis .rl:nth-child(2) { transition-delay:0.09s; }
+.rw.vis .rl:nth-child(3) { transition-delay:0.18s; }
+
+/* SCROLL ANIMATION BASE STATES */
+.fu  { opacity:0; transform:translateY(40px);  transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+.sl  { opacity:0; transform:translateX(-52px); transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.sr  { opacity:0; transform:translateX(52px);  transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.su  { opacity:0; transform:scale(0.88) translateY(20px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+.vis { opacity:1 !important; transform:none !important; }
+
+/* STAGGER PARENT: children get --d offset */
+.sg > * { opacity:0; transform:translateY(30px) scale(0.96); transition:opacity 0.62s cubic-bezier(0.22,1,0.36,1) var(--d,0s),transform 0.62s cubic-bezier(0.22,1,0.36,1) var(--d,0s); }
+.sg.vis > * { opacity:1; transform:none; }
+
+/* TICKER */
+.ticker { border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); background:var(--bg2); overflow:hidden; padding:0.9rem 0; }
+.ttrack { display:flex; width:max-content; animation:ticker 30s linear infinite; }
+@keyframes ticker { to { transform:translateX(-50%); } }
+.titem { display:flex; align-items:center; gap:0.5rem; padding:0 3rem; font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--textM); white-space:nowrap; }
+.tdot { width:4px; height:4px; background:var(--orange); border-radius:50%; }
+
+/* ABOUT */
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+.about-highlight {
+  display: flex; align-items: flex-start; gap: 1rem;
+  background: linear-gradient(135deg, rgba(234,109,16,0.07), rgba(199,149,0,0.05));
+  border: 0.5px solid rgba(234,109,16,0.25);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  margin: 1.75rem 0 1rem;
+  font-size: 0.95rem;
+  color: var(--textS);
+  line-height: 1.7;
+  width: 100%;
+}
+.highlight-icon { font-size: 1rem; color: var(--orange); flex-shrink: 0; margin-top: 2px; }
+.sc { background:var(--white); border:0.5px solid var(--border); border-radius:12px; padding:1.25rem 1.5rem; display:flex; align-items:flex-start; transition:transform 0.28s cubic-bezier(0.22,1,0.36,1),box-shadow 0.28s; }
+.sc:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.07); }
+.sc.acc { border-color:rgba(234,109,16,0.32); background:rgba(234,109,16,0.04); }
+.slabel { font-size:0.67rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--textS); }
+.sval { font-family:var(--serif); font-size:1.9rem; font-weight:700; color:var(--text); }
+.sval.o { color:var(--orange); }
+.sbar { height:4px; background:var(--border); border-radius:2px; overflow:hidden; margin-top:8px; }
+.sbar-fill { height:100%; background:linear-gradient(90deg,var(--orange),var(--lemon)); border-radius:2px; width:0; transition:width 1.3s cubic-bezier(0.22,1,0.36,1) 0.35s; }
+
+/* FEATURES */
+.feat-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
+.fhead { text-align:center; margin-bottom:4rem; }
+.fhead .sec-sub { max-width:480px; margin:0 auto; }
+.fgrid { display:grid; grid-template-columns:repeat(3,1fr); border:0.5px solid var(--border); border-radius:14px; overflow:hidden; gap:1px; background:var(--border); }
+.fc { background:var(--bg2); padding:2.2rem; position:relative; transition:background 0.22s,transform 0.3s cubic-bezier(0.22,1,0.36,1); }
+.fc:hover { background:var(--white); transform:scale(1.025); z-index:2; }
+.fc::before { content:''; position:absolute; top:0; left:0; right:0; height:0; background:linear-gradient(90deg,var(--orange),var(--lemon)); transition:height 0.3s cubic-bezier(0.22,1,0.36,1); }
+.fc:hover::before { height:3px; }
+.fi { width:44px; height:44px; border-radius:10px; background:var(--orangeD); border:0.5px solid rgba(234,109,16,0.2); display:flex; align-items:center; justify-content:center; margin-bottom:1.2rem; font-size:1.2rem; }
+.ft { font-size:1.1rem; font-weight:700; letter-spacing:-0.01em; margin-bottom:0.75rem; }
+.fb { font-size:0.95rem; color:var(--textS); line-height:1.75; }
+
+/* MENU */
+.mhead { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; }
+.mlink { font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--orange); text-decoration:none; }
+.mgrid { display:grid; grid-template-columns:repeat(5,1fr); gap:1.2rem; }
+.mc { background:var(--white); border:0.5px solid var(--border); border-radius:12px; overflow:hidden; cursor:pointer; transition:transform 0.32s cubic-bezier(0.22,1,0.36,1),box-shadow 0.32s,border-color 0.2s; }
+.mc:hover { transform:translateY(-10px) scale(1.025); box-shadow:0 24px 56px rgba(0,0,0,0.11); border-color:rgba(234,109,16,0.3); }
+.mic-wrap { overflow:hidden; }
+.mic { width:100%; aspect-ratio:1; object-fit:cover; display:block; background:var(--bg3); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); }
+.mc:hover .mic { transform:scale(1.07); }
+.minfo { padding:1rem; }
+.mtag { display:inline-block; font-size:0.58rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--lemon); background:rgba(199,149,0,0.1); border:0.5px solid rgba(199,149,0,0.22); border-radius:4px; padding:2px 7px; margin-bottom:0.45rem; }
+.mname { font-size:0.8rem; font-weight:600; line-height:1.4; margin-bottom:0.4rem; color:var(--text); }
+.mprice { font-family:var(--serif); font-size:1.25rem; font-weight:700; color:var(--orange); }
+
+/* LOCATIONS */
+.loc-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
+.loc-grid { display:grid; grid-template-columns:1fr 1.5fr; gap:4rem; align-items:start; }
+.llist { display:flex; flex-direction:column; gap:0.5rem; margin-top:2.5rem; max-height:520px; overflow-y:auto; padding-right:4px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
+.li { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:0.5px solid var(--border); border-radius:9px; padding:1rem 1.25rem; cursor:pointer; transition:all 0.22s cubic-bezier(0.22,1,0.36,1); }
+.li:hover { transform:translateX(5px); border-color:rgba(234,109,16,0.3); box-shadow:0 4px 16px rgba(0,0,0,0.05); }
+.li.active { border-color:rgba(234,109,16,0.45); background:rgba(234,109,16,0.05); }
+.lname { font-size:0.85rem; font-weight:700; }
+.lcity { font-size:0.7rem; color:var(--textS); margin-top:2px; }
+.larr { color:var(--orange); font-size:0.85rem; transition:transform 0.2s; }
+.li:hover .larr { transform:translateX(4px); }
+.mbox { background: linear-gradient(145deg, #eef2f7 0%, #e8ecf2 100%); border:0.5px solid var(--border); border-radius:14px; aspect-ratio:4/3; position:relative; overflow:hidden; }
+.mgr { position:absolute; inset:0; background-image:radial-gradient(rgba(0,0,0,0.1) 1px,transparent 1px); background-size:28px 28px; opacity:0.35; }
+.mglow { position:absolute; width:220px; height:220px; background:radial-gradient(circle,rgba(234,109,16,0.2) 0%,transparent 70%); top:35%; left:40%; transform:translate(-50%,-50%); pointer-events:none; }
+.mpin { position:absolute; display:flex; flex-direction:column; align-items:center; gap:3px; cursor:pointer; transition:transform 0.22s; }
+.mpin:hover { transform:scale(1.25) translateY(-3px); }
+.pdot { width:10px; height:10px; background:var(--orange); border-radius:50%; box-shadow:0 0 0 4px rgba(234,109,16,0.25); }
+.pdot.a { background:var(--lemon); box-shadow:0 0 0 5px rgba(199,149,0,0.25); }
+.plabel { font-size:0.6rem; font-weight:700; letter-spacing:0.04em; color:var(--textS); white-space:nowrap; background:rgba(245,244,240,0.96); border:0.5px solid var(--border); border-radius:4px; padding:2px 6px; }
+
+/* BRAND PARTNERS */
+.bp-wrap { background:var(--bg); border-top:0.5px solid var(--border); }
+.bphead { text-align:center; margin-bottom:3.5rem; }
+.bphead .sec-sub { max-width:460px; margin:0 auto; }
+.bpgrid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:0.5px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:1rem; }
+.bpcell { background:var(--white); padding:2.5rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.8rem; transition:background 0.22s,transform 0.28s cubic-bezier(0.22,1,0.36,1); }
+.bpcell:hover { background:var(--bg); transform:scale(0.96); }
+.bpimg { width:100%; max-width:130px; height:60px; object-fit:contain; display:block; filter:grayscale(1) opacity(0.55); transition:filter 0.3s; }
+.bpcell:hover .bpimg { filter:grayscale(0) opacity(1); }
+.bpname { font-size:0.66rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--textM); text-align:center; }
+.bpslot { width:130px; height:60px; display:flex; align-items:center; justify-content:center; border:0.5px dashed var(--border); border-radius:6px; }
+.bpslot span { font-size:0.62rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--textM); }
+.bpcta { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:0.5px solid var(--border); border-radius:12px; padding:1.8rem 2rem; margin-top:1rem; gap:2rem; }
+.bpcta-text { font-size:0.9rem; font-weight:600; color:var(--text); }
+.bpcta-sub { font-size:0.78rem; color:var(--textS); margin-top:3px; }
+
+/* CONTACT */
+.ct-wrap { background:var(--bg2); border-top:0.5px solid var(--border); }
+.ct-inner { text-align:center; }
+.ct-badge { display:inline-flex; align-items:center; gap:8px; background:var(--orangeD); border:0.5px solid rgba(234,109,16,0.28); border-radius:100px; padding:0.35rem 1.1rem; font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--orange); margin-bottom:2rem; }
+.ct-title { font-family:var(--serif); font-size:clamp(2.5rem,5vw,4.5rem); font-weight:700; line-height:1.06; letter-spacing:-0.025em; margin-bottom:1.4rem; }
+.ct-title em { font-style:italic; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.ct-sub { font-size:1rem; color:var(--textS); max-width:480px; margin:0 auto 3rem; line-height:1.75; }
+.ct-form { display:flex; gap:0.75rem; max-width:440px; margin:0 auto; }
+.ct-input { flex:1; background:var(--white); border:0.5px solid var(--borderB); border-radius:7px; padding:0.85rem 1rem; font-family:var(--font); font-size:0.85rem; color:var(--text); outline:none; transition:border-color 0.2s,box-shadow 0.2s; }
+.ct-input::placeholder { color:var(--textM); }
+.ct-input:focus { border-color:rgba(234,109,16,0.5); box-shadow:0 0 0 3px rgba(234,109,16,0.1); }
+.ct-note { margin-top:1.5rem; font-size:0.72rem; color:var(--textM); }
+
+/* MODAL */
+.mo { position:fixed; inset:0; z-index:300; background:rgba(0,0,0,0.3); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:1.5rem; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+.mo.open { opacity:1; pointer-events:all; }
+.md { background:#faf9f6; border:0.5px solid var(--borderB); border-radius:16px; width:100%; max-width:530px; padding:2.5rem; position:relative; transform:translateY(24px) scale(0.96); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); max-height:90vh; overflow-y:auto; }
+.mo.open .md { transform:none; }
+.mc-close { position:absolute; top:1.25rem; right:1.25rem; background:var(--bg2); border:0.5px solid var(--border); border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.85rem; color:var(--textM); transition:background 0.2s; }
+.mc-close:hover { background:var(--bg3); color:var(--text); }
+.mtitle { font-family:var(--serif); font-size:1.85rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:0.35rem; }
+.msub { font-size:0.83rem; color:var(--textS); margin-bottom:1.8rem; line-height:1.65; }
+.fr { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+.fg { display:flex; flex-direction:column; gap:0.38rem; margin-bottom:0.75rem; }
+.flabel { font-size:0.67rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--textS); }
+.finput { background:var(--white); border:0.5px solid var(--borderB); border-radius:7px; padding:0.65rem 0.9rem; font-family:var(--font); font-size:0.85rem; color:var(--text); outline:none; transition:border-color 0.2s,box-shadow 0.2s; width:100%; }
+.finput::placeholder { color:var(--textM); }
+.finput:focus { border-color:rgba(234,109,16,0.5); box-shadow:0 0 0 3px rgba(234,109,16,0.1); }
+textarea.finput { resize:vertical; min-height:90px; line-height:1.6; }
+.fsel { appearance:none; background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%239a9ca5' d='M5 7L0 2h10z'/%3E%3C/svg%3E") no-repeat right 0.9rem center; }
+.mbtn { width:100%; margin-top:1rem; background:var(--orange); color:#fff; font-family:var(--font); font-size:0.82rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; border-radius:7px; padding:0.9rem; cursor:pointer; transition:opacity 0.2s,transform 0.15s; }
+.mbtn:hover { opacity:0.88; transform:translateY(-1px); }
+.msucc { text-align:center; padding:2.5rem 0; display:none; flex-direction:column; align-items:center; gap:1rem; }
+.msucc.show { display:flex; }
+.sico { width:56px; height:56px; border-radius:50%; background:rgba(22,163,74,0.1); border:0.5px solid rgba(22,163,74,0.3); display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
+.msucc h3 { font-family:var(--serif); font-size:1.6rem; font-weight:700; }
+.msucc p { font-size:0.85rem; color:var(--textS); max-width:300px; line-height:1.65; }
+
+/* FOOTER */
+footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; margin:0 auto; }
+.ft { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2.5rem; padding-bottom:2.5rem; border-bottom:0.5px solid var(--border); }
+.fbrand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:0.9rem; letter-spacing:0.04em; color:var(--textS); text-decoration:none; }
+.fcols { display:flex; gap:4rem; }
+.fclabel { font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--textM); margin-bottom:0.9rem; }
+.fcol ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
+.fcol a { font-size:0.78rem; color:var(--textS); text-decoration:none; transition:color 0.2s; }
+.fcol a:hover { color:var(--text); }
+.fb2 { display:flex; justify-content:space-between; align-items:center; }
+.fcopy { font-size:0.72rem; color:var(--textM); }
+.fcontact { font-size:0.72rem; color:var(--textM); text-align:right; line-height:1.7; }
+
+/* MOBILE */
+@media(max-width:900px){
+  nav{padding:0 1.5rem;} .nav-links{display:none;}
+  section{padding:4rem 1.5rem;}
+  .hero{padding:7rem 1.5rem 4rem;}
+  .about-grid,.loc-grid{grid-template-columns:1fr;gap:3rem;}
+  .fgrid,.mgrid{grid-template-columns:1fr;}
+  .mgrid{grid-template-columns:repeat(2,1fr);}
+  .metrics-strip{grid-template-columns:repeat(2,1fr);}
+  .mcell:nth-child(2){border-right:none;}
+  .bpgrid{grid-template-columns:repeat(2,1fr);}
+  .bpcta{flex-direction:column;align-items:flex-start;}
+  .ft{flex-direction:column;gap:2rem;}
+  .fcols{flex-wrap:wrap;gap:2rem;}
+  .fb2{flex-direction:column;gap:0.5rem;text-align:center;}
+  .fcontact{text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="mo" id="modal">
+  <div class="md">
+    <button class="mc-close" onclick="closeM()">✕</button>
+    <div id="mform">
+      <div class="mtitle">Get in touch</div>
+      <p class="msub">Interested in deploying a CraveBot or partnering with us? We'll respond within one business day.</p>
+      <div class="fr">
+        <div class="fg"><label class="flabel">First name</label><input class="finput" type="text" placeholder="Jane" /></div>
+        <div class="fg"><label class="flabel">Last name</label><input class="finput" type="text" placeholder="Smith" /></div>
+      </div>
+      <div class="fg"><label class="flabel">Work email</label><input class="finput" type="email" placeholder="jane@company.com" /></div>
+      <div class="fr">
+        <div class="fg"><label class="flabel">Organization</label><input class="finput" type="text" placeholder="University / Hotel..." /></div>
+        <div class="fg"><label class="flabel">Phone (optional)</label><input class="finput" type="tel" placeholder="+1 (555) 000-0000" /></div>
+      </div>
+      <div class="fg">
+        <label class="flabel">Inquiry type</label>
+        <select class="finput fsel">
+          <option value="">Select one...</option>
+          <option>Deploy a CraveBot at my venue</option>
+          <option>Food brand / partner studio</option>
+          <option>Press or media inquiry</option>
+          <option>General question</option>
+        </select>
+      </div>
+      <div class="fg"><label class="flabel">Message</label><textarea class="finput" placeholder="Tell us about your venue, goals, or questions..."></textarea></div>
+      <button class="mbtn" onclick="submitM()">Send Inquiry →</button>
+    </div>
+    <div class="msucc" id="msucc">
+      <div class="sico">✓</div>
+      <h3>Message sent!</h3>
+      <p>Thanks for reaching out. Someone from the team will be in touch at your email shortly.</p>
+      <button class="btn-o" onclick="closeM()" style="margin-top:0.5rem;">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <img src="https://static.wixstatic.com/media/6daf3f_98c7cc5df056433c85b5999b1b361767~mv2.png/v1/fill/w_160,h_86,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/Frame%2021174%20(1).png" alt="Crave Robotics" style="height:36px;width:auto;object-fit:contain;display:block;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#platform">Platform</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#locations">Locations</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="/cravebot" target="_blank">CraveBot</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openM()">Contact Us</button>
+</nav>
+
+<!-- BLOBS -->
+<div class="hero-bg"><div class="blob blob1"></div><div class="blob blob2"></div></div>
+
+<!-- HERO -->
+<div style="position:relative;overflow:hidden;">
+  <div class="hero">
+    <div class="hero-eyebrow"><span class="hdot"></span>18 machines deployed across Southern California</div>
+    <h1 class="hero-h1">Making automated meals<br><em>delicious</em> and accessible</h1>
+    <p class="hero-sub">Experience the perfect fusion of automation and culinary excellence. Hot, fresh food — delivered by 18 CraveBot kiosks across Southern California university campuses, tech companies, and hotels.</p>
+    <div class="hero-btns">
+      <a href="/menu" class="btn" target="_blank">Explore the Menu</a>
+      <a href="/cravebot" class="btn-o" target="_blank">View CraveBot Specs</a>
+    </div>
+    <div class="metrics-strip">
+      <div class="mcell"><div class="mlabel">Machines active</div><div class="mval" id="cloc">18</div><div class="mdelta">Across SoCal</div></div>
+      <div class="mcell"><div class="mlabel">Avg serve time</div><div class="mval">&lt;3<span style="font-size:1rem;color:var(--textM);font-family:var(--font);font-weight:500"> min</span></div><div class="mdelta">Fully automated</div></div>
+      <div class="mcell"><div class="mlabel">Uptime</div><div class="mval">24<span style="font-size:1rem;color:var(--textM);font-family:var(--font);font-weight:500">/7</span></div><div class="mdelta">No kitchen staff needed</div></div>
+      <div class="mcell"><div class="mlabel">Menu items</div><div class="mval" id="citm">15</div><div class="mdelta">All day-parts covered</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ttrack">
+    <span class="titem"><span class="tdot"></span>Hot meals in under 3 minutes</span>
+    <span class="titem"><span class="tdot"></span>Zero kitchen staff needed</span>
+    <span class="titem"><span class="tdot"></span>Available 24 hours a day, 7 days a week</span>
+    <span class="titem"><span class="tdot"></span>$0 operational cost to the host</span>
+    <span class="titem"><span class="tdot"></span>Breakfast, lunch, dinner &amp; late night</span>
+    <span class="titem"><span class="tdot"></span>Frozen-to-ready in minutes</span>
+    <span class="titem"><span class="tdot"></span>Fully vendor managed &amp; restocked</span>
+    <span class="titem"><span class="tdot"></span>96% fleet uptime</span>
+    <span class="titem"><span class="tdot"></span>Real-time sales analytics</span>
+    <span class="titem"><span class="tdot"></span>Incremental revenue for your venue</span>
+    <span class="titem"><span class="tdot"></span>Touchless &amp; contactless ordering</span>
+    <span class="titem"><span class="tdot"></span>Private label &amp; branded menu options</span>
+    <span class="titem"><span class="tdot"></span>Cold chain logistics &amp; replenishment</span>
+    <span class="titem"><span class="tdot"></span>Hot meals in under 3 minutes</span>
+    <span class="titem"><span class="tdot"></span>Zero kitchen staff needed</span>
+    <span class="titem"><span class="tdot"></span>Available 24 hours a day, 7 days a week</span>
+    <span class="titem"><span class="tdot"></span>$0 operational cost to the host</span>
+    <span class="titem"><span class="tdot"></span>Breakfast, lunch, dinner &amp; late night</span>
+    <span class="titem"><span class="tdot"></span>Frozen-to-ready in minutes</span>
+    <span class="titem"><span class="tdot"></span>Fully vendor managed &amp; restocked</span>
+    <span class="titem"><span class="tdot"></span>96% fleet uptime</span>
+    <span class="titem"><span class="tdot"></span>Real-time sales analytics</span>
+    <span class="titem"><span class="tdot"></span>Incremental revenue for your venue</span>
+    <span class="titem"><span class="tdot"></span>Touchless &amp; contactless ordering</span>
+    <span class="titem"><span class="tdot"></span>Private label &amp; branded menu options</span>
+    <span class="titem"><span class="tdot"></span>Cold chain logistics &amp; replenishment</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about">
+  <section>
+    <div class="about-grid">
+      <div class="sl">
+        <span class="eyebrow">About Us</span>
+        <div class="rw"><h2 class="sec-title"><span class="rl">Smart food service,</span><span class="rl">reinvented</span></h2></div>
+        <div class="about-highlight fu" style="transition-delay:0.2s">
+          <div class="highlight-icon">✦</div>
+          <div>Founded by <strong>Paul Chen</strong>, creator of Botrista Technology — bringing deep operational experience in food automation to every CraveBot deployment.</div>
+        </div>
+        <p class="sec-sub fu" style="transition-delay:0.3s;font-size:0.95rem;line-height:1.75;color:var(--textS);">Crave Robotics provides ready-to-eat smart vending meals in under 3 minutes — servicing U.S. captive venues including university campuses, hotels, hospitals, and transit centers.</p>
+        <p class="sec-sub fu" style="transition-delay:0.4s;margin-top:0.75rem;font-size:0.95rem;line-height:1.75;color:var(--textS);">Our turnkey solution covers all day-parts: breakfast, snacks, desserts, and dinner entrees stored frozen and replenished via our cold chain logistics network.</p>
+      </div>
+      <div class="sr">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" class="sg">
+
+          <!-- $0 operational cost -->
+          <div class="sc acc" style="flex-direction:column;align-items:flex-start;gap:0.6rem;padding:1.4rem 1.5rem;">
+            <div class="slabel">Host operational cost</div>
+            <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--orange);line-height:1;">$0</div>
+            <div style="font-size:0.75rem;color:var(--textS);line-height:1.5;">Zero cost to install, operate, or staff. Crave handles everything.</div>
+          </div>
+
+          <!-- No kitchen staff -->
+          <div class="sc" style="flex-direction:column;align-items:flex-start;gap:0.6rem;padding:1.4rem 1.5rem;">
+            <div class="slabel">Kitchen staff required</div>
+            <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--text);line-height:1;">$0</div>
+            <div style="font-size:0.75rem;color:var(--textS);line-height:1.5;">No staff to hire, train, or schedule — ever.</div>
+          </div>
+
+          <!-- 96% uptime — ring visual -->
+          <div class="sc" style="flex-direction:column;align-items:flex-start;gap:0.6rem;padding:1.4rem 1.5rem;">
+            <div class="slabel">Machine uptime</div>
+            <div style="display:flex;align-items:center;gap:1rem;margin-top:4px;">
+              <svg width="64" height="64" viewBox="0 0 64 64" style="flex-shrink:0;">
+                <circle cx="32" cy="32" r="26" fill="none" stroke="var(--border)" stroke-width="6"/>
+                <circle cx="32" cy="32" r="26" fill="none" stroke="var(--orange)" stroke-width="6"
+                  stroke-dasharray="163.4" stroke-dashoffset="6.5"
+                  stroke-linecap="round" transform="rotate(-90 32 32)"
+                  style="transition:stroke-dashoffset 1.2s cubic-bezier(0.22,1,0.36,1) 0.3s;"/>
+              </svg>
+              <div>
+                <div style="font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--text);line-height:1;">96%</div>
+                <div style="font-size:0.72rem;color:var(--textS);margin-top:2px;">avg across fleet</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mealtime options -->
+          <div class="sc" style="flex-direction:column;align-items:flex-start;gap:0.6rem;padding:1.4rem 1.5rem;">
+            <div class="slabel">Options for any mealtime</div>
+            <div style="display:flex;flex-direction:column;gap:5px;margin-top:4px;width:100%;">
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:0.75rem;font-weight:600;color:var(--text);">🌅 Breakfast</span>
+                <span style="font-size:0.68rem;color:var(--textM);">6am – 11am</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:0.75rem;font-weight:600;color:var(--text);">☀️ Snacks</span>
+                <span style="font-size:0.68rem;color:var(--textM);">11am – 5pm</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:0.75rem;font-weight:600;color:var(--text);">🍽️ Entrees</span>
+                <span style="font-size:0.68rem;color:var(--textM);">5pm – 10pm</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;">
+                <span style="font-size:0.75rem;font-weight:600;color:var(--text);">🌙 Late night</span>
+                <span style="font-size:0.68rem;color:var(--textM);">10pm – 6am</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PLATFORM -->
+<div class="feat-wrap" id="platform">
+  <section>
+    <div class="fhead">
+      <span class="eyebrow fu">The CraveBot Platform</span>
+      <div class="rw fu" style="transition-delay:0.1s"><h2 class="sec-title"><span class="rl">Not just a smart heating</span><span class="rl">vending machine</span></h2></div>
+      <p class="sec-sub fu" style="transition-delay:0.2s">A fully managed, data-driven food automation system built for modern hospitality and campus environments.</p>
+    </div>
+    <div class="fgrid sg">
+      <div class="fc"><div class="fi">🔥</div><div class="ft">Frozen-to-Ready System</div><p class="fb">Meals stored frozen and heated to perfection on demand — freshness guaranteed without prep staff or kitchen equipment.</p></div>
+      <div class="fc"><div class="fi">🕐</div><div class="ft">24/7 Availability</div><p class="fb">CraveBot operates around the clock — late night snacks, early breakfasts, anytime hunger strikes — without additional labor.</p></div>
+      <div class="fc"><div class="fi">🤝</div><div class="ft">Vendor Managed</div><p class="fb">From installation to daily operations, Crave Robotics handles everything through a trusted network of service partners.</p></div>
+      <div class="fc"><div class="fi">✋</div><div class="ft">Touchless for the Host</div><p class="fb">Restocking done by authorized agents. No staff to hire, no food prep — a seamless contactless experience.</p></div>
+      <div class="fc"><div class="fi">📈</div><div class="ft">Additional Revenue Streams</div><p class="fb">All-day dining options attract foot traffic and create new revenue with zero incremental overhead.</p></div>
+      <div class="fc"><div class="fi">📊</div><div class="ft">Real-Time Analytics</div><p class="fb">Live dashboards for sales, uptime, and product performance across every deployed machine.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- MENU -->
+<div id="menu">
+  <section>
+    <div class="mhead fu">
+      <div>
+        <span class="eyebrow">Private Label Menu</span>
+        <div class="rw"><h2 class="sec-title"><span class="rl">Gourmet on the Go</span></h2></div>
+      </div>
+      <a href="/menu" class="mlink">View all 24 items →</a>
+    </div>
+    <div class="mgrid sg">
+      <div class="mc">
+        <div class="mic-wrap"><img class="mic" src="https://static.wixstatic.com/media/6daf3f_5b237e92d49b4e15b3608f37335fdc4b~mv2.png/v1/fill/w_480,h_480,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_5b237e92d49b4e15b3608f37335fdc4b~mv2.png" alt="Chicken &amp; Shrimp Chow Mein" loading="lazy" /></div>
+        <div class="minfo"><div class="mtag">Popular</div><div class="mname">Chicken &amp; Shrimp Chow Mein</div><div class="mprice">$13</div></div>
+      </div>
+      <div class="mc">
+        <div class="mic-wrap"><img class="mic" src="https://static.wixstatic.com/media/6daf3f_bc5e8d5472614e3795fe92c1921d23d6~mv2.png/v1/fill/w_480,h_480,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_bc5e8d5472614e3795fe92c1921d23d6~mv2.png" alt="Wagyu Beef Bowl" loading="lazy" /></div>
+        <div class="minfo"><div class="mtag">Premium</div><div class="mname">Wagyu Beef Bowl</div><div class="mprice">$15</div></div>
+      </div>
+      <div class="mc">
+        <div class="mic-wrap"><img class="mic" src="https://static.wixstatic.com/media/6daf3f_880b66ea8a77434f96d0bb9d0dac1137~mv2.png/v1/fill/w_480,h_480,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_880b66ea8a77434f96d0bb9d0dac1137~mv2.png" alt="Chicken Fried Rice" loading="lazy" /></div>
+        <div class="minfo"><div class="mtag">Popular</div><div class="mname">Chicken Fried Rice</div><div class="mprice">$13</div></div>
+      </div>
+      <div class="mc">
+        <div class="mic-wrap"><img class="mic" src="https://static.wixstatic.com/media/6daf3f_58890fbcd89b4c129dfb2bb4ef14cb52~mv2.png/v1/fill/w_480,h_480,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_58890fbcd89b4c129dfb2bb4ef14cb52~mv2.png" alt="Gyudon Rice Box" loading="lazy" /></div>
+        <div class="minfo"><div class="mtag">Bestseller</div><div class="mname">Gyudon Rice Box</div><div class="mprice">$14</div></div>
+      </div>
+      <div class="mc">
+        <div class="mic-wrap"><img class="mic" src="https://static.wixstatic.com/media/6daf3f_fc1a1dc4391942dbb10188d37c512491~mv2.png/v1/fill/w_480,h_480,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_fc1a1dc4391942dbb10188d37c512491~mv2.png" alt="Teriyaki Chicken Rice Box" loading="lazy" /></div>
+        <div class="minfo"><div class="mtag">Bestseller</div><div class="mname">Teriyaki Chicken Rice Box</div><div class="mprice">$13</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- LOCATIONS -->
+<div class="loc-wrap" id="locations">
+  <section>
+    <div class="loc-grid">
+      <div class="sl">
+        <span class="eyebrow">Find a CraveBot</span>
+        <div class="rw"><h2 class="sec-title"><span class="rl">CraveBots near you</span></h2></div>
+        <p class="sec-sub fu" style="transition-delay:0.15s">18 machines deployed across 14 venues in Southern California — on campuses, at tech campuses, and in hotels.</p>
+        <div class="llist sg" style="margin-top:2.5rem;">
+          <div class="li active"><div><div class="lname">Cal State LA</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">University of Southern California</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">Cal State Long Beach</div><div class="lcity">Long Beach, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">Cal State Dominguez Hills — 3 machines</div><div class="lcity">Carson, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">Cerritos College — 2 machines</div><div class="lcity">Norwalk, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">Cal State San Bernardino — 2 machines</div><div class="lcity">San Bernardino &amp; Palm Desert, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">Relativity Space — 2 machines</div><div class="lcity">Long Beach, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">Cal Poly Pomona</div><div class="lcity">Pomona, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">ArtCenter College of Design</div><div class="lcity">Pasadena, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">Golden West College</div><div class="lcity">Huntington Beach, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">Embassy Suites by Hilton</div><div class="lcity">Santa Ana, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">California College of Hospitality Management</div><div class="lcity">Pomona, CA</div></div><span class="larr">→</span></div>
+          <div class="li"><div><div class="lname">Deckers</div><div class="lcity">Moreno Valley, CA</div></div><span class="larr">→</span></div>
+        </div>
+      </div>
+      <div class="sr">
+        <div class="mbox">
+          <div class="mgr"></div><div class="mglow"></div>
+          <!-- SoCal approximate positions — west=left, east=right, north=top -->
+          <div class="mpin" style="top:20%;left:30%"><div class="pdot a"></div><div class="plabel">Cal State LA</div></div>
+          <div class="mpin" style="top:28%;left:24%"><div class="pdot"></div><div class="plabel">USC</div></div>
+          <div class="mpin" style="top:55%;left:22%"><div class="pdot"></div><div class="plabel">Cal State LB</div></div>
+          <div class="mpin" style="top:58%;left:28%"><div class="pdot"></div><div class="plabel">Relativity Space</div></div>
+          <div class="mpin" style="top:50%;left:33%"><div class="pdot"></div><div class="plabel">Cal State DH</div></div>
+          <div class="mpin" style="top:65%;left:38%"><div class="pdot"></div><div class="plabel">Cerritos College</div></div>
+          <div class="mpin" style="top:14%;left:42%"><div class="pdot"></div><div class="plabel">ArtCenter</div></div>
+          <div class="mpin" style="top:32%;left:48%"><div class="pdot"></div><div class="plabel">Cal Poly Pomona</div></div>
+          <div class="mpin" style="top:35%;left:52%"><div class="pdot"></div><div class="plabel">CCHM</div></div>
+          <div class="mpin" style="top:62%;left:55%"><div class="pdot"></div><div class="plabel">Golden West College</div></div>
+          <div class="mpin" style="top:50%;left:60%"><div class="pdot"></div><div class="plabel">Embassy Suites</div></div>
+          <div class="mpin" style="top:38%;left:70%"><div class="pdot"></div><div class="plabel">Cal State SB</div></div>
+          <div class="mpin" style="top:50%;left:76%"><div class="pdot"></div><div class="plabel">Deckers</div></div>
+          <div class="mpin" style="top:72%;left:80%"><div class="pdot"></div><div class="plabel">Cal State SB Palm Desert</div></div>
+          <div style="position:absolute;bottom:1.5rem;left:0;right:0;text-align:center;z-index:1;"><div style="font-size:0.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--textM);">Southern California · 18 active machines</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- BRAND PARTNERS -->
+<div class="bp-wrap" id="partners">
+  <section>
+    <div class="bphead">
+      <span class="eyebrow fu">CraveFoods Partner Studio</span>
+      <div class="rw fu" style="transition-delay:0.1s"><h2 class="sec-title"><span class="rl">Our brand partners</span></h2></div>
+      <p class="sec-sub fu" style="transition-delay:0.2s">We work with established food brands and emerging culinary creators to expand their reach through our automated kiosk network.</p>
+    </div>
+    <div class="bpgrid sg">
+      <div class="bpcell">
+        <img class="bpimg" src="https://static.wixstatic.com/media/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png/v1/fill/w_280,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png" alt="Gourmet Now" loading="lazy" />
+        <div class="bpname">Gourmet Now</div>
+      </div>
+      <div class="bpcell">
+        <img class="bpimg" src="https://static.wixstatic.com/media/6daf3f_9acb75590f854811b3543df4aff2187f~mv2.png/v1/fill/w_280,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_9acb75590f854811b3543df4aff2187f~mv2.png" alt="Private Label" loading="lazy" />
+        <div class="bpname">Private Label</div>
+      </div>
+      <div class="bpcell">
+        <div class="bpslot"><span>Your brand</span></div>
+        <div class="bpname">Open slot</div>
+      </div>
+      <div class="bpcell">
+        <div class="bpslot"><span>Your brand</span></div>
+        <div class="bpname">Open slot</div>
+      </div>
+    </div>
+    <div class="bpcta fu" style="transition-delay:0.3s">
+      <div>
+        <div class="bpcta-text">Interested in distributing your food brand through CraveBot?</div>
+        <div class="bpcta-sub">We're onboarding new brand partners — reach tens of thousands of campus and hotel guests.</div>
+      </div>
+      <button class="btn" onclick="openM()" style="white-space:nowrap;flex-shrink:0;">Become a Partner →</button>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT CTA -->
+<div class="ct-wrap" id="contact">
+  <section>
+    <div class="ct-inner">
+      <div class="ct-badge fu">🤝 Ready to collaborate?</div>
+      <div class="rw fu" style="transition-delay:0.1s">
+        <h2 class="ct-title"><span class="rl">Savor variety.</span><span class="rl">Dive into <em>deliciousness</em></span><span class="rl">with every vend.</span></h2>
+      </div>
+      <p class="ct-sub fu" style="transition-delay:0.25s">Drop us your email and we'll be in touch about deploying a CraveBot at your venue.</p>
+      <div class="ct-form fu" style="transition-delay:0.35s">
+        <input type="email" class="ct-input" placeholder="Enter your email" />
+        <button class="btn" onclick="openM()">Get in Touch</button>
+      </div>
+      <div class="ct-note fu" style="transition-delay:0.45s">635 W. Allen Ave., San Dimas, CA 91773 &nbsp;·&nbsp; <a href="mailto:help@craverobotics.co" style="color:var(--textM);text-decoration:none;">help@craverobotics.co</a> &nbsp;·&nbsp; +1-840-233-7986</div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<div style="border-top:0.5px solid var(--border);">
+  <footer>
+    <div class="ft">
+      <a href="#" class="fbrand"><div class="logo-mark" style="width:28px;height:28px;font-size:0.72rem;">CR</div>CRAVE ROBOTICS</a>
+      <div class="fcols">
+        <div class="fcol">
+          <div class="fclabel">Company</div>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#platform">CraveBot</a></li>
+            <li><a href="https://www.craverobotics.co/blog">News</a></li>
+            <li><a href="https://drive.google.com/file/d/1B-ciNkH2H_UiZJXYakQbjgBHAsWBGObc/view" target="_blank">Certification</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <div class="fclabel">Legal</div>
+          <ul>
+            <li><a href="https://www.craverobotics.co/privacy-policy">Privacy Policy</a></li>
+            <li><a href="https://www.craverobotics.co/delete-account">Data Deletion Request</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <div class="fclabel">Connect</div>
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=hElcmMYvR48" target="_blank">YouTube</a></li>
+            <li><a href="https://www.linkedin.com/company/craverobotics/" target="_blank">LinkedIn</a></li>
+            <li><a href="mailto:help@craverobotics.co">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="fb2">
+      <div class="fcopy">© 2025 Crave Robotics™. All rights reserved.</div>
+      <div class="fcontact">635 W. Allen Ave., San Dimas, CA 91773<br>help@craverobotics.co · +1-840-233-7986</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+/* MODAL */
+function openM(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeM(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';setTimeout(()=>{document.getElementById('msucc').classList.remove('show');document.getElementById('mform').style.display='';},350);}
+async function submitM(){
+  const btn = document.querySelector('.mbtn');
+  const fields = document.querySelectorAll('#mform .finput');
+
+  // collect values
+  const inputs = Array.from(fields);
+  const [firstName, lastName, email, organization, phone, inquiryType, message] =
+    inputs.map(i => i.value.trim());
+
+  if (!email || !message) {
+    inputs.forEach(i => {
+      if ((i.type === 'email' && !i.value.trim()) || (i.tagName === 'TEXTAREA' && !i.value.trim())) {
+        i.style.borderColor = 'rgba(220,38,38,0.5)';
+        i.style.boxShadow   = '0 0 0 3px rgba(220,38,38,0.1)';
+        setTimeout(() => { i.style.borderColor = ''; i.style.boxShadow = ''; }, 2500);
+      }
+    });
+    return;
+  }
+
+  btn.textContent = 'Sending…';
+  btn.disabled    = true;
+  btn.style.opacity = '0.7';
+
+  try {
+    const res = await fetch('/api/contact', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ firstName, lastName, email, organization, phone, inquiryType, message }),
+    });
+
+    if (!res.ok) throw new Error('Server error');
+
+    document.getElementById('mform').style.display = 'none';
+    document.getElementById('msucc').classList.add('show');
+  } catch (err) {
+    btn.textContent = 'Failed — try again';
+    btn.style.background = 'rgba(220,38,38,0.85)';
+    setTimeout(() => {
+      btn.textContent = 'Send Inquiry →';
+      btn.style.background = '';
+      btn.style.opacity = '';
+      btn.disabled = false;
+    }, 3000);
+  }
+}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target===document.getElementById('modal'))closeM();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+
+/* NAV SHADOW */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>20));
+
+/* INTERSECTION ENGINE */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target;
+    // clip reveal
+    if(el.classList.contains('rw')) el.classList.add('vis');
+    // simple
+    ['fu','sl','sr','su'].forEach(c=>{if(el.classList.contains(c))el.classList.add('vis');});
+    // stagger
+    if(el.classList.contains('sg')){
+      el.classList.add('vis');
+      [...el.children].forEach((c,i)=>c.style.setProperty('--d',(i*0.1)+'s'));
+    }
+    // bars
+    el.querySelectorAll('.sbar-fill').forEach(b=>{b.style.width=b.dataset.w||'0%';});
+    io.unobserve(el);
+  });
+},{threshold:0.1});
+
+document.querySelectorAll('.rw,.fu,.sl,.sr,.su,.sg').forEach(el=>io.observe(el));
+
+/* Bar fill on right column entering */
+const barIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.querySelectorAll('.sbar-fill').forEach(b=>{b.style.width=b.dataset.w||'0%';});
+    barIO.unobserve(e.target);
+  });
+},{threshold:0.2});
+document.querySelectorAll('.sr').forEach(el=>barIO.observe(el));
+
+/* LOCATION SWITCHER */
+document.querySelectorAll('.li').forEach(item=>{
+  item.addEventListener('click',()=>{
+    document.querySelectorAll('.li').forEach(i=>i.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
+
+/* COUNTER */
+function cnt(el,end){
+  const start=performance.now(),dur=1400;
+  (function tick(now){
+    const p=Math.min((now-start)/dur,1);
+    el.textContent=Math.round(p*end);
+    if(p<1)requestAnimationFrame(tick);
+    else el.textContent=end;
+  })(start);
+}
+const cio=new IntersectionObserver(e=>{
+  if(!e[0].isIntersecting)return;
+  cnt(document.getElementById("cloc"),18);
+  cnt(document.getElementById('citm'),15);
+  cio.disconnect();
+},{threshold:0.6});
+const strip=document.querySelector('.metrics-strip');
+if(strip)cio.observe(strip);
+</script>
+</body>
+</html>

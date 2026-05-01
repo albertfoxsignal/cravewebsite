@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CraveBot — Smart Food Kiosk by Crave Robotics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
+  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.15);
+  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12); --orangeG:rgba(234,109,16,0.22);
+  --lemon:#c79500; --lemonD:rgba(199,149,0,0.1);
+  --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
+  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+}
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); overflow-x:hidden; line-height:1.6; }
+
+/* ── NAV ── */
+nav {
+  position:sticky; top:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 3rem; height:68px;
+  background:rgba(245,244,240,0.92); backdrop-filter:blur(20px);
+  border-bottom:0.5px solid var(--border);
+}
+.nav-logo img { height:34px; width:auto; display:block; }
+.nav-back { font-size:0.73rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textS); text-decoration:none; display:flex; align-items:center; gap:6px; transition:color 0.2s; }
+.nav-back:hover { color:var(--orange); }
+.nav-cta { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.73rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; padding:0.55rem 1.3rem; border-radius:6px; cursor:pointer; transition:opacity 0.2s,transform 0.15s; text-decoration:none; display:inline-block; }
+.nav-cta:hover { opacity:0.88; transform:translateY(-1px); }
+
+/* ── BUTTONS ── */
+.btn { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.8rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; border:none; padding:0.85rem 2rem; border-radius:7px; cursor:pointer; text-decoration:none; display:inline-block; transition:opacity 0.2s,transform 0.18s; }
+.btn:hover { opacity:0.88; transform:translateY(-2px); }
+.btn-o { background:transparent; color:var(--textS); font-family:var(--font); font-size:0.8rem; font-weight:600; letter-spacing:0.04em; border:0.5px solid var(--borderB); padding:0.85rem 2rem; border-radius:7px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.2s; }
+.btn-o:hover { color:var(--text); border-color:rgba(0,0,0,0.28); background:rgba(255,255,255,0.6); }
+
+/* ── EYEBROW / LABELS ── */
+.eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:1rem; display:block; }
+
+/* ── HERO + IMAGE ── */
+.hero-wrap {
+  display:grid; grid-template-columns:1fr 1fr;
+  max-width:1280px; margin:0 auto;
+  padding:0 3rem;
+  align-items:end;
+  position:relative; overflow:hidden;
+}
+.hero-blob { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
+.blob1 { width:600px;height:600px;top:-20%;right:0;background:radial-gradient(circle,rgba(234,109,16,0.16) 0%,transparent 70%);animation:b1 14s ease-in-out infinite alternate; }
+.blob2 { width:380px;height:380px;bottom:0;left:-5%;background:radial-gradient(circle,rgba(199,149,0,0.1) 0%,transparent 70%);animation:b2 18s ease-in-out infinite alternate; }
+@keyframes b1 { to { transform:translate(-40px,30px) scale(1.06); } }
+@keyframes b2 { to { transform:translate(30px,-40px) scale(1.05); } }
+
+.hero-text { padding:6rem 0 4rem; position:relative; z-index:1; }
+.hero-h1 { font-family:var(--serif); font-size:clamp(3rem,5.5vw,5.2rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; margin-bottom:1.5rem; }
+.hero-h1 em { font-style:italic; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-sub { font-size:1rem; color:var(--textS); line-height:1.8; margin-bottom:2.5rem; max-width:480px; }
+
+.hero-image {
+  display:flex; align-items:flex-end; justify-content:center;
+  position:relative; z-index:1;
+  padding-top:3rem;
+}
+.machine-frame {
+  width:100%; max-width:380px;
+  background:linear-gradient(175deg,#eef2f7 0%,#dde4ed 100%);
+  border-radius:20px 20px 0 0;
+  border:0.5px solid var(--border);
+  border-bottom:none;
+  overflow:hidden;
+  display:flex; align-items:flex-end; justify-content:center;
+  min-height:520px;
+}
+.machine-frame img { width:100%; height:100%; object-fit:contain; object-position:bottom; display:block; padding:2rem 2rem 0; }
+
+/* ── SPEC TABLE SECTION ── */
+.specs-section { background:var(--white); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
+.specs-inner { max-width:1280px; margin:0 auto; padding:5rem 3rem; display:grid; grid-template-columns:1fr 1.4fr; gap:5rem; align-items:start; }
+
+.spec-note { display:flex; align-items:flex-start; gap:0.75rem; background:rgba(199,149,0,0.06); border:0.5px solid rgba(199,149,0,0.25); border-radius:8px; padding:0.9rem 1.1rem; margin-top:1.5rem; font-size:0.8rem; color:var(--textS); line-height:1.6; }
+.spec-note-icon { font-size:0.85rem; flex-shrink:0; margin-top:1px; }
+
+.spec-group { margin-bottom:2rem; }
+.spec-group-title { font-size:0.63rem; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:var(--orange); margin-bottom:0.5rem; padding-bottom:0.5rem; border-bottom:0.5px solid var(--border); }
+.spec-row { display:flex; justify-content:space-between; align-items:baseline; gap:1rem; padding:0.8rem 0; border-bottom:0.5px solid var(--border); }
+.spec-row:last-child { border-bottom:none; }
+.spec-key { font-size:0.72rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textM); flex-shrink:0; }
+.spec-val { font-size:0.9rem; font-weight:600; color:var(--text); text-align:right; }
+.spec-val.hl { color:var(--orange); font-weight:700; }
+.spec-val.ph { color:var(--textM); font-style:italic; font-weight:400; }
+
+.spec-actions { display:flex; gap:0.75rem; margin-top:2rem; }
+
+/* ── HOW IT WORKS ── */
+.hiw-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
+.hiw-inner { max-width:1280px; margin:0 auto; padding:5rem 3rem; }
+.hiw-header { margin-bottom:3rem; }
+.sec-title { font-family:var(--serif); font-size:clamp(2rem,4vw,3.2rem); font-weight:700; line-height:1.08; letter-spacing:-0.022em; margin-bottom:1rem; }
+.sec-sub { font-size:1rem; color:var(--textS); line-height:1.78; max-width:540px; }
+
+.steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; }
+.step-card {
+  background:var(--white); border:0.5px solid var(--border); border-radius:14px;
+  overflow:hidden; display:flex; flex-direction:column;
+  transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s;
+}
+.step-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(0,0,0,0.08); }
+.step-img {
+  width:100%; aspect-ratio:4/3; background:linear-gradient(145deg,#eef2f7,#e4e9f0);
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.72rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--textM); border-bottom:0.5px solid var(--border); overflow:hidden;
+  position:relative;
+}
+.step-img img { width:100%; height:100%; object-fit:cover; display:block; }
+.step-img-placeholder { display:flex; flex-direction:column; align-items:center; gap:0.5rem; }
+.step-img-placeholder span { font-size:2rem; }
+.step-img-placeholder p { font-size:0.65rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--textM); text-align:center; }
+.step-body { padding:1.4rem; flex:1; display:flex; flex-direction:column; }
+.step-num { font-family:var(--serif); font-size:1.1rem; font-weight:700; color:var(--orange); margin-bottom:0.5rem; }
+.step-title { font-size:0.95rem; font-weight:700; margin-bottom:0.5rem; letter-spacing:-0.01em; }
+.step-desc { font-size:0.82rem; color:var(--textS); line-height:1.7; }
+
+/* ── FOOD TRAY / CONTAINER ── */
+.tray-wrap { background:var(--bg); border-top:0.5px solid var(--border); }
+.tray-inner { max-width:1280px; margin:0 auto; padding:5rem 3rem; display:grid; grid-template-columns:1.1fr 1fr; gap:5rem; align-items:center; }
+.tray-img-frame {
+  background:linear-gradient(145deg,#eef2f7,#dde4ed);
+  border:0.5px solid var(--border); border-radius:16px;
+  overflow:hidden; display:flex; align-items:center; justify-content:center;
+  min-height:380px; position:relative;
+}
+.tray-img-frame img { width:100%; height:100%; object-fit:contain; padding:2rem; display:block; }
+.tray-dim-badge {
+  position:absolute; bottom:1rem; right:1rem;
+  background:rgba(245,244,240,0.95); border:0.5px solid var(--border);
+  border-radius:8px; padding:0.6rem 0.9rem;
+  font-size:0.68rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--textS);
+}
+.tray-specs { display:flex; flex-direction:column; gap:0; }
+.tray-stat { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 0; border-bottom:0.5px solid var(--border); gap:1rem; }
+.tray-stat:last-child { border-bottom:none; }
+.tray-stat-label { font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--textM); }
+.tray-stat-val { font-family:var(--serif); font-size:1.4rem; font-weight:700; color:var(--text); }
+.tray-stat-val.hl { color:var(--orange); }
+.tray-note { margin-top:1.5rem; font-size:0.82rem; color:var(--textS); line-height:1.7; padding:1rem 1.2rem; background:var(--bg2); border-radius:8px; border:0.5px solid var(--border); }
+
+/* ── SUKHI'S CASE STUDY ── */
+.sukhi-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
+.sukhi-inner { max-width:1280px; margin:0 auto; padding:5rem 3rem; }
+.sukhi-layout { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; margin-top:3rem; }
+
+.sukhi-machine-frame {
+  background:linear-gradient(145deg,#1a1a2e,#16213e);
+  border-radius:16px; overflow:hidden;
+  aspect-ratio:3/4; display:flex; align-items:center; justify-content:center;
+  position:relative; border:0.5px solid rgba(255,255,255,0.08);
+}
+.sukhi-machine-frame img { width:100%; height:100%; object-fit:contain; padding:1.5rem; display:block; }
+.sukhi-machine-placeholder {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:1rem; padding:3rem; text-align:center;
+}
+.sukhi-logo-placeholder {
+  width:120px; height:60px; background:rgba(255,255,255,0.06);
+  border:0.5px solid rgba(255,255,255,0.12); border-radius:8px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3);
+}
+.sukhi-tag {
+  position:absolute; top:1rem; left:1rem;
+  background:rgba(234,109,16,0.9); color:#fff;
+  font-size:0.6rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+  padding:4px 10px; border-radius:4px;
+}
+.sukhi-brand-badge {
+  width:100%; background:rgba(255,255,255,0.04); border:0.5px solid rgba(255,255,255,0.1);
+  border-radius:10px; padding:1.2rem 1.5rem;
+  display:flex; flex-direction:column; gap:0.3rem;
+}
+.sukhi-brand-name { font-family:var(--serif); font-size:1.6rem; font-weight:700; color:rgba(255,255,255,0.9); line-height:1.1; }
+.sukhi-brand-sub { font-size:0.72rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:rgba(255,255,255,0.35); }
+
+.sukhi-content { display:flex; flex-direction:column; gap:0; }
+.sukhi-kpi-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:0.5px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:2rem; }
+.sukhi-kpi { background:var(--white); padding:1.4rem; display:flex; flex-direction:column; gap:0.3rem; }
+.sukhi-kpi-val { font-family:var(--serif); font-size:1.8rem; font-weight:700; color:var(--text); line-height:1; }
+.sukhi-kpi-val.orange { color:var(--orange); }
+.sukhi-kpi-label { font-size:0.65rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--textM); }
+
+.sukhi-body { font-size:0.95rem; color:var(--textS); line-height:1.8; margin-bottom:1.5rem; }
+.sukhi-quote {
+  border-left:3px solid var(--orange); padding-left:1.2rem;
+  font-family:var(--serif); font-size:1.3rem; font-weight:400; font-style:italic;
+  color:var(--text); line-height:1.5; margin-bottom:1.5rem;
+}
+.sukhi-attr { font-size:0.72rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textM); margin-bottom:2rem; }
+
+.partner-highlight {
+  display:flex; align-items:flex-start; gap:1rem;
+  background:linear-gradient(135deg,rgba(234,109,16,0.07),rgba(199,149,0,0.05));
+  border:0.5px solid rgba(234,109,16,0.25); border-radius:10px;
+  padding:1.2rem 1.4rem; font-size:0.88rem; color:var(--textS); line-height:1.7;
+}
+.ph-icon { font-size:1rem; color:var(--orange); flex-shrink:0; margin-top:2px; }
+
+/* ── CTA BAND ── */
+.cta-band {
+  background:linear-gradient(135deg,rgba(234,109,16,0.06),rgba(199,149,0,0.04));
+  border-top:0.5px solid rgba(234,109,16,0.2);
+}
+.cta-inner { display:flex; align-items:center; justify-content:space-between; gap:2rem; padding:3.5rem 3rem; max-width:1280px; margin:0 auto; }
+.cta-text h2 { font-family:var(--serif); font-size:2.4rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:0.5rem; line-height:1.1; }
+.cta-text p { font-size:0.95rem; color:var(--textS); }
+.cta-actions { display:flex; gap:1rem; flex-wrap:wrap; flex-shrink:0; }
+
+/* ── FOOTER ── */
+footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.foot-links { display:flex; gap:2rem; list-style:none; }
+.foot-links a { font-size:0.75rem; color:var(--textM); text-decoration:none; transition:color 0.2s; }
+.foot-links a:hover { color:var(--text); }
+.foot-copy { font-size:0.72rem; color:var(--textM); }
+
+/* ── SCROLL ANIMS ── */
+.fu { opacity:0; transform:translateY(36px); transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1); }
+.sl { opacity:0; transform:translateX(-48px); transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.sr { opacity:0; transform:translateX(48px); transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+.vis { opacity:1 !important; transform:none !important; }
+.sg > * { opacity:0; transform:translateY(24px) scale(0.97); transition:opacity 0.6s cubic-bezier(0.22,1,0.36,1) var(--d,0s),transform 0.6s cubic-bezier(0.22,1,0.36,1) var(--d,0s); }
+.sg.vis > * { opacity:1; transform:none; }
+
+/* hero entrance */
+.hero-text > * { opacity:0; transform:translateY(20px); }
+.hero-text .eyebrow { animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s forwards; }
+.hero-text .hero-h1  { animation:hIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s forwards; }
+.hero-text .hero-sub { animation:hIn 0.75s cubic-bezier(0.22,1,0.36,1) 0.4s forwards; }
+.hero-text .hero-btns { animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.54s forwards; }
+.hero-image { opacity:0; transform:translateY(32px); animation:hIn 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s forwards; }
+@keyframes hIn { to { opacity:1; transform:translateY(0); } }
+
+/* MOBILE */
+@media(max-width:900px){
+  nav { padding:0 1.5rem; }
+  .hero-wrap { grid-template-columns:1fr; padding:0 1.5rem; }
+  .hero-text { padding:5rem 0 2rem; }
+  .machine-frame { max-width:260px; min-height:340px; margin:0 auto; }
+  .specs-inner,.tray-inner,.sukhi-layout { grid-template-columns:1fr; gap:2.5rem; }
+  .steps { grid-template-columns:repeat(2,1fr); }
+  .sukhi-kpi-row { grid-template-columns:repeat(3,1fr); }
+  .cta-inner { flex-direction:column; align-items:flex-start; padding:2.5rem 1.5rem; }
+  .hiw-inner,.tray-inner,.sukhi-inner { padding:4rem 1.5rem; }
+  .specs-inner { padding:4rem 1.5rem; }
+  footer { flex-direction:column; gap:1.5rem; text-align:center; padding:2rem 1.5rem; }
+  .foot-links { flex-wrap:wrap; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="https://static.wixstatic.com/media/6daf3f_98c7cc5df056433c85b5999b1b361767~mv2.png/v1/fill/w_160,h_86,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/Frame%2021174%20(1).png" alt="Crave Robotics" />
+  </a>
+  <a href="/" class="nav-back">← Back to Home</a>
+  <a href="https://drive.google.com/file/d/1Qp8f0PwtkQn5PSz-MngYJkHY-rVI34dT/view" target="_blank" class="nav-cta">↓ Spec Sheet PDF</a>
+</nav>
+
+<!-- HERO + MACHINE IMAGE -->
+<div style="background:var(--bg);position:relative;overflow:hidden;">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-wrap">
+    <div class="hero-text">
+      <span class="eyebrow">Machine Overview</span>
+      <h1 class="hero-h1">The<br><em>CraveBot</em><br>kiosk</h1>
+      <p class="hero-sub">An intelligent frozen-to-ready food kiosk built for high-traffic captive venues. No kitchen, no staff, no compromise on quality.</p>
+    </div>
+    <div class="hero-image">
+      <div class="machine-frame">
+        <img
+          src="https://static.wixstatic.com/media/6daf3f_55d7b8319a0a49dc800355c5d61863c6~mv2.png/v1/fill/w_700,h_940,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_55d7b8319a0a49dc800355c5d61863c6~mv2.png"
+          alt="CraveBot Machine"
+          onerror="this.style.opacity=0"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SPECIFICATIONS -->
+<div id="specs" class="specs-section">
+  <div class="specs-inner">
+    <div class="sl">
+      <span class="eyebrow">Technical Specifications</span>
+      <h2 class="sec-title">Built for the<br>modern venue</h2>
+      <p class="sec-sub">Engineered for reliability, designed for zero operational burden. CraveBot plugs into any high-traffic space and runs itself.</p>
+      <div class="spec-note">
+        <span class="spec-note-icon">📋</span>
+        <span>Full dimensional and electrical specifications are available in the downloadable spec sheet. Placeholder values below will be updated from the official document.</span>
+      </div>
+      <div class="spec-actions" style="margin-top:2rem;">
+        <a href="https://drive.google.com/file/d/1B-ciNkH2H_UiZJXYakQbjgBHAsWBGObc/view" target="_blank" style="font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--orange);text-decoration:none;">View NSF Certification →</a>
+      </div>
+    </div>
+
+    <div class="sr">
+      <div class="spec-group">
+        <div class="spec-group-title">Machine</div>
+        <div class="spec-row"><span class="spec-key">Models</span><span class="spec-val">CON-3000 · CR-108</span></div>
+        <div class="spec-row"><span class="spec-key">Dimensions</span><span class="spec-val ph">See spec sheet</span></div>
+        <div class="spec-row"><span class="spec-key">Weight</span><span class="spec-val ph">See spec sheet</span></div>
+        <div class="spec-row"><span class="spec-key">Power requirements</span><span class="spec-val ph">See spec sheet</span></div>
+        <div class="spec-row"><span class="spec-key">Fleet uptime</span><span class="spec-val hl">96% average</span></div>
+        <div class="spec-row"><span class="spec-key">Availability</span><span class="spec-val hl">24 / 7 / 365</span></div>
+      </div>
+
+      <div class="spec-group">
+        <div class="spec-group-title">Food System</div>
+        <div class="spec-row"><span class="spec-key">Storage method</span><span class="spec-val">Frozen — heated to order</span></div>
+        <div class="spec-row"><span class="spec-key">Serve time</span><span class="spec-val hl">Under 3 minutes</span></div>
+        <div class="spec-row"><span class="spec-key">Capacity</span><span class="spec-val ph">See spec sheet</span></div>
+        <div class="spec-row"><span class="spec-key">Temperature range</span><span class="spec-val ph">See spec sheet</span></div>
+        <div class="spec-row"><span class="spec-key">Menu items</span><span class="spec-val">15+ SKUs · private label available</span></div>
+      </div>
+
+      <div class="spec-group">
+        <div class="spec-group-title">Host Requirements</div>
+        <div class="spec-row"><span class="spec-key">Installation cost</span><span class="spec-val hl">$0 — fully turnkey</span></div>
+        <div class="spec-row"><span class="spec-key">Operational cost</span><span class="spec-val hl">$0</span></div>
+        <div class="spec-row"><span class="spec-key">Staff required</span><span class="spec-val hl">None</span></div>
+        <div class="spec-row"><span class="spec-key">Kitchen required</span><span class="spec-val hl">None</span></div>
+        <div class="spec-row"><span class="spec-key">Replenishment</span><span class="spec-val">Managed cold chain — vendor handled</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="hiw-wrap">
+  <div class="hiw-inner">
+    <div class="hiw-header">
+      <span class="eyebrow fu">How It Works</span>
+      <h2 class="sec-title fu" style="transition-delay:0.08s;">From frozen to ready<br>in three minutes flat</h2>
+      <p class="sec-sub fu" style="transition-delay:0.16s;">Four automated steps. Zero staff. Every time.</p>
+    </div>
+
+    <div class="steps sg">
+
+      <!-- Step 1 -->
+      <div class="step-card">
+        <div class="step-img">
+          <!-- Replace src with a real photo of the touchscreen/ordering UI -->
+          <div class="step-img-placeholder">
+            <span>📱</span>
+            <p>Add photo of<br>ordering screen</p>
+          </div>
+        </div>
+        <div class="step-body">
+          <div class="step-num">01</div>
+          <div class="step-title">Customer selects a meal</div>
+          <p class="step-desc">Touchscreen interface with full menu, photos, and pricing. Contactless payment — card, tap, or mobile.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-card">
+        <div class="step-img">
+          <!-- Replace src with a photo of the internal retrieval mechanism -->
+          <div class="step-img-placeholder">
+            <span>🤖</span>
+            <p>Add photo of<br>internal mechanism</p>
+          </div>
+        </div>
+        <div class="step-body">
+          <div class="step-num">02</div>
+          <div class="step-title">CraveBot retrieves the meal</div>
+          <p class="step-desc">The machine pulls the correct frozen item from its temperature-controlled storage carousel automatically.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-card">
+        <div class="step-img">
+          <!-- Replace src with a photo of the heating chamber or steam -->
+          <div class="step-img-placeholder">
+            <span>🔥</span>
+            <p>Add photo of<br>heating process</p>
+          </div>
+        </div>
+        <div class="step-body">
+          <div class="step-num">03</div>
+          <div class="step-title">Heated to perfection</div>
+          <p class="step-desc">The meal is heated precisely to serving temperature. No shortcuts — same quality every single time.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-card">
+        <div class="step-img">
+          <!-- Replace src with a photo of meal dispensing / pickup window -->
+          <div class="step-img-placeholder">
+            <span>✅</span>
+            <p>Add photo of<br>meal pickup window</p>
+          </div>
+        </div>
+        <div class="step-body">
+          <div class="step-num">04</div>
+          <div class="step-title">Hot meal dispensed</div>
+          <p class="step-desc">Ready at the pickup window in under 3 minutes. The customer grabs their meal and goes — no waiting, no counter.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- FOOD CONTAINER / TRAY -->
+<div class="tray-wrap">
+  <div class="tray-inner">
+
+    <div class="sl">
+      <div class="tray-img-frame">
+        <!-- Replace with actual food tray / container photo -->
+        <img
+          src="https://static.wixstatic.com/media/6daf3f_5b237e92d49b4e15b3608f37335fdc4b~mv2.png/v1/fill/w_600,h_480,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_5b237e92d49b4e15b3608f37335fdc4b~mv2.png"
+          alt="Meal Container"
+          onerror="this.style.opacity=0"
+        />
+        <div class="tray-dim-badge">Replace with container photo</div>
+      </div>
+    </div>
+
+    <div class="sr">
+      <span class="eyebrow">Meal Container</span>
+      <h2 class="sec-title">What partners<br>need to know</h2>
+      <p class="sec-sub" style="margin-bottom:2rem;">Every meal served through CraveBot uses a standardized container. Prospective food partners can use these specs to confirm packaging compatibility before onboarding.</p>
+
+      <div class="tray-specs">
+        <div class="tray-stat">
+          <span class="tray-stat-label">Container format</span>
+          <span class="tray-stat-val ph" style="font-family:var(--font);font-size:0.9rem;font-weight:600;color:var(--textM);font-style:italic;">See spec sheet</span>
+        </div>
+        <div class="tray-stat">
+          <span class="tray-stat-label">Dimensions (L × W × H)</span>
+          <span class="tray-stat-val ph" style="font-family:var(--font);font-size:0.9rem;font-weight:600;color:var(--textM);font-style:italic;">See spec sheet</span>
+        </div>
+        <div class="tray-stat">
+          <span class="tray-stat-label">Max fill volume</span>
+          <span class="tray-stat-val ph" style="font-family:var(--font);font-size:0.9rem;font-weight:600;color:var(--textM);font-style:italic;">See spec sheet</span>
+        </div>
+        <div class="tray-stat">
+          <span class="tray-stat-label">Material</span>
+          <span class="tray-stat-val ph" style="font-family:var(--font);font-size:0.9rem;font-weight:600;color:var(--textM);font-style:italic;">See spec sheet</span>
+        </div>
+        <div class="tray-stat">
+          <span class="tray-stat-label">Heat-safe</span>
+          <span class="tray-stat-val hl" style="font-family:var(--font);font-size:0.9rem;">Yes — microwave &amp; oven compatible</span>
+        </div>
+        <div class="tray-stat">
+          <span class="tray-stat-label">Storage temp</span>
+          <span class="tray-stat-val hl" style="font-family:var(--font);font-size:0.9rem;">Frozen</span>
+        </div>
+      </div>
+
+      <div class="tray-note">
+        <strong>For food brand partners:</strong> all meals must be packaged to these container specs before onboarding into the CraveBot network. Contact us to receive the full packaging guide.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SUKHI'S CASE STUDY -->
+<div class="sukhi-wrap">
+  <div class="sukhi-inner">
+    <span class="eyebrow fu">Brand Partner Case Study</span>
+    <h2 class="sec-title fu" style="transition-delay:0.08s;max-width:600px;">What a branded<br>CraveBot looks like</h2>
+
+    <div class="sukhi-layout">
+
+      <!-- Machine visual (dark themed for the wrap) -->
+      <div class="sl">
+        <div class="sukhi-machine-frame">
+          <!-- Replace with actual Sukhi's wrapped machine photo -->
+          <div class="sukhi-machine-placeholder">
+            <div class="sukhi-logo-placeholder">Sukhi's logo</div>
+            <div style="width:100%;height:2px;background:rgba(234,109,16,0.3);border-radius:1px;"></div>
+            <div style="text-align:center;">
+              <div style="font-family:var(--serif);font-size:1rem;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:0.4rem;">Branded wrap machine</div>
+              <div style="font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.3);">Replace with photo of<br>Sukhi's CraveBot</div>
+            </div>
+            <div class="sukhi-brand-badge">
+              <span class="sukhi-brand-name">Sukhi's</span>
+              <span class="sukhi-brand-sub">Indian Cuisine · USC Campus</span>
+            </div>
+          </div>
+          <div class="sukhi-tag">Live Deployment</div>
+        </div>
+      </div>
+
+      <!-- Case study content -->
+      <div class="sukhi-content sr">
+
+        <div class="sukhi-kpi-row">
+          <div class="sukhi-kpi">
+            <span class="sukhi-kpi-val orange">USC</span>
+            <span class="sukhi-kpi-label">Location</span>
+          </div>
+          <div class="sukhi-kpi">
+            <span class="sukhi-kpi-val">1</span>
+            <span class="sukhi-kpi-label">Machine deployed</span>
+          </div>
+          <div class="sukhi-kpi">
+            <span class="sukhi-kpi-val">24/7</span>
+            <span class="sukhi-kpi-label">Availability</span>
+          </div>
+        </div>
+
+        <p class="sukhi-body">Sukhi's — a Bay Area–based Indian food brand — partnered with Crave Robotics to expand distribution onto the USC campus through a fully branded CraveBot kiosk. The machine features a custom vinyl wrap in Sukhi's brand colors and serves their authentic frozen-to-ready Indian meals to students and staff around the clock.</p>
+
+        <p class="sukhi-body">With no kitchen requirements and zero operational burden on USC, the deployment gave Sukhi's immediate access to a high-density captive audience — a channel that would otherwise require a full food service buildout.</p>
+
+        <div class="sukhi-quote">"A turnkey way to reach campus consumers without the overhead of a brick-and-mortar location."</div>
+        <div class="sukhi-attr">— CraveFoods Partner Studio</div>
+
+        <div class="partner-highlight">
+          <span class="ph-icon">✦</span>
+          <div>Interested in a branded CraveBot for your food business? The CraveFoods Partner Studio handles machine wrapping, menu onboarding, packaging review, and launch support — end to end.</div>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+          <button class="btn" onclick="window.location.href='/#partners'">Become a Brand Partner →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="border-top:0.5px solid var(--border);">
+  <footer>
+    <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+      <img src="https://static.wixstatic.com/media/6daf3f_98c7cc5df056433c85b5999b1b361767~mv2.png/v1/fill/w_160,h_86,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/Frame%2021174%20(1).png" alt="Crave Robotics" style="height:26px;width:auto;" />
+    </a>
+    <ul class="foot-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="https://www.craverobotics.co/category/all-products" target="_blank">Menu</a></li>
+      <li><a href="https://www.craverobotics.co/privacy-policy" target="_blank">Privacy Policy</a></li>
+      <li><a href="https://www.craverobotics.co/delete-account" target="_blank">Data Deletion</a></li>
+      <li><a href="mailto:help@craverobotics.co">Contact</a></li>
+    </ul>
+    <div class="foot-copy">© 2025 Crave Robotics™</div>
+  </footer>
+</div>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    ['fu','sl','sr'].forEach(c => { if (e.target.classList.contains(c)) e.target.classList.add('vis'); });
+    if (e.target.classList.contains('sg')) {
+      e.target.classList.add('vis');
+      [...e.target.children].forEach((c,i) => c.style.setProperty('--d',(i*0.11)+'s'));
+    }
+    io.unobserve(e.target);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fu,.sl,.sr,.sg').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
