@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- ── PRIMARY SEO ─────────────────────────────────────────────────────── -->
+<title>News & Press — Crave Robotics | Automated Food Kiosk Updates</title>
+<meta name="description" content="The latest news, press coverage, and product updates from Crave Robotics — the company bringing automated gourmet food kiosks to university campuses, hotels, and corporate venues across Southern California." />
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+<meta name="author" content="Crave Robotics" />
+<link rel="canonical" href="https://www.craverobotics.co/news" />
+<link rel="icon" type="image/svg+xml" href="/icon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Crave Robotics" />
+<meta property="og:title" content="News & Press — Crave Robotics" />
+<meta property="og:description" content="Latest news, press coverage, and product updates from Crave Robotics." />
+<meta property="og:url" content="https://www.craverobotics.co/news" />
+<meta property="og:image" content="https://www.craverobotics.co/cravebot-machine.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&display=swap" rel="stylesheet" />
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
+  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.15);
+  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12);
+  --lemon:#c79500; --lemonD:rgba(199,149,0,0.1);
+  --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
+  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+}
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); overflow-x:hidden; }
+
+/* NAV */
+nav {
+  position:sticky; top:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 3rem; height:68px;
+  background:rgba(245,244,240,0.92); backdrop-filter:blur(20px);
+  border-bottom:0.5px solid var(--border);
+}
+.nav-logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:0.92rem; letter-spacing:0.04em; text-decoration:none; color:var(--text); }
+.nav-links { display:flex; gap:2rem; list-style:none; }
+.nav-links a { font-size:0.75rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--textS); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color:var(--orange); }
+.nav-cta { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.73rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; padding:0.55rem 1.3rem; border-radius:6px; cursor:pointer; transition:opacity 0.2s; text-decoration:none; display:inline-block; }
+.nav-cta:hover { opacity:0.88; }
+
+/* PAGE HEADER */
+.page-header { max-width:1280px; margin:0 auto; padding:4rem 3rem 3rem; border-bottom:0.5px solid var(--border); }
+.header-eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:0.75rem; display:block; opacity:0; transform:translateY(14px); animation:hIn 0.65s cubic-bezier(0.22,1,0.36,1) 0.05s forwards; }
+.header-h1 { font-family:var(--serif); font-size:clamp(2.8rem,5vw,4.5rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; opacity:0; transform:translateY(20px); animation:hIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.18s forwards; }
+.header-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.header-sub { font-size:0.9rem; color:var(--textS); margin-top:1rem; opacity:0; transform:translateY(12px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s forwards; }
+@keyframes hIn { to { opacity:1; transform:translateY(0); } }
+
+/* FILTER TABS */
+.filter-bar { max-width:1280px; margin:0 auto; padding:2rem 3rem 0; display:flex; gap:0.5rem; flex-wrap:wrap; }
+.filter-btn { font-family:var(--font); font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.45rem 1rem; border-radius:100px; border:0.5px solid var(--border); background:var(--white); color:var(--textS); cursor:pointer; transition:all 0.18s; }
+.filter-btn:hover { border-color:rgba(234,109,16,0.4); color:var(--orange); }
+.filter-btn.active { background:var(--orangeD); border-color:rgba(234,109,16,0.35); color:var(--orange); }
+
+/* GRID */
+.news-layout { max-width:1280px; margin:0 auto; padding:2.5rem 3rem 6rem; }
+.news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+
+/* FEATURED (first card spans 2 cols) */
+.nc.featured { grid-column:span 2; display:grid; grid-template-columns:1fr 1fr; }
+.nc.featured .nc-img { aspect-ratio:auto; height:100%; min-height:240px; }
+.nc.featured .nc-body { padding:2rem; }
+.nc.featured .nc-title { font-size:1.35rem; }
+
+/* CARD */
+.nc {
+  background:var(--white); border:0.5px solid var(--border); border-radius:14px;
+  overflow:hidden; text-decoration:none; color:inherit; display:flex; flex-direction:column;
+  transition:transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s, border-color 0.2s;
+  opacity:0; transform:translateY(24px);
+}
+.nc.shown { opacity:1; transform:none; }
+.nc:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(0,0,0,0.09); border-color:rgba(234,109,16,0.3); }
+.nc-img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:var(--bg2); transition:transform 0.45s cubic-bezier(0.22,1,0.36,1); }
+.nc:hover .nc-img { transform:scale(1.03); }
+.nc-img-wrap { overflow:hidden; flex-shrink:0; }
+.nc-img-placeholder { width:100%; aspect-ratio:16/9; background:linear-gradient(135deg,var(--bg2),var(--bg3)); display:flex; align-items:center; justify-content:center; font-size:2.5rem; }
+.nc.featured .nc-img-placeholder { aspect-ratio:auto; height:100%; min-height:240px; }
+.nc-body { padding:1.4rem; display:flex; flex-direction:column; flex:1; }
+.nc-meta { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem; flex-wrap:wrap; }
+.nc-tag { font-size:0.58rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; color:#fff; flex-shrink:0; }
+.tag-company  { background:rgba(234,109,16,0.85); }
+.tag-product  { background:rgba(59,130,246,0.85); }
+.tag-press    { background:rgba(168,85,247,0.85); }
+.tag-partner  { background:rgba(22,163,74,0.85); }
+.nc-date { font-size:0.67rem; font-weight:600; color:var(--textM); letter-spacing:0.04em; }
+.nc-title { font-family:var(--serif); font-size:1.05rem; font-weight:700; line-height:1.35; letter-spacing:-0.015em; margin-bottom:0.6rem; color:var(--text); }
+.nc-excerpt { font-size:0.82rem; color:var(--textS); line-height:1.7; flex:1; }
+.nc-footer { margin-top:1.2rem; display:flex; align-items:center; justify-content:space-between; }
+.nc-read { font-size:0.7rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--orange); display:flex; align-items:center; gap:4px; transition:gap 0.2s; }
+.nc:hover .nc-read { gap:8px; }
+.nc-source { font-size:0.65rem; font-weight:600; color:var(--textM); }
+
+/* DIVIDER */
+.section-divider { max-width:1280px; margin:0 auto; padding:0 3rem; border-top:0.5px solid var(--border); margin-bottom:2rem; }
+.section-label { font-size:0.65rem; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:var(--textM); margin-top:2.5rem; margin-bottom:1.5rem; }
+
+/* EMPTY STATE */
+.empty { text-align:center; padding:4rem 2rem; grid-column:1/-1; }
+.empty-icon { font-size:2.5rem; margin-bottom:1rem; }
+.empty-title { font-family:var(--serif); font-size:1.6rem; color:var(--textM); }
+
+/* FOOTER */
+footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.foot-links { display:flex; gap:2rem; list-style:none; }
+.foot-links a { font-size:0.75rem; color:var(--textM); text-decoration:none; transition:color 0.2s; }
+.foot-links a:hover { color:var(--text); }
+.foot-copy { font-size:0.72rem; color:var(--textM); }
+
+/* MOBILE */
+@media(max-width:960px){
+  nav { padding:0 1.5rem; } .nav-links { display:none; }
+  .page-header, .filter-bar, .news-layout { padding-left:1.5rem; padding-right:1.5rem; }
+  .news-grid { grid-template-columns:1fr; }
+  .nc.featured { grid-column:span 1; grid-template-columns:1fr; }
+  .nc.featured .nc-img, .nc.featured .nc-img-placeholder { height:220px; aspect-ratio:auto; }
+  footer { flex-direction:column; gap:1.5rem; text-align:center; }
+  .foot-links { flex-wrap:wrap; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="/icon.svg" alt="Crave Robotics" style="height:32px;width:auto;" />
+    <span>CRAVE ROBOTICS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/menu">Menu</a></li>
+    <li><a href="/#locations">Locations</a></li>
+    <li><a href="/#partners">Partners</a></li>
+    <li><a href="/cravebot">CraveBot</a></li>
+    <li><a href="/news" class="active">News</a></li>
+  </ul>
+  <a href="/" class="nav-cta">← Back to Home</a>
+</nav>
+
+<!-- HEADER -->
+<div class="page-header">
+  <span class="header-eyebrow">Newsroom</span>
+  <h1 class="header-h1">News & <em>Press</em></h1>
+  <p class="header-sub">Company updates, press coverage, and product announcements from Crave Robotics.</p>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All</button>
+  <button class="filter-btn" data-filter="company">Company News</button>
+  <button class="filter-btn" data-filter="product">Product Updates</button>
+  <button class="filter-btn" data-filter="press">Press Coverage</button>
+  <button class="filter-btn" data-filter="partner">Partner News</button>
+</div>
+
+<!-- NEWS GRID -->
+<div class="news-layout">
+  <div class="news-grid" id="newsGrid"></div>
+</div>
+
+<!-- FOOTER -->
+<div style="border-top:0.5px solid var(--border);">
+  <footer>
+    <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--textS);font-weight:800;font-size:0.9rem;letter-spacing:0.04em;">
+      <img src="/icon.svg" alt="Crave Robotics" style="height:26px;width:auto;" /> CRAVE ROBOTICS
+    </a>
+    <ul class="foot-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/cravebot">CraveBot</a></li>
+      <li><a href="/menu">Menu</a></li>
+      <li><a href="https://www.craverobotics.co/privacy-policy" target="_blank">Privacy Policy</a></li>
+    </ul>
+    <div class="foot-copy">© 2025 Crave Robotics™</div>
+  </footer>
+</div>
+
+<script>
+/* ─────────────────────────────────────────────────────────────────────────
+   NEWS ARTICLES
+   ─────────────────────────────────────────────────────────────────────────
+   To add an article:
+   {
+     tag:      "company" | "product" | "press" | "partner"
+     date:     "Month DD, YYYY"
+     title:    "Article title"
+     excerpt:  "Short description (1–2 sentences)"
+     url:      "/news/slug" for internal posts, or full URL for external links
+     source:   "Source name" (optional — shows for press/external links)
+     emoji:    Emoji for placeholder image (used until you add a real image)
+     featured: true  (optional — makes this card span 2 columns at top)
+   }
+   ───────────────────────────────────────────────────────────────────────── */
+const ARTICLES = [
+  {
+    tag:      "company",
+    date:     "April 30, 2026",
+    title:    "Crave Robotics Reaches 18 Active Machines Across Southern California",
+    excerpt:  "Crave Robotics has now deployed 18 CraveBot kiosks across 14 venues in Southern California — including universities, tech companies, and hotels — marking a major milestone in the company's growth.",
+    url:      "#",
+    emoji:    "🤖",
+    featured: true,
+  },
+  {
+    tag:      "product",
+    date:     "April 15, 2026",
+    title:    "CraveBot Gen 2 (Zeus) Spec Sheet Now Available",
+    excerpt:  "The full technical specification sheet for the CraveBot Gen 2 machine — including dimensions, electrical requirements, and installation specs — is now available for download.",
+    url:      "/cravebot",
+    emoji:    "📋",
+  },
+  {
+    tag:      "partner",
+    date:     "March 10, 2026",
+    title:    "Sukhi's Indian Cuisine Joins the CraveFoods Partner Studio",
+    excerpt:  "Crave Robotics welcomes Sukhi's Irresistible Indian Cuisine as the latest brand partner, bringing authentic Indian flavors to CraveBot kiosks across the fleet.",
+    url:      "#",
+    emoji:    "🍛",
+  },
+  {
+    tag:      "partner",
+    date:     "February 28, 2026",
+    title:    "Tucson Foods & Chubby Foods Join CraveFoods Partner Network",
+    excerpt:  "Two exciting new brand partners — Tucson Foods and Chubby Foods — are now part of the CraveFoods Partner Studio, expanding the variety of flavors available through CraveBot kiosks.",
+    url:      "#",
+    emoji:    "🌮",
+  },
+  {
+    tag:      "company",
+    date:     "January 20, 2026",
+    title:    "CraveBot Now Live at Golden West College and Embassy Suites",
+    excerpt:  "Two new deployments bring CraveBot to Huntington Beach and Santa Ana, expanding access to hot gourmet meals for students and hotel guests across Orange County.",
+    url:      "#",
+    emoji:    "📍",
+  },
+  {
+    tag:      "product",
+    date:     "December 5, 2025",
+    title:    "New Menu Items: Wagyu Beef Bowl, Kimchi Fried Rice & More",
+    excerpt:  "Crave Robotics launches eight new menu items across its CraveBot fleet, including the premium Wagyu Beef Bowl, Kimchi Fried Rice, and Shrimp Alfredo — all available 24/7.",
+    url:      "/menu",
+    emoji:    "🍜",
+  },
+  {
+    tag:      "press",
+    date:     "October 14, 2025",
+    title:    "Crave Robotics Featured in Food Automation Weekly",
+    excerpt:  "A deep dive into how Crave Robotics is redefining campus food service with its fully managed, zero-cost-to-host automated kiosk model.",
+    url:      "#",
+    source:   "Food Automation Weekly",
+    emoji:    "📰",
+  },
+  {
+    tag:      "company",
+    date:     "August 1, 2025",
+    title:    "Crave Robotics Expands to Cal State University System",
+    excerpt:  "Following successful deployments at CSULB and CSUDH, Crave Robotics announces expanded partnerships across the Cal State University system, bringing CraveBot to more campuses.",
+    url:      "#",
+    emoji:    "🎓",
+  },
+  {
+    tag:      "press",
+    date:     "May 22, 2025",
+    title:    "Relativity Space Selects CraveBot for Employee Food Service",
+    excerpt:  "Long Beach-based aerospace company Relativity Space has deployed two CraveBot units to serve its engineering teams around the clock.",
+    url:      "#",
+    source:   "Tech & Workplace News",
+    emoji:    "🚀",
+  },
+];
+
+const TAG_LABELS = { company:"Company", product:"Product", press:"Press", partner:"Partner" };
+const TAG_CLASS  = { company:"tag-company", product:"tag-product", press:"tag-press", partner:"tag-partner" };
+
+let activeFilter = "all";
+
+function buildCard(article, index) {
+  const a = document.createElement("a");
+  a.className = "nc" + (article.featured && index === 0 ? " featured" : "");
+  a.href = article.url;
+  if (article.url.startsWith("http")) a.target = "_blank";
+  a.dataset.tag = article.tag;
+
+  const imgWrap = document.createElement("div");
+  imgWrap.className = "nc-img-wrap";
+  const placeholder = document.createElement("div");
+  placeholder.className = "nc-img-placeholder";
+  placeholder.textContent = article.emoji;
+  imgWrap.appendChild(placeholder);
+
+  const body = document.createElement("div");
+  body.className = "nc-body";
+  body.innerHTML = `
+    <div class="nc-meta">
+      <span class="nc-tag ${TAG_CLASS[article.tag]}">${TAG_LABELS[article.tag]}</span>
+      <span class="nc-date">${article.date}</span>
+    </div>
+    <div class="nc-title"></div>
+    <div class="nc-excerpt"></div>
+    <div class="nc-footer">
+      <span class="nc-read">Read more →</span>
+      ${article.source ? `<span class="nc-source">${article.source}</span>` : ""}
+    </div>
+  `;
+  body.querySelector(".nc-title").textContent = article.title;
+  body.querySelector(".nc-excerpt").textContent = article.excerpt;
+
+  a.appendChild(imgWrap);
+  a.appendChild(body);
+  return a;
+}
+
+function render() {
+  const grid = document.getElementById("newsGrid");
+  grid.innerHTML = "";
+
+  const filtered = activeFilter === "all"
+    ? ARTICLES
+    : ARTICLES.filter(a => a.tag === activeFilter);
+
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><div class="empty-title">No articles in this category yet</div></div>`;
+    return;
+  }
+
+  const cards = filtered.map((article, i) => buildCard(article, i));
+  cards.forEach(c => grid.appendChild(c));
+
+  requestAnimationFrame(() => {
+    cards.forEach((el, i) => {
+      setTimeout(() => el.classList.add("shown"), i * 60);
+    });
+  });
+}
+
+/* filter buttons */
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilter = btn.dataset.filter;
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>
