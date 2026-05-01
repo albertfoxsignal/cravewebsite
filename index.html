@@ -50,7 +50,7 @@ nav.scrolled { box-shadow:0 4px 32px rgba(0,0,0,0.06); }
 
 /* HERO ENTRANCE SEQUENCE */
 .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:9rem 3rem 5rem; max-width:1280px; margin:0 auto; position:relative; }
-.hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:0.5px solid var(--borderB); border-radius:100px; padding:0.35rem 1rem; font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin-bottom:2rem; width:fit-content; opacity:0; transform:translateY(16px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s forwards; }
+.hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:0.5px solid var(--borderB); border-radius:100px; padding:0.35rem 1rem; font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); width:fit-content; }
 .hdot { width:6px; height:6px; background:var(--orange); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.65);} }
 .hero-h1 { font-family:var(--serif); font-size:clamp(3rem,6.5vw,6.2rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; max-width:900px; margin-bottom:1.8rem; opacity:0; transform:translateY(28px); animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.28s forwards; }
@@ -336,7 +336,12 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
 <!-- HERO -->
 <div style="position:relative;overflow:hidden;">
   <div class="hero">
-    <div class="hero-eyebrow"><span class="hdot"></span>18 machines deployed across Southern California</div>
+    <div style="display:flex;align-items:center;gap:1.5rem;margin-bottom:2rem;opacity:0;transform:translateY(16px);animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;">
+      <div class="hero-eyebrow" style="margin-bottom:0;"><span class="hdot"></span>18 machines deployed across Southern California</div>
+      <img src="/NAMA_Member_Mark_transparent.png" alt="Proud Member of NAMA"
+        style="height:58px;width:auto;flex-shrink:0;mix-blend-mode:multiply;opacity:0.82;"
+      />
+    </div>
     <h1 class="hero-h1">Making automated meals<br><em>delicious</em> and accessible</h1>
     <p class="hero-sub">Experience the perfect fusion of automation and culinary excellence. Hot, fresh food — delivered by 18 CraveBot kiosks across Southern California university campuses, tech companies, and hotels.</p>
     <div class="hero-btns">
@@ -643,7 +648,6 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
     </div>
     <div class="fb2">
       <div class="fcopy">© 2025 Crave Robotics™. All rights reserved.</div>
-      <img src="/NAMA_Member_Mark_transparent.png" alt="Proud Member of NAMA" style="height:48px;width:auto;mix-blend-mode:multiply;opacity:0.9;" />
       <div class="fcontact">635 W. Allen Ave., San Dimas, CA 91773<br>help@craverobotics.co · +1-840-233-7986</div>
     </div>
   </footer>
