@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/cravebot", "destination": "/cravebot.html" },
-    { "source": "/menu",     "destination": "/menu.html" }
+    { "source": "/menu",     "destination": "/menu.html" },
+    { "source": "/craveos",  "destination": "/craveos.html" }
   ]
 }
