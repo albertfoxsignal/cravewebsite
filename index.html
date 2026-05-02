@@ -959,14 +959,15 @@ async function submitEmail() {
   btn.style.opacity = '0.7';
 
   try {
-    const scriptUrl = 'https://script.google.com/a/macros/craverobotics.co/s/AKfycbxjaXts5w6-W87KTvSjyGqWopgAMGqS7zZe46XPtOel8lkQnTANNF7Qrh7AygCW12b02A/exec';
-    const params    = new URLSearchParams({
-      email,
-      timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }),
-    });
-    await fetch(`${scriptUrl}?${params.toString()}`, {
-      method: 'GET',
-      mode:   'no-cors',
+    await fetch('https://api.web3forms.com/submit', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({
+        access_key: '7b21dd42-bc8a-43b2-a645-8733ba987743',
+        subject:    'New email signup — CraveBot Website',
+        from_name:  'CraveBot Website',
+        email,
+      }),
     });
 
     // no-cors means we can't read the response, so assume success
