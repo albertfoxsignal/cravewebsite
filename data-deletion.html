@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Data Deletion Request — Crave Robotics</title>
+<meta name="description" content="Submit a data deletion request to Crave Robotics. We will process your request and remove your personal data from our systems within 30 days." />
+<meta name="robots" content="noindex, follow" />
+<link rel="canonical" href="https://www.craverobotics.co/data-deletion" />
+<link rel="icon" type="image/svg+xml" href="/icon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
+  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.15);
+  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12);
+  --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
+  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+  --red:rgba(220,38,38,0.85);
+}
+html { scroll-behavior:smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
+
+/* NAV */
+nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 3rem; height:68px;
+  background:rgba(245,244,240,0.95); backdrop-filter:blur(20px);
+  border-bottom:0.5px solid var(--border);
+}
+.nav-logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:0.92rem; letter-spacing:0.04em; text-decoration:none; color:var(--text); }
+
+/* MAIN */
+main { flex:1; display:flex; align-items:center; justify-content:center; padding:4rem 1.5rem; }
+.card {
+  background:var(--white); border:0.5px solid var(--border); border-radius:20px;
+  padding:3rem; width:100%; max-width:540px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.06);
+}
+
+/* HEADER */
+.card-eyebrow { font-size:0.65rem; font-weight:800; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:0.6rem; display:block; }
+.card-title { font-family:var(--serif); font-size:2rem; font-weight:700; letter-spacing:-0.02em; line-height:1.1; margin-bottom:0.75rem; }
+.card-sub { font-size:0.84rem; color:var(--textS); line-height:1.7; margin-bottom:2rem; padding-bottom:2rem; border-bottom:0.5px solid var(--border); }
+
+/* FORM */
+.fg { display:flex; flex-direction:column; gap:0.38rem; margin-bottom:0.9rem; }
+.flabel { font-size:0.67rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--textS); }
+.flabel span { color:var(--red); margin-left:2px; }
+.finput {
+  background:var(--bg); border:0.5px solid var(--borderB); border-radius:8px;
+  padding:0.7rem 1rem; font-family:var(--font); font-size:0.85rem; color:var(--text);
+  outline:none; transition:border-color 0.2s, box-shadow 0.2s, background 0.2s; width:100%;
+}
+.finput::placeholder { color:var(--textM); }
+.finput:focus { border-color:rgba(234,109,16,0.5); box-shadow:0 0 0 3px rgba(234,109,16,0.1); background:var(--white); }
+.finput.error { border-color:rgba(220,38,38,0.5); box-shadow:0 0 0 3px rgba(220,38,38,0.08); }
+textarea.finput { resize:vertical; min-height:100px; }
+select.finput { appearance:none; cursor:pointer; }
+
+/* NOTICE BOX */
+.notice {
+  background:rgba(234,109,16,0.06); border:0.5px solid rgba(234,109,16,0.2);
+  border-radius:8px; padding:1rem 1.1rem; margin-bottom:1.5rem;
+  font-size:0.8rem; color:var(--textS); line-height:1.65;
+}
+.notice strong { color:var(--text); }
+
+/* SUBMIT */
+.submit-btn {
+  width:100%; margin-top:0.5rem;
+  background:var(--orange); color:#fff;
+  font-family:var(--font); font-size:0.82rem; font-weight:700;
+  letter-spacing:0.07em; text-transform:uppercase;
+  border:none; border-radius:8px; padding:0.95rem;
+  cursor:pointer; transition:opacity 0.2s, transform 0.15s;
+}
+.submit-btn:hover { opacity:0.88; transform:translateY(-1px); }
+.submit-btn:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+
+/* SUCCESS */
+.success-state { display:none; text-align:center; padding:1.5rem 0; }
+.success-state.show { display:block; }
+.success-icon {
+  width:64px; height:64px; border-radius:50%;
+  background:rgba(22,163,74,0.1); border:0.5px solid rgba(22,163,74,0.3);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.8rem; margin:0 auto 1.25rem;
+}
+.success-title { font-family:var(--serif); font-size:1.6rem; font-weight:700; margin-bottom:0.5rem; }
+.success-sub { font-size:0.85rem; color:var(--textS); line-height:1.7; }
+.success-ref { font-size:0.72rem; color:var(--textM); margin-top:1rem; }
+
+/* FOOTER */
+footer { border-top:0.5px solid var(--border); padding:1.5rem 3rem; display:flex; justify-content:space-between; align-items:center; }
+.foot-links { display:flex; gap:1.5rem; list-style:none; }
+.foot-links a { font-size:0.72rem; color:var(--textM); text-decoration:none; }
+.foot-links a:hover { color:var(--text); }
+.foot-copy { font-size:0.72rem; color:var(--textM); }
+
+@media(max-width:640px){
+  nav, footer { padding:0 1.25rem; }
+  footer { flex-direction:column; gap:1rem; text-align:center; }
+  .card { padding:2rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="/icon.svg" alt="Crave Robotics" style="height:30px;width:auto;" />
+    <span>CRAVE ROBOTICS</span>
+  </a>
+  <a href="/" style="font-size:0.73rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--textS);text-decoration:none;">← Back to Home</a>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="card">
+
+    <!-- FORM STATE -->
+    <div id="formState">
+      <span class="card-eyebrow">Privacy</span>
+      <h1 class="card-title">Data Deletion Request</h1>
+      <p class="card-sub">
+        Submit this form to request deletion of your personal data from Crave Robotics systems.
+        This includes any account information, order history, and contact details associated with your email address.
+        We will process your request within <strong>30 days</strong> and send a confirmation to your email.
+      </p>
+
+      <div class="notice">
+        <strong>What gets deleted:</strong> your email address, order history, app account (if applicable), and any personal data stored in connection with your use of CraveBot kiosks or the Crave Robotics mobile app.<br><br>
+        <strong>Note:</strong> Deletion is irreversible. If you have an active account, it will be permanently closed.
+      </div>
+
+      <div class="fg">
+        <label class="flabel">Full name <span>*</span></label>
+        <input class="finput" id="f-name" type="text" placeholder="Jane Smith" autocomplete="name" />
+      </div>
+      <div class="fg">
+        <label class="flabel">Email address <span>*</span></label>
+        <input class="finput" id="f-email" type="email" placeholder="jane@email.com" autocomplete="email" />
+      </div>
+      <div class="fg">
+        <label class="flabel">What data to delete <span>*</span></label>
+        <select class="finput" id="f-type">
+          <option value="">Select one...</option>
+          <option value="All personal data">All personal data (full deletion)</option>
+          <option value="Account only">Account & login data only</option>
+          <option value="Order history">Order history only</option>
+          <option value="Marketing emails">Marketing emails / unsubscribe</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="flabel">Additional details <span style="color:var(--textM);font-weight:400;">(optional)</span></label>
+        <textarea class="finput" id="f-notes" placeholder="Any additional context — e.g. phone number associated with account, campus location, etc."></textarea>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="submitForm()">Submit Deletion Request →</button>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Request received</div>
+      <p class="success-sub">
+        Your data deletion request has been submitted. We'll process it within <strong>30 days</strong>
+        and send a confirmation to the email address you provided.
+      </p>
+      <p class="success-ref">If you have questions, contact us at <a href="mailto:help@craverobotics.co" style="color:var(--orange);">help@craverobotics.co</a></p>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--textM);font-weight:700;font-size:0.8rem;letter-spacing:0.04em;">
+    <img src="/icon.svg" alt="Crave Robotics" style="height:22px;width:auto;" /> CRAVE ROBOTICS
+  </a>
+  <ul class="foot-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="mailto:help@craverobotics.co">help@craverobotics.co</a></li>
+  </ul>
+  <div class="foot-copy">© 2025 Crave Robotics™</div>
+</footer>
+
+<script>
+async function submitForm() {
+  const name  = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const type  = document.getElementById('f-type').value;
+  const notes = document.getElementById('f-notes').value.trim();
+  const btn   = document.getElementById('submitBtn');
+
+  // validate
+  let valid = true;
+  [
+    { id:'f-name',  val:name },
+    { id:'f-email', val:email },
+    { id:'f-type',  val:type },
+  ].forEach(({ id, val }) => {
+    const el = document.getElementById(id);
+    if (!val) {
+      el.classList.add('error');
+      setTimeout(() => el.classList.remove('error'), 3000);
+      valid = false;
+    }
+  });
+  if (!valid) return;
+
+  btn.textContent = 'Submitting…';
+  btn.disabled    = true;
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: '7b21dd42-bc8a-43b2-a645-8733ba987743',
+        subject:    `Data Deletion Request — ${name}`,
+        from_name:  name,
+        replyto:    email,
+        name,
+        email,
+        deletion_type:       type,
+        additional_details:  notes || '—',
+      }),
+    });
+
+    if (!res.ok) throw new Error('Server error');
+
+    document.getElementById('formState').style.display   = 'none';
+    document.getElementById('successState').classList.add('show');
+  } catch (err) {
+    btn.textContent = 'Failed — please try again';
+    btn.style.background = 'rgba(220,38,38,0.85)';
+    setTimeout(() => {
+      btn.textContent      = 'Submit Deletion Request →';
+      btn.style.background = '';
+      btn.disabled         = false;
+    }, 3000);
+  }
+}
+
+// allow Enter key to submit
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.activeElement.tagName !== 'TEXTAREA') submitForm();
+});
+</script>
+</body>
+</html>

@@ -1,8 +1,9 @@
 {
   "rewrites": [
-    { "source": "/cravebot", "destination": "/cravebot.html" },
-    { "source": "/menu",     "destination": "/menu.html" },
-    { "source": "/craveos",  "destination": "/craveos.html" },
-    { "source": "/news",     "destination": "/news.html" }
+    { "source": "/cravebot",       "destination": "/cravebot.html" },
+    { "source": "/menu",           "destination": "/menu.html" },
+    { "source": "/craveos",        "destination": "/craveos.html" },
+    { "source": "/news",           "destination": "/news.html" },
+    { "source": "/data-deletion",  "destination": "/data-deletion.html" }
   ]
 }
