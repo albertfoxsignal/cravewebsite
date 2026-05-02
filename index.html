@@ -1010,10 +1010,22 @@ async function submitM(){
   btn.style.opacity = '0.7';
 
   try {
-    const res = await fetch('/api/contact', {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstName, lastName, email, organization, phone, inquiryType, message }),
+      body: JSON.stringify({
+        access_key:   '7b21dd42-bc8a-43b2-a645-8733ba987743',
+        subject:      `New inquiry: ${inquiryType || 'General'} — ${firstName} ${lastName}`,
+        from_name:    `${firstName} ${lastName}`,
+        replyto:      email,
+        firstName,
+        lastName,
+        email,
+        organization,
+        phone,
+        inquiryType,
+        message,
+      }),
     });
 
     if (!res.ok) throw new Error('Server error');
