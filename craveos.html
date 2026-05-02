@@ -284,6 +284,27 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
   footer { flex-direction:column; gap:1.5rem; text-align:center; padding:2rem 1.5rem; }
   .foot-links { flex-wrap:wrap; justify-content:center; }
 }
+/* ── MODAL ── */
+.mo { position:fixed; inset:0; z-index:300; background:rgba(0,0,0,0.3); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:1.5rem; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+.mo.open { opacity:1; pointer-events:all; }
+.md { background:#faf9f6; border:0.5px solid rgba(0,0,0,0.15); border-radius:16px; width:100%; max-width:530px; padding:2.5rem; position:relative; transform:translateY(24px) scale(0.96); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); max-height:90vh; overflow-y:auto; }
+.mo.open .md { transform:none; }
+.mc-close { position:absolute; top:1.25rem; right:1.25rem; background:var(--bg2); border:0.5px solid var(--border); border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.85rem; color:var(--textM); transition:background 0.2s; }
+.mc-close:hover { background:var(--bg3); color:var(--text); }
+.mtitle { font-family:var(--serif); font-size:1.85rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:0.35rem; color:var(--text); }
+.msub { font-size:0.83rem; color:var(--textS); margin-bottom:1.8rem; line-height:1.65; }
+.mfr { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+.fg { display:flex; flex-direction:column; gap:0.38rem; margin-bottom:0.75rem; }
+.flabel { font-size:0.67rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--textS); }
+.finput { background:var(--white); border:0.5px solid rgba(0,0,0,0.15); border-radius:7px; padding:0.65rem 0.9rem; font-family:var(--font); font-size:0.85rem; color:var(--text); outline:none; transition:border-color 0.2s,box-shadow 0.2s; width:100%; }
+.finput::placeholder { color:var(--textM); }
+.finput:focus { border-color:rgba(234,109,16,0.5); box-shadow:0 0 0 3px rgba(234,109,16,0.1); }
+.fsel { appearance:none; cursor:pointer; }
+.mbtn { width:100%; margin-top:1rem; background:var(--orange); color:#fff; font-family:var(--font); font-size:0.82rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; border-radius:7px; padding:0.9rem; cursor:pointer; transition:opacity 0.2s; }
+.mbtn:hover { opacity:0.88; }
+.msucc { text-align:center; padding:2.5rem 0; display:none; flex-direction:column; align-items:center; gap:1rem; }
+.msucc.show { display:flex; }
+.sico { width:56px; height:56px; border-radius:50%; background:rgba(22,163,74,0.1); border:0.5px solid rgba(22,163,74,0.3); display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin:0 auto; }
 </style>
 
 <!-- ── STRUCTURED DATA (SEO + AEO) ───────────────────────────────────── -->
@@ -374,6 +395,45 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 </script>
 </head>
 <body>
+
+<!-- MODAL -->
+<div class="mo" id="modal">
+  <div class="md">
+    <button class="mc-close" onclick="closeM()">✕</button>
+    <div id="mform">
+      <div class="mtitle">Get in touch</div>
+      <p class="msub">Interested in CraveOS or a CraveBot deployment? We'll respond within one business day.</p>
+      <div class="mfr">
+        <div class="fg"><label class="flabel">First name</label><input class="finput" type="text" placeholder="Jane" /></div>
+        <div class="fg"><label class="flabel">Last name</label><input class="finput" type="text" placeholder="Smith" /></div>
+      </div>
+      <div class="fg"><label class="flabel">Work email</label><input class="finput" type="email" placeholder="jane@company.com" /></div>
+      <div class="mfr">
+        <div class="fg"><label class="flabel">Organization</label><input class="finput" type="text" placeholder="Company / University..." /></div>
+        <div class="fg"><label class="flabel">Phone (optional)</label><input class="finput" type="tel" placeholder="+1 (555) 000-0000" /></div>
+      </div>
+      <div class="fg">
+        <label class="flabel">Inquiry type</label>
+        <select class="finput fsel">
+          <option value="">Select one...</option>
+          <option value="CraveOS inquiry" selected>CraveOS inquiry</option>
+          <option value="Deploy a CraveBot at my venue">Deploy a CraveBot at my venue</option>
+          <option value="Food brand / partner studio">Food brand / partner studio</option>
+          <option value="Press or media inquiry">Press or media inquiry</option>
+          <option value="General question">General question</option>
+        </select>
+      </div>
+      <div class="fg"><label class="flabel">Message</label><textarea class="finput" rows="4" placeholder="Tell us about your interest in CraveOS, your venue, or any questions..."></textarea></div>
+      <button class="mbtn" onclick="submitM()">Send Inquiry →</button>
+    </div>
+    <div class="msucc" id="msucc">
+      <div class="sico">✓</div>
+      <h3 style="font-family:var(--serif);font-size:1.4rem;font-weight:700;margin-top:0.5rem;">Message sent!</h3>
+      <p style="font-size:0.85rem;color:var(--textS);">Thanks for reaching out. Someone from the team will be in touch at your email shortly.</p>
+      <button onclick="closeM()" style="margin-top:0.5rem;background:transparent;border:0.5px solid rgba(0,0,0,0.15);border-radius:7px;padding:0.6rem 1.5rem;font-family:var(--font);font-size:0.8rem;font-weight:600;cursor:pointer;">Close</button>
+    </div>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -744,24 +804,11 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 
 <!-- CTA BAND -->
 <div class="cta-band">
-  <div class="cta-inner">
-    <div>
-      <span class="eyebrow" style="color:rgba(234,109,16,0.8);">Proprietary Technology</span>
-      <h2 class="cta-title">Operate smarter with <em>CraveOS</em></h2>
-      <p class="cta-sub">CraveOS is built exclusively for Crave Robotics operations and is not available as a standalone product. Contact us to learn how it powers your deployment.</p>
-    </div>
-    <div class="cta-right">
-      <div class="cta-card">
-        <div class="cta-card-title">Deploy a CraveBot</div>
-        <div class="cta-card-sub">Get a machine at your venue with full CraveOS monitoring and analytics included at no additional cost.</div>
-        <a href="mailto:help@craverobotics.co" class="cta-card-link">Contact us →</a>
-      </div>
-      <div class="cta-card">
-        <div class="cta-card-title">Become a brand partner</div>
-        <div class="cta-card-sub">Distribute your food brand through our kiosk network and access partner-scoped CraveOS analytics.</div>
-        <a href="/#partners" class="cta-card-link">Learn more →</a>
-      </div>
-    </div>
+  <div style="max-width:680px;margin:0 auto;padding:5rem 3rem;text-align:center;">
+    <span class="eyebrow" style="color:rgba(234,109,16,0.8);display:block;margin-bottom:1rem;">Proprietary Technology</span>
+    <h2 class="cta-title">Interested in <em>CraveOS</em>?</h2>
+    <p class="cta-sub" style="max-width:520px;margin:0 auto 2.5rem;">CraveOS powers every CraveBot deployment with real-time analytics, remote monitoring, and cold chain logistics. Get in touch to learn how it works and what it could mean for your venue or brand.</p>
+    <button onclick="openCraveOSModal()" style="background:var(--orange);color:#fff;font-family:var(--font);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;border-radius:8px;padding:1rem 2.5rem;cursor:pointer;transition:opacity 0.2s,transform 0.15s;" onmouseover="this.style.opacity='0.88';this.style.transform='translateY(-1px)'" onmouseout="this.style.opacity='1';this.style.transform='none'">Contact Us →</button>
   </div>
 </div>
 
@@ -775,7 +822,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <li><a href="/">Home</a></li>
       <li><a href="/cravebot">CraveBot</a></li>
       <li><a href="/menu">Menu</a></li>
-      <li><a href="https://www.craverobotics.co/privacy-policy" target="_blank">Privacy Policy</a></li>
+      <li><a href="/privacy-policy">Privacy Policy</a></li>
       <li><a href="mailto:help@craverobotics.co">Contact</a></li>
     </ul>
     <div class="foot-copy">© 2025 Crave Robotics™</div>
@@ -796,6 +843,58 @@ const io = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.fu,.sl,.sr,.sg,.rw').forEach(el => io.observe(el));
+</script>
+
+<script>
+function openCraveOSModal() { openM(); }
+function openM() { document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeM() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; setTimeout(()=>{ document.getElementById('msucc').classList.remove('show'); document.getElementById('mform').style.display=''; }, 350); }
+
+async function submitM() {
+  const btn    = document.querySelector('.mbtn');
+  const inputs = Array.from(document.querySelectorAll('#mform .finput'));
+  const [firstName, lastName, email, organization, phone, inquiryType, message] = inputs.map(i => i.value.trim());
+
+  if (!email || !message) {
+    inputs.forEach(i => {
+      if ((i.type === 'email' && !i.value.trim()) || (i.tagName === 'TEXTAREA' && !i.value.trim())) {
+        i.style.borderColor = 'rgba(220,38,38,0.5)';
+        i.style.boxShadow   = '0 0 0 3px rgba(220,38,38,0.1)';
+        setTimeout(() => { i.style.borderColor = ''; i.style.boxShadow = ''; }, 2500);
+      }
+    });
+    return;
+  }
+
+  btn.textContent = 'Sending…';
+  btn.disabled    = true;
+  btn.style.opacity = '0.7';
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        access_key: '7b21dd42-bc8a-43b2-a645-8733ba987743',
+        subject:    `New inquiry: ${inquiryType || 'CraveOS'} — ${firstName} ${lastName}`,
+        from_name:  `${firstName} ${lastName}`,
+        replyto:    email,
+        firstName, lastName, email, organization, phone, inquiryType, message,
+      }),
+    });
+
+    if (!res.ok) throw new Error('Server error');
+    document.getElementById('mform').style.display = 'none';
+    document.getElementById('msucc').classList.add('show');
+  } catch (err) {
+    btn.textContent      = 'Failed — try again';
+    btn.style.background = 'rgba(220,38,38,0.85)';
+    setTimeout(() => { btn.textContent = 'Send Inquiry →'; btn.style.background = ''; btn.style.opacity = ''; btn.disabled = false; }, 3000);
+  }
+}
+
+document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeM(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeM(); });
 </script>
 </body>
 </html>
