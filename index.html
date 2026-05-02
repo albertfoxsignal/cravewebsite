@@ -959,14 +959,17 @@ async function submitEmail() {
   btn.style.opacity = '0.7';
 
   try {
-    const res = await fetch('/api/subscribe', {
+    await fetch('https://script.google.com/a/macros/craverobotics.co/s/AKfycbwH_gRy2HuUrDTqA5QM6qy-foPdaCjifd8m5-3nIXfNVz7jH0LMIQIiZcBxEXpyn3i0Fw/exec', {
       method:  'POST',
+      mode:    'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ email }),
+      body:    JSON.stringify({
+        email,
+        timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }),
+      }),
     });
 
-    if (!res.ok) throw new Error('Server error');
-
+    // no-cors means we can't read the response, so assume success
     input.style.display = 'none';
     btn.style.display   = 'none';
     msg.style.display   = 'block';
