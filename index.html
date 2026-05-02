@@ -547,6 +547,30 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
 </head>
 <body>
 
+<!-- CONTACT SUPPORT MODAL -->
+<div class="mo" id="contactModal" style="z-index:400;">
+  <div class="md" style="max-width:420px;text-align:center;">
+    <button class="mc-close" onclick="closeContactModal()">✕</button>
+    <div style="font-size:2rem;margin-bottom:1rem;">💬</div>
+    <div class="mtitle" style="font-size:1.5rem;margin-bottom:0.5rem;">Contact Support</div>
+    <p class="msub" style="margin-bottom:2rem;">Choose the best way to reach us based on your issue.</p>
+
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <a href="sms:6266281392?body=Support" style="display:block;background:var(--orangeD);border:0.5px solid rgba(234,109,16,0.3);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;transition:background 0.2s;">
+        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);margin-bottom:0.35rem;">📦 Order Support</div>
+        <div style="font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.2rem;">Text "Support" to (626) 628-1392</div>
+        <div style="font-size:0.75rem;color:var(--textS);">For issues with your order, machine, or payment</div>
+      </a>
+
+      <a href="mailto:help@craverobotics.co" style="display:block;background:var(--bg2);border:0.5px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;transition:background 0.2s;">
+        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--textS);margin-bottom:0.35rem;">✉️ All Other Inquiries</div>
+        <div style="font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.2rem;">help@craverobotics.co</div>
+        <div style="font-size:0.75rem;color:var(--textS);">Partnerships, press, general questions</div>
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL -->
 <div class="mo" id="modal">
   <div class="md">
@@ -902,7 +926,8 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
           <div class="fclabel">Company</div>
           <ul>
             <li><a href="#about">About Us</a></li>
-            <li><a href="#platform">CraveBot</a></li>
+            <li><a href="/cravebot">CraveBot</a></li>
+            <li><a href="/menu">Menu</a></li>
             <li><a href="/news">News</a></li>
             <li><a href="/NSF%20-%20DSS_SGSNA_26_GZ_00060.pdf" target="_blank">Certification</a></li>
           </ul>
@@ -910,7 +935,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
         <div class="fcol">
           <div class="fclabel">Legal</div>
           <ul>
-            <li><a href="https://www.craverobotics.co/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
             <li><a href="/data-deletion">Data Deletion Request</a></li>
           </ul>
         </div>
@@ -918,6 +943,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
           <div class="fclabel">Connect</div>
           <ul>
             <li><a href="https://www.linkedin.com/company/craverobotics/" target="_blank">LinkedIn</a></li>
+            <li><a href="#" onclick="openContactModal();return false;">Contact Support</a></li>
             <li><a href="mailto:help@craverobotics.co">Email Us</a></li>
           </ul>
         </div>
@@ -987,6 +1013,9 @@ async function submitEmail() {
 }
 
 /* MODAL */
+function openContactModal(){document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';}
+function closeContactModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('contactModal').addEventListener('click',e=>{if(e.target===document.getElementById('contactModal'))closeContactModal();});
 function openM(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
 function closeM(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';setTimeout(()=>{document.getElementById('msucc').classList.remove('show');document.getElementById('mform').style.display='';},350);}
 async function submitM(){
