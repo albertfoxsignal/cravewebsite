@@ -823,7 +823,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <li><a href="/cravebot">CraveBot</a></li>
       <li><a href="/menu">Menu</a></li>
       <li><a href="/privacy-policy">Privacy Policy</a></li>
-      <li><a href="mailto:help@craverobotics.co">Contact</a></li>
+      <li><a href="javascript:void(0)" onclick="openSupportModal()">Contact</a></li>
     </ul>
     <div class="foot-copy">© 2025 Crave Robotics™</div>
   </footer>
@@ -897,4 +897,32 @@ document.getElementById('modal').addEventListener('click', e => { if (e.target =
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeM(); });
 </script>
 </body>
-</html>
+
+<!-- CONTACT SUPPORT MODAL -->
+<div style="position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.3s;" id="supportModal">
+  <div style="background:#faf9f6;border:0.5px solid rgba(0,0,0,0.15);border-radius:16px;width:100%;max-width:420px;padding:2.5rem;position:relative;transform:translateY(24px) scale(0.96);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);text-align:center;" id="supportModalInner">
+    <button onclick="closeSupportModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:#eeede8;border:0.5px solid rgba(0,0,0,0.08);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;color:#9a9ca5;">✕</button>
+    <div style="font-size:2rem;margin-bottom:1rem;">💬</div>
+    <div style="font-family:var(--serif);font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;color:var(--text);">Contact Support</div>
+    <p style="font-size:0.83rem;color:var(--textS);margin-bottom:2rem;line-height:1.65;">Choose the best way to reach us based on your issue.</p>
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <a href="sms:6266281392?body=Support" style="display:block;background:rgba(234,109,16,0.08);border:0.5px solid rgba(234,109,16,0.25);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
+        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#ea6d10;margin-bottom:0.35rem;">📦 Order Support</div>
+        <div style="font-size:1rem;font-weight:700;color:#111111;margin-bottom:0.2rem;">Text "Support" to (626) 628-1392</div>
+        <div style="font-size:0.75rem;color:#5a5c64;">For issues with your order, machine, or payment</div>
+      </a>
+      <a href="mailto:help@craverobotics.co" style="display:block;background:#eeede8;border:0.5px solid rgba(0,0,0,0.08);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
+        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5a5c64;margin-bottom:0.35rem;">✉️ All Other Inquiries</div>
+        <div style="font-size:1rem;font-weight:700;color:#111111;margin-bottom:0.2rem;">help@craverobotics.co</div>
+        <div style="font-size:0.75rem;color:#5a5c64;">Partnerships, press, general questions</div>
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+function openSupportModal(){var m=document.getElementById("supportModal");m.style.opacity="1";m.style.pointerEvents="all";document.getElementById("supportModalInner").style.transform="none";document.body.style.overflow="hidden";}
+function closeSupportModal(){var m=document.getElementById("supportModal");m.style.opacity="0";m.style.pointerEvents="none";document.getElementById("supportModalInner").style.transform="translateY(24px) scale(0.96)";document.body.style.overflow="";}
+document.getElementById("supportModal").addEventListener("click",function(e){if(e.target===this)closeSupportModal();});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSupportModal();});
+</script>
+</body>
