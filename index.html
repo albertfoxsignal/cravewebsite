@@ -1258,7 +1258,7 @@ if(strip)cio.observe(strip);
           <div class="pop-name">${loc.name}</div>
           <div class="pop-city">${loc.city}</div>
           <div class="pop-tag">CraveBot Active</div>
-        `, { closeOnClick: false, autoClose: false });
+        `, { closeOnClick: false, autoClose: true });
 
       marker.on('click', () => focusLocation(i));
       markers.push(marker);
