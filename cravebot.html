@@ -653,61 +653,90 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 
 <!-- FOOD CONTAINER / TRAY -->
 <div class="tray-wrap">
-  <div class="tray-inner">
+  <div style="max-width:1280px;margin:0 auto;padding:5rem 3rem;">
 
-    <div class="sl">
-      <div class="tray-img-frame" style="padding:0;overflow:hidden;border-radius:14px;background:var(--bg2);">
-        <img
-          src="/package1-dimensions.webp"
-          alt="CraveBot Package 1 container — 7.5″ × 6.5″ × 2″"
-          style="width:100%;display:block;object-fit:cover;border-radius:14px;"
-          onerror="this.style.opacity=0"
-        />
-      </div>
-      <!-- Thumbnail row -->
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.6rem;margin-top:0.6rem;">
-        <img src="/container-large-angle.webp"  alt="Container angled view" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:0.5px solid var(--border);" onerror="this.style.display='none'" />
-        <img src="/container-large-top.webp"    alt="Container top view"    style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:0.5px solid var(--border);" onerror="this.style.display='none'" />
-        <img src="/container-small-angle.webp"  alt="Small container angled" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:0.5px solid var(--border);" onerror="this.style.display='none'" />
-        <img src="/container-small-top.webp"    alt="Small container top"    style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;border:0.5px solid var(--border);" onerror="this.style.display='none'" />
-      </div>
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span class="eyebrow" style="display:block;margin-bottom:0.75rem;">Meal Containers</span>
+      <h2 class="sec-title" style="margin-bottom:1rem;">What partners<br>need to know</h2>
+      <p class="sec-sub" style="max-width:580px;margin:0 auto;">Every meal served through CraveBot uses a standardized container. Confirm packaging compatibility before onboarding into the CraveBot network.</p>
     </div>
 
-    <div class="sr">
-      <span class="eyebrow">Meal Container</span>
-      <h2 class="sec-title">What partners<br>need to know</h2>
-      <p class="sec-sub" style="margin-bottom:2rem;">Every meal served through CraveBot uses a standardized container. Prospective food partners can use these specs to confirm packaging compatibility before onboarding.</p>
+    <!-- Two container cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;">
 
-      <div class="tray-specs">
-        <div class="tray-stat">
-          <span class="tray-stat-label">Container format</span>
-          <span class="tray-stat-val" style="font-family:var(--font);font-size:0.9rem;font-weight:600;">Package 1 — Rectangular tray with lid</span>
+      <!-- Container 1 — Rectangular (large) -->
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);">
+          <img src="/container-large-angle.webp" alt="Rectangular container — angled view" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;" onerror="this.style.display='none'" />
+          <img src="/container-large-top.webp"   alt="Rectangular container — top view"    style="width:100%;aspect-ratio:1;object-fit:cover;display:block;" onerror="this.style.display='none'" />
         </div>
-        <div class="tray-stat">
-          <span class="tray-stat-label">Top dimensions (L × W)</span>
-          <span class="tray-stat-val" style="font-family:var(--font);font-size:0.9rem;font-weight:600;">7.5″ × 6.5″</span>
-        </div>
-        <div class="tray-stat">
-          <span class="tray-stat-label">Bottom dimensions (L × W)</span>
-          <span class="tray-stat-val" style="font-family:var(--font);font-size:0.9rem;font-weight:600;">6″ × 5″</span>
-        </div>
-        <div class="tray-stat">
-          <span class="tray-stat-label">Height</span>
-          <span class="tray-stat-val" style="font-family:var(--font);font-size:0.9rem;font-weight:600;">2″</span>
-        </div>
-        <div class="tray-stat">
-          <span class="tray-stat-label">Heat-safe</span>
-          <span class="tray-stat-val hl" style="font-family:var(--font);font-size:0.9rem;">Yes — microwave &amp; oven compatible</span>
-        </div>
-        <div class="tray-stat">
-          <span class="tray-stat-label">Storage temp</span>
-          <span class="tray-stat-val hl" style="font-family:var(--font);font-size:0.9rem;">Frozen</span>
+        <div style="padding:1.5rem;">
+          <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Package 1</div>
+          <div style="font-family:var(--serif);font-size:1.25rem;font-weight:700;letter-spacing:-0.015em;margin-bottom:1.25rem;color:var(--text);">Rectangular Tray</div>
+          <div style="display:flex;flex-direction:column;gap:0.55rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Top (L × W)</span>
+              <span style="font-size:0.82rem;font-weight:700;color:var(--text);">7.5″ × 6.5″</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Bottom (L × W)</span>
+              <span style="font-size:0.82rem;font-weight:700;color:var(--text);">6″ × 5″</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Height</span>
+              <span style="font-size:0.82rem;font-weight:700;color:var(--text);">2″</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Heat-safe</span>
+              <span style="font-size:0.82rem;font-weight:700;color:#16a34a;">✓ Microwave &amp; oven</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Storage</span>
+              <span style="font-size:0.82rem;font-weight:700;color:#16a34a;">✓ Frozen</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="tray-note">
-        <strong>For food brand partners:</strong> all meals must be packaged to these container specs before onboarding into the CraveBot network. Contact us to receive the full packaging guide.
+      <!-- Container 2 — Square (small) -->
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);">
+          <img src="/container-small-angle.webp" alt="Square container — angled view" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;" onerror="this.style.display='none'" />
+          <img src="/container-small-top.webp"   alt="Square container — top view"   style="width:100%;aspect-ratio:1;object-fit:cover;display:block;" onerror="this.style.display='none'" />
+        </div>
+        <div style="padding:1.5rem;">
+          <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Package 2</div>
+          <div style="font-family:var(--serif);font-size:1.25rem;font-weight:700;letter-spacing:-0.015em;margin-bottom:1.25rem;color:var(--text);">Square Tray</div>
+          <div style="display:flex;flex-direction:column;gap:0.55rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Top (L × W)</span>
+              <span style="font-size:0.82rem;font-weight:600;color:var(--textM);font-style:italic;">TBD</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Bottom (L × W)</span>
+              <span style="font-size:0.82rem;font-weight:600;color:var(--textM);font-style:italic;">TBD</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Height</span>
+              <span style="font-size:0.82rem;font-weight:600;color:var(--textM);font-style:italic;">TBD</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Heat-safe</span>
+              <span style="font-size:0.82rem;font-weight:700;color:#16a34a;">✓ Microwave &amp; oven</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;">
+              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Storage</span>
+              <span style="font-size:0.82rem;font-weight:700;color:#16a34a;">✓ Frozen</span>
+            </div>
+          </div>
+        </div>
       </div>
+
+    </div>
+
+    <!-- Note -->
+    <div class="tray-note" style="max-width:700px;margin:0 auto;text-align:center;">
+      <strong>For food brand partners:</strong> all meals must be packaged to these container specs before onboarding into the CraveBot network. Contact us to receive the full packaging guide.
     </div>
 
   </div>
