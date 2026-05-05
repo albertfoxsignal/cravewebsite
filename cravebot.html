@@ -661,83 +661,46 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <p class="sec-sub" style="max-width:580px;margin:0 auto;">Every meal served through CraveBot uses a standardized container. Confirm packaging compatibility before onboarding into the CraveBot network.</p>
     </div>
 
-    <!-- Two container cards -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2.5rem;align-items:stretch;">
 
-      <!-- Container 1 — Rectangular (large) -->
-      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);">
-          <img src="/container-large-angle.webp" alt="Rectangular container — angled view" style="width:100%;aspect-ratio:1;object-fit:contain;background:var(--bg2);padding:0.75rem;display:block;" onerror="this.style.display='none'" />
-          <img src="/container-large-top.webp"   alt="Rectangular container — top view"    style="width:100%;aspect-ratio:1;object-fit:contain;background:var(--bg2);padding:0.75rem;display:block;" onerror="this.style.display='none'" />
-      <!-- Container 1 — Rectangular -->
-      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;">
-        <div style="background:var(--bg2);padding:1.5rem;display:flex;align-items:center;justify-content:center;">
-          <img src="/container-large-angle.webp" alt="Package 1 — Rectangular tray with dimensions" style="width:100%;max-width:420px;height:auto;display:block;border-radius:8px;" onerror="this.style.display='none'" />
+      <!-- Package 1 — Rectangular -->
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="flex:1;background:var(--bg2);display:flex;align-items:center;justify-content:center;padding:2.5rem;min-height:340px;">
+          <img src="/container-large-angle.webp" alt="Package 1 — Rectangular tray" style="width:100%;height:100%;object-fit:contain;display:block;max-height:360px;" onerror="this.style.display='none'" />
         </div>
-        <div style="padding:1.5rem;">
+        <div style="padding:1.75rem;">
           <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Package 1</div>
           <div style="font-family:var(--serif);font-size:1.25rem;font-weight:700;letter-spacing:-0.015em;margin-bottom:1.25rem;color:var(--text);">Rectangular Tray</div>
-          <div style="display:flex;flex-direction:column;gap:0.55rem;">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Inner (L × W)</span>
-              <span style="font-size:0.82rem;font-weight:700;color:var(--text);">7″ × 6.5″</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Flange width</span>
-              <span style="font-size:0.82rem;font-weight:700;color:var(--text);">0.375″</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Height</span>
-              <span style="font-size:0.82rem;font-weight:700;color:var(--text);">2″</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Heat-safe</span>
-              <span style="font-size:0.82rem;font-weight:700;color:#16a34a;">✓ Microwave &amp; oven</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Storage</span>
-              <span style="font-size:0.82rem;font-weight:700;color:#16a34a;">✓ Frozen</span>
-            </div>
+          <div style="display:flex;flex-direction:column;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Inner (L × W)</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">7″ × 6.5″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Flange width</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">0.375″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Height</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">2″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Heat-safe</span><span style="font-size:0.85rem;font-weight:700;color:#16a34a;">✓ Microwave &amp; oven</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Storage</span><span style="font-size:0.85rem;font-weight:700;color:#16a34a;">✓ Frozen</span></div>
           </div>
         </div>
       </div>
 
-      <!-- Container 2 — Square -->
-      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;">
-        <div style="background:var(--bg2);padding:1.5rem;display:flex;align-items:center;justify-content:center;">
-          <img src="/container-small-angle.webp" alt="Package 2 — Square tray with dimensions" style="width:100%;max-width:420px;height:auto;display:block;border-radius:8px;" onerror="this.style.display='none'" />
+      <!-- Package 2 — Square -->
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="flex:1;background:var(--bg2);display:flex;align-items:center;justify-content:center;padding:2.5rem;min-height:340px;">
+          <img src="/container-small-angle.webp" alt="Package 2 — Square tray" style="width:100%;height:100%;object-fit:contain;display:block;max-height:360px;" onerror="this.style.display='none'" />
         </div>
-        <div style="padding:1.5rem;">
+        <div style="padding:1.75rem;">
           <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Package 2</div>
           <div style="font-family:var(--serif);font-size:1.25rem;font-weight:700;letter-spacing:-0.015em;margin-bottom:1.25rem;color:var(--text);">Square Tray</div>
-          <div style="display:flex;flex-direction:column;gap:0.55rem;">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Inner (L × W)</span>
-              <span style="font-size:0.82rem;font-weight:700;color:var(--text);">6.5″ × 6.5″</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Flange width</span>
-              <span style="font-size:0.82rem;font-weight:700;color:var(--text);">0.375″</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Height</span>
-              <span style="font-size:0.82rem;font-weight:700;color:var(--text);">2.625″</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:0.5px solid var(--border);">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Heat-safe</span>
-              <span style="font-size:0.82rem;font-weight:700;color:#16a34a;">✓ Microwave &amp; oven</span>
-            </div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;">
-              <span style="font-size:0.75rem;font-weight:600;color:var(--textS);">Storage</span>
-              <span style="font-size:0.82rem;font-weight:700;color:#16a34a;">✓ Frozen</span>
-            </div>
+          <div style="display:flex;flex-direction:column;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Inner (L × W)</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">6.5″ × 6.5″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Flange width</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">0.375″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Height</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">2.625″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Heat-safe</span><span style="font-size:0.85rem;font-weight:700;color:#16a34a;">✓ Microwave &amp; oven</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Storage</span><span style="font-size:0.85rem;font-weight:700;color:#16a34a;">✓ Frozen</span></div>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- Note -->
     <div class="tray-note" style="max-width:700px;margin:0 auto;text-align:center;">
       <strong>For food brand partners:</strong> all meals must be packaged to these container specs before onboarding into the CraveBot network. Contact us to receive the full packaging guide.
     </div>
@@ -769,7 +732,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 
         <div class="sukhi-kpi-row">
           <div class="sukhi-kpi">
-            <span class="sukhi-kpi-val orange">USC</span>
+            <span class="sukhi-kpi-val orange">Cal State LA</span>
             <span class="sukhi-kpi-label">Location</span>
           </div>
           <div class="sukhi-kpi">
@@ -782,9 +745,9 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
           </div>
         </div>
 
-        <p class="sukhi-body">Sukhi's — a Bay Area–based Indian food brand — partnered with Crave Robotics to expand distribution onto the USC campus through a fully branded CraveBot kiosk. The machine features a custom vinyl wrap in Sukhi's brand colors and serves their authentic frozen-to-ready Indian meals to students and staff around the clock.</p>
+        <p class="sukhi-body">Sukhi's — a Bay Area–based Indian food brand — partnered with Crave Robotics to expand distribution onto the Cal State LA campus through a fully branded CraveBot kiosk. The machine features a custom vinyl wrap in Sukhi's brand colors and serves their authentic frozen-to-ready Indian meals to students and staff around the clock.</p>
 
-        <p class="sukhi-body">With no kitchen requirements and zero operational burden on USC, the deployment gave Sukhi's immediate access to a high-density captive audience — a channel that would otherwise require a full food service buildout.</p>
+        <p class="sukhi-body">With no kitchen requirements and zero operational burden on Cal State LA, the deployment gave Sukhi's immediate access to a high-density captive audience — a channel that would otherwise require a full food service buildout.</p>
 
         <div class="sukhi-quote">"A turnkey way to reach campus consumers without the overhead of a brick-and-mortar location."</div>
         <div class="sukhi-attr">— CraveFoods Partner Studio</div>
