@@ -196,7 +196,112 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
 
 <!-- NEWS GRID -->
 <div class="news-layout">
-  <div class="news-grid" id="newsGrid"></div>
+  <div class="news-grid" id="newsGrid">
+
+    <!-- Static HTML articles — readable by all crawlers and AI engines.
+         JS filter/sort runs on top of these; it hides/shows them without removing from DOM. -->
+
+    <article class="nc featured shown" data-tag="press" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">📰</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-press">Press</span><span class="nc-date" itemprop="datePublished" content="2026-04-30">April 30, 2026</span></div>
+        <h2 class="nc-title" itemprop="headline">NAMA 2026: AI Drives Opportunities for Unattended Retail — 9 Takeaways</h2>
+        <p class="nc-excerpt" itemprop="description">Crave Robotics was among the innovators spotlighted at NAMA 2026, the leading unattended retail trade show. Industry publication Retail Automation Systems highlighted how AI-powered food automation — including CraveBot's frozen-to-ready kiosk model — is reshaping campus and captive-venue dining.</p>
+        <div class="nc-footer"><span class="nc-read"><a href="https://retailsystems.org/nama-2026-ai-drives-opportunities-for-unattended-retail-9-takeaways-to-consider/" target="_blank" style="color:inherit;text-decoration:none;">Read more →</a></span><span class="nc-source" itemprop="publisher">Retail Automation Systems</span></div>
+      </div>
+    </article>
+
+    <article class="nc shown" data-tag="company" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">🤖</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-company">Company</span><span class="nc-date" itemprop="datePublished" content="2026-04-30">April 30, 2026</span></div>
+        <h2 class="nc-title" itemprop="headline">Crave Robotics Reaches 18 Active Machines Across Southern California</h2>
+        <p class="nc-excerpt" itemprop="description">Crave Robotics has now deployed 18 CraveBot kiosks across 14 venues in Southern California — including universities, tech companies, and hotels — marking a major milestone in the company's growth.</p>
+        <div class="nc-footer"><span class="nc-read">Read more →</span></div>
+      </div>
+    </article>
+
+    <article class="nc shown" data-tag="product" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">📋</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-product">Product</span><span class="nc-date" itemprop="datePublished" content="2026-04-15">April 15, 2026</span></div>
+        <h2 class="nc-title" itemprop="headline">CraveBot Gen 2 (Zeus) Spec Sheet Now Available</h2>
+        <p class="nc-excerpt" itemprop="description">The full technical specification sheet for the CraveBot Gen 2 machine — including dimensions, electrical requirements, and installation specs — is now available for download.</p>
+        <div class="nc-footer"><span class="nc-read"><a href="/cravebot" style="color:inherit;text-decoration:none;">Read more →</a></span></div>
+      </div>
+    </article>
+
+    <article class="nc shown" data-tag="partner" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">🍛</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-partner">Partner</span><span class="nc-date" itemprop="datePublished" content="2026-03-10">March 10, 2026</span></div>
+        <h2 class="nc-title" itemprop="headline">Sukhi's Indian Cuisine Joins the CraveFoods Partner Studio</h2>
+        <p class="nc-excerpt" itemprop="description">Crave Robotics welcomes Sukhi's Irresistible Indian Cuisine as the latest brand partner, bringing authentic Indian flavors to CraveBot kiosks across the fleet.</p>
+        <div class="nc-footer"><span class="nc-read">Read more →</span></div>
+      </div>
+    </article>
+
+    <article class="nc shown" data-tag="partner" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">🌮</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-partner">Partner</span><span class="nc-date" itemprop="datePublished" content="2026-02-28">February 28, 2026</span></div>
+        <h2 class="nc-title" itemprop="headline">Tucson Foods &amp; Chubby Foods Join CraveFoods Partner Network</h2>
+        <p class="nc-excerpt" itemprop="description">Two exciting new brand partners — Tucson Foods and Chubby Foods — are now part of the CraveFoods Partner Studio, expanding the variety of flavors available through CraveBot kiosks.</p>
+        <div class="nc-footer"><span class="nc-read">Read more →</span></div>
+      </div>
+    </article>
+
+    <article class="nc shown" data-tag="company" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">📍</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-company">Company</span><span class="nc-date" itemprop="datePublished" content="2026-01-20">January 20, 2026</span></div>
+        <h2 class="nc-title" itemprop="headline">CraveBot Now Live at Golden West College and Embassy Suites</h2>
+        <p class="nc-excerpt" itemprop="description">Two new deployments bring CraveBot to Huntington Beach and Santa Ana, expanding access to hot gourmet meals for students and hotel guests across Orange County.</p>
+        <div class="nc-footer"><span class="nc-read">Read more →</span></div>
+      </div>
+    </article>
+
+    <article class="nc shown" data-tag="product" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">🍜</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-product">Product</span><span class="nc-date" itemprop="datePublished" content="2025-12-05">December 5, 2025</span></div>
+        <h2 class="nc-title" itemprop="headline">New Menu Items: Wagyu Beef Bowl, Kimchi Fried Rice &amp; More</h2>
+        <p class="nc-excerpt" itemprop="description">Crave Robotics launches eight new menu items across its CraveBot fleet, including the premium Wagyu Beef Bowl, Kimchi Fried Rice, and Shrimp Alfredo — all available 24/7.</p>
+        <div class="nc-footer"><span class="nc-read"><a href="/menu" style="color:inherit;text-decoration:none;">Read more →</a></span></div>
+      </div>
+    </article>
+
+    <article class="nc shown" data-tag="press" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">📰</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-press">Press</span><span class="nc-date" itemprop="datePublished" content="2025-10-14">October 14, 2025</span></div>
+        <h2 class="nc-title" itemprop="headline">Crave Robotics Featured in Food Automation Weekly</h2>
+        <p class="nc-excerpt" itemprop="description">A deep dive into how Crave Robotics is redefining campus food service with its fully managed, zero-cost-to-host automated kiosk model.</p>
+        <div class="nc-footer"><span class="nc-read">Read more →</span><span class="nc-source">Food Automation Weekly</span></div>
+      </div>
+    </article>
+
+    <article class="nc shown" data-tag="company" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">🎓</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-company">Company</span><span class="nc-date" itemprop="datePublished" content="2025-08-01">August 1, 2025</span></div>
+        <h2 class="nc-title" itemprop="headline">Crave Robotics Expands to Cal State University System</h2>
+        <p class="nc-excerpt" itemprop="description">Following successful deployments at CSULB and CSUDH, Crave Robotics announces expanded partnerships across the Cal State University system, bringing CraveBot to more campuses.</p>
+        <div class="nc-footer"><span class="nc-read">Read more →</span></div>
+      </div>
+    </article>
+
+    <article class="nc shown" data-tag="press" itemscope itemtype="https://schema.org/NewsArticle">
+      <div class="nc-img-wrap"><div class="nc-img-placeholder">🚀</div></div>
+      <div class="nc-body">
+        <div class="nc-meta"><span class="nc-tag tag-press">Press</span><span class="nc-date" itemprop="datePublished" content="2025-05-22">May 22, 2025</span></div>
+        <h2 class="nc-title" itemprop="headline">Relativity Space Selects CraveBot for Employee Food Service</h2>
+        <p class="nc-excerpt" itemprop="description">Long Beach-based aerospace company Relativity Space has deployed two CraveBot units to serve its engineering teams around the clock.</p>
+        <div class="nc-footer"><span class="nc-read">Read more →</span><span class="nc-source">Tech &amp; Workplace News</span></div>
+      </div>
+    </article>
+
+  </div>
 </div>
 
 <!-- FOOTER -->
@@ -218,197 +323,44 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
 </div>
 
 <script>
-/* ─────────────────────────────────────────────────────────────────────────
-   NEWS ARTICLES
-   ─────────────────────────────────────────────────────────────────────────
-   To add an article:
-   {
-     tag:      "company" | "product" | "press" | "partner"
-     date:     "Month DD, YYYY"
-     title:    "Article title"
-     excerpt:  "Short description (1–2 sentences)"
-     url:      "/news/slug" for internal posts, or full URL for external links
-     source:   "Source name" (optional — shows for press/external links)
-     emoji:    Emoji for placeholder image (used until you add a real image)
-     featured: true  (optional — makes this card span 2 columns at top)
-   }
-   ───────────────────────────────────────────────────────────────────────── */
-const ARTICLES = [
-  {
-    tag:      "press",
-    date:     "April 30, 2026",
-    title:    "NAMA 2026: AI Drives Opportunities for Unattended Retail — 9 Takeaways",
-    excerpt:  "Crave Robotics was among the innovators spotlighted at NAMA 2026, the leading unattended retail trade show. Industry publication Retail Automation Systems highlighted how AI-powered food automation — including CraveBot's frozen-to-ready kiosk model — is reshaping campus and captive-venue dining.",
-    url:      "https://retailsystems.org/nama-2026-ai-drives-opportunities-for-unattended-retail-9-takeaways-to-consider/",
-    source:   "Retail Automation Systems",
-    emoji:    "📰",
-    featured: true,
-  },
-  {
-    tag:      "product",
-    date:     "April 15, 2026",
-    title:    "CraveBot Gen 2 (Zeus) Spec Sheet Now Available",
-    excerpt:  "The full technical specification sheet for the CraveBot Gen 2 machine — including dimensions, electrical requirements, and installation specs — is now available for download.",
-    url:      "/cravebot",
-    emoji:    "📋",
-  },
-  {
-    tag:      "partner",
-    date:     "March 10, 2026",
-    title:    "Sukhi's Indian Cuisine Joins the CraveFoods Partner Studio",
-    excerpt:  "Crave Robotics welcomes Sukhi's Irresistible Indian Cuisine as the latest brand partner, bringing authentic Indian flavors to CraveBot kiosks across the fleet.",
-    url:      "#",
-    emoji:    "🍛",
-  },
-  {
-    tag:      "partner",
-    date:     "February 28, 2026",
-    title:    "Tucson Foods & Chubby Foods Join CraveFoods Partner Network",
-    excerpt:  "Two exciting new brand partners — Tucson Foods and Chubby Foods — are now part of the CraveFoods Partner Studio, expanding the variety of flavors available through CraveBot kiosks.",
-    url:      "#",
-    emoji:    "🌮",
-  },
-  {
-    tag:      "company",
-    date:     "January 20, 2026",
-    title:    "CraveBot Now Live at Golden West College and Embassy Suites",
-    excerpt:  "Two new deployments bring CraveBot to Huntington Beach and Santa Ana, expanding access to hot gourmet meals for students and hotel guests across Orange County.",
-    url:      "#",
-    emoji:    "📍",
-  },
-  {
-    tag:      "product",
-    date:     "December 5, 2025",
-    title:    "New Menu Items: Wagyu Beef Bowl, Kimchi Fried Rice & More",
-    excerpt:  "Crave Robotics launches eight new menu items across its CraveBot fleet, including the premium Wagyu Beef Bowl, Kimchi Fried Rice, and Shrimp Alfredo — all available 24/7.",
-    url:      "/menu",
-    emoji:    "🍜",
-  },
-  {
-    tag:      "press",
-    date:     "October 14, 2025",
-    title:    "Crave Robotics Featured in Food Automation Weekly",
-    excerpt:  "A deep dive into how Crave Robotics is redefining campus food service with its fully managed, zero-cost-to-host automated kiosk model.",
-    url:      "#",
-    source:   "Food Automation Weekly",
-    emoji:    "📰",
-  },
-  {
-    tag:      "company",
-    date:     "August 1, 2025",
-    title:    "Crave Robotics Expands to Cal State University System",
-    excerpt:  "Following successful deployments at CSULB and CSUDH, Crave Robotics announces expanded partnerships across the Cal State University system, bringing CraveBot to more campuses.",
-    url:      "#",
-    emoji:    "🎓",
-  },
-  {
-    tag:      "press",
-    date:     "May 22, 2025",
-    title:    "Relativity Space Selects CraveBot for Employee Food Service",
-    excerpt:  "Long Beach-based aerospace company Relativity Space has deployed two CraveBot units to serve its engineering teams around the clock.",
-    url:      "#",
-    source:   "Tech & Workplace News",
-    emoji:    "🚀",
-  },
-];
-
-const TAG_LABELS = { company:"Company", product:"Product", press:"Press", partner:"Partner" };
-const TAG_CLASS  = { company:"tag-company", product:"tag-product", press:"tag-press", partner:"tag-partner" };
-
+/* Filter operates on static HTML articles — no rebuilding the DOM */
 let activeFilter = "all";
 
-function buildCard(article, index) {
-  const a = document.createElement("a");
-  a.className = "nc" + (article.featured && index === 0 ? " featured" : "");
-  a.href = article.url;
-  if (article.url.startsWith("http")) a.target = "_blank";
-  a.dataset.tag = article.tag;
+function filterArticles() {
+  const articles = document.querySelectorAll('#newsGrid article.nc');
+  let visible = 0;
 
-  const imgWrap = document.createElement("div");
-  imgWrap.className = "nc-img-wrap";
-  const placeholder = document.createElement("div");
-  placeholder.className = "nc-img-placeholder";
-  placeholder.textContent = article.emoji;
-  imgWrap.appendChild(placeholder);
-
-  const body = document.createElement("div");
-  body.className = "nc-body";
-  body.innerHTML = `
-    <div class="nc-meta">
-      <span class="nc-tag ${TAG_CLASS[article.tag]}">${TAG_LABELS[article.tag]}</span>
-      <span class="nc-date">${article.date}</span>
-    </div>
-    <div class="nc-title"></div>
-    <div class="nc-excerpt"></div>
-    <div class="nc-footer">
-      <span class="nc-read">Read more →</span>
-      ${article.source ? `<span class="nc-source">${article.source}</span>` : ""}
-    </div>
-  `;
-  body.querySelector(".nc-title").textContent = article.title;
-  body.querySelector(".nc-excerpt").textContent = article.excerpt;
-
-  a.appendChild(imgWrap);
-  a.appendChild(body);
-  return a;
-}
-
-function render() {
-  const grid = document.getElementById("newsGrid");
-  grid.innerHTML = "";
-
-  const filtered = activeFilter === "all"
-    ? ARTICLES
-    : ARTICLES.filter(a => a.tag === activeFilter);
-
-  if (!filtered.length) {
-    grid.innerHTML = `<div class="empty"><div class="empty-icon">📭</div><div class="empty-title">No articles in this category yet</div></div>`;
-    return;
-  }
-
-  const cards = filtered.map((article, i) => buildCard(article, i));
-  cards.forEach(c => grid.appendChild(c));
-
-  requestAnimationFrame(() => {
-    cards.forEach((el, i) => {
-      setTimeout(() => el.classList.add("shown"), i * 60);
-    });
+  articles.forEach(el => {
+    const match = activeFilter === 'all' || el.dataset.tag === activeFilter;
+    el.style.display = match ? '' : 'none';
+    if (match) visible++;
   });
+
+  // Empty state
+  let empty = document.getElementById('newsEmpty');
+  if (!visible) {
+    if (!empty) {
+      empty = document.createElement('div');
+      empty.id = 'newsEmpty';
+      empty.className = 'empty';
+      empty.innerHTML = '<div class="empty-icon">📭</div><div class="empty-title">No articles in this category yet</div>';
+      document.getElementById('newsGrid').appendChild(empty);
+    }
+    empty.style.display = '';
+  } else if (empty) {
+    empty.style.display = 'none';
+  }
 }
 
-/* filter buttons */
-document.querySelectorAll(".filter-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     activeFilter = btn.dataset.filter;
-    render();
+    filterArticles();
   });
 });
-
-render();
 </script>
-</body>
-<!-- CONTACT SUPPORT MODAL -->
-<div style="position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.3s;" id="supportModal">
-  <div style="background:#faf9f6;border:0.5px solid rgba(0,0,0,0.15);border-radius:16px;width:100%;max-width:420px;padding:2.5rem;position:relative;transform:translateY(24px) scale(0.96);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);text-align:center;" id="supportModalInner">
-    <button onclick="closeSupportModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:#eeede8;border:0.5px solid rgba(0,0,0,0.08);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;color:#9a9ca5;">✕</button>
-    <div style="font-size:2rem;margin-bottom:1rem;">💬</div>
-    <div style="font-family:var(--serif,serif);font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;color:#111111;">Contact Support</div>
-    <p style="font-size:0.83rem;color:#5a5c64;margin-bottom:2rem;line-height:1.65;">Choose the best way to reach us based on your issue.</p>
-    <div style="display:flex;flex-direction:column;gap:1rem;">
-      <a href="sms:6266281392?body=Support" style="display:block;background:rgba(234,109,16,0.08);border:0.5px solid rgba(234,109,16,0.25);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
-        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#ea6d10;margin-bottom:0.35rem;">📦 Order Support</div>
-        <div style="font-size:1rem;font-weight:700;color:#111111;margin-bottom:0.2rem;">Text &ldquo;Support&rdquo; to (626) 628-1392</div>
-        <div style="font-size:0.75rem;color:#5a5c64;">For issues with your order, machine, or payment</div>
-      </a>
-      <a href="mailto:help@craverobotics.co" style="display:block;background:#eeede8;border:0.5px solid rgba(0,0,0,0.08);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
-        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5a5c64;margin-bottom:0.35rem;">✉️ All Other Inquiries</div>
-        <div style="font-size:1rem;font-weight:700;color:#111111;margin-bottom:0.2rem;">help@craverobotics.co</div>
-        <div style="font-size:0.75rem;color:#5a5c64;">Partnerships, press, general questions</div>
-      </a>
-    </div>
-  </div>
 </div>
 <script>
 function openSupportModal(){var m=document.getElementById("supportModal");m.style.opacity="1";m.style.pointerEvents="all";document.getElementById("supportModalInner").style.transform="none";document.body.style.overflow="hidden";}
