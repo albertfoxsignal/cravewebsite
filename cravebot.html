@@ -762,7 +762,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
         </div>
 
         <div style="margin-top:1.5rem;">
-          <button class="btn" onclick="openM()">Become a Brand Partner →</button>
+          <button class="btn" onclick="openM('Food brand / partner studio')">Become a Brand Partner →</button>
         </div>
       </div>
     </div>
@@ -803,7 +803,18 @@ const io = new IntersectionObserver(entries => {
 document.querySelectorAll('.fu,.sl,.sr,.sg').forEach(el => io.observe(el));
 </script>
 <script>
-function openM(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function openM(inquiryType){
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(inquiryType){
+    const sel = document.querySelector('#mform select.finput.fsel');
+    if(sel){
+      for(let i=0;i<sel.options.length;i++){
+        if(sel.options[i].value===inquiryType){ sel.selectedIndex=i; break; }
+      }
+    }
+  }
+}
 function closeM(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';setTimeout(()=>{document.getElementById('msucc').classList.remove('show');document.getElementById('mform').style.display='';},350);}
 async function submitM(){
   const btn = document.querySelector('.mbtn');

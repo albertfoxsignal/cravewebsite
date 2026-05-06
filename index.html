@@ -624,7 +624,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
     <li><a href="/cravebot">CraveBot</a></li>
     <li><a href="/craveos">Crave<span style="color:var(--orange)">OS</span></a></li>
   </ul>
-  <button class="nav-cta" onclick="openM()">Contact Us</button>
+  <button class="nav-cta" onclick="openM('General question')">Contact Us</button>
 </nav>
 
 <!-- BLOBS -->
@@ -891,7 +891,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
         <div class="bpcta-text">Interested in distributing your food brand through CraveBot?</div>
         <div class="bpcta-sub">We're onboarding new brand partners — reach tens of thousands of campus and hotel guests.</div>
       </div>
-      <button class="btn" onclick="openM()" style="white-space:nowrap;flex-shrink:0;">Become a Partner →</button>
+      <button class="btn" onclick="openM('Food brand / partner studio')" style="white-space:nowrap;flex-shrink:0;">Become a Partner →</button>
     </div>
   </section>
 </div>
@@ -1016,7 +1016,18 @@ async function submitEmail() {
 function openContactModal(){document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeContactModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('contactModal').addEventListener('click',e=>{if(e.target===document.getElementById('contactModal'))closeContactModal();});
-function openM(){document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function openM(inquiryType){
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(inquiryType){
+    const sel = document.querySelector('#mform select.finput.fsel');
+    if(sel){
+      for(let i=0;i<sel.options.length;i++){
+        if(sel.options[i].value===inquiryType){ sel.selectedIndex=i; break; }
+      }
+    }
+  }
+}
 function closeM(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';setTimeout(()=>{document.getElementById('msucc').classList.remove('show');document.getElementById('mform').style.display='';},350);}
 async function submitM(){
   const btn = document.querySelector('.mbtn');

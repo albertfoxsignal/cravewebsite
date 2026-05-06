@@ -852,8 +852,19 @@ document.querySelectorAll('.fu,.sl,.sr,.sg,.rw').forEach(el => io.observe(el));
 </script>
 
 <script>
-function openCraveOSModal() { openM(); }
-function openM() { document.getElementById('modal').classList.add('open'); document.body.style.overflow='hidden'; }
+function openCraveOSModal() { openM('CraveOS inquiry'); }
+function openM(inquiryType) {
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(inquiryType){
+    const sel = document.querySelector('#mform select.finput.fsel');
+    if(sel){
+      for(let i=0;i<sel.options.length;i++){
+        if(sel.options[i].value===inquiryType){ sel.selectedIndex=i; break; }
+      }
+    }
+  }
+}
 function closeM() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow=''; setTimeout(()=>{ document.getElementById('msucc').classList.remove('show'); document.getElementById('mform').style.display=''; }, 350); }
 
 async function submitM() {
