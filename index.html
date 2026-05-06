@@ -222,8 +222,9 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 .bphead { text-align:center; margin-bottom:3.5rem; }
 .bphead .sec-sub { max-width:460px; margin:0 auto; }
 .bpgrid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:0.5px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:1rem; }
-.bpcell { background:var(--white); padding:2.5rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.8rem; transition:background 0.22s,transform 0.28s cubic-bezier(0.22,1,0.36,1); }
+.bpcell { background:var(--white); padding:2.5rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:0.8rem; transition:background 0.22s,transform 0.28s cubic-bezier(0.22,1,0.36,1); }
 .bpcell:hover { background:var(--bg); transform:scale(0.96); }
+.bpimg-wrap { height:110px; display:flex; align-items:center; justify-content:center; }
 .bpimg { width:100%; max-width:130px; height:60px; object-fit:contain; display:block; mix-blend-mode:multiply; }
 .bpname { font-size:0.66rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--textM); text-align:center; }
 .bpslot { width:130px; height:60px; display:flex; align-items:center; justify-content:center; border:0.5px dashed var(--border); border-radius:6px; }
@@ -869,19 +870,19 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
     </div>
     <div class="bpgrid sg">
       <div class="bpcell">
-        <img class="bpimg" src="https://static.wixstatic.com/media/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png/v1/fill/w_280,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png" alt="Gourmet Now" loading="lazy" />
+        <div class="bpimg-wrap"><img class="bpimg" src="https://static.wixstatic.com/media/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png/v1/fill/w_280,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png" alt="Gourmet Now" loading="lazy" /></div>
         <div class="bpname">Gourmet Now</div>
       </div>
       <div class="bpcell">
-        <img class="bpimg" src="/TucsonFoods_Logo-02.webp" alt="Tucson Foods" loading="lazy" style="max-width:281px;height:125px;" />
+        <div class="bpimg-wrap"><img class="bpimg" src="/TucsonFoods_Logo-02.webp" alt="Tucson Foods" loading="lazy" style="max-width:281px;height:125px;" /></div>
         <div class="bpname">Tucson Foods</div>
       </div>
       <div class="bpcell">
-        <img class="bpimg" src="/Chubby%20Foods%20Logo.webp" alt="Chubby Foods" loading="lazy" />
+        <div class="bpimg-wrap"><img class="bpimg" src="/Chubby%20Foods%20Logo.webp" alt="Chubby Foods" loading="lazy" /></div>
         <div class="bpname">Chubby Foods</div>
       </div>
       <div class="bpcell">
-        <img class="bpimg" src="/SUK_Logo_Red.png" alt="Sukhi's" loading="lazy" />
+        <div class="bpimg-wrap"><img class="bpimg" src="/SUK_Logo_Red.png" alt="Sukhi's" loading="lazy" /></div>
         <div class="bpname">Sukhi's</div>
       </div>
     </div>
