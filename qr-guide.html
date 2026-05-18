@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>How to Redeem a QR Code — CraveBot</title>
+<meta name="description" content="Step-by-step guide to redeeming a QR code coupon or discount at a CraveBot automated food kiosk." />
+<meta name="robots" content="noindex, follow" />
+<link rel="icon" type="image/svg+xml" href="/icon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#f5f4f0; --white:#fff;
+  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.13);
+  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.1); --orangeL:#fff3eb;
+  --text:#111; --textS:#5a5c64; --textM:#9a9ca5;
+  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+  --green:#16a34a; --greenD:rgba(22,163,74,0.1);
+}
+html { scroll-behavior:smooth; }
+body {
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* NAV */
+nav {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 1.5rem; height:60px;
+  background:rgba(245,244,240,0.95); backdrop-filter:blur(20px);
+  border-bottom:0.5px solid var(--border);
+  position:sticky; top:0; z-index:100;
+}
+.nav-logo { display:flex; align-items:center; gap:8px; text-decoration:none; color:var(--text); font-weight:800; font-size:0.85rem; letter-spacing:0.04em; }
+.nav-back { font-size:0.7rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textS); text-decoration:none; }
+
+/* HERO */
+.hero {
+  background:linear-gradient(135deg, var(--orange) 0%, #f07e2a 60%, #f5a64d 100%);
+  padding:3rem 1.5rem 2.5rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(circle at 80% 20%, rgba(255,255,255,0.12) 0%, transparent 60%),
+             radial-gradient(circle at 20% 80%, rgba(0,0,0,0.08) 0%, transparent 50%);
+}
+.hero-icon {
+  font-size:3rem; margin-bottom:1rem;
+  animation:pop 0.6s cubic-bezier(0.22,1,0.36,1) both;
+  display:block; position:relative;
+}
+@keyframes pop { from { transform:scale(0.5); opacity:0; } to { transform:scale(1); opacity:1; } }
+.hero h1 {
+  font-family:var(--serif);
+  font-size:clamp(1.8rem, 6vw, 2.5rem);
+  font-weight:700;
+  color:#fff;
+  line-height:1.1;
+  letter-spacing:-0.02em;
+  margin-bottom:0.75rem;
+  position:relative;
+  opacity:0; transform:translateY(16px);
+  animation:up 0.7s cubic-bezier(0.22,1,0.36,1) 0.15s forwards;
+}
+.hero p {
+  font-size:0.88rem;
+  color:rgba(255,255,255,0.88);
+  line-height:1.65;
+  max-width:360px;
+  margin:0 auto;
+  position:relative;
+  opacity:0; transform:translateY(12px);
+  animation:up 0.7s cubic-bezier(0.22,1,0.36,1) 0.28s forwards;
+}
+@keyframes up { to { opacity:1; transform:none; } }
+
+/* MAIN */
+main {
+  flex:1;
+  max-width:540px;
+  margin:0 auto;
+  width:100%;
+  padding:2rem 1.25rem 4rem;
+}
+
+/* STEPS */
+.steps { display:flex; flex-direction:column; gap:1.1rem; }
+
+.step {
+  background:var(--white);
+  border:0.5px solid var(--border);
+  border-radius:16px;
+  padding:1.4rem 1.4rem 1.4rem 1.1rem;
+  display:flex;
+  gap:1.1rem;
+  align-items:flex-start;
+  opacity:0; transform:translateY(20px);
+  transition:box-shadow 0.25s;
+}
+.step.shown { animation:up 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
+.step:hover { box-shadow:0 8px 24px rgba(0,0,0,0.07); }
+
+.step-num {
+  flex-shrink:0;
+  width:36px; height:36px;
+  border-radius:50%;
+  background:var(--orange);
+  color:#fff;
+  font-weight:800;
+  font-size:0.9rem;
+  display:flex; align-items:center; justify-content:center;
+  margin-top:1px;
+}
+
+.step-content { flex:1; }
+.step-eyebrow {
+  font-size:0.6rem;
+  font-weight:800;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--orange);
+  margin-bottom:0.3rem;
+}
+.step-title {
+  font-family:var(--serif);
+  font-size:1.15rem;
+  font-weight:700;
+  letter-spacing:-0.015em;
+  color:var(--text);
+  margin-bottom:0.45rem;
+  line-height:1.2;
+}
+.step-body {
+  font-size:0.84rem;
+  color:var(--textS);
+  line-height:1.7;
+}
+.step-icon {
+  font-size:1.6rem;
+  margin-bottom:0.5rem;
+  display:block;
+}
+
+/* TIP BOX */
+.tip {
+  background:var(--greenD);
+  border:0.5px solid rgba(22,163,74,0.25);
+  border-radius:10px;
+  padding:0.9rem 1rem;
+  margin-top:0.85rem;
+  font-size:0.8rem;
+  color:#166534;
+  line-height:1.65;
+  display:flex;
+  gap:0.6rem;
+  align-items:flex-start;
+}
+.tip-icon { flex-shrink:0; font-size:1rem; margin-top:1px; }
+
+/* HELP */
+.help-card {
+  background:var(--orangeL);
+  border:0.5px solid rgba(234,109,16,0.2);
+  border-radius:14px;
+  padding:1.4rem;
+  margin-top:2rem;
+  text-align:center;
+}
+.help-card h3 {
+  font-family:var(--serif);
+  font-size:1.1rem;
+  font-weight:700;
+  margin-bottom:0.4rem;
+  color:var(--text);
+}
+.help-card p { font-size:0.82rem; color:var(--textS); margin-bottom:1rem; line-height:1.6; }
+.help-btn {
+  display:inline-flex; align-items:center; gap:0.5rem;
+  background:var(--orange); color:#fff;
+  font-family:var(--font); font-size:0.78rem; font-weight:700;
+  letter-spacing:0.06em; text-transform:uppercase;
+  padding:0.7rem 1.4rem; border-radius:8px;
+  text-decoration:none; transition:opacity 0.2s;
+}
+.help-btn:hover { opacity:0.88; }
+
+/* FOOTER */
+footer {
+  border-top:0.5px solid var(--border);
+  padding:1.5rem;
+  text-align:center;
+  font-size:0.72rem;
+  color:var(--textM);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.5rem;
+}
+footer a { color:var(--textM); text-decoration:none; }
+footer a:hover { color:var(--text); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="/icon.svg" alt="CraveBot" style="height:26px;width:auto;" />
+    <span>CRAVEBOT</span>
+  </a>
+  <a href="/" class="nav-back">← Home</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-icon">📲</span>
+  <h1>How to Redeem<br>Your QR Code</h1>
+  <p>Follow these 4 simple steps to apply your coupon, discount, or gift card at any CraveBot kiosk.</p>
+</div>
+
+<!-- STEPS -->
+<main>
+  <!-- QR Instructions image -->
+  <div style="border-radius:16px;overflow:hidden;border:0.5px solid var(--border);margin-bottom:1.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.07);">
+    <img src="/qr-instructions.webp" alt="How to use the CraveBot QR code — 4 step visual guide" style="width:100%;display:block;" />
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-eyebrow">Step 1</div>
+        <span class="step-icon">🪪</span>
+        <div class="step-title">Tap "Staff Card / Discount Code"</div>
+        <div class="step-body">
+          On the CraveBot touchscreen, tap the <strong>Staff Card, Discount Code Scan</strong> option. This opens the barcode scanner on the kiosk and prepares it to accept your QR code or coupon.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-eyebrow">Step 2</div>
+        <span class="step-icon">🎁</span>
+        <div class="step-title">Select "Scan Barcode" — Coupon or Gift Card</div>
+        <div class="step-body">
+          Choose whether you're redeeming a <strong>Coupon</strong> or a <strong>Gift Card</strong>. Select the option that matches what you received. The scanner window will open on screen.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-eyebrow">Step 3</div>
+        <span class="step-icon">📷</span>
+        <div class="step-title">Scan Your Coupon Code</div>
+        <div class="step-body">
+          Hold your QR code or barcode up to the scanner on the kiosk. The scanner is located on the front panel — align your code with the scanning window and hold steady until it beeps or confirms.
+        </div>
+        <div class="tip">
+          <span class="tip-icon">💡</span>
+          <span>Make sure your screen brightness is turned up so the QR code is clearly visible. Most phones need at least 70% brightness for a reliable scan.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-eyebrow">Step 4</div>
+        <span class="step-icon">✅</span>
+        <div class="step-title">Discount Applied — Place Your Order</div>
+        <div class="step-body">
+          Once your code is accepted, the discount or credit will be applied to your order automatically. Browse the menu, select your meal, and complete your purchase. Your CraveBot will start heating your food right away — ready in under 3 minutes!
+        </div>
+        <div class="tip">
+          <span class="tip-icon">⏱️</span>
+          <span>Codes are single-use. If your code isn't scanning, make sure it hasn't already been redeemed, or contact us for a replacement.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HELP -->
+  <div class="help-card">
+    <h3>Having trouble?</h3>
+    <p>Text our support line and we'll help you out right away.</p>
+    <a href="sms:6266281392?body=Support" class="help-btn">💬 Text Support</a>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/"><img src="/icon.svg" alt="Crave Robotics" style="height:20px;width:auto;opacity:0.5;" /></a>
+  <span>© 2025 Crave Robotics™ · <a href="/privacy-policy">Privacy Policy</a></span>
+</footer>
+
+<script>
+// Stagger step reveal on scroll
+const steps = document.querySelectorAll('.step');
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('shown'), 80);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+steps.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
