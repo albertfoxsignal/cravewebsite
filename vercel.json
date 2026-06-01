@@ -1,11 +1,14 @@
 {
   "redirects": [
-    { "source": "/delete-account",     "destination": "/data-deletion",  "permanent": true },
-    { "source": "/post/:slug*",         "destination": "/news",           "permanent": true },
-    { "source": "/product-page/:slug*", "destination": "/menu",           "permanent": true },
-    { "source": "/category/:slug*",     "destination": "/menu",           "permanent": true },
-    { "source": "/blog/:slug*",         "destination": "/news",           "permanent": true },
-    { "source": "/shop/:slug*",         "destination": "/menu",           "permanent": true }
+    { "source": "/delete-account",              "destination": "/data-deletion",  "permanent": true },
+    { "source": "/en",                           "destination": "/",               "permanent": true },
+    { "source": "/en/",                          "destination": "/",               "permanent": true },
+    { "source": "/post/:slug*",                  "destination": "/news",           "permanent": true },
+    { "source": "/blog/:slug*",                  "destination": "/news",           "permanent": true },
+    { "source": "/product-page/:slug*",          "destination": "/menu",           "permanent": true },
+    { "source": "/category/:slug*",              "destination": "/menu",           "permanent": true },
+    { "source": "/shop/:slug*",                  "destination": "/menu",           "permanent": true },
+    { "source": "/products/:slug*",              "destination": "/menu",           "permanent": true }
   ],
   "rewrites": [
     { "source": "/cravebot",       "destination": "/cravebot.html" },
