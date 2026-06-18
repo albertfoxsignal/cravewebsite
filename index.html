@@ -177,10 +177,16 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 .fb { font-size:0.95rem; color:var(--textS); line-height:1.75; }
 
 /* MENU */
-.mhead { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; }
+.mhead { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2rem; }
 .mlink { font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--orange); text-decoration:none; }
-.mgrid { display:grid; grid-template-columns:repeat(5,1fr); gap:1.2rem; }
-.mc { background:var(--white); border:0.5px solid var(--border); border-radius:12px; overflow:hidden; cursor:pointer; transition:transform 0.32s cubic-bezier(0.22,1,0.36,1),box-shadow 0.32s,border-color 0.2s; }
+.mcarousel-wrap { position:relative; }
+.mcarousel-btn { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:38px; height:38px; border-radius:50%; background:var(--white); border:0.5px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.95rem; color:var(--text); transition:box-shadow 0.2s,transform 0.2s; }
+.mcarousel-btn:hover { box-shadow:0 6px 20px rgba(0,0,0,0.15); transform:translateY(-50%) scale(1.08); }
+.mcarousel-btn.prev { left:-18px; }
+.mcarousel-btn.next { right:-18px; }
+.mgrid { display:flex; gap:1.2rem; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:4px; }
+.mgrid::-webkit-scrollbar { display:none; }
+.mc { flex:0 0 calc(20% - 1rem); min-width:200px; background:var(--white); border:0.5px solid var(--border); border-radius:12px; overflow:hidden; cursor:pointer; scroll-snap-align:start; transition:transform 0.32s cubic-bezier(0.22,1,0.36,1),box-shadow 0.32s,border-color 0.2s; }
 .mc:hover { transform:translateY(-10px) scale(1.025); box-shadow:0 24px 56px rgba(0,0,0,0.11); border-color:rgba(234,109,16,0.3); }
 .mic-wrap { overflow:hidden; }
 .mic { width:100%; aspect-ratio:1; object-fit:cover; display:block; background:var(--bg3); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); }
@@ -295,8 +301,8 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
   .loc-header{flex-direction:column;align-items:flex-start;gap:1rem;}
   .loc-body{grid-template-columns:1fr;}
   #leaflet-map{min-height:320px !important;}
-  .fgrid,.mgrid{grid-template-columns:1fr;}
-  .mgrid{grid-template-columns:repeat(2,1fr);}
+  .fgrid{grid-template-columns:1fr;}
+  .mc { min-width:160px; }
   .metrics-strip{grid-template-columns:repeat(2,1fr);}
   .mcell:nth-child(2){border-right:none;}
   .bpgrid{grid-template-columns:repeat(2,1fr);}
@@ -790,7 +796,10 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
       </div>
       <a href="/menu" class="mlink">View full menu →</a>
     </div>
-    <div class="mgrid sg">
+    <div class="mcarousel-wrap">
+      <button class="mcarousel-btn prev" onclick="scrollCarousel(-1)" aria-label="Previous">&#8592;</button>
+      <button class="mcarousel-btn next" onclick="scrollCarousel(1)" aria-label="Next">&#8594;</button>
+      <div class="mgrid" id="mcarousel" sg>
       <div class="mc">
         <div class="mic-wrap" style="position:relative;">
           <img class="mic" src="/kahiki%20chicken%20bowl..png" alt="Kahiki Chicken Rice Bowl" loading="lazy" />
@@ -833,9 +842,18 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
         </div>
         <div class="minfo"><div class="mtag">New</div><div class="mname">Braised Pork Belly Rice</div><div class="mprice">$13</div></div>
       </div>
-    </div>
+    </div><!-- end mgrid -->
+    </div><!-- end mcarousel-wrap -->
   </section>
 </div>
+
+<script>
+function scrollCarousel(dir) {
+  const el = document.getElementById('mcarousel');
+  const cardW = el.querySelector('.mc').offsetWidth + 16;
+  el.scrollBy({ left: dir * cardW * 2, behavior: 'smooth' });
+}
+</script>
 
 <!-- LOCATIONS -->
 <div class="loc-wrap" id="locations">
