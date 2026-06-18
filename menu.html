@@ -116,6 +116,7 @@ nav {
 .pc-placeholder-icon { font-size:2.4rem; line-height:1; }
 .pc-placeholder-label { font-size:0.6rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--textM); }
 .pc-tag { position:absolute; top:0.7rem; left:0.7rem; font-size:0.58rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; color:#fff; z-index:2; }
+.pc-new { position:absolute; top:0.7rem; right:0.7rem; font-size:0.58rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:3px 9px; border-radius:4px; color:#fff; background:var(--orange); z-index:2; box-shadow:0 2px 8px rgba(234,109,16,0.45); }
 .tag-breakfast { background:rgba(199,149,0,0.85); }
 .tag-entree    { background:rgba(234,109,16,0.85); }
 .tag-snack     { background:rgba(59,130,246,0.85); }
@@ -351,6 +352,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <li><a href="/news">News</a></li>
       <li><a href="/privacy-policy">Privacy Policy</a></li>
       <li><a href="/data-deletion">Data Deletion</a></li>
+    <li><a href="/qr-guide">Redeem QR Code</a></li>
       <li><a href="javascript:void(0)" onclick="openSupportModal()">Contact</a></li>
     </ul>
     <div class="foot-copy">© 2025 Crave Robotics™</div>
@@ -384,6 +386,18 @@ const PRODUCTS = [
     img:"/Green_Chile_Chicken_Tamale_(1)-20260325141554.png" },
 
   // ── ENTREES ──
+  { name:"Kahiki Chicken Rice Bowl with Teriyaki Sauce", cat:"Entree", price:12, icon:"🍱", new:true,
+    img:"/kahiki_chicken_bowl_.png" },
+  { name:"Garlic Chicken Pasta",                         cat:"Entree", price:12, icon:"🍝", new:true,
+    img:"/Garlic_Chicken_Pasta.png" },
+  { name:"Chicken Parmigiana",                           cat:"Entree", price:14, icon:"🍗", new:true,
+    img:"/Chicken_Parmigian.png" },
+  { name:"Eggplant Parmigiana",                          cat:"Entree", price:13, icon:"🍆", new:true,
+    img:"/Eggplant_Parmigian.png" },
+  { name:"Organic Riced Cauliflower Stir Fry",           cat:"Entree", price:11, icon:"🥦", new:true,
+    img:"/CAULIFLOWER_RICED_.png" },
+  { name:"Braised Pork Belly Rice",                      cat:"Entree", price:13, icon:"🍚", new:true,
+    img:"/braised_pork_belly_rice.png" },
   { name:"Beef Bulgogi Fried Rice (14 oz)",   cat:"Entree", price:14, icon:"🍚",
     img:"/Beef_Bulgogi_Fried_Rice_(1)-20250814153323-20260209131318.png" },
   { name:"Blackened Chicken Alfredo",         cat:"Entree", price:14, icon:"🍝",
@@ -513,6 +527,13 @@ function buildCard(p) {
   tag.textContent = p.cat;
   wrap.appendChild(tag);
 
+  if (p.new) {
+    const badge = document.createElement("span");
+    badge.className = "pc-new";
+    badge.textContent = "New";
+    wrap.appendChild(badge);
+  }
+
   const body = document.createElement("div");
   body.className = "pc-body";
   body.innerHTML = `
@@ -587,6 +608,12 @@ render();
 
   <h3 style="font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#ea6d10;margin:1.5rem 0 0.75rem;">Entrees</h3>
   <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem;">
+    <li style="font-size:0.9rem;color:#111;">🆕 Kahiki Chicken Rice Bowl with Teriyaki Sauce — $12.00</li>
+    <li style="font-size:0.9rem;color:#111;">🆕 Garlic Chicken Pasta — $12.00</li>
+    <li style="font-size:0.9rem;color:#111;">🆕 Chicken Parmigiana — $14.00</li>
+    <li style="font-size:0.9rem;color:#111;">🆕 Eggplant Parmigiana — $13.00</li>
+    <li style="font-size:0.9rem;color:#111;">🆕 Organic Riced Cauliflower Stir Fry — $11.00</li>
+    <li style="font-size:0.9rem;color:#111;">🆕 Braised Pork Belly Rice — $13.00</li>
     <li style="font-size:0.9rem;color:#111;">Beef Bulgogi Fried Rice (14 oz) — $14.00</li>
     <li style="font-size:0.9rem;color:#111;">Blackened Chicken Alfredo — $14.00</li>
     <li style="font-size:0.9rem;color:#111;">Chicken &amp; Shrimp Chow Mein — $13.00</li>
