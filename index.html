@@ -228,8 +228,14 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 .bp-wrap { background:var(--bg); border-top:0.5px solid var(--border); }
 .bphead { text-align:center; margin-bottom:3.5rem; }
 .bphead .sec-sub { max-width:460px; margin:0 auto; }
-.bpgrid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:0.5px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:1rem; }
-.bpcell { background:var(--white); padding:2.5rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:0.8rem; transition:background 0.22s,transform 0.28s cubic-bezier(0.22,1,0.36,1); }
+.bp-carousel-wrap { position:relative; }
+.bp-btn { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:36px; height:36px; border-radius:50%; background:var(--white); border:0.5px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.9rem; color:var(--text); transition:box-shadow 0.2s,transform 0.2s; }
+.bp-btn:hover { box-shadow:0 6px 20px rgba(0,0,0,0.15); transform:translateY(-50%) scale(1.08); }
+.bp-btn.prev { left:-16px; }
+.bp-btn.next { right:-16px; }
+.bpgrid { display:flex; gap:1px; background:var(--border); border:0.5px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:1rem; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+.bpgrid::-webkit-scrollbar { display:none; }
+.bpcell { background:var(--white); padding:2.5rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:0.8rem; transition:background 0.22s,transform 0.28s cubic-bezier(0.22,1,0.36,1); flex:0 0 25%; min-width:180px; scroll-snap-align:start; }
 .bpcell:hover { background:var(--bg); transform:scale(0.96); }
 .bpimg-wrap { height:110px; display:flex; align-items:center; justify-content:center; }
 .bpimg { width:100%; max-width:130px; height:60px; object-fit:contain; display:block; mix-blend-mode:multiply; }
@@ -905,7 +911,10 @@ function scrollCarousel(dir) {
       <div class="rw fu" style="transition-delay:0.1s"><h2 class="sec-title"><span class="rl">Our brand partners</span></h2></div>
       <p class="sec-sub fu" style="transition-delay:0.2s">We work with established food brands and emerging culinary creators to expand their reach through our automated kiosk network.</p>
     </div>
-    <div class="bpgrid sg">
+    <div class="bp-carousel-wrap">
+      <button class="bp-btn prev" onclick="scrollBP(-1)" aria-label="Previous">&#8592;</button>
+      <button class="bp-btn next" onclick="scrollBP(1)" aria-label="Next">&#8594;</button>
+      <div class="bpgrid sg" id="bpcarousel">
       <div class="bpcell">
         <div class="bpimg-wrap"><img class="bpimg" src="https://static.wixstatic.com/media/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png/v1/fill/w_280,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png" alt="Gourmet Now" loading="lazy" /></div>
         <div class="bpname">Gourmet Now</div>
@@ -922,6 +931,12 @@ function scrollCarousel(dir) {
         <div class="bpimg-wrap"><img class="bpimg" src="/SUK_Logo_Red.png" alt="Sukhi's" loading="lazy" /></div>
         <div class="bpname">Sukhi's</div>
       </div>
+      <div class="bpcell">
+        <div class="bpimg-wrap"><img class="bpimg" src="/jojo-logo.webp" alt="JoJo's Kitchen Taiwan Eats" loading="lazy" style="max-width:110px;height:90px;" /></div>
+        <div class="bpname">JoJo's Kitchen</div>
+      </div>
+    </div><!-- end bpgrid -->
+    </div><!-- end bp-carousel-wrap -->
     </div>
     <div class="bpcta fu" style="transition-delay:0.3s">
       <div>
@@ -1055,6 +1070,7 @@ async function submitEmail() {
 }
 
 /* MODAL */
+function scrollBP(dir){const el=document.getElementById('bpcarousel');const cell=el.querySelector('.bpcell');el.scrollBy({left:dir*(cell.offsetWidth+1),behavior:'smooth'});}
 function openContactModal(){document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';}
 function closeContactModal(){document.getElementById('contactModal').classList.remove('open');document.body.style.overflow='';}
 document.getElementById('contactModal').addEventListener('click',e=>{if(e.target===document.getElementById('contactModal'))closeContactModal();});
