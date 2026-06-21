@@ -233,7 +233,7 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 .bp-btn:hover { box-shadow:0 6px 20px rgba(0,0,0,0.15); transform:translateY(-50%) scale(1.08); }
 .bp-btn.prev { left:-16px; }
 .bp-btn.next { right:-16px; }
-.bpgrid { display:flex; gap:1px; background:var(--border); border:0.5px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:1rem; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+.bpgrid { display:flex; gap:1px; background:var(--border); border:0.5px solid var(--border); border-radius:12px 12px 0 0; overflow:hidden; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
 .bpgrid::-webkit-scrollbar { display:none; }
 .bpcell { background:var(--white); padding:2.5rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:0.8rem; transition:background 0.22s,transform 0.28s cubic-bezier(0.22,1,0.36,1); flex:0 0 25%; min-width:180px; scroll-snap-align:start; }
 .bpcell:hover { background:var(--bg); transform:scale(0.96); }
@@ -242,7 +242,7 @@ section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
 .bpname { font-size:0.66rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--textM); text-align:center; }
 .bpslot { width:130px; height:60px; display:flex; align-items:center; justify-content:center; border:0.5px dashed var(--border); border-radius:6px; }
 .bpslot span { font-size:0.62rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--textM); }
-.bpcta { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:0.5px solid var(--border); border-radius:12px; padding:1.8rem 2rem; margin-top:1rem; gap:2rem; }
+.bpcta { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:0.5px solid var(--border); border-top:none; border-radius:0 0 12px 12px; padding:1.8rem 2rem; gap:2rem; }
 .bpcta-text { font-size:0.9rem; font-weight:600; color:var(--text); }
 .bpcta-sub { font-size:0.78rem; color:var(--textS); margin-top:3px; }
 
@@ -936,15 +936,14 @@ function scrollCarousel(dir) {
         <div class="bpname">JoJo's Kitchen</div>
       </div>
     </div><!-- end bpgrid -->
-    </div><!-- end bp-carousel-wrap -->
-    </div>
-    <div class="bpcta fu" style="transition-delay:0.3s">
-      <div>
-        <div class="bpcta-text">Interested in distributing your food brand through CraveBot?</div>
-        <div class="bpcta-sub">We're onboarding new brand partners — reach tens of thousands of campus and hotel guests.</div>
+      <div class="bpcta fu" style="transition-delay:0.3s;margin-top:1px;">
+        <div>
+          <div class="bpcta-text">Interested in distributing your food brand through CraveBot?</div>
+          <div class="bpcta-sub">We're onboarding new brand partners — reach tens of thousands of campus and hotel guests.</div>
+        </div>
+        <button class="btn" onclick="openM('Food brand / partner studio')" style="white-space:nowrap;flex-shrink:0;">Become a Partner →</button>
       </div>
-      <button class="btn" onclick="openM('Food brand / partner studio')" style="white-space:nowrap;flex-shrink:0;">Become a Partner →</button>
-    </div>
+    </div><!-- end bp-carousel-wrap -->
   </section>
 </div>
 
