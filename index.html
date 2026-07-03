@@ -41,286 +41,201 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
-  --surface:rgba(255,255,255,0.72); --surface2:rgba(255,255,255,0.95);
-  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.15);
-  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12); --orangeG:rgba(234,109,16,0.22);
-  --lemon:#c79500; --lemonD:rgba(199,149,0,0.1);
-  --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
-  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F4EFE6; --bg2:#EDE7DB; --bg3:#E5DFD2; --white:#FCFAF5;
+  --border:rgba(30,42,56,0.1); --borderB:rgba(30,42,56,0.18);
+  --orange:#C73E1F; --orangeD:rgba(199,62,31,0.1);
+  --lemon:#F5A623; --green:#5A8F4A; --brown:#7A4A2A; --crimson:#C0392B;
+  --text:#1E2A38; --textS:#5A6472; --textM:#9AA2AC;
+  --font:'Montserrat',sans-serif; --serif:'Bebas Neue',sans-serif;
 }
-html { scroll-behavior:smooth; }
-body { font-family:var(--font); background:var(--bg); color:var(--text); overflow-x:hidden; }
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+
+/* LABEL FRAME */
+.label-frame{position:fixed;inset:0;pointer-events:none;z-index:500;}
+.label-frame::before{content:'';position:absolute;inset:0;border:4px solid var(--orange);border-right-width:16px;}
+@media(max-width:640px){.label-frame::before{border-width:3px;border-right-width:10px;}}
 
 /* NAV */
-nav {
-  position:fixed; top:0; left:0; right:0; z-index:200;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:0 3rem; height:68px;
-  background:rgba(245,244,240,0.9); backdrop-filter:blur(20px);
-  border-bottom:0.5px solid var(--border);
-  transition:box-shadow 0.3s;
-}
-nav.scrolled { box-shadow:0 4px 32px rgba(0,0,0,0.06); }
-.nav-logo { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1rem; letter-spacing:0.04em; text-decoration:none; color:var(--text); }
-.logo-mark { width:36px; height:36px; background:linear-gradient(135deg,var(--orange),var(--lemon)); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:0.8rem; color:#fff; flex-shrink:0; }
-.nav-links { display:flex; gap:2rem; list-style:none; }
-.nav-links a { font-size:0.75rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--textS); text-decoration:none; transition:color 0.2s; }
-.nav-links a:hover { color:var(--text); }
-.nav-cta { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.73rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; padding:0.55rem 1.3rem; border-radius:6px; cursor:pointer; transition:opacity 0.2s,transform 0.15s; }
-.nav-cta:hover { opacity:0.88; transform:translateY(-1px); }
+nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(244,239,230,0.92);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-name{font-weight:800;font-size:0.92rem;letter-spacing:0.04em;color:var(--text);}
+.nav-links{display:flex;gap:1.1rem;list-style:none;align-items:center;}
+.nav-links a{font-size:0.73rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;color:var(--textS);text-decoration:none;position:relative;padding:0.5rem 0.85rem;border-radius:6px;overflow:hidden;z-index:1;transition:color 0.25s ease;}
+.nav-links a::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--sweep,var(--orange));transform:scaleX(0);transform-origin:left center;transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);border-radius:6px;}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::before{transform:scaleX(1);}
+.nav-links li:nth-child(1) a{--sweep:#C73E1F;}
+.nav-links li:nth-child(2) a{--sweep:#F5A623;}
+.nav-links li:nth-child(3) a{--sweep:#5A8F4A;}
+.nav-links li:nth-child(4) a{--sweep:#7A4A2A;}
+.nav-cta{background:var(--orange);color:#fff;font-family:var(--font);font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;border-radius:7px;padding:0.72rem 1.5rem;cursor:pointer;transition:opacity 0.2s;}
+.nav-cta:hover{opacity:0.88;}
 
-/* HERO BLOBS */
-.hero-bg { position:fixed; inset:0; z-index:-1; pointer-events:none; background:var(--bg); overflow:hidden; }
-.blob { position:absolute; border-radius:50%; filter:blur(80px); }
-.blob1 { width:700px; height:700px; top:-10%; right:0%; background:radial-gradient(circle,rgba(234,109,16,0.18) 0%,transparent 70%); animation:b1 14s ease-in-out infinite alternate; }
-.blob2 { width:520px; height:520px; bottom:10%; left:-5%; background:radial-gradient(circle,rgba(199,149,0,0.12) 0%,transparent 70%); animation:b2 18s ease-in-out infinite alternate; }
-@keyframes b1 { to { transform:translate(-60px,40px) scale(1.08); } }
-@keyframes b2 { to { transform:translate(40px,-50px) scale(1.06); } }
+/* HERO */
+.hero{max-width:1280px;margin:0 auto;padding:6rem 3rem 5rem;}
+@keyframes hIn{to{opacity:1;transform:none;}}
+.hero-h1{font-family:var(--serif);font-size:clamp(4rem,8.5vw,8rem);font-weight:400;line-height:0.92;letter-spacing:0.005em;color:var(--text);margin-bottom:1.4rem;opacity:0;transform:translateY(24px);animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.15s forwards;}
+.hero-h1 em{font-style:normal;color:var(--orange);}
+.hero-sub{font-size:1rem;color:var(--textS);max-width:540px;margin-bottom:2.4rem;opacity:0;transform:translateY(18px);animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;transform:translateY(14px);animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.42s forwards;}
+.btn{display:inline-block;background:var(--orange);color:#fff;font-family:var(--font);font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;border-radius:8px;padding:1rem 2.2rem;cursor:pointer;text-decoration:none;transition:opacity 0.2s,transform 0.15s;}
+.btn:hover{opacity:0.9;transform:translateY(-1px);}
+.btn-o{display:inline-block;background:transparent;color:var(--text);border:1.5px solid var(--borderB);border-radius:8px;font-family:var(--font);font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:calc(1rem - 1.5px) 2.2rem;cursor:pointer;text-decoration:none;transition:border-color 0.2s,color 0.2s;}
+.btn-o:hover{border-color:var(--orange);color:var(--orange);}
+.hero-meta-strip{display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:3.5rem;padding-top:2rem;border-top:1px dashed var(--borderB);opacity:0;animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.6s forwards;}
+.hm-item{display:flex;align-items:center;gap:0.8rem;}
+.hm-icon{width:40px;height:40px;border:1.5px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:0.95rem;flex-shrink:0;}
+.hm-label{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--textM);}
+.hm-val{font-family:var(--serif);font-size:1.15rem;letter-spacing:0.04em;color:var(--text);line-height:1.1;}
 
-/* HERO ENTRANCE SEQUENCE */
-.hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; padding:9rem 3rem 5rem; max-width:1280px; margin:0 auto; position:relative; }
-.hero-eyebrow { display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:0.5px solid var(--borderB); border-radius:100px; padding:0.35rem 1rem; font-size:0.7rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); width:fit-content; }
-.hdot { width:6px; height:6px; background:var(--orange); border-radius:50%; animation:pulse 2s ease-in-out infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.65);} }
-.hero-h1 { font-family:var(--serif); font-size:clamp(3rem,6.5vw,6.2rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; max-width:900px; margin-bottom:1.8rem; opacity:0; transform:translateY(28px); animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.28s forwards; }
-.hero-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.hero-sub { font-size:1.05rem; color:var(--textS); max-width:540px; line-height:1.8; margin-bottom:2.5rem; opacity:0; transform:translateY(22px); animation:hIn 0.75s cubic-bezier(0.22,1,0.36,1) 0.44s forwards; }
-.hero-btns { display:flex; gap:1rem; align-items:center; margin-bottom:5rem; opacity:0; transform:translateY(18px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.58s forwards; }
-@keyframes hIn { to { opacity:1; transform:translateY(0); } }
+/* SECTIONS */
+section{max-width:1280px;margin:0 auto;padding:5rem 3rem;}
+.eyebrow{font-size:0.66rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:0.7rem;}
+.sec-title{font-family:var(--serif);font-size:clamp(2.6rem,5vw,4rem);font-weight:400;letter-spacing:0.01em;line-height:0.95;color:var(--text);margin-bottom:1rem;}
+.sec-sub{font-size:0.92rem;color:var(--textS);max-width:540px;}
 
-/* METRICS STRIP */
-.metrics-strip { display:grid; grid-template-columns:repeat(4,1fr); border:0.5px solid var(--border); border-radius:14px; background:var(--surface); overflow:hidden; opacity:0; transform:translateY(24px) scale(0.98); animation:hIn 0.85s cubic-bezier(0.22,1,0.36,1) 0.72s forwards; }
-.mcell { padding:1.6rem 2rem; border-right:0.5px solid var(--border); }
-.mcell:last-child { border-right:none; }
-.mlabel { font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--textM); margin-bottom:0.5rem; }
-.mval { font-family:var(--serif); font-size:2.4rem; font-weight:700; color:var(--text); line-height:1; margin-bottom:0.35rem; }
-.mdelta { font-size:0.7rem; font-weight:600; color:#16a34a; display:flex; align-items:center; gap:3px; }
-.mdelta::before { content:"↑"; }
+/* MENU — label cards */
+.mhead{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;}
+.mlink{font-size:0.73rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--orange);text-decoration:none;}
+.mcarousel-wrap{position:relative;}
+.mcarousel-btn{position:absolute;top:36%;transform:translateY(-50%);z-index:10;width:38px;height:38px;border-radius:50%;background:var(--white);border:0.5px solid var(--border);box-shadow:0 4px 12px rgba(30,42,56,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.95rem;color:var(--text);transition:box-shadow 0.2s,transform 0.2s;}
+.mcarousel-btn:hover{box-shadow:0 6px 20px rgba(30,42,56,0.18);transform:translateY(-50%) scale(1.08);}
+.mcarousel-btn.prev{left:-18px;}
+.mcarousel-btn.next{right:-18px;}
+.mgrid{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 4px 8px;}
+.mgrid::-webkit-scrollbar{display:none;}
+.mc{flex:0 0 calc(25% - 0.9rem);min-width:230px;background:var(--white);border:2.5px solid var(--card-color,var(--orange));border-radius:10px;overflow:hidden;cursor:pointer;scroll-snap-align:start;position:relative;transition:transform 0.32s cubic-bezier(0.22,1,0.36,1),box-shadow 0.32s;}
+.mc::after{content:'';position:absolute;top:0;right:0;bottom:0;width:7px;background:var(--card-color,var(--orange));}
+.mc:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(30,42,56,0.14);}
+.mgrid .mc:nth-child(5n+1){--card-color:#C73E1F;}
+.mgrid .mc:nth-child(5n+2){--card-color:#F5A623;}
+.mgrid .mc:nth-child(5n+3){--card-color:#C0392B;}
+.mgrid .mc:nth-child(5n+4){--card-color:#5A8F4A;}
+.mgrid .mc:nth-child(5n+5){--card-color:#7A4A2A;}
+.mc-brand{display:flex;align-items:center;gap:6px;padding:0.7rem 1rem 0.5rem;}
+.mc-brand-icon{width:16px;height:16px;border:1.5px solid var(--card-color,var(--orange));border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--card-color,var(--orange));font-size:0.45rem;flex-shrink:0;}
+.mc-brand-name{font-size:0.6rem;font-weight:600;color:var(--text);}
+.mic-wrap{overflow:hidden;position:relative;padding:0 calc(7px + 0.75rem) 0 0.75rem;}
+.mic{width:100%;aspect-ratio:1.25;object-fit:cover;display:block;background:var(--bg3);border-radius:6px;transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);}
+.mc:hover .mic{transform:scale(1.05);}
+.mnew{position:absolute;top:0.6rem;right:calc(7px + 1.3rem);background:var(--card-color,var(--orange));color:#fff;font-size:0.55rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;z-index:2;}
+.minfo{padding:0.9rem calc(7px + 1rem) 1.1rem 1rem;}
+.mname{font-family:var(--serif);font-size:1.4rem;font-weight:400;letter-spacing:0.02em;line-height:0.95;color:var(--card-color,var(--orange));margin-bottom:0.45rem;}
+.mc-meta-label{font-size:0.52rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--card-color,var(--orange));}
+.mc-meta{font-size:0.65rem;color:var(--text);margin-bottom:0.7rem;}
+.mprice{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--text);border-top:1px dashed var(--borderB);padding-top:0.55rem;display:block;}
 
-/* BUTTONS */
-.btn { background:var(--orange); color:#fff; font-family:var(--font); font-size:0.8rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; border:none; padding:0.85rem 2rem; border-radius:7px; cursor:pointer; text-decoration:none; display:inline-block; transition:opacity 0.2s,transform 0.18s; }
-.btn:hover { opacity:0.88; transform:translateY(-2px); }
-.btn-o { background:transparent; color:var(--textS); font-family:var(--font); font-size:0.8rem; font-weight:500; letter-spacing:0.04em; border:0.5px solid var(--borderB); padding:0.85rem 2rem; border-radius:7px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.2s; }
-.btn-o:hover { color:var(--text); border-color:rgba(0,0,0,0.28); background:rgba(255,255,255,0.5); }
-
-/* SECTION */
-section { padding:7rem 3rem; max-width:1280px; margin:0 auto; }
-.eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:1rem; display:block; }
-.sec-title { font-family:var(--serif); font-size:clamp(2.2rem,4vw,3.4rem); font-weight:700; line-height:1.08; letter-spacing:-0.022em; margin-bottom:1.2rem; }
-.sec-sub { font-size:1rem; color:var(--textS); max-width:540px; line-height:1.78; }
-
-/* CLIP REVEAL — text wipes up from bottom */
-.rw { overflow:hidden; }
-.rl { display:block; transform:translateY(105%); transition:transform 0.78s cubic-bezier(0.22,1,0.36,1); }
-.rw.vis .rl { transform:translateY(0); }
-.rw.vis .rl:nth-child(2) { transition-delay:0.09s; }
-.rw.vis .rl:nth-child(3) { transition-delay:0.18s; }
-
-/* SCROLL ANIMATION BASE STATES */
-.fu  { opacity:0; transform:translateY(40px);  transition:opacity 0.75s cubic-bezier(0.22,1,0.36,1),transform 0.75s cubic-bezier(0.22,1,0.36,1); }
-.sl  { opacity:0; transform:translateX(-52px); transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1); }
-.sr  { opacity:0; transform:translateX(52px);  transition:opacity 0.8s cubic-bezier(0.22,1,0.36,1),transform 0.8s cubic-bezier(0.22,1,0.36,1); }
-.su  { opacity:0; transform:scale(0.88) translateY(20px); transition:opacity 0.7s cubic-bezier(0.22,1,0.36,1),transform 0.7s cubic-bezier(0.22,1,0.36,1); }
-.vis { opacity:1 !important; transform:none !important; }
-
-/* STAGGER PARENT: children get --d offset */
-.sg > * { opacity:0; transform:translateY(30px) scale(0.96); transition:opacity 0.62s cubic-bezier(0.22,1,0.36,1) var(--d,0s),transform 0.62s cubic-bezier(0.22,1,0.36,1) var(--d,0s); }
-.sg.vis > * { opacity:1; transform:none; }
-
-/* TICKER */
-.ticker { border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); background:var(--bg2); overflow:hidden; padding:0.9rem 0; }
-.ttrack { display:flex; width:max-content; animation:ticker 30s linear infinite; }
-@keyframes ticker { to { transform:translateX(-50%); } }
-.titem { display:flex; align-items:center; gap:0.5rem; padding:0 3rem; font-size:0.72rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--textM); white-space:nowrap; }
-.tdot { width:4px; height:4px; background:var(--orange); border-radius:50%; }
-
-/* ABOUT */
-.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
-.about-highlight {
-  display: flex; align-items: flex-start; gap: 1rem;
-  background: linear-gradient(135deg, rgba(234,109,16,0.07), rgba(199,149,0,0.05));
-  border: 0.5px solid rgba(234,109,16,0.25);
-  border-radius: 10px;
-  padding: 1.2rem 1.4rem;
-  margin: 1.75rem 0 1rem;
-  font-size: 0.95rem;
-  color: var(--textS);
-  line-height: 1.7;
-  width: 100%;
-}
-.highlight-icon { font-size: 1rem; color: var(--orange); flex-shrink: 0; margin-top: 2px; }
-.sc { background:var(--white); border:0.5px solid var(--border); border-radius:12px; padding:1.25rem 1.5rem; display:flex; align-items:flex-start; transition:transform 0.28s cubic-bezier(0.22,1,0.36,1),box-shadow 0.28s; }
-.sc:hover { transform:translateY(-4px); box-shadow:0 14px 36px rgba(0,0,0,0.07); }
-.sc.acc { border-color:rgba(234,109,16,0.32); background:rgba(234,109,16,0.04); }
-.slabel { font-size:0.67rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--textS); }
-.sval { font-family:var(--serif); font-size:1.9rem; font-weight:700; color:var(--text); }
-.sval.o { color:var(--orange); }
-.sbar { height:4px; background:var(--border); border-radius:2px; overflow:hidden; margin-top:8px; }
-.sbar-fill { height:100%; background:linear-gradient(90deg,var(--orange),var(--lemon)); border-radius:2px; width:0; transition:width 1.3s cubic-bezier(0.22,1,0.36,1) 0.35s; }
-
-/* FEATURES */
-.feat-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
-.fhead { text-align:center; margin-bottom:4rem; }
-.fhead .sec-sub { max-width:480px; margin:0 auto; }
-.fgrid { display:grid; grid-template-columns:repeat(3,1fr); border:0.5px solid var(--border); border-radius:14px; overflow:hidden; gap:1px; background:var(--border); }
-.fc { background:var(--bg2); padding:2.2rem; position:relative; transition:background 0.22s,transform 0.3s cubic-bezier(0.22,1,0.36,1); }
-.fc:hover { background:var(--white); transform:scale(1.025); z-index:2; }
-.fc::before { content:''; position:absolute; top:0; left:0; right:0; height:0; background:linear-gradient(90deg,var(--orange),var(--lemon)); transition:height 0.3s cubic-bezier(0.22,1,0.36,1); }
-.fc:hover::before { height:3px; }
-.fi { width:44px; height:44px; border-radius:10px; background:var(--orangeD); border:0.5px solid rgba(234,109,16,0.2); display:flex; align-items:center; justify-content:center; margin-bottom:1.2rem; font-size:1.2rem; }
-.ft { font-size:1.1rem; font-weight:700; letter-spacing:-0.01em; margin-bottom:0.75rem; }
-.fb { font-size:0.95rem; color:var(--textS); line-height:1.75; }
-
-/* MENU */
-.mhead { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:2rem; }
-.mlink { font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--orange); text-decoration:none; }
-.mcarousel-wrap { position:relative; }
-.mcarousel-btn { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:38px; height:38px; border-radius:50%; background:var(--white); border:0.5px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.95rem; color:var(--text); transition:box-shadow 0.2s,transform 0.2s; }
-.mcarousel-btn:hover { box-shadow:0 6px 20px rgba(0,0,0,0.15); transform:translateY(-50%) scale(1.08); }
-.mcarousel-btn.prev { left:-18px; }
-.mcarousel-btn.next { right:-18px; }
-.mgrid { display:flex; gap:1.2rem; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:4px; }
-.mgrid::-webkit-scrollbar { display:none; }
-.mc { flex:0 0 calc(20% - 1rem); min-width:200px; background:var(--white); border:0.5px solid var(--border); border-radius:12px; overflow:hidden; cursor:pointer; scroll-snap-align:start; transition:transform 0.32s cubic-bezier(0.22,1,0.36,1),box-shadow 0.32s,border-color 0.2s; }
-.mc:hover { transform:translateY(-10px) scale(1.025); box-shadow:0 24px 56px rgba(0,0,0,0.11); border-color:rgba(234,109,16,0.3); }
-.mic-wrap { overflow:hidden; }
-.mic { width:100%; aspect-ratio:1; object-fit:cover; display:block; background:var(--bg3); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); }
-.mc:hover .mic { transform:scale(1.07); }
-.minfo { padding:1rem; }
-.mtag { display:inline-block; font-size:0.58rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--lemon); background:rgba(199,149,0,0.1); border:0.5px solid rgba(199,149,0,0.22); border-radius:4px; padding:2px 7px; margin-bottom:0.45rem; }
-.mname { font-size:0.8rem; font-weight:600; line-height:1.4; margin-bottom:0.4rem; color:var(--text); }
-.mprice { font-family:var(--serif); font-size:1.25rem; font-weight:700; color:var(--orange); }
+/* HOW IT WORKS */
+.how-wrap{background:var(--white);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);}
+.how-inner{max-width:1280px;margin:0 auto;padding:5rem 3rem;display:grid;grid-template-columns:0.85fr 1.15fr;gap:5rem;align-items:center;}
+.spec{display:flex;gap:1.5rem;padding:1.6rem 0;border-bottom:0.5px solid var(--border);align-items:flex-start;}
+.spec:last-child{border-bottom:none;}
+.spec-icon{flex-shrink:0;width:50px;height:50px;border:1.5px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:1.05rem;}
+.spec-title{font-family:var(--serif);font-size:1.4rem;letter-spacing:0.04em;color:var(--text);margin-bottom:0.15rem;}
+.spec-text{font-size:0.85rem;color:var(--textS);}
 
 /* LOCATIONS */
-.loc-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
-.loc-header { display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem; }
-.loc-body { display:grid; grid-template-columns:380px 1fr; gap:1.5rem; align-items:stretch; }
-.llist { display:flex; flex-direction:column; gap:0.5rem; max-height:none; overflow-y:auto; padding-right:4px; scrollbar-width:thin; scrollbar-color:var(--border) transparent; }
-.li { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:0.5px solid var(--border); border-radius:9px; padding:1rem 1.25rem; cursor:pointer; transition:all 0.22s cubic-bezier(0.22,1,0.36,1); }
-.li:hover { transform:translateX(5px); border-color:rgba(234,109,16,0.3); box-shadow:0 4px 16px rgba(0,0,0,0.05); }
-.li.active { border-color:rgba(234,109,16,0.45); background:rgba(234,109,16,0.05); }
-.lname { font-size:0.85rem; font-weight:700; }
-.lcity { font-size:0.7rem; color:var(--textS); margin-top:2px; }
+.loc-layout{display:grid;grid-template-columns:340px 1fr;gap:2rem;margin-top:3rem;min-height:480px;}
+.loc-list{display:flex;flex-direction:column;max-height:480px;overflow-y:auto;border:0.5px solid var(--border);border-radius:12px;background:var(--white);}
+#leaflet-map { min-height:480px; width:100%; border-radius:12px; overflow:hidden; border:0.5px solid var(--border); isolation:isolate; z-index:1; }
+#leaflet-map .leaflet-tile-pane { filter:grayscale(0.35) saturate(0.85); }
+.pop-name { font-family:var(--font); font-size:0.85rem; font-weight:700; color:var(--text); }
+.pop-city { font-size:0.7rem; color:var(--textS); margin-top:1px; }
+.pop-tag { display:inline-block; margin-top:6px; font-size:0.56rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:#fff; background:var(--orange); border-radius:4px; padding:2px 7px; }
+.leaflet-popup-content-wrapper { border-radius:10px !important; box-shadow:0 8px 28px rgba(30,42,56,0.18) !important; }
+.leaflet-popup-content { margin:12px 16px !important; }
+
+/* Location list items */
+.li { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.3rem; border-bottom:0.5px solid var(--border); cursor:pointer; transition:background 0.2s; }
+.li:last-child { border-bottom:none; }
+.li:hover { background:var(--bg); }
+.li.active { background:var(--orangeD); }
+.lname { font-family:var(--serif); font-size:1.05rem; letter-spacing:0.03em; font-weight:400; color:var(--text); line-height:1.1; }
+.lcity { font-size:0.68rem; color:var(--textM); margin-top:1px; }
 .larr { color:var(--orange); font-size:0.85rem; transition:transform 0.2s; }
 .li:hover .larr { transform:translateX(4px); }
-.loc-map-col { display:flex; flex-direction:column; min-height:0; }
-#leaflet-map { flex:1; width:100%; min-height:0; border-radius:14px; overflow:hidden; border:0.5px solid var(--border); isolation:isolate; }
-#leaflet-map .leaflet-pane,
-#leaflet-map .leaflet-top,
-#leaflet-map .leaflet-bottom,
-#leaflet-map .leaflet-control { z-index:1 !important; }
-#leaflet-map .leaflet-tile-pane { z-index:1 !important; }
-#leaflet-map .leaflet-overlay-pane { z-index:2 !important; }
-#leaflet-map .leaflet-shadow-pane { z-index:3 !important; }
-#leaflet-map .leaflet-marker-pane { z-index:4 !important; }
-#leaflet-map .leaflet-tooltip-pane { z-index:5 !important; }
-#leaflet-map .leaflet-popup-pane { z-index:6 !important; }
-.loc-header .sec-sub { max-width:100%; }
-.loc-map-label { margin-top:0.75rem; font-size:0.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--textM); text-align:center; flex-shrink:0; }
 
-
-/* BRAND PARTNERS */
-.bp-wrap { background:var(--bg); border-top:0.5px solid var(--border); }
-.bphead { text-align:center; margin-bottom:3.5rem; }
-.bphead .sec-sub { max-width:460px; margin:0 auto; }
-.bp-carousel-wrap { position:relative; }
-.bp-btn { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:36px; height:36px; border-radius:50%; background:var(--white); border:0.5px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.1); display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.9rem; color:var(--text); transition:box-shadow 0.2s,transform 0.2s; }
-.bp-btn:hover { box-shadow:0 6px 20px rgba(0,0,0,0.15); transform:translateY(-50%) scale(1.08); }
-.bp-btn.prev { left:-16px; }
-.bp-btn.next { right:-16px; }
-.bpgrid { display:flex; gap:1px; background:var(--border); border:0.5px solid var(--border); border-radius:12px 12px 0 0; overflow:hidden; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; }
-.bpgrid::-webkit-scrollbar { display:none; }
-.bpcell { background:var(--white); padding:2.5rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; gap:0.8rem; transition:background 0.22s,transform 0.28s cubic-bezier(0.22,1,0.36,1); flex:0 0 25%; min-width:180px; scroll-snap-align:start; }
-.bpcell:hover { background:var(--bg); transform:scale(0.96); }
-.bpimg-wrap { height:110px; display:flex; align-items:center; justify-content:center; }
-.bpimg { width:100%; max-width:130px; height:60px; object-fit:contain; display:block; mix-blend-mode:multiply; }
-.bpname { font-size:0.66rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--textM); text-align:center; }
-.bpslot { width:130px; height:60px; display:flex; align-items:center; justify-content:center; border:0.5px dashed var(--border); border-radius:6px; }
-.bpslot span { font-size:0.62rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--textM); }
-.bpcta { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:0.5px solid var(--border); border-top:none; border-radius:0 0 12px 12px; padding:1.8rem 2rem; gap:2rem; }
-.bpcta-text { font-size:0.9rem; font-weight:600; color:var(--text); }
-.bpcta-sub { font-size:0.78rem; color:var(--textS); margin-top:3px; }
-
-/* CONTACT */
-.ct-wrap { background:var(--bg2); border-top:0.5px solid var(--border); }
-.ct-wrap section { padding:3.5rem 3rem; }
-.ct-inner { text-align:center; }
-.ct-badge { display:inline-flex; align-items:center; gap:8px; background:var(--orangeD); border:0.5px solid rgba(234,109,16,0.28); border-radius:100px; padding:0.3rem 1rem; font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--orange); margin-bottom:1.2rem; }
-.ct-title { font-family:var(--serif); font-size:clamp(2rem,3.5vw,3rem); font-weight:700; line-height:1.08; letter-spacing:-0.025em; margin-bottom:1rem; }
-.ct-title em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.ct-sub { font-size:0.95rem; color:var(--textS); max-width:480px; margin:0 auto 1.5rem; line-height:1.7; }
-.ct-form { display:flex; gap:0.75rem; max-width:440px; margin:0 auto; }
-.ct-input { flex:1; background:var(--white); border:0.5px solid var(--borderB); border-radius:7px; padding:0.85rem 1rem; font-family:var(--font); font-size:0.85rem; color:var(--text); outline:none; transition:border-color 0.2s,box-shadow 0.2s; }
-.ct-input::placeholder { color:var(--textM); }
-.ct-input:focus { border-color:rgba(234,109,16,0.5); box-shadow:0 0 0 3px rgba(234,109,16,0.1); }
-.ct-note { margin-top:1rem; font-size:0.72rem; color:var(--textM); }
-
-/* MODAL */
-.mo { position:fixed; inset:0; z-index:300; background:rgba(0,0,0,0.3); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:1.5rem; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+/* Modal */
+.mo { position:fixed; inset:0; z-index:600; background:rgba(30,42,56,0.35); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:1.5rem; opacity:0; pointer-events:none; transition:opacity 0.3s; }
 .mo.open { opacity:1; pointer-events:all; }
-.md { background:#faf9f6; border:0.5px solid var(--borderB); border-radius:16px; width:100%; max-width:530px; padding:2.5rem; position:relative; transform:translateY(24px) scale(0.96); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); max-height:90vh; overflow-y:auto; }
+.md { background:var(--white); border:2.5px solid var(--orange); border-radius:14px; width:100%; max-width:530px; padding:2.5rem; position:relative; transform:translateY(24px) scale(0.96); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); max-height:90vh; overflow-y:auto; }
 .mo.open .md { transform:none; }
 .mc-close { position:absolute; top:1.25rem; right:1.25rem; background:var(--bg2); border:0.5px solid var(--border); border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.85rem; color:var(--textM); transition:background 0.2s; }
 .mc-close:hover { background:var(--bg3); color:var(--text); }
-.mtitle { font-family:var(--serif); font-size:1.85rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:0.35rem; }
+.mtitle { font-family:var(--serif); font-size:2rem; font-weight:400; letter-spacing:0.03em; margin-bottom:0.35rem; color:var(--text); }
 .msub { font-size:0.83rem; color:var(--textS); margin-bottom:1.8rem; line-height:1.65; }
-.fr { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+.mfr { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
 .fg { display:flex; flex-direction:column; gap:0.38rem; margin-bottom:0.75rem; }
 .flabel { font-size:0.67rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--textS); }
-.finput { background:var(--white); border:0.5px solid var(--borderB); border-radius:7px; padding:0.65rem 0.9rem; font-family:var(--font); font-size:0.85rem; color:var(--text); outline:none; transition:border-color 0.2s,box-shadow 0.2s; width:100%; }
+.finput { background:var(--white); border:0.5px solid var(--borderB); border-radius:7px; padding:0.65rem 0.9rem; font-family:var(--font); font-size:0.85rem; color:var(--text); outline:none; transition:border-color 0.2s, box-shadow 0.2s; width:100%; }
 .finput::placeholder { color:var(--textM); }
-.finput:focus { border-color:rgba(234,109,16,0.5); box-shadow:0 0 0 3px rgba(234,109,16,0.1); }
-textarea.finput { resize:vertical; min-height:90px; line-height:1.6; }
-.fsel { appearance:none; background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%239a9ca5' d='M5 7L0 2h10z'/%3E%3C/svg%3E") no-repeat right 0.9rem center; }
-.mbtn { width:100%; margin-top:1rem; background:var(--orange); color:#fff; font-family:var(--font); font-size:0.82rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; border-radius:7px; padding:0.9rem; cursor:pointer; transition:opacity 0.2s,transform 0.15s; }
-.mbtn:hover { opacity:0.88; transform:translateY(-1px); }
+.finput:focus { border-color:rgba(199,62,31,0.5); box-shadow:0 0 0 3px rgba(199,62,31,0.1); }
+.fsel { appearance:none; cursor:pointer; }
+.mbtn { width:100%; margin-top:1rem; background:var(--orange); color:#fff; font-family:var(--font); font-size:0.82rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; border-radius:7px; padding:0.9rem; cursor:pointer; transition:opacity 0.2s; }
+.mbtn:hover { opacity:0.88; }
 .msucc { text-align:center; padding:2.5rem 0; display:none; flex-direction:column; align-items:center; gap:1rem; }
 .msucc.show { display:flex; }
-.sico { width:56px; height:56px; border-radius:50%; background:rgba(22,163,74,0.1); border:0.5px solid rgba(22,163,74,0.3); display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
-.msucc h3 { font-family:var(--serif); font-size:1.6rem; font-weight:700; }
+.msucc h3 { font-family:var(--serif); font-size:1.8rem; font-weight:400; letter-spacing:0.03em; }
 .msucc p { font-size:0.85rem; color:var(--textS); max-width:300px; line-height:1.65; }
+.sico { width:56px; height:56px; border-radius:50%; background:rgba(90,143,74,0.12); border:0.5px solid rgba(90,143,74,0.35); display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin:0 auto; }
 
-/* FOOTER */
-footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; margin:0 auto; }
-.ft { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:2.5rem; padding-bottom:2.5rem; border-bottom:0.5px solid var(--border); }
-.fbrand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:0.9rem; letter-spacing:0.04em; color:var(--textS); text-decoration:none; }
-.fcols { display:flex; gap:4rem; }
-.fclabel { font-size:0.65rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--textM); margin-bottom:0.9rem; }
-.fcol ul { list-style:none; display:flex; flex-direction:column; gap:0.5rem; }
-.fcol a { font-size:0.78rem; color:var(--textS); text-decoration:none; transition:color 0.2s; }
-.fcol a:hover { color:var(--text); }
-.fb2 { display:flex; justify-content:space-between; align-items:center; }
-.fcopy { font-size:0.72rem; color:var(--textM); }
-.fcontact { font-size:0.72rem; color:var(--textM); text-align:right; line-height:1.7; }
+/* PARTNERS */
+.bp-carousel-wrap{position:relative;margin-top:3rem;}
+.bp-btn{position:absolute;top:95px;transform:translateY(-50%);z-index:10;width:36px;height:36px;border-radius:50%;background:var(--white);border:0.5px solid var(--border);box-shadow:0 4px 12px rgba(30,42,56,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.9rem;color:var(--text);transition:box-shadow 0.2s,transform 0.2s;}
+.bp-btn:hover{box-shadow:0 6px 20px rgba(30,42,56,0.18);transform:translateY(-50%) scale(1.08);}
+.bp-btn.prev{left:-16px;}
+.bp-btn.next{right:-16px;}
+.bpgrid{display:flex;gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:12px 12px 0 0;overflow:hidden;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.bpgrid::-webkit-scrollbar{display:none;}
+.bpcell{flex:0 0 25%;min-width:200px;background:var(--white);padding:2.2rem 1.8rem;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:0.8rem;position:relative;transition:background 0.22s;scroll-snap-align:start;}
+.bpcell::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+#bpcarousel .bpcell:nth-child(1)::after{background:#C73E1F;}
+#bpcarousel .bpcell:nth-child(2)::after{background:#F5A623;}
+#bpcarousel .bpcell:nth-child(3)::after{background:#5A8F4A;}
+#bpcarousel .bpcell:nth-child(4)::after{background:#C0392B;}
+#bpcarousel .bpcell:nth-child(5)::after{background:#7A4A2A;}
+.bpcell:hover{background:var(--bg);}
+.bpimg-wrap{height:90px;width:100%;display:flex;align-items:center;justify-content:center;}
+.bpimg{max-width:130px;max-height:80px;width:auto;height:auto;object-fit:contain;display:block;mix-blend-mode:multiply;}
+.bpname{font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--textM);}
+.bpcta{display:flex;align-items:center;justify-content:space-between;background:var(--orange);border-radius:0 0 12px 12px;padding:2rem 2.2rem;gap:2rem;flex-wrap:wrap;}
+.bpcta-text{font-family:var(--serif);font-size:1.7rem;letter-spacing:0.02em;line-height:1;color:#fff;}
+.bpcta-sub{font-size:0.8rem;color:rgba(255,255,255,0.82);margin-top:4px;}
+.bpcta .btn{background:var(--bg);color:var(--orange);}
 
-/* MOBILE */
-@media(max-width:900px){
-  nav{padding:0 1.5rem;} .nav-links{display:none;}
-  section{padding:4rem 1.5rem;}
-  .hero{padding:7rem 1.5rem 4rem;}
-  .about-grid{grid-template-columns:1fr;gap:3rem;}
-  .loc-header{flex-direction:column;align-items:flex-start;gap:1rem;}
-  .loc-body{grid-template-columns:1fr;}
-  #leaflet-map{min-height:320px !important;}
-  .fgrid{grid-template-columns:1fr;}
-  .mc { min-width:160px; }
-  .metrics-strip{grid-template-columns:repeat(2,1fr);}
-  .mcell:nth-child(2){border-right:none;}
-  .bpgrid{grid-template-columns:repeat(2,1fr);}
-  .bpcta{flex-direction:column;align-items:flex-start;}
-  .ft{flex-direction:column;gap:2rem;}
-  .fcols{flex-wrap:wrap;gap:2rem;}
-  .fb2{flex-direction:column;gap:0.5rem;text-align:center;}
-  .fcontact{text-align:center;}
+/* FOOTER — ink */
+footer{background:#C73E1F;color:var(--bg);padding:3.5rem 3rem 2rem;}
+.foot-inner{max-width:1280px;margin:0 auto;}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2.5rem;padding-bottom:2.5rem;border-bottom:0.5px solid rgba(244,239,230,0.15);}
+.foot-brand{display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start;}
+.foot-brand-name{display:flex;align-items:center;gap:9px;font-weight:800;font-size:0.9rem;letter-spacing:0.05em;color:var(--bg);}
+.fcol .fclabel{font-size:0.62rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:rgba(244,239,230,0.5);margin-bottom:1rem;}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;}
+.fcol a{font-size:0.78rem;color:rgba(244,239,230,0.75);text-decoration:none;transition:color 0.2s;}
+.fcol a:hover{color:var(--lemon);}
+.foot-copy{padding-top:1.5rem;font-size:0.68rem;color:rgba(244,239,230,0.4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .how-inner{grid-template-columns:1fr;gap:3rem;}
+  .loc-layout{grid-template-columns:1fr;}
+  .loc-list{max-height:300px;}
 }
+@media(max-width:640px){
+  nav{padding:0 1.5rem;}
+  .nav-links{display:none;}
+  section,.hero{padding-left:1.5rem;padding-right:1.5rem;}
+  .hero-meta-strip{gap:1.5rem;}
+  .mc{min-width:200px;}
+  .bpcell{flex:0 0 50%;min-width:170px;}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}}
 </style>
-
-<!-- ── STRUCTURED DATA (SEO + AEO) ───────────────────────────────────── -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -558,8 +473,10 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
   ]
 }
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 </head>
 <body>
+<div class="label-frame"></div>
 
 <!-- CONTACT SUPPORT MODAL -->
 <div class="mo" id="contactModal" style="z-index:400;">
@@ -584,6 +501,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
     </div>
   </div>
 </div>
+
 
 <!-- MODAL -->
 <div class="mo" id="modal">
@@ -623,261 +541,113 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
   </div>
 </div>
 
+
+
 <!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo">
-    <img src="/icon.svg" alt="Crave Robotics" style="height:36px;width:auto;object-fit:contain;display:block;" />
-    <span style="font-family:var(--font);font-weight:800;font-size:0.92rem;letter-spacing:0.04em;color:var(--text);">CRAVE ROBOTICS</span>
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="/icon.svg" alt="Crave Robotics" style="height:30px;width:auto;" />
+    <span class="nav-logo-name">CRAVE ROBOTICS</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#menu">Menu</a></li>
+    <li><a href="/menu">Menu</a></li>
+    <li><a href="#how">How It Works</a></li>
     <li><a href="#locations">Locations</a></li>
     <li><a href="#partners">Partners</a></li>
-    <li><a href="/cravebot">CraveBot</a></li>
-    <li><a href="/craveos">Crave<span style="color:var(--orange)">OS</span></a></li>
   </ul>
   <button class="nav-cta" onclick="openM('General question')">Contact Us</button>
 </nav>
 
-<!-- BLOBS -->
-<div class="hero-bg"><div class="blob blob1"></div><div class="blob blob2"></div></div>
-
 <!-- HERO -->
-<main>
 <header>
-<div style="position:relative;overflow:hidden;">
   <div class="hero">
-    <h1 class="hero-h1">Making automated meals<br><em>delicious</em> and accessible</h1>
-    <p class="hero-sub">Experience the perfect fusion of automation and culinary excellence. Hot, fresh food — delivered by 18 CraveBot kiosks across Southern California university campuses, tech companies, and hotels.</p>
+    <h1 class="hero-h1">Making automated meals<br><em>delicious</em> &amp; accessible</h1>
+    <p class="hero-sub">Chef-crafted meals, robotically heated and served hot in under 3 minutes — from CraveBot kiosks on campuses, in hotels, and at workplaces across Southern California. Open 24/7.</p>
     <div class="hero-btns">
-      <a href="/menu" class="btn" target="_blank">Explore the Menu</a>
-      <a href="/cravebot" class="btn-o">View CraveBot Specs</a>
+      <a href="/menu" class="btn">See the Menu →</a>
+      <a href="/cravebot" class="btn-o">Get a CraveBot</a>
     </div>
-    <div class="metrics-strip">
-      <div class="mcell"><div class="mlabel">Machines active</div><div class="mval" id="cloc" style="font-size:1.6rem;letter-spacing:-0.01em;">SoCal</div><div class="mdelta">& growing</div></div>
-      <div class="mcell"><div class="mlabel">Avg serve time</div><div class="mval">&lt;3<span style="font-size:1rem;color:var(--textM);font-family:var(--font);font-weight:500"> min</span></div><div class="mdelta">Fully automated</div></div>
-      <div class="mcell"><div class="mlabel">Uptime</div><div class="mval">24<span style="font-size:1rem;color:var(--textM);font-family:var(--font);font-weight:500">/7</span></div><div class="mdelta">No kitchen staff needed</div></div>
-      <div class="mcell"><div class="mlabel">Menu items</div><div class="mval" id="citm">15</div><div class="mdelta">All day-parts covered</div></div>
+    <div class="hero-meta-strip">
+      <div class="hm-item"><div class="hm-icon">♨</div><div><div class="hm-label">Serve Time</div><div class="hm-val">Under 3 Min</div></div></div>
+      <div class="hm-item"><div class="hm-icon">✓</div><div><div class="hm-label">Certified</div><div class="hm-val">NSF · UL · NAMA</div></div></div>
+      <div class="hm-item"><div class="hm-icon">◷</div><div><div class="hm-label">Hours</div><div class="hm-val">Open 24/7</div></div></div>
+      <div class="hm-item"><div class="hm-icon">⚲</div><div><div class="hm-label">Coverage</div><div class="hm-val">15+ Locations</div></div></div>
     </div>
   </div>
 </header>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ttrack">
-    <span class="titem"><span class="tdot"></span>Hot meals in under 3 minutes</span>
-    <span class="titem"><span class="tdot"></span>Zero kitchen staff needed</span>
-    <span class="titem"><span class="tdot"></span>Available 24 hours a day, 7 days a week</span>
-    <span class="titem"><span class="tdot"></span>$0 operational cost to the host</span>
-    <span class="titem"><span class="tdot"></span>Breakfast, lunch, dinner &amp; late night</span>
-    <span class="titem"><span class="tdot"></span>Frozen-to-ready in minutes</span>
-    <span class="titem"><span class="tdot"></span>Fully vendor managed &amp; restocked</span>
-    <span class="titem"><span class="tdot"></span>96% fleet uptime</span>
-    <span class="titem"><span class="tdot"></span>Real-time sales analytics</span>
-    <span class="titem"><span class="tdot"></span>Incremental revenue for your venue</span>
-    <span class="titem"><span class="tdot"></span>Touchless &amp; contactless ordering</span>
-    <span class="titem"><span class="tdot"></span>Private label &amp; branded menu options</span>
-    <span class="titem"><span class="tdot"></span>Cold chain logistics &amp; replenishment</span>
-    <span class="titem"><span class="tdot"></span>Hot meals in under 3 minutes</span>
-    <span class="titem"><span class="tdot"></span>Zero kitchen staff needed</span>
-    <span class="titem"><span class="tdot"></span>Available 24 hours a day, 7 days a week</span>
-    <span class="titem"><span class="tdot"></span>$0 operational cost to the host</span>
-    <span class="titem"><span class="tdot"></span>Breakfast, lunch, dinner &amp; late night</span>
-    <span class="titem"><span class="tdot"></span>Frozen-to-ready in minutes</span>
-    <span class="titem"><span class="tdot"></span>Fully vendor managed &amp; restocked</span>
-    <span class="titem"><span class="tdot"></span>96% fleet uptime</span>
-    <span class="titem"><span class="tdot"></span>Real-time sales analytics</span>
-    <span class="titem"><span class="tdot"></span>Incremental revenue for your venue</span>
-    <span class="titem"><span class="tdot"></span>Touchless &amp; contactless ordering</span>
-    <span class="titem"><span class="tdot"></span>Private label &amp; branded menu options</span>
-    <span class="titem"><span class="tdot"></span>Cold chain logistics &amp; replenishment</span>
+<!-- MENU -->
+<section id="menu">
+  <div class="mhead">
+    <div>
+      <span class="eyebrow">What's New</span>
+      <h2 class="sec-title">Fresh on the Menu</h2>
+    </div>
+    <a href="/menu" class="mlink">View Full Menu →</a>
+  </div>
+  <div class="mcarousel-wrap">
+    <button class="mcarousel-btn prev" onclick="scrollCarousel(-1)" aria-label="Previous">←</button>
+    <button class="mcarousel-btn next" onclick="scrollCarousel(1)" aria-label="Next">→</button>
+    <div class="mgrid" id="mcarousel">
+      <div class="mc">
+        <div class="mc-brand"><span class="mc-brand-icon">Ψ</span><span class="mc-brand-name">Crave Select</span></div>
+        <div class="mic-wrap"><img class="mic" src="/kahiki%20chicken%20bowl..png" alt="Kahiki Chicken Bowl" loading="lazy" /><span class="mnew">New</span></div>
+        <div class="minfo"><div class="mname">Kahiki Chicken Bowl</div><div class="mc-meta-label">Allergens:</div><div class="mc-meta">Soy, Wheat</div><div class="mprice">$12</div></div>
+      </div>
+      <div class="mc">
+        <div class="mc-brand"><span class="mc-brand-icon">Ψ</span><span class="mc-brand-name">Crave Select</span></div>
+        <div class="mic-wrap"><img class="mic" src="/Garlic%20Chicken%20Pasta.png" alt="Garlic Chicken Pasta" loading="lazy" /><span class="mnew">New</span></div>
+        <div class="minfo"><div class="mname">Garlic Chicken Pasta</div><div class="mc-meta-label">Allergens:</div><div class="mc-meta">Wheat, Milk</div><div class="mprice">$12</div></div>
+      </div>
+      <div class="mc">
+        <div class="mc-brand"><span class="mc-brand-icon">Ψ</span><span class="mc-brand-name">Crave Select</span></div>
+        <div class="mic-wrap"><img class="mic" src="/Chicken%20Parmigian.png" alt="Chicken Parmigiana" loading="lazy" /><span class="mnew">New</span></div>
+        <div class="minfo"><div class="mname">Chicken Parmigiana</div><div class="mc-meta-label">Allergens:</div><div class="mc-meta">Wheat, Milk, Egg</div><div class="mprice">$14</div></div>
+      </div>
+      <div class="mc">
+        <div class="mc-brand"><span class="mc-brand-icon">Ψ</span><span class="mc-brand-name">Crave Select</span></div>
+        <div class="mic-wrap"><img class="mic" src="/Eggplant%20Parmigian.png" alt="Eggplant Parmigiana" loading="lazy" /><span class="mnew">New</span></div>
+        <div class="minfo"><div class="mname">Eggplant Parmigiana</div><div class="mc-meta-label">Allergens:</div><div class="mc-meta">Wheat, Milk</div><div class="mprice">$13</div></div>
+      </div>
+      <div class="mc">
+        <div class="mc-brand"><span class="mc-brand-icon">Ψ</span><span class="mc-brand-name">Crave Select</span></div>
+        <div class="mic-wrap"><img class="mic" src="/CAULIFLOWER%20RICED%20.png" alt="Riced Cauliflower Stir Fry" loading="lazy" /><span class="mnew">New</span></div>
+        <div class="minfo"><div class="mname">Riced Cauliflower</div><div class="mc-meta-label">Allergens:</div><div class="mc-meta">Vegan · Gluten-Free</div><div class="mprice">$11</div></div>
+      </div>
+      <div class="mc">
+        <div class="mc-brand"><span class="mc-brand-icon">Ψ</span><span class="mc-brand-name">JoJo's Kitchen</span></div>
+        <div class="mic-wrap"><img class="mic" src="/braised%20pork%20belly%20rice.png" alt="Braised Pork Belly Rice" loading="lazy" /><span class="mnew">New</span></div>
+        <div class="minfo"><div class="mname">Braised Pork Belly</div><div class="mc-meta-label">Allergens:</div><div class="mc-meta">Soy, Wheat</div><div class="mprice">$13</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<div class="how-wrap" id="how">
+  <div class="how-inner">
+    <div>
+      <span class="eyebrow">The CraveBot System</span>
+      <h2 class="sec-title">Hot food,<br>zero kitchen</h2>
+      <p class="sec-sub">Every CraveBot is a self-contained restaurant — frozen storage, robotic retrieval, and precision heating in one certified machine.</p>
+    </div>
+    <div>
+      <div class="spec"><div class="spec-icon">☰</div><div><div class="spec-title">Pick Your Meal</div><div class="spec-text">Browse the touchscreen menu — allergens, price, and heat time shown up front on every item.</div></div></div>
+      <div class="spec"><div class="spec-icon">⬦</div><div><div class="spec-title">Tap to Pay</div><div class="spec-text">Card, mobile wallet, or campus card. Coupons and QR codes scan right at the machine.</div></div></div>
+      <div class="spec"><div class="spec-icon">⚙</div><div><div class="spec-title">Robot Does the Rest</div><div class="spec-text">CraveBot retrieves your frozen meal and heats it to serving temperature — precisely, every time.</div></div></div>
+      <div class="spec"><div class="spec-icon">♨</div><div><div class="spec-title">Eat in 3 Minutes</div><div class="spec-text">Grab your hot meal from the serving window — fresh, hot, and ready to enjoy.</div></div></div>
+    </div>
   </div>
 </div>
 
-<!-- ABOUT -->
-<div id="about">
-  <section>
-    <div class="about-grid">
-      <div class="sl">
-        <span class="eyebrow">About Us</span>
-        <div class="rw"><h2 class="sec-title"><span class="rl">Smart food service,</span><span class="rl">reinvented</span></h2></div>
-        <div class="about-highlight fu" style="transition-delay:0.2s">
-          <div class="highlight-icon">✦</div>
-          <div>Founded by <strong>Paul Chen</strong>, creator of Botrista Technology — bringing deep operational experience in food automation to every CraveBot deployment.</div>
-        </div>
-        <p class="sec-sub fu" style="transition-delay:0.3s;font-size:0.95rem;line-height:1.75;color:var(--textS);">Crave Robotics provides ready-to-eat smart vending meals in under 3 minutes — servicing U.S. captive venues including university campuses, hotels, hospitals, and transit centers.</p>
-        <p class="sec-sub fu" style="transition-delay:0.4s;margin-top:0.75rem;font-size:0.95rem;line-height:1.75;color:var(--textS);">Our turnkey solution covers all day-parts: breakfast, snacks, desserts, and dinner entrees stored frozen and replenished via our cold chain logistics network.</p>
-      </div>
-      <div class="sr">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;" class="sg">
-
-          <!-- $0 operational cost -->
-          <div class="sc acc" style="flex-direction:column;align-items:flex-start;gap:0.6rem;padding:1.4rem 1.5rem;">
-            <div class="slabel">Host operational cost</div>
-            <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--orange);line-height:1;">$0</div>
-            <div style="font-size:0.75rem;color:var(--textS);line-height:1.5;">Zero cost to install, operate, or staff. Crave handles everything.</div>
-          </div>
-
-          <!-- No kitchen staff -->
-          <div class="sc" style="flex-direction:column;align-items:flex-start;gap:0.6rem;padding:1.4rem 1.5rem;">
-            <div class="slabel">Kitchen staff required</div>
-            <div style="font-family:var(--serif);font-size:3rem;font-weight:700;color:var(--text);line-height:1;">$0</div>
-            <div style="font-size:0.75rem;color:var(--textS);line-height:1.5;">No staff to hire, train, or schedule — ever.</div>
-          </div>
-
-          <!-- 96% uptime — ring visual -->
-          <div class="sc" style="flex-direction:column;align-items:flex-start;gap:0.6rem;padding:1.4rem 1.5rem;">
-            <div class="slabel">Machine uptime</div>
-            <div style="display:flex;align-items:center;gap:1rem;margin-top:4px;">
-              <svg width="64" height="64" viewBox="0 0 64 64" style="flex-shrink:0;">
-                <circle cx="32" cy="32" r="26" fill="none" stroke="var(--border)" stroke-width="6"/>
-                <circle cx="32" cy="32" r="26" fill="none" stroke="var(--orange)" stroke-width="6"
-                  stroke-dasharray="163.4" stroke-dashoffset="6.5"
-                  stroke-linecap="round" transform="rotate(-90 32 32)"
-                  style="transition:stroke-dashoffset 1.2s cubic-bezier(0.22,1,0.36,1) 0.3s;"/>
-              </svg>
-              <div>
-                <div style="font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--text);line-height:1;">96%</div>
-                <div style="font-size:0.72rem;color:var(--textS);margin-top:2px;">avg across fleet</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Mealtime options -->
-          <div class="sc" style="flex-direction:column;align-items:flex-start;gap:0.6rem;padding:1.4rem 1.5rem;">
-            <div class="slabel">Options for any mealtime</div>
-            <div style="display:flex;flex-direction:column;gap:5px;margin-top:4px;width:100%;">
-              <div style="display:flex;align-items:center;justify-content:space-between;">
-                <span style="font-size:0.75rem;font-weight:600;color:var(--text);">🌅 Breakfast</span>
-                <span style="font-size:0.68rem;color:var(--textM);">6am – 11am</span>
-              </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;">
-                <span style="font-size:0.75rem;font-weight:600;color:var(--text);">☀️ Snacks</span>
-                <span style="font-size:0.68rem;color:var(--textM);">11am – 5pm</span>
-              </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;">
-                <span style="font-size:0.75rem;font-weight:600;color:var(--text);">🍽️ Entrees</span>
-                <span style="font-size:0.68rem;color:var(--textM);">5pm – 10pm</span>
-              </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;">
-                <span style="font-size:0.75rem;font-weight:600;color:var(--text);">🌙 Late night</span>
-                <span style="font-size:0.68rem;color:var(--textM);">10pm – 6am</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- PLATFORM -->
-<div class="feat-wrap" id="platform">
-  <section>
-    <div class="fhead">
-      <span class="eyebrow fu">The CraveBot Platform</span>
-      <div class="rw fu" style="transition-delay:0.1s"><h2 class="sec-title"><span class="rl">Not just a smart heating</span><span class="rl">vending machine</span></h2></div>
-      <p class="sec-sub fu" style="transition-delay:0.2s">A fully managed, data-driven food automation system built for modern hospitality and campus environments.</p>
-    </div>
-    <div class="fgrid sg">
-      <div class="fc"><div class="fi">🔥</div><div class="ft">Frozen-to-Ready System</div><p class="fb">Meals stored frozen and heated to perfection on demand — freshness guaranteed without prep staff or kitchen equipment.</p></div>
-      <div class="fc"><div class="fi">🕐</div><div class="ft">24/7 Availability</div><p class="fb">CraveBot operates around the clock — late night snacks, early breakfasts, anytime hunger strikes — without additional labor.</p></div>
-      <div class="fc"><div class="fi">🤝</div><div class="ft">Vendor Managed</div><p class="fb">From installation to daily operations, Crave Robotics handles everything through a trusted network of service partners.</p></div>
-      <div class="fc"><div class="fi">✋</div><div class="ft">Touchless for the Host</div><p class="fb">Restocking done by authorized agents. No staff to hire, no food prep — a seamless contactless experience.</p></div>
-      <div class="fc"><div class="fi">📈</div><div class="ft">Additional Revenue Streams</div><p class="fb">All-day dining options attract foot traffic and create new revenue with zero incremental overhead.</p></div>
-      <div class="fc"><div class="fi">📊</div><div class="ft">Real-Time Analytics</div><p class="fb">Live dashboards for sales, uptime, and product performance across every deployed machine.</p></div>
-    </div>
-  </section>
-</div>
-
-<!-- MENU -->
-<div id="menu">
-  <section>
-    <div class="mhead fu">
-      <div>
-        <span class="eyebrow">What's New</span>
-        <div class="rw"><h2 class="sec-title"><span class="rl">Fresh on the Menu</span></h2></div>
-      </div>
-      <a href="/menu" class="mlink">View full menu →</a>
-    </div>
-    <div class="mcarousel-wrap">
-      <button class="mcarousel-btn prev" onclick="scrollCarousel(-1)" aria-label="Previous">&#8592;</button>
-      <button class="mcarousel-btn next" onclick="scrollCarousel(1)" aria-label="Next">&#8594;</button>
-      <div class="mgrid" id="mcarousel" sg>
-      <div class="mc">
-        <div class="mic-wrap" style="position:relative;">
-          <img class="mic" src="/kahiki%20chicken%20bowl..png" alt="Kahiki Chicken Rice Bowl" loading="lazy" />
-          <span style="position:absolute;top:0.6rem;right:0.6rem;background:#ea6d10;color:#fff;font-size:0.55rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;z-index:2;">New</span>
-        </div>
-        <div class="minfo"><div class="mtag">New</div><div class="mname">Kahiki Chicken Rice Bowl</div><div class="mprice">$12</div></div>
-      </div>
-      <div class="mc">
-        <div class="mic-wrap" style="position:relative;">
-          <img class="mic" src="/Garlic%20Chicken%20Pasta.png" alt="Garlic Chicken Pasta" loading="lazy" />
-          <span style="position:absolute;top:0.6rem;right:0.6rem;background:#ea6d10;color:#fff;font-size:0.55rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;z-index:2;">New</span>
-        </div>
-        <div class="minfo"><div class="mtag">New</div><div class="mname">Garlic Chicken Pasta</div><div class="mprice">$12</div></div>
-      </div>
-      <div class="mc">
-        <div class="mic-wrap" style="position:relative;">
-          <img class="mic" src="/Chicken%20Parmigian.png" alt="Chicken Parmigiana" loading="lazy" />
-          <span style="position:absolute;top:0.6rem;right:0.6rem;background:#ea6d10;color:#fff;font-size:0.55rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;z-index:2;">New</span>
-        </div>
-        <div class="minfo"><div class="mtag">New</div><div class="mname">Chicken Parmigiana</div><div class="mprice">$14</div></div>
-      </div>
-      <div class="mc">
-        <div class="mic-wrap" style="position:relative;">
-          <img class="mic" src="/Eggplant%20Parmigian.png" alt="Eggplant Parmigiana" loading="lazy" />
-          <span style="position:absolute;top:0.6rem;right:0.6rem;background:#ea6d10;color:#fff;font-size:0.55rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;z-index:2;">New</span>
-        </div>
-        <div class="minfo"><div class="mtag">New</div><div class="mname">Eggplant Parmigiana</div><div class="mprice">$13</div></div>
-      </div>
-      <div class="mc">
-        <div class="mic-wrap" style="position:relative;">
-          <img class="mic" src="/CAULIFLOWER%20RICED%20.png" alt="Organic Riced Cauliflower Stir Fry" loading="lazy" />
-          <span style="position:absolute;top:0.6rem;right:0.6rem;background:#ea6d10;color:#fff;font-size:0.55rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;z-index:2;">New</span>
-        </div>
-        <div class="minfo"><div class="mtag">New</div><div class="mname">Riced Cauliflower Stir Fry</div><div class="mprice">$11</div></div>
-      </div>
-      <div class="mc">
-        <div class="mic-wrap" style="position:relative;">
-          <img class="mic" src="/braised%20pork%20belly%20rice.png" alt="Braised Pork Belly Rice" loading="lazy" />
-          <span style="position:absolute;top:0.6rem;right:0.6rem;background:#ea6d10;color:#fff;font-size:0.55rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:3px 7px;border-radius:4px;z-index:2;">New</span>
-        </div>
-        <div class="minfo"><div class="mtag">New</div><div class="mname">Braised Pork Belly Rice</div><div class="mprice">$13</div></div>
-      </div>
-    </div><!-- end mgrid -->
-    </div><!-- end mcarousel-wrap -->
-  </section>
-</div>
-
-<script>
-function scrollCarousel(dir) {
-  const el = document.getElementById('mcarousel');
-  const cardW = el.querySelector('.mc').offsetWidth + 16;
-  el.scrollBy({ left: dir * cardW * 2, behavior: 'smooth' });
-}
-</script>
-
 <!-- LOCATIONS -->
-<div class="loc-wrap" id="locations">
-  <section>
-
-    <!-- Full-width header -->
-    <div class="loc-header">
-      <div class="sl">
-        <span class="eyebrow">Find a CraveBot</span>
-        <div class="rw"><h2 class="sec-title"><span class="rl">CraveBots near you</span></h2></div>
-      </div>
-      <p class="sec-sub fu" style="transition-delay:0.15s;max-width:100%;">A growing fleet deployed across venues in Southern California — on campuses, at tech companies, and in hotels.</p>
-    </div>
-
-    <!-- List + Map -->
-    <div class="loc-body">
-      <div class="llist sg">
-        <div class="li active" data-loc="0"><div><div class="lname">Cal State LA</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
+<section id="locations">
+  <span class="eyebrow">Now Serving</span>
+  <h2 class="sec-title">Where to Find Us</h2>
+  <p class="sec-sub">A growing fleet across Southern California — campuses, workplaces, and hotels.</p>
+  <div class="loc-layout">
+    <div class="loc-list">
+<div class="li active" data-loc="0"><div><div class="lname">Cal State LA</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
         <div class="li" data-loc="1"><div><div class="lname">University of Southern California</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
         <div class="li" data-loc="2"><div><div class="lname">Cal State Long Beach</div><div class="lcity">Long Beach, CA</div></div><span class="larr">→</span></div>
         <div class="li" data-loc="3"><div><div class="lname">Cal State Dominguez Hills — 3 machines</div><div class="lcity">Carson, CA</div></div><span class="larr">→</span></div>
@@ -892,182 +662,89 @@ function scrollCarousel(dir) {
         <div class="li" data-loc="12"><div><div class="lname">Deckers</div><div class="lcity">Moreno Valley, CA</div></div><span class="larr">→</span></div>
         <div class="li" data-loc="13"><div><div class="lname">Ranch Sports</div><div class="lcity">Chino Hills, CA</div></div><span class="larr">→</span></div>
         <div class="li" data-loc="14"><div><div class="lname">PTBA</div><div class="lcity">La Puente, CA</div></div><span class="larr">→</span></div>
-      </div>
-
-      <div class="loc-map-col fu" style="transition-delay:0.2s;">
-        <div id="leaflet-map"></div>
-        <div class="loc-map-label">Southern California · 18 active machines</div>
-      </div>
     </div>
+    <div id="leaflet-map"></div>
+  </div>
+</section>
 
-  </section>
-</div>
-
-<!-- BRAND PARTNERS -->
-<div class="bp-wrap" id="partners">
-  <section>
-    <div class="bphead">
-      <span class="eyebrow fu">CraveFoods Partner Studio</span>
-      <div class="rw fu" style="transition-delay:0.1s"><h2 class="sec-title"><span class="rl">Our brand partners</span></h2></div>
-      <p class="sec-sub fu" style="transition-delay:0.2s">We work with established food brands and emerging culinary creators to expand their reach through our automated kiosk network.</p>
+<!-- PARTNERS -->
+<section id="partners" style="padding-top:0;">
+  <span class="eyebrow">CraveFoods Partner Studio</span>
+  <h2 class="sec-title">Our Brand Partners</h2>
+  <div class="bp-carousel-wrap">
+    <button class="bp-btn prev" onclick="scrollBP(-1)" aria-label="Previous">←</button>
+    <button class="bp-btn next" onclick="scrollBP(1)" aria-label="Next">→</button>
+    <div class="bpgrid" id="bpcarousel">
+      <div class="bpcell"><div class="bpimg-wrap"><img class="bpimg" src="https://static.wixstatic.com/media/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png/v1/fill/w_280,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png" alt="Gourmet Now" loading="lazy" /></div><div class="bpname">Gourmet Now</div></div>
+      <div class="bpcell"><div class="bpimg-wrap"><img class="bpimg" src="/TucsonFoods_Logo-02.webp" alt="Tucson Foods" loading="lazy" style="max-width:200px;max-height:90px;" /></div><div class="bpname">Tucson Foods</div></div>
+      <div class="bpcell"><div class="bpimg-wrap"><img class="bpimg" src="/Chubby%20Foods%20Logo.webp" alt="Chubby Foods" loading="lazy" /></div><div class="bpname">Chubby Foods</div></div>
+      <div class="bpcell"><div class="bpimg-wrap"><img class="bpimg" src="/SUK_Logo_Red.png" alt="Sukhi's" loading="lazy" /></div><div class="bpname">Sukhi's</div></div>
+      <div class="bpcell"><div class="bpimg-wrap"><img class="bpimg" src="/jojo-logo.webp" alt="JoJo's Kitchen" loading="lazy" style="max-height:85px;" /></div><div class="bpname">JoJo's Kitchen</div></div>
     </div>
-    <div class="bp-carousel-wrap">
-      <button class="bp-btn prev" onclick="scrollBP(-1)" aria-label="Previous">&#8592;</button>
-      <button class="bp-btn next" onclick="scrollBP(1)" aria-label="Next">&#8594;</button>
-      <div class="bpgrid sg" id="bpcarousel">
-      <div class="bpcell">
-        <div class="bpimg-wrap"><img class="bpimg" src="https://static.wixstatic.com/media/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png/v1/fill/w_280,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif/6daf3f_28a432bd3cad4a7a865e94e5bd5b183c~mv2.png" alt="Gourmet Now" loading="lazy" /></div>
-        <div class="bpname">Gourmet Now</div>
+    <div class="bpcta">
+      <div>
+        <div class="bpcta-text">Put a CraveBot at Your Venue</div>
+        <div class="bpcta-sub">Zero cost to host. We handle stocking, cleaning, and support — you get a 24/7 dining amenity.</div>
       </div>
-      <div class="bpcell">
-        <div class="bpimg-wrap"><img class="bpimg" src="/TucsonFoods_Logo-02.webp" alt="Tucson Foods" loading="lazy" style="max-width:281px;height:125px;" /></div>
-        <div class="bpname">Tucson Foods</div>
-      </div>
-      <div class="bpcell">
-        <div class="bpimg-wrap"><img class="bpimg" src="/Chubby%20Foods%20Logo.webp" alt="Chubby Foods" loading="lazy" /></div>
-        <div class="bpname">Chubby Foods</div>
-      </div>
-      <div class="bpcell">
-        <div class="bpimg-wrap"><img class="bpimg" src="/SUK_Logo_Red.png" alt="Sukhi's" loading="lazy" /></div>
-        <div class="bpname">Sukhi's</div>
-      </div>
-      <div class="bpcell">
-        <div class="bpimg-wrap"><img class="bpimg" src="/jojo-logo.webp" alt="JoJo's Kitchen Taiwan Eats" loading="lazy" style="max-width:110px;height:90px;" /></div>
-        <div class="bpname">JoJo's Kitchen</div>
-      </div>
-    </div><!-- end bpgrid -->
-      <div class="bpcta fu" style="transition-delay:0.3s;margin-top:1px;">
-        <div>
-          <div class="bpcta-text">Interested in distributing your food brand through CraveBot?</div>
-          <div class="bpcta-sub">We're onboarding new brand partners — reach tens of thousands of campus and hotel guests.</div>
-        </div>
-        <button class="btn" onclick="openM('Food brand / partner studio')" style="white-space:nowrap;flex-shrink:0;">Become a Partner →</button>
-      </div>
-    </div><!-- end bp-carousel-wrap -->
-  </section>
-</div>
-
-<!-- CONTACT CTA -->
-<div class="ct-wrap" id="contact">
-  <section>
-    <div class="ct-inner">
-      <div class="ct-badge fu">🤝 Ready to collaborate?</div>
-      <div class="rw fu" style="transition-delay:0.1s">
-        <h2 class="ct-title"><span class="rl">Savor variety.</span><span class="rl">Dive into <em>deliciousness</em></span><span class="rl">with every vend.</span></h2>
-      </div>
-      <p class="ct-sub fu" style="transition-delay:0.25s">Drop us your email and we'll be in touch about deploying a CraveBot at your venue.</p>
-      <div class="ct-form fu" style="transition-delay:0.35s">
-        <input type="email" class="ct-input" id="ctaEmail" placeholder="Enter your email" />
-        <button class="btn" id="ctaBtn" onclick="submitEmail()">Get in Touch</button>
-      </div>
-      <div id="ctaMsg" style="margin-top:0.75rem;font-size:0.8rem;color:#16a34a;display:none;">✓ You're on the list — we'll be in touch soon.</div>
-      <div class="ct-note fu" style="transition-delay:0.45s">635 W. Allen Ave., San Dimas, CA 91773 &nbsp;·&nbsp; <a href="mailto:help@craverobotics.co" style="color:var(--textM);text-decoration:none;">help@craverobotics.co</a> &nbsp;·&nbsp; +1-840-233-7986</div>
+      <button class="btn" onclick="openM('Food brand / partner studio')" style="white-space:nowrap;flex-shrink:0;">Become a Partner →</button>
     </div>
-  </section>
-</div>
-
-</main>
+  </div>
+</section>
 
 <!-- FOOTER -->
-<div style="border-top:0.5px solid var(--border);">
-  <footer>
-    <div class="ft">
-      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:0.75rem;">
-        <a href="#" class="fbrand"><img src="/icon.svg" alt="Crave Robotics" style="height:28px;width:auto;" />CRAVE ROBOTICS</a>
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-brand-name"><img src="/icon.svg" alt="Crave Robotics" style="height:26px;width:auto;" />CRAVE ROBOTICS</div>
         <a href="https://namanow.org/" target="_blank" rel="noopener">
-          <img src="/NAMA_Member_Mark_transparent.png" alt="Proud Member of NAMA" style="height:53px;width:auto;opacity:0.7;mix-blend-mode:multiply;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'" />
+          <img src="/NAMA_Member_Mark_transparent.png" alt="Proud Member of NAMA" style="height:53px;width:auto;opacity:0.85;mix-blend-mode:screen;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'" />
         </a>
       </div>
-      <div class="fcols">
-        <div class="fcol">
-          <div class="fclabel">Company</div>
-          <ul>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="/cravebot">CraveBot</a></li>
-            <li><a href="/menu">Menu</a></li>
-            <li><a href="/news">News</a></li>
-            <li><a href="/NSF%20-%20DSS_SGSNA_26_GZ_00060.pdf" target="_blank">Certification</a></li>
-          </ul>
-        </div>
-        <div class="fcol">
-          <div class="fclabel">Legal</div>
-          <ul>
-            <li><a href="/privacy-policy">Privacy Policy</a></li>
-            <li><a href="/data-deletion">Data Deletion Request</a></li>
-          </ul>
-        </div>
-        <div class="fcol">
-          <div class="fclabel">Connect</div>
-          <ul>
-            <li><a href="https://www.linkedin.com/company/craverobotics/" target="_blank">LinkedIn</a></li>
-            <li><a href="javascript:void(0)" onclick="openContactModal()">Contact Support</a></li>
-          </ul>
-        </div>
-        <div class="fcol">
-          <div class="fclabel">Latest News</div>
-          <ul>
-            <li><a href="/news">Featured in Kiosk Marketplace — Certification Milestone</a></li>
-            <li><a href="/news">Featured in Retail Automation Systems — NAMA 2026</a></li>
-            <li><a href="/news">New Brand Partners: Sukhi's & Tucson Foods</a></li>
-            <li><a href="/news" style="color:var(--orange);font-weight:600;">All news →</a></li>
-          </ul>
-        </div>
+      <div class="fcol">
+        <div class="fclabel">Company</div>
+        <ul>
+          <li><a href="/cravebot">CraveBot</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/craveos">CraveOS</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/NSF%20-%20DSS_SGSNA_26_GZ_00060.pdf" target="_blank">Certification</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Legal</div>
+        <ul>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/data-deletion">Data Deletion Request</a></li>
+          <li><a href="/qr-guide">Redeem QR Code</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Connect</div>
+        <ul>
+          <li><a href="https://www.linkedin.com/company/craverobotics/" target="_blank">LinkedIn</a></li>
+          <li><a href="javascript:void(0)" onclick="openContactModal()">Contact Support</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Latest News</div>
+        <ul>
+          <li><a href="/news">Featured in Kiosk Marketplace — Certification Milestone</a></li>
+          <li><a href="/news">Featured in Retail Automation Systems — NAMA 2026</a></li>
+          <li><a href="/news">New Brand Partners: Sukhi's &amp; Tucson Foods</a></li>
+          <li><a href="/news" style="color:var(--lemon);font-weight:600;">All news →</a></li>
+        </ul>
       </div>
     </div>
-    <div class="fb2">
-      <div class="fcopy">© 2025 Crave Robotics™. All rights reserved.</div>
-      <div class="fcontact">635 W. Allen Ave., San Dimas, CA 91773<br>help@craverobotics.co · +1-840-233-7986</div>
+    <div class="foot-copy">
+      <span>© 2025 Crave Robotics™. All rights reserved.</span>
+      <span>635 W. Allen Ave., San Dimas, CA 91773</span>
     </div>
-  </footer>
-</div>
+  </div>
+</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
-/* EMAIL CAPTURE */
-async function submitEmail() {
-  const input = document.getElementById('ctaEmail');
-  const btn   = document.getElementById('ctaBtn');
-  const msg   = document.getElementById('ctaMsg');
-  const email = input.value.trim();
-
-  if (!email || !email.includes('@')) {
-    input.style.borderColor = 'rgba(220,38,38,0.5)';
-    input.style.boxShadow   = '0 0 0 3px rgba(220,38,38,0.1)';
-    setTimeout(() => { input.style.borderColor = ''; input.style.boxShadow = ''; }, 2500);
-    return;
-  }
-
-  btn.textContent   = 'Sending…';
-  btn.disabled      = true;
-  btn.style.opacity = '0.7';
-
-  try {
-    await fetch('https://api.web3forms.com/submit', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({
-        access_key: '7b21dd42-bc8a-43b2-a645-8733ba987743',
-        subject:    'New email signup — CraveBot Website',
-        from_name:  'CraveBot Website',
-        email,
-      }),
-    });
-
-    // no-cors means we can't read the response, so assume success
-    input.style.display = 'none';
-    btn.style.display   = 'none';
-    msg.style.display   = 'block';
-  } catch (err) {
-    btn.textContent      = 'Failed — try again';
-    btn.style.background = 'rgba(220,38,38,0.85)';
-    setTimeout(() => {
-      btn.textContent      = 'Get in Touch';
-      btn.style.background = '';
-      btn.style.opacity    = '';
-      btn.disabled         = false;
-    }, 3000);
-  }
-}
-
 /* MODAL */
 function scrollBP(dir){const el=document.getElementById('bpcarousel');const cell=el.querySelector('.bpcell');el.scrollBy({left:dir*(cell.offsetWidth+1),behavior:'smooth'});}
 function openContactModal(){document.getElementById('contactModal').classList.add('open');document.body.style.overflow='hidden';}
@@ -1148,7 +825,6 @@ document.getElementById('modal').addEventListener('click',e=>{if(e.target===docu
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
 
 /* NAV SHADOW */
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>20));
 
 /* INTERSECTION ENGINE */
 const io=new IntersectionObserver(entries=>{
@@ -1213,55 +889,15 @@ function cnt(el,end){
 }
 const cio=new IntersectionObserver(e=>{
   if(!e[0].isIntersecting)return;
-  cnt(document.getElementById('citm'),15);
   cio.disconnect();
 },{threshold:0.6});
 const strip=document.querySelector('.metrics-strip');
 if(strip)cio.observe(strip);
 </script>
-<!-- LEAFLET MAP -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<style>
-  /* Leaflet marker override — custom orange pin */
-  .cr-pin {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: var(--orange); border: 3px solid white;
-    box-shadow: 0 3px 12px rgba(234,109,16,0.45);
-    display: flex; align-items: center; justify-content: center;
-    transition: transform 0.2s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s;
-    cursor: pointer;
-  }
-  .cr-pin.active {
-    background: var(--lemon);
-    box-shadow: 0 4px 20px rgba(199,149,0,0.55);
-    transform: scale(1.25);
-  }
-  .cr-pin::after {
-    content: '';
-    width: 7px; height: 7px;
-    background: white; border-radius: 50%;
-  }
-  .leaflet-popup-content-wrapper {
-    border-radius: 10px !important;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.12) !important;
-    font-family: 'Montserrat', sans-serif !important;
-    border: 0.5px solid rgba(0,0,0,0.08) !important;
-    padding: 0 !important;
-  }
-  .leaflet-popup-content {
-    margin: 0 !important;
-    padding: 0.9rem 1.1rem !important;
-    font-size: 0.8rem !important;
-    line-height: 1.5 !important;
-  }
-  .leaflet-popup-tip-container { display: none; }
-  .leaflet-popup-close-button { display: none !important; }
-  .pop-name { font-weight: 700; color: #111; font-size: 0.85rem; }
-  .pop-city { color: #9a9ca5; font-size: 0.72rem; margin-top: 2px; }
-  .pop-tag { display: inline-block; margin-top: 6px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #ea6d10; background: rgba(234,109,16,0.1); border: 0.5px solid rgba(234,109,16,0.25); border-radius: 4px; padding: 2px 7px; }
-</style>
-
+<script>
+function scrollCarousel(dir){const el=document.getElementById('mcarousel');const cardW=el.querySelector('.mc').offsetWidth+19;el.scrollBy({left:dir*cardW*2,behavior:'smooth'});}
+function scrollBP(dir){const el=document.getElementById('bpcarousel');const cell=el.querySelector('.bpcell');el.scrollBy({left:dir*(cell.offsetWidth+1),behavior:'smooth'});}
+</script>
 <script>
 (function() {
   const LOCATIONS = [

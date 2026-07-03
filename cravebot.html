@@ -35,16 +35,16 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
-  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.15);
-  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12); --orangeG:rgba(234,109,16,0.22);
-  --lemon:#c79500; --lemonD:rgba(199,149,0,0.1);
-  --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
-  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+  --bg:#F4EFE6; --bg2:#EDE7DB; --bg3:#E5DFD2; --white:#FCFAF5;
+  --border:rgba(30,42,56,0.1); --borderB:rgba(30,42,56,0.18);
+  --orange:#C73E1F; --orangeD:rgba(199,62,31,0.12); --orangeG:rgba(199,62,31,0.22);
+  --lemon:#F5A623; --lemonD:rgba(245,166,35,0.1);
+  --text:#1E2A38; --textS:#5A6472; --textM:#9AA2AC;
+  --font:'Montserrat',sans-serif; --serif:'Bebas Neue',sans-serif;
 }
 html { scroll-behavior:smooth; }
 body { font-family:var(--font); background:var(--bg); color:var(--text); overflow-x:hidden; line-height:1.6; }
@@ -54,7 +54,7 @@ nav {
   position:sticky; top:0; z-index:200;
   display:flex; align-items:center; justify-content:space-between;
   padding:0 3rem; height:68px;
-  background:rgba(245,244,240,0.92); backdrop-filter:blur(20px);
+  background:rgba(244,239,230,0.92); backdrop-filter:blur(20px);
   border-bottom:0.5px solid var(--border);
 }
 .nav-logo img { height:34px; width:auto; display:block; }
@@ -78,14 +78,14 @@ nav {
   border-bottom:0.5px solid var(--border);
 }
 .hero-blob { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:1; }
-.blob1 { width:600px;height:600px;top:-20%;right:0;background:radial-gradient(circle,rgba(234,109,16,0.2) 0%,transparent 70%);animation:b1 14s ease-in-out infinite alternate; }
-.blob2 { width:380px;height:380px;bottom:0;left:-5%;background:radial-gradient(circle,rgba(199,149,0,0.13) 0%,transparent 70%);animation:b2 18s ease-in-out infinite alternate; }
+.blob1 { width:600px;height:600px;top:-20%;right:0;background:radial-gradient(circle,rgba(199,62,31,0.2) 0%,transparent 70%);animation:b1 14s ease-in-out infinite alternate; }
+.blob2 { width:380px;height:380px;bottom:0;left:-5%;background:radial-gradient(circle,rgba(245,166,35,0.13) 0%,transparent 70%);animation:b2 18s ease-in-out infinite alternate; }
 @keyframes b1 { to { transform:translate(-40px,30px) scale(1.06); } }
 @keyframes b2 { to { transform:translate(30px,-40px) scale(1.05); } }
 
 .machine-frame {
   width:100%; position:relative;
-  background:linear-gradient(175deg,#eef2f7 0%,#dde4ed 100%);
+  background:linear-gradient(175deg,#EDE7DB 0%,#E5DFD2 100%);
 }
 .machine-frame img {
   width:100%; display:block; object-fit:cover;
@@ -97,9 +97,9 @@ nav {
   content:'';
   position:absolute; inset:0;
   background:linear-gradient(90deg,
-    rgba(245,244,240,0.92) 0%,
-    rgba(245,244,240,0.75) 22%,
-    rgba(245,244,240,0.2)  42%,
+    rgba(244,239,230,0.92) 0%,
+    rgba(244,239,230,0.75) 22%,
+    rgba(244,239,230,0.2)  42%,
     transparent 58%
   );
   pointer-events:none;
@@ -112,15 +112,15 @@ nav {
   padding:3.5rem 3rem 3.5rem 8rem;
   max-width:680px;
 }
-.hero-h1 { font-family:var(--serif); font-size:clamp(2.8rem,5vw,5rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; margin-bottom:1.2rem; color:var(--text); }
-.hero-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-h1 { font-family:var(--serif); font-size:clamp(2.8rem,5vw,5rem); font-weight:400; line-height:1.04; letter-spacing:0.02em; margin-bottom:1.2rem; color:var(--text); }
+.hero-h1 em { font-style:normal; color:var(--orange); }
 .hero-sub { font-size:0.95rem; color:var(--textS); line-height:1.8; max-width:400px; }
 
 /* ── SPEC TABLE SECTION ── */
 .specs-section { background:var(--white); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
 .specs-inner { max-width:1280px; margin:0 auto; padding:5rem 3rem; display:grid; grid-template-columns:1fr 1.4fr; gap:5rem; align-items:start; }
 
-.spec-note { display:flex; align-items:flex-start; gap:0.75rem; background:rgba(199,149,0,0.06); border:0.5px solid rgba(199,149,0,0.25); border-radius:8px; padding:0.9rem 1.1rem; margin-top:1.5rem; font-size:0.8rem; color:var(--textS); line-height:1.6; }
+.spec-note { display:flex; align-items:flex-start; gap:0.75rem; background:rgba(245,166,35,0.06); border:0.5px solid rgba(245,166,35,0.25); border-radius:8px; padding:0.9rem 1.1rem; margin-top:1.5rem; font-size:0.8rem; color:var(--textS); line-height:1.6; }
 .spec-note-icon { font-size:0.85rem; flex-shrink:0; margin-top:1px; }
 
 .spec-group { margin-bottom:2rem; }
@@ -130,7 +130,7 @@ nav {
 .spec-key { font-size:0.72rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textM); flex-shrink:0; }
 .spec-val { font-size:0.9rem; font-weight:600; color:var(--text); text-align:right; }
 .spec-val.hl { color:var(--orange); font-weight:700; }
-.spec-val.ph { color:var(--textM); font-style:italic; font-weight:400; }
+.spec-val.ph { color:var(--textM); font-style:normal; font-weight:400; }
 
 .spec-actions { display:flex; gap:0.75rem; margin-top:2rem; }
 
@@ -138,7 +138,7 @@ nav {
 .hiw-wrap { background:var(--bg2); border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border); }
 .hiw-inner { max-width:1280px; margin:0 auto; padding:5rem 3rem; }
 .hiw-header { margin-bottom:3rem; }
-.sec-title { font-family:var(--serif); font-size:clamp(2rem,4vw,3.2rem); font-weight:700; line-height:1.08; letter-spacing:-0.022em; margin-bottom:1rem; }
+.sec-title { font-family:var(--serif); font-size:clamp(2rem,4vw,3.2rem); font-weight:400; line-height:1.08; letter-spacing:0.02em; margin-bottom:1rem; }
 .sec-sub { font-size:1rem; color:var(--textS); line-height:1.78; max-width:540px; }
 
 .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:1.2rem; }
@@ -147,9 +147,9 @@ nav {
   overflow:hidden; display:flex; flex-direction:column;
   transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s;
 }
-.step-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(0,0,0,0.08); }
+.step-card:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(30,42,56,0.1); }
 .step-img {
-  width:100%; aspect-ratio:4/3; background:linear-gradient(145deg,#eef2f7,#e4e9f0);
+  width:100%; aspect-ratio:3/4; background:var(--bg2);
   display:flex; align-items:center; justify-content:center;
   font-size:0.72rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
   color:var(--textM); border-bottom:0.5px solid var(--border); overflow:hidden;
@@ -160,7 +160,7 @@ nav {
 .step-img-placeholder span { font-size:2rem; }
 .step-img-placeholder p { font-size:0.65rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:var(--textM); text-align:center; }
 .step-body { padding:1.4rem; flex:1; display:flex; flex-direction:column; }
-.step-num { font-family:var(--serif); font-size:1.1rem; font-weight:700; color:var(--orange); margin-bottom:0.5rem; }
+.step-num { font-family:var(--serif); font-size:1.1rem; font-weight:400; color:var(--orange); margin-bottom:0.5rem; }
 .step-title { font-size:0.95rem; font-weight:700; margin-bottom:0.5rem; letter-spacing:-0.01em; }
 .step-desc { font-size:0.82rem; color:var(--textS); line-height:1.7; }
 
@@ -168,7 +168,7 @@ nav {
 .tray-wrap { background:var(--bg); border-top:0.5px solid var(--border); }
 .tray-inner { max-width:1280px; margin:0 auto; padding:5rem 3rem; display:grid; grid-template-columns:1.1fr 1fr; gap:5rem; align-items:center; }
 .tray-img-frame {
-  background:linear-gradient(145deg,#eef2f7,#dde4ed);
+  background:linear-gradient(145deg,#EDE7DB,#E5DFD2);
   border:0.5px solid var(--border); border-radius:16px;
   overflow:hidden; display:flex; align-items:center; justify-content:center;
   min-height:380px; position:relative;
@@ -176,7 +176,7 @@ nav {
 .tray-img-frame img { width:100%; height:100%; object-fit:contain; padding:2rem; display:block; }
 .tray-dim-badge {
   position:absolute; bottom:1rem; right:1rem;
-  background:rgba(245,244,240,0.95); border:0.5px solid var(--border);
+  background:rgba(244,239,230,0.95); border:0.5px solid var(--border);
   border-radius:8px; padding:0.6rem 0.9rem;
   font-size:0.68rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
   color:var(--textS);
@@ -185,7 +185,7 @@ nav {
 .tray-stat { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 0; border-bottom:0.5px solid var(--border); gap:1rem; }
 .tray-stat:last-child { border-bottom:none; }
 .tray-stat-label { font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--textM); }
-.tray-stat-val { font-family:var(--serif); font-size:1.4rem; font-weight:700; color:var(--text); }
+.tray-stat-val { font-family:var(--serif); font-size:1.4rem; font-weight:400; color:var(--text); }
 .tray-stat-val.hl { color:var(--orange); }
 .tray-note { margin-top:1.5rem; font-size:0.82rem; color:var(--textS); line-height:1.7; padding:1rem 1.2rem; background:var(--bg2); border-radius:8px; border:0.5px solid var(--border); }
 
@@ -213,7 +213,7 @@ nav {
 }
 .sukhi-tag {
   position:absolute; top:1rem; left:1rem;
-  background:rgba(234,109,16,0.9); color:#fff;
+  background:rgba(199,62,31,0.9); color:#fff;
   font-size:0.6rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
   padding:4px 10px; border-radius:4px;
 }
@@ -222,39 +222,39 @@ nav {
   border-radius:10px; padding:1.2rem 1.5rem;
   display:flex; flex-direction:column; gap:0.3rem;
 }
-.sukhi-brand-name { font-family:var(--serif); font-size:1.6rem; font-weight:700; color:rgba(255,255,255,0.9); line-height:1.1; }
+.sukhi-brand-name { font-family:var(--serif); font-size:1.6rem; font-weight:400; color:rgba(255,255,255,0.9); line-height:1.1; }
 .sukhi-brand-sub { font-size:0.72rem; font-weight:600; letter-spacing:0.07em; text-transform:uppercase; color:rgba(255,255,255,0.35); }
 
 .sukhi-content { display:flex; flex-direction:column; gap:0; }
 .sukhi-kpi-row { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:0.5px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:2rem; }
 .sukhi-kpi { background:var(--white); padding:1.4rem; display:flex; flex-direction:column; gap:0.3rem; }
-.sukhi-kpi-val { font-family:var(--serif); font-size:1.8rem; font-weight:700; color:var(--text); line-height:1; }
+.sukhi-kpi-val { font-family:var(--serif); font-size:1.8rem; font-weight:400; color:var(--text); line-height:1; }
 .sukhi-kpi-val.orange { color:var(--orange); }
 .sukhi-kpi-label { font-size:0.65rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--textM); }
 
 .sukhi-body { font-size:0.95rem; color:var(--textS); line-height:1.8; margin-bottom:1.5rem; }
 .sukhi-quote {
   border-left:3px solid var(--orange); padding-left:1.2rem;
-  font-family:var(--serif); font-size:1.3rem; font-weight:400; font-style:italic;
+  font-family:var(--serif); font-size:1.3rem; font-weight:400; font-style:normal;
   color:var(--text); line-height:1.5; margin-bottom:1.5rem;
 }
 .sukhi-attr { font-size:0.72rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textM); margin-bottom:2rem; }
 
 .partner-highlight {
   display:flex; align-items:flex-start; gap:1rem;
-  background:linear-gradient(135deg,rgba(234,109,16,0.07),rgba(199,149,0,0.05));
-  border:0.5px solid rgba(234,109,16,0.25); border-radius:10px;
+  background:linear-gradient(135deg,rgba(199,62,31,0.07),rgba(245,166,35,0.05));
+  border:0.5px solid rgba(199,62,31,0.25); border-radius:10px;
   padding:1.2rem 1.4rem; font-size:0.88rem; color:var(--textS); line-height:1.7;
 }
 .ph-icon { font-size:1rem; color:var(--orange); flex-shrink:0; margin-top:2px; }
 
 /* ── CTA BAND ── */
 .cta-band {
-  background:linear-gradient(135deg,rgba(234,109,16,0.06),rgba(199,149,0,0.04));
-  border-top:0.5px solid rgba(234,109,16,0.2);
+  background:linear-gradient(135deg,rgba(199,62,31,0.06),rgba(245,166,35,0.04));
+  border-top:0.5px solid rgba(199,62,31,0.2);
 }
 .cta-inner { display:flex; align-items:center; justify-content:space-between; gap:2rem; padding:3.5rem 3rem; max-width:1280px; margin:0 auto; }
-.cta-text h2 { font-family:var(--serif); font-size:2.4rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:0.5rem; line-height:1.1; }
+.cta-text h2 { font-family:var(--serif); font-size:2.4rem; font-weight:400; letter-spacing:0.02em; margin-bottom:0.5rem; line-height:1.1; }
 .cta-text p { font-size:0.95rem; color:var(--textS); }
 .cta-actions { display:flex; gap:1rem; flex-wrap:wrap; flex-shrink:0; }
 
@@ -288,7 +288,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
   nav { padding:0 1.5rem; }
   .hero-text { padding:2rem 1.5rem; max-width:100%; }
   .hero-h1 { font-size:2.4rem; }
-  .machine-frame::after { background:linear-gradient(180deg, rgba(245,244,240,0.92) 0%, rgba(245,244,240,0.75) 40%, rgba(245,244,240,0.1) 70%, transparent 100%); }
+  .machine-frame::after { background:linear-gradient(180deg, rgba(244,239,230,0.92) 0%, rgba(244,239,230,0.75) 40%, rgba(244,239,230,0.1) 70%, transparent 100%); }
   .hero-text { justify-content:flex-start; padding-top:2.5rem; }
   .specs-inner,.tray-inner,.sukhi-layout { grid-template-columns:1fr; gap:2.5rem; }
   .steps { grid-template-columns:repeat(2,1fr); }
@@ -302,24 +302,48 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 /* MODAL */
 .mo { position:fixed; inset:0; z-index:300; background:rgba(0,0,0,0.3); backdrop-filter:blur(8px); display:flex; align-items:center; justify-content:center; padding:1.5rem; opacity:0; pointer-events:none; transition:opacity 0.3s; }
 .mo.open { opacity:1; pointer-events:all; }
-.md { background:#faf9f6; border:0.5px solid var(--borderB); border-radius:16px; width:100%; max-width:530px; padding:2.5rem; position:relative; transform:translateY(24px) scale(0.96); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); max-height:90vh; overflow-y:auto; }
+.md { background:#FCFAF5; border:0.5px solid var(--borderB); border-radius:16px; width:100%; max-width:530px; padding:2.5rem; position:relative; transform:translateY(24px) scale(0.96); transition:transform 0.4s cubic-bezier(0.22,1,0.36,1); max-height:90vh; overflow-y:auto; }
 .mo.open .md { transform:none; }
 .mc-close { position:absolute; top:1.25rem; right:1.25rem; background:var(--bg2); border:0.5px solid var(--border); border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:0.85rem; color:var(--textM); transition:background 0.2s; }
 .mc-close:hover { background:var(--bg3); color:var(--text); }
-.mtitle { font-family:var(--serif); font-size:1.85rem; font-weight:700; letter-spacing:-0.02em; margin-bottom:0.35rem; }
+.mtitle { font-family:var(--serif); font-size:1.85rem; font-weight:400; letter-spacing:0.02em; margin-bottom:0.35rem; }
 .msub { font-size:0.83rem; color:var(--textS); margin-bottom:1.8rem; line-height:1.65; }
 .mfr { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
 .fg { display:flex; flex-direction:column; gap:0.38rem; margin-bottom:0.75rem; }
 .flabel { font-size:0.67rem; font-weight:700; letter-spacing:0.09em; text-transform:uppercase; color:var(--textS); }
 .finput { background:var(--white); border:0.5px solid var(--borderB); border-radius:7px; padding:0.65rem 0.9rem; font-family:var(--font); font-size:0.85rem; color:var(--text); outline:none; transition:border-color 0.2s,box-shadow 0.2s; width:100%; }
 .finput::placeholder { color:var(--textM); }
-.finput:focus { border-color:rgba(234,109,16,0.5); box-shadow:0 0 0 3px rgba(234,109,16,0.1); }
+.finput:focus { border-color:rgba(199,62,31,0.5); box-shadow:0 0 0 3px rgba(199,62,31,0.1); }
 .fsel { appearance:none; cursor:pointer; }
 .mbtn { width:100%; margin-top:1rem; background:var(--orange); color:#fff; font-family:var(--font); font-size:0.82rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; border:none; border-radius:7px; padding:0.9rem; cursor:pointer; transition:opacity 0.2s,transform 0.15s; }
 .mbtn:hover { opacity:0.88; transform:translateY(-1px); }
 .msucc { text-align:center; padding:2.5rem 0; display:none; flex-direction:column; align-items:center; gap:1rem; }
 .msucc.show { display:flex; }
-.sico { width:56px; height:56px; border-radius:50%; background:rgba(22,163,74,0.1); border:0.5px solid rgba(22,163,74,0.3); display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
+.sico { width:56px; height:56px; border-radius:50%; background:rgba(90,143,74,0.1); border:0.5px solid rgba(90,143,74,0.3); display:flex; align-items:center; justify-content:center; font-size:1.5rem; }
+
+/* LABEL FRAME */
+.label-frame{position:fixed;inset:0;pointer-events:none;z-index:500;}
+.label-frame::before{content:'';position:absolute;inset:0;border:4px solid var(--orange, #C73E1F);border-right-width:16px;}
+@media(max-width:640px){.label-frame::before{border-width:3px;border-right-width:10px;}}
+/* NAV SWEEP */
+.nav-links a{position:relative;padding:0.5rem 0.85rem !important;border-radius:6px;overflow:hidden;z-index:1;transition:color 0.25s ease !important;}
+.nav-links a::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--sweep,#C73E1F);transform:scaleX(0);transform-origin:left center;transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);border-radius:6px;}
+.nav-links a:hover{color:#FCFAF5 !important;}
+.nav-links a:hover::before{transform:scaleX(1);}
+.nav-links li:nth-child(1) a,.nav-links a:nth-child(1){--sweep:#C73E1F;}
+.nav-links li:nth-child(2) a,.nav-links a:nth-child(2){--sweep:#F5A623;}
+.nav-links li:nth-child(3) a,.nav-links a:nth-child(3){--sweep:#5A8F4A;}
+.nav-links li:nth-child(4) a,.nav-links a:nth-child(4){--sweep:#7A4A2A;}
+.nav-links li:nth-child(5) a,.nav-links a:nth-child(5){--sweep:#C0392B;}
+.nav-links li:nth-child(6) a,.nav-links a:nth-child(6){--sweep:#C73E1F;}
+/* PALETTE FOOTER */
+footer{background:#7A4A2A !important;}
+footer *{color:#F4EFE6;}
+footer .fclabel,footer .foot-copy,footer .fcopy{color:rgba(244,239,230,0.55) !important;}
+footer a{color:rgba(244,239,230,0.8) !important;}
+footer a:hover{color:#FCFAF5 !important;text-decoration:underline;}
+footer .fb2,footer .foot-top{border-color:rgba(244,239,230,0.2) !important;}
+footer img[alt*="NAMA"]{mix-blend-mode:screen;}
 </style>
 
 <!-- ── STRUCTURED DATA (SEO + AEO) ───────────────────────────────────── -->
@@ -452,6 +476,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 </script>
 </head>
 <body>
+<div class="label-frame"></div>
 
 <!-- MODAL -->
 <div class="mo" id="modal">
@@ -591,10 +616,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <div class="step-card">
         <div class="step-img">
           <!-- Replace src with a real photo of the touchscreen/ordering UI -->
-          <div class="step-img-placeholder">
-            <span>📱</span>
-            <p>Add photo of<br>ordering screen</p>
-          </div>
+          <img src="/cravebot-step1-menu.webp" alt="CraveBot touchscreen menu — browsing meals" loading="lazy" style="object-position:top;" />
         </div>
         <div class="step-body">
           <div class="step-num">01</div>
@@ -607,10 +629,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <div class="step-card">
         <div class="step-img">
           <!-- Replace src with a photo of the internal retrieval mechanism -->
-          <div class="step-img-placeholder">
-            <span>🤖</span>
-            <p>Add photo of<br>internal mechanism</p>
-          </div>
+          <img src="/cravebot-step2-collect.webp" alt="CraveBot collecting your meal from cold storage" loading="lazy" />
         </div>
         <div class="step-body">
           <div class="step-num">02</div>
@@ -623,10 +642,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <div class="step-card">
         <div class="step-img">
           <!-- Replace src with a photo of the heating chamber or steam -->
-          <div class="step-img-placeholder">
-            <span>🔥</span>
-            <p>Add photo of<br>heating process</p>
-          </div>
+          <img src="/cravebot-step3-heating.webp" alt="CraveBot heating in progress screen" loading="lazy" />
         </div>
         <div class="step-body">
           <div class="step-num">03</div>
@@ -639,10 +655,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <div class="step-card">
         <div class="step-img">
           <!-- Replace src with a photo of meal dispensing / pickup window -->
-          <div class="step-img-placeholder">
-            <span>✅</span>
-            <p>Add photo of<br>meal pickup window</p>
-          </div>
+          <img src="/cravebot-step4-eat.webp" alt="It's time to eat — meal ready screen" loading="lazy" />
         </div>
         <div class="step-body">
           <div class="step-num">04</div>
@@ -674,13 +687,13 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
         </div>
         <div style="padding:1.75rem;">
           <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Package 1</div>
-          <div style="font-family:var(--serif);font-size:1.25rem;font-weight:700;letter-spacing:-0.015em;margin-bottom:1.25rem;color:var(--text);">Rectangular Tray</div>
+          <div style="font-family:var(--serif);font-size:1.25rem;font-weight:400;letter-spacing:0.02em;margin-bottom:1.25rem;color:var(--text);">Rectangular Tray</div>
           <div style="display:flex;flex-direction:column;">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Inner (L × W)</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">7″ × 6.5″</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Flange width</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">0.375″</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Height</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">2″</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Heat-safe</span><span style="font-size:0.85rem;font-weight:700;color:#16a34a;">✓ Microwave &amp; oven</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Storage</span><span style="font-size:0.85rem;font-weight:700;color:#16a34a;">✓ Frozen</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Inner (L × W)</span><span style="font-size:0.85rem;font-weight:400;color:var(--text);">7″ × 6.5″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Flange width</span><span style="font-size:0.85rem;font-weight:400;color:var(--text);">0.375″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Height</span><span style="font-size:0.85rem;font-weight:400;color:var(--text);">2″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Heat-safe</span><span style="font-size:0.85rem;font-weight:400;color:#5A8F4A;">✓ Microwave &amp; oven</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Storage</span><span style="font-size:0.85rem;font-weight:400;color:#5A8F4A;">✓ Frozen</span></div>
           </div>
         </div>
       </div>
@@ -692,13 +705,13 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
         </div>
         <div style="padding:1.75rem;">
           <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--orange);margin-bottom:0.5rem;">Package 2</div>
-          <div style="font-family:var(--serif);font-size:1.25rem;font-weight:700;letter-spacing:-0.015em;margin-bottom:1.25rem;color:var(--text);">Square Tray</div>
+          <div style="font-family:var(--serif);font-size:1.25rem;font-weight:400;letter-spacing:0.02em;margin-bottom:1.25rem;color:var(--text);">Square Tray</div>
           <div style="display:flex;flex-direction:column;">
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Inner (L × W)</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">6.5″ × 6.5″</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Flange width</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">0.375″</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Height</span><span style="font-size:0.85rem;font-weight:700;color:var(--text);">2.625″</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Heat-safe</span><span style="font-size:0.85rem;font-weight:700;color:#16a34a;">✓ Microwave &amp; oven</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Storage</span><span style="font-size:0.85rem;font-weight:700;color:#16a34a;">✓ Frozen</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Inner (L × W)</span><span style="font-size:0.85rem;font-weight:400;color:var(--text);">6.5″ × 6.5″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Flange width</span><span style="font-size:0.85rem;font-weight:400;color:var(--text);">0.375″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Height</span><span style="font-size:0.85rem;font-weight:400;color:var(--text);">2.625″</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:0.5px solid var(--border);"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Heat-safe</span><span style="font-size:0.85rem;font-weight:400;color:#5A8F4A;">✓ Microwave &amp; oven</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;"><span style="font-size:0.78rem;font-weight:600;color:var(--textS);">Storage</span><span style="font-size:0.85rem;font-weight:400;color:#5A8F4A;">✓ Frozen</span></div>
           </div>
         </div>
       </div>
@@ -781,6 +794,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
       <li><a href="/news">News</a></li>
       <li><a href="/privacy-policy">Privacy Policy</a></li>
       <li><a href="/data-deletion">Data Deletion</a></li>
+    <li><a href="/qr-guide">Redeem QR Code</a></li>
       <li><a href="javascript:void(0)" onclick="openSupportModal()">Contact</a></li>
     </ul>
     <img src="/NAMA_Member_Mark_transparent.png" alt="Proud Member of NAMA" style="height:44px;width:auto;opacity:0.9;" />
@@ -826,8 +840,8 @@ async function submitM(){
   if (!email || !message) {
     inputs.forEach(i => {
       if ((i.type === 'email' && !i.value.trim()) || (i.tagName === 'TEXTAREA' && !i.value.trim())) {
-        i.style.borderColor = 'rgba(220,38,38,0.5)';
-        i.style.boxShadow   = '0 0 0 3px rgba(220,38,38,0.1)';
+        i.style.borderColor = 'rgba(192,57,43,0.5)';
+        i.style.boxShadow   = '0 0 0 3px rgba(192,57,43,0.1)';
         setTimeout(() => { i.style.borderColor = ''; i.style.boxShadow = ''; }, 2500);
       }
     });
@@ -857,7 +871,7 @@ async function submitM(){
     document.getElementById('msucc').classList.add('show');
   } catch (err) {
     btn.textContent = 'Failed — try again';
-    btn.style.background = 'rgba(220,38,38,0.85)';
+    btn.style.background = 'rgba(192,57,43,0.85)';
     setTimeout(() => {
       btn.textContent = 'Send Inquiry →';
       btn.style.background = '';
@@ -873,21 +887,21 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeM(); })
 
 <!-- CONTACT SUPPORT MODAL -->
 <div style="position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.3s;" id="supportModal">
-  <div style="background:#faf9f6;border:0.5px solid rgba(0,0,0,0.15);border-radius:16px;width:100%;max-width:420px;padding:2.5rem;position:relative;transform:translateY(24px) scale(0.96);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);text-align:center;" id="supportModalInner">
-    <button onclick="closeSupportModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:#eeede8;border:0.5px solid rgba(0,0,0,0.08);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;color:#9a9ca5;">✕</button>
+  <div style="background:#FCFAF5;border:0.5px solid rgba(30,42,56,0.18);border-radius:16px;width:100%;max-width:420px;padding:2.5rem;position:relative;transform:translateY(24px) scale(0.96);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);text-align:center;" id="supportModalInner">
+    <button onclick="closeSupportModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:#EDE7DB;border:0.5px solid rgba(30,42,56,0.1);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;color:#9AA2AC;">✕</button>
     <div style="font-size:2rem;margin-bottom:1rem;">💬</div>
-    <div style="font-family:var(--serif);font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;color:var(--text);">Contact Support</div>
+    <div style="font-family:var(--serif);font-size:1.5rem;font-weight:400;letter-spacing:0.02em;margin-bottom:0.5rem;color:var(--text);">Contact Support</div>
     <p style="font-size:0.83rem;color:var(--textS);margin-bottom:2rem;line-height:1.65;">Choose the best way to reach us based on your issue.</p>
     <div style="display:flex;flex-direction:column;gap:1rem;">
-      <a href="sms:6266281392?body=Support" style="display:block;background:rgba(234,109,16,0.08);border:0.5px solid rgba(234,109,16,0.25);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
-        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#ea6d10;margin-bottom:0.35rem;">📦 Order Support</div>
-        <div style="font-size:1rem;font-weight:700;color:#111111;margin-bottom:0.2rem;">Text "Support" to (626) 628-1392</div>
-        <div style="font-size:0.75rem;color:#5a5c64;">For issues with your order, machine, or payment</div>
+      <a href="sms:6266281392?body=Support" style="display:block;background:rgba(199,62,31,0.08);border:0.5px solid rgba(199,62,31,0.25);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
+        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#C73E1F;margin-bottom:0.35rem;">📦 Order Support</div>
+        <div style="font-size:1rem;font-weight:400;color:#1E2A38;margin-bottom:0.2rem;">Text "Support" to (626) 628-1392</div>
+        <div style="font-size:0.75rem;color:#5A6472;">For issues with your order, machine, or payment</div>
       </a>
-      <a href="mailto:help@craverobotics.co" style="display:block;background:#eeede8;border:0.5px solid rgba(0,0,0,0.08);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
-        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5a5c64;margin-bottom:0.35rem;">✉️ All Other Inquiries</div>
-        <div style="font-size:1rem;font-weight:700;color:#111111;margin-bottom:0.2rem;">help@craverobotics.co</div>
-        <div style="font-size:0.75rem;color:#5a5c64;">Partnerships, press, general questions</div>
+      <a href="mailto:help@craverobotics.co" style="display:block;background:#EDE7DB;border:0.5px solid rgba(30,42,56,0.1);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
+        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5A6472;margin-bottom:0.35rem;">✉️ All Other Inquiries</div>
+        <div style="font-size:1rem;font-weight:400;color:#1E2A38;margin-bottom:0.2rem;">help@craverobotics.co</div>
+        <div style="font-size:0.75rem;color:#5A6472;">Partnerships, press, general questions</div>
       </a>
     </div>
   </div>

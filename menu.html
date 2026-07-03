@@ -35,16 +35,16 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
-  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.15);
-  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12);
-  --lemon:#c79500; --lemonD:rgba(199,149,0,0.1);
-  --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
-  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+  --bg:#F4EFE6; --bg2:#EDE7DB; --bg3:#E5DFD2; --white:#FCFAF5;
+  --border:rgba(30,42,56,0.1); --borderB:rgba(30,42,56,0.18);
+  --orange:#C73E1F; --orangeD:rgba(199,62,31,0.12);
+  --lemon:#F5A623; --lemonD:rgba(245,166,35,0.1);
+  --text:#1E2A38; --textS:#5A6472; --textM:#9AA2AC;
+  --font:'Montserrat',sans-serif; --serif:'Bebas Neue',sans-serif;
 }
 html { scroll-behavior:smooth; }
 body { font-family:var(--font); background:var(--bg); color:var(--text); overflow-x:hidden; min-height:100vh; }
@@ -69,8 +69,8 @@ nav {
 /* PAGE HEADER */
 .page-header { max-width:1280px; margin:0 auto; padding:4rem 3rem 3rem; border-bottom:0.5px solid var(--border); }
 .header-eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:0.75rem; display:block; opacity:0; transform:translateY(14px); animation:hIn 0.65s cubic-bezier(0.22,1,0.36,1) 0.05s forwards; }
-.header-h1 { font-family:var(--serif); font-size:clamp(3rem,6vw,5rem); font-weight:700; line-height:1.02; letter-spacing:-0.025em; opacity:0; transform:translateY(20px); animation:hIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.18s forwards; }
-.header-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.header-h1 { font-family:var(--serif); font-size:clamp(3rem,6vw,5rem); font-weight:400; line-height:1.02; letter-spacing:0.02em; opacity:0; transform:translateY(20px); animation:hIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.18s forwards; }
+.header-h1 em { font-style:normal; color:var(--orange); }
 .header-meta { opacity:0; transform:translateY(12px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.32s forwards; display:flex; align-items:flex-end; justify-content:space-between; margin-top:1.5rem; }
 .header-sub { font-size:0.9rem; color:var(--textS); }
 @keyframes hIn { to { opacity:1; transform:translateY(0); } }
@@ -86,7 +86,7 @@ nav {
 .cat-btn:hover { background:rgba(0,0,0,0.04); color:var(--text); }
 .cat-btn.active { background:var(--orangeD); color:var(--orange); }
 .cat-count { font-size:0.65rem; font-weight:700; color:var(--textM); background:var(--bg2); border-radius:100px; padding:1px 7px; }
-.cat-btn.active .cat-count { background:rgba(234,109,16,0.15); color:var(--orange); }
+.cat-btn.active .cat-count { background:rgba(199,62,31,0.15); color:var(--orange); }
 
 /* GRID */
 .grid-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.5rem; }
@@ -102,7 +102,7 @@ nav {
   opacity:0; transform:translateY(24px) scale(0.97);
 }
 .pc.shown { opacity:1; transform:none; transition:opacity 0.5s cubic-bezier(0.22,1,0.36,1),transform 0.5s cubic-bezier(0.22,1,0.36,1),box-shadow 0.32s,border-color 0.2s; }
-.pc:hover { transform:translateY(-8px) scale(1.01); box-shadow:0 20px 48px rgba(0,0,0,0.09); border-color:rgba(234,109,16,0.3); }
+.pc:hover { transform:translateY(-8px) scale(1.01); box-shadow:0 20px 48px rgba(0,0,0,0.09); border-color:rgba(199,62,31,0.3); }
 
 /* IMAGE / PLACEHOLDER */
 .pc-img-wrap { aspect-ratio:1; position:relative; overflow:hidden; background:var(--bg2); }
@@ -116,21 +116,21 @@ nav {
 .pc-placeholder-icon { font-size:2.4rem; line-height:1; }
 .pc-placeholder-label { font-size:0.6rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--textM); }
 .pc-tag { position:absolute; top:0.7rem; left:0.7rem; font-size:0.58rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; color:#fff; z-index:2; }
-.pc-new { position:absolute; top:0.7rem; right:0.7rem; font-size:0.58rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:3px 9px; border-radius:4px; color:#fff; background:var(--orange); z-index:2; box-shadow:0 2px 8px rgba(234,109,16,0.45); }
-.tag-breakfast { background:rgba(199,149,0,0.85); }
-.tag-entree    { background:rgba(234,109,16,0.85); }
+.pc-new { position:absolute; top:0.7rem; right:0.7rem; font-size:0.58rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; padding:3px 9px; border-radius:4px; color:#fff; background:var(--orange); z-index:2; box-shadow:0 2px 8px rgba(199,62,31,0.45); }
+.tag-breakfast { background:rgba(245,166,35,0.85); }
+.tag-entree    { background:rgba(199,62,31,0.85); }
 .tag-snack     { background:rgba(59,130,246,0.85); }
 .tag-dessert   { background:rgba(168,85,247,0.85); }
 
 .pc-body { padding:1rem 1.1rem 1.2rem; }
 .pc-name { font-size:0.83rem; font-weight:700; line-height:1.4; margin-bottom:0.5rem; color:var(--text); }
 .pc-footer { display:flex; align-items:center; justify-content:space-between; }
-.pc-price { font-family:var(--serif); font-size:1.3rem; font-weight:700; color:var(--orange); }
+.pc-price { font-family:var(--serif); font-size:1.3rem; font-weight:400; color:var(--orange); }
 .pc-cat-label { font-size:0.62rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--textM); }
 
 /* EMPTY */
 .empty { grid-column:1/-1; text-align:center; padding:5rem 2rem; }
-.empty-title { font-family:var(--serif); font-size:2rem; font-weight:700; color:var(--textM); margin-bottom:0.5rem; }
+.empty-title { font-family:var(--serif); font-size:2rem; font-weight:400; color:var(--textM); margin-bottom:0.5rem; }
 .empty-sub { font-size:0.9rem; color:var(--textM); }
 
 /* FOOTER */
@@ -153,6 +153,41 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
   .foot-links { flex-wrap:wrap; justify-content:center; }
 }
 @media(max-width:480px){ .product-grid { grid-template-columns:1fr; } }
+
+/* LABEL FRAME */
+.label-frame{position:fixed;inset:0;pointer-events:none;z-index:500;}
+.label-frame::before{content:'';position:absolute;inset:0;border:4px solid var(--orange, #C73E1F);border-right-width:16px;}
+@media(max-width:640px){.label-frame::before{border-width:3px;border-right-width:10px;}}
+/* NAV SWEEP */
+.nav-links a{position:relative;padding:0.5rem 0.85rem !important;border-radius:6px;overflow:hidden;z-index:1;transition:color 0.25s ease !important;}
+.nav-links a::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--sweep,#C73E1F);transform:scaleX(0);transform-origin:left center;transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);border-radius:6px;}
+.nav-links a:hover{color:#FCFAF5 !important;}
+.nav-links a:hover::before{transform:scaleX(1);}
+.nav-links li:nth-child(1) a,.nav-links a:nth-child(1){--sweep:#C73E1F;}
+.nav-links li:nth-child(2) a,.nav-links a:nth-child(2){--sweep:#F5A623;}
+.nav-links li:nth-child(3) a,.nav-links a:nth-child(3){--sweep:#5A8F4A;}
+.nav-links li:nth-child(4) a,.nav-links a:nth-child(4){--sweep:#7A4A2A;}
+.nav-links li:nth-child(5) a,.nav-links a:nth-child(5){--sweep:#C0392B;}
+.nav-links li:nth-child(6) a,.nav-links a:nth-child(6){--sweep:#C73E1F;}
+/* PALETTE FOOTER */
+footer{background:#5A8F4A !important;}
+footer *{color:#F4EFE6;}
+footer .fclabel,footer .foot-copy,footer .fcopy{color:rgba(244,239,230,0.55) !important;}
+footer a{color:rgba(244,239,230,0.8) !important;}
+footer a:hover{color:#FCFAF5 !important;text-decoration:underline;}
+footer .fb2,footer .foot-top{border-color:rgba(244,239,230,0.2) !important;}
+footer img[alt*="NAMA"]{mix-blend-mode:screen;}
+
+/* Label product cards */
+#grid .pc{border:2.5px solid var(--card-color,#C73E1F) !important;border-radius:10px !important;position:relative;}
+#grid .pc::after{content:'';position:absolute;top:0;right:0;bottom:0;width:6px;background:var(--card-color,#C73E1F);z-index:1;}
+#grid .pc:nth-child(5n+1){--card-color:#C73E1F;}
+#grid .pc:nth-child(5n+2){--card-color:#F5A623;}
+#grid .pc:nth-child(5n+3){--card-color:#C0392B;}
+#grid .pc:nth-child(5n+4){--card-color:#5A8F4A;}
+#grid .pc:nth-child(5n+5){--card-color:#7A4A2A;}
+#grid .pc .pc-name{font-family:var(--serif);font-size:1.25rem;font-weight:400;letter-spacing:0.02em;line-height:0.98;color:var(--card-color,#C73E1F);}
+#grid .pc .pc-price{font-family:var(--serif);font-weight:400;letter-spacing:0.02em;border-top:1px dashed rgba(30,42,56,0.18);padding-top:0.5rem;color:#1E2A38;}
 </style>
 
 <!-- ── STRUCTURED DATA (SEO + AEO) ───────────────────────────────────── -->
@@ -290,6 +325,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
 </script>
 </head>
 <body>
+<div class="label-frame"></div>
 
 <!-- NAV -->
 <nav>
@@ -310,7 +346,7 @@ footer { border-top:0.5px solid var(--border); padding:2.5rem 3rem; max-width:12
   <h1 class="header-h1">Gourmet on the <em>Go</em></h1>
   <div class="header-meta">
     <p class="header-sub">Hot, fresh meals ready in under 3 minutes — available 24/7 at a CraveBot near you.</p>
-    <span id="countBadge" style="font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--text);"></span>
+    <span id="countBadge" style="font-family:var(--serif);font-size:2rem;font-weight:400;color:var(--text);"></span>
   </div>
 </div>
 
@@ -594,7 +630,7 @@ render();
 <div style="max-width:900px;margin:0 auto;padding:2rem 3rem;font-family:'Montserrat',sans-serif;">
   <h2 style="font-size:1.2rem;margin-bottom:1.5rem;color:#111;">Full Menu</h2>
 
-  <h3 style="font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#ea6d10;margin:1.5rem 0 0.75rem;">Breakfast</h3>
+  <h3 style="font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#C73E1F;margin:1.5rem 0 0.75rem;">Breakfast</h3>
   <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem;">
     <li style="font-size:0.9rem;color:#111;">Meat Lover's Breakfast Bowl — $9.00</li>
     <li style="font-size:0.9rem;color:#111;">Sausage, Egg &amp; Cheese Croissant Sandwich — $6.00</li>
@@ -606,7 +642,7 @@ render();
     <li style="font-size:0.9rem;color:#111;">Green Chile Pork &amp; Cheese Tamale — $6.00</li>
   </ul>
 
-  <h3 style="font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#ea6d10;margin:1.5rem 0 0.75rem;">Entrees</h3>
+  <h3 style="font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#C73E1F;margin:1.5rem 0 0.75rem;">Entrees</h3>
   <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem;">
     <li style="font-size:0.9rem;color:#111;">🆕 Kahiki Chicken Rice Bowl with Teriyaki Sauce — $12.00</li>
     <li style="font-size:0.9rem;color:#111;">🆕 Garlic Chicken Pasta — $12.00</li>
@@ -634,7 +670,7 @@ render();
     <li style="font-size:0.9rem;color:#111;">Sukhi's Chicken Coconut Curry — $13.00</li>
   </ul>
 
-  <h3 style="font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#ea6d10;margin:1.5rem 0 0.75rem;">Snacks</h3>
+  <h3 style="font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#C73E1F;margin:1.5rem 0 0.75rem;">Snacks</h3>
   <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem;">
     <li style="font-size:0.9rem;color:#111;">Angus Cheeseburger — $9.00</li>
     <li style="font-size:0.9rem;color:#111;">Chicken &amp; Cheese Quesadilla — $8.00</li>
@@ -647,7 +683,7 @@ render();
     <li style="font-size:0.9rem;color:#111;">Chicken Soup Dumplings (6 Pieces) — $8.00</li>
   </ul>
 
-  <h3 style="font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#ea6d10;margin:1.5rem 0 0.75rem;">Desserts</h3>
+  <h3 style="font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:#C73E1F;margin:1.5rem 0 0.75rem;">Desserts</h3>
   <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem;">
     <li style="font-size:0.9rem;color:#111;">New York Style Cheesecake — $6.00</li>
     <li style="font-size:0.9rem;color:#111;">Brown Sugar Boba Ice Cream Bar — $5.00</li>
@@ -659,21 +695,21 @@ render();
 
 <!-- CONTACT SUPPORT MODAL -->
 <div style="position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.3s;" id="supportModal">
-  <div style="background:#faf9f6;border:0.5px solid rgba(0,0,0,0.15);border-radius:16px;width:100%;max-width:420px;padding:2.5rem;position:relative;transform:translateY(24px) scale(0.96);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);text-align:center;" id="supportModalInner">
-    <button onclick="closeSupportModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:#eeede8;border:0.5px solid rgba(0,0,0,0.08);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;color:#9a9ca5;">✕</button>
+  <div style="background:#FCFAF5;border:0.5px solid rgba(30,42,56,0.18);border-radius:16px;width:100%;max-width:420px;padding:2.5rem;position:relative;transform:translateY(24px) scale(0.96);transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);text-align:center;" id="supportModalInner">
+    <button onclick="closeSupportModal()" style="position:absolute;top:1.25rem;right:1.25rem;background:#EDE7DB;border:0.5px solid rgba(30,42,56,0.1);border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.85rem;color:#9AA2AC;">✕</button>
     <div style="font-size:2rem;margin-bottom:1rem;">💬</div>
-    <div style="font-family:var(--serif,serif);font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;color:#111111;">Contact Support</div>
-    <p style="font-size:0.83rem;color:#5a5c64;margin-bottom:2rem;line-height:1.65;">Choose the best way to reach us based on your issue.</p>
+    <div style="font-family:var(--serif,serif);font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:0.5rem;color:#1E2A38;">Contact Support</div>
+    <p style="font-size:0.83rem;color:#5A6472;margin-bottom:2rem;line-height:1.65;">Choose the best way to reach us based on your issue.</p>
     <div style="display:flex;flex-direction:column;gap:1rem;">
-      <a href="sms:6266281392?body=Support" style="display:block;background:rgba(234,109,16,0.08);border:0.5px solid rgba(234,109,16,0.25);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
-        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#ea6d10;margin-bottom:0.35rem;">📦 Order Support</div>
-        <div style="font-size:1rem;font-weight:700;color:#111111;margin-bottom:0.2rem;">Text &ldquo;Support&rdquo; to (626) 628-1392</div>
-        <div style="font-size:0.75rem;color:#5a5c64;">For issues with your order, machine, or payment</div>
+      <a href="sms:6266281392?body=Support" style="display:block;background:rgba(199,62,31,0.08);border:0.5px solid rgba(199,62,31,0.25);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
+        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#C73E1F;margin-bottom:0.35rem;">📦 Order Support</div>
+        <div style="font-size:1rem;font-weight:700;color:#1E2A38;margin-bottom:0.2rem;">Text &ldquo;Support&rdquo; to (626) 628-1392</div>
+        <div style="font-size:0.75rem;color:#5A6472;">For issues with your order, machine, or payment</div>
       </a>
-      <a href="mailto:help@craverobotics.co" style="display:block;background:#eeede8;border:0.5px solid rgba(0,0,0,0.08);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
-        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5a5c64;margin-bottom:0.35rem;">✉️ All Other Inquiries</div>
-        <div style="font-size:1rem;font-weight:700;color:#111111;margin-bottom:0.2rem;">help@craverobotics.co</div>
-        <div style="font-size:0.75rem;color:#5a5c64;">Partnerships, press, general questions</div>
+      <a href="mailto:help@craverobotics.co" style="display:block;background:#EDE7DB;border:0.5px solid rgba(30,42,56,0.1);border-radius:12px;padding:1.25rem 1.5rem;text-decoration:none;text-align:left;">
+        <div style="font-size:0.62rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#5A6472;margin-bottom:0.35rem;">✉️ All Other Inquiries</div>
+        <div style="font-size:1rem;font-weight:700;color:#1E2A38;margin-bottom:0.2rem;">help@craverobotics.co</div>
+        <div style="font-size:0.75rem;color:#5A6472;">Partnerships, press, general questions</div>
       </a>
     </div>
   </div>

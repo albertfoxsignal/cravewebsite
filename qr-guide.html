@@ -9,15 +9,15 @@
 <link rel="icon" type="image/svg+xml" href="/icon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg:#f5f4f0; --white:#fff;
-  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.13);
-  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.1); --orangeL:#fff3eb;
-  --text:#111; --textS:#5a5c64; --textM:#9a9ca5;
-  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+  --bg:#F4EFE6; --white:#fff;
+  --border:rgba(30,42,56,0.1); --borderB:rgba(0,0,0,0.13);
+  --orange:#C73E1F; --orangeD:rgba(199,62,31,0.1); --orangeL:#fff3eb;
+  --text:#111; --textS:#5A6472; --textM:#9AA2AC;
+  --font:'Montserrat',sans-serif; --serif:'Bebas Neue',sans-serif;
   --green:#16a34a; --greenD:rgba(22,163,74,0.1);
 }
 html { scroll-behavior:smooth; }
@@ -53,7 +53,7 @@ nav {
   content:'';
   position:absolute; inset:0;
   background:radial-gradient(circle at 80% 20%, rgba(255,255,255,0.12) 0%, transparent 60%),
-             radial-gradient(circle at 20% 80%, rgba(0,0,0,0.08) 0%, transparent 50%);
+             radial-gradient(circle at 20% 80%, rgba(30,42,56,0.1) 0%, transparent 50%);
 }
 .hero-icon {
   font-size:3rem; margin-bottom:1rem;
@@ -64,10 +64,10 @@ nav {
 .hero h1 {
   font-family:var(--serif);
   font-size:clamp(1.8rem, 6vw, 2.5rem);
-  font-weight:700;
+  font-weight:400;
   color:#fff;
   line-height:1.1;
-  letter-spacing:-0.02em;
+  letter-spacing:0.02em;
   margin-bottom:0.75rem;
   position:relative;
   opacity:0; transform:translateY(16px);
@@ -135,8 +135,8 @@ main {
 .step-title {
   font-family:var(--serif);
   font-size:1.15rem;
-  font-weight:700;
-  letter-spacing:-0.015em;
+  font-weight:400;
+  letter-spacing:0.02em;
   color:var(--text);
   margin-bottom:0.45rem;
   line-height:1.2;
@@ -171,7 +171,7 @@ main {
 /* HELP */
 .help-card {
   background:var(--orangeL);
-  border:0.5px solid rgba(234,109,16,0.2);
+  border:0.5px solid rgba(199,62,31,0.2);
   border-radius:14px;
   padding:1.4rem;
   margin-top:2rem;
@@ -180,7 +180,7 @@ main {
 .help-card h3 {
   font-family:var(--serif);
   font-size:1.1rem;
-  font-weight:700;
+  font-weight:400;
   margin-bottom:0.4rem;
   color:var(--text);
 }
@@ -209,9 +209,34 @@ footer {
 }
 footer a { color:var(--textM); text-decoration:none; }
 footer a:hover { color:var(--text); }
+
+/* LABEL FRAME */
+.label-frame{position:fixed;inset:0;pointer-events:none;z-index:500;}
+.label-frame::before{content:'';position:absolute;inset:0;border:4px solid var(--orange, #C73E1F);border-right-width:16px;}
+@media(max-width:640px){.label-frame::before{border-width:3px;border-right-width:10px;}}
+/* NAV SWEEP */
+.nav-links a{position:relative;padding:0.5rem 0.85rem !important;border-radius:6px;overflow:hidden;z-index:1;transition:color 0.25s ease !important;}
+.nav-links a::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--sweep,#C73E1F);transform:scaleX(0);transform-origin:left center;transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);border-radius:6px;}
+.nav-links a:hover{color:#FCFAF5 !important;}
+.nav-links a:hover::before{transform:scaleX(1);}
+.nav-links li:nth-child(1) a,.nav-links a:nth-child(1){--sweep:#C73E1F;}
+.nav-links li:nth-child(2) a,.nav-links a:nth-child(2){--sweep:#F5A623;}
+.nav-links li:nth-child(3) a,.nav-links a:nth-child(3){--sweep:#5A8F4A;}
+.nav-links li:nth-child(4) a,.nav-links a:nth-child(4){--sweep:#7A4A2A;}
+.nav-links li:nth-child(5) a,.nav-links a:nth-child(5){--sweep:#C0392B;}
+.nav-links li:nth-child(6) a,.nav-links a:nth-child(6){--sweep:#C73E1F;}
+/* PALETTE FOOTER */
+footer{background:#7A4A2A !important;}
+footer *{color:#F4EFE6;}
+footer .fclabel,footer .foot-copy,footer .fcopy{color:rgba(244,239,230,0.55) !important;}
+footer a{color:rgba(244,239,230,0.8) !important;}
+footer a:hover{color:#FCFAF5 !important;text-decoration:underline;}
+footer .fb2,footer .foot-top{border-color:rgba(244,239,230,0.2) !important;}
+footer img[alt*="NAMA"]{mix-blend-mode:screen;}
 </style>
 </head>
 <body>
+<div class="label-frame"></div>
 
 <!-- NAV -->
 <nav>

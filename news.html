@@ -28,17 +28,17 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet" />
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --bg:#f5f4f0; --bg2:#eeede8; --bg3:#e6e5df; --white:#ffffff;
-  --border:rgba(0,0,0,0.08); --borderB:rgba(0,0,0,0.15);
-  --orange:#ea6d10; --orangeD:rgba(234,109,16,0.12);
-  --lemon:#c79500; --lemonD:rgba(199,149,0,0.1);
-  --text:#111111; --textS:#5a5c64; --textM:#9a9ca5;
-  --font:'Montserrat',sans-serif; --serif:'Fraunces',serif;
+  --bg:#F4EFE6; --bg2:#EDE7DB; --bg3:#E5DFD2; --white:#FCFAF5;
+  --border:rgba(30,42,56,0.1); --borderB:rgba(30,42,56,0.18);
+  --orange:#C73E1F; --orangeD:rgba(199,62,31,0.12);
+  --lemon:#F5A623; --lemonD:rgba(245,166,35,0.1);
+  --text:#1E2A38; --textS:#5A6472; --textM:#9AA2AC;
+  --font:'Montserrat',sans-serif; --serif:'Bebas Neue',sans-serif;
 }
 html { scroll-behavior:smooth; }
 body { font-family:var(--font); background:var(--bg); color:var(--text); overflow-x:hidden; }
@@ -61,16 +61,16 @@ nav {
 /* PAGE HEADER */
 .page-header { max-width:1280px; margin:0 auto; padding:4rem 3rem 3rem; border-bottom:0.5px solid var(--border); }
 .header-eyebrow { font-size:0.68rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--orange); margin-bottom:0.75rem; display:block; opacity:0; transform:translateY(14px); animation:hIn 0.65s cubic-bezier(0.22,1,0.36,1) 0.05s forwards; }
-.header-h1 { font-family:var(--serif); font-size:clamp(2.8rem,5vw,4.5rem); font-weight:700; line-height:1.04; letter-spacing:-0.025em; opacity:0; transform:translateY(20px); animation:hIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.18s forwards; }
-.header-h1 em { font-style:italic; display:inline-block; padding-right:0.08em; background:linear-gradient(90deg,var(--orange),var(--lemon)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.header-h1 { font-family:var(--serif); font-size:clamp(2.8rem,5vw,4.5rem); font-weight:400; line-height:1.04; letter-spacing:0.02em; opacity:0; transform:translateY(20px); animation:hIn 0.8s cubic-bezier(0.22,1,0.36,1) 0.18s forwards; }
+.header-h1 em { font-style:normal; color:var(--orange); }
 .header-sub { font-size:0.9rem; color:var(--textS); margin-top:1rem; opacity:0; transform:translateY(12px); animation:hIn 0.7s cubic-bezier(0.22,1,0.36,1) 0.3s forwards; }
 @keyframes hIn { to { opacity:1; transform:translateY(0); } }
 
 /* FILTER TABS */
 .filter-bar { max-width:1280px; margin:0 auto; padding:2rem 3rem 0; display:flex; gap:0.5rem; flex-wrap:wrap; }
 .filter-btn { font-family:var(--font); font-size:0.72rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.45rem 1rem; border-radius:100px; border:0.5px solid var(--border); background:var(--white); color:var(--textS); cursor:pointer; transition:all 0.18s; }
-.filter-btn:hover { border-color:rgba(234,109,16,0.4); color:var(--orange); }
-.filter-btn.active { background:var(--orangeD); border-color:rgba(234,109,16,0.35); color:var(--orange); }
+.filter-btn:hover { border-color:rgba(199,62,31,0.4); color:var(--orange); }
+.filter-btn.active { background:var(--orangeD); border-color:rgba(199,62,31,0.35); color:var(--orange); }
 
 /* GRID */
 .news-layout { max-width:1280px; margin:0 auto; padding:2.5rem 3rem 6rem; }
@@ -90,7 +90,7 @@ nav {
   opacity:0; transform:translateY(24px);
 }
 .nc.shown { opacity:1; transform:none; }
-.nc:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(0,0,0,0.09); border-color:rgba(234,109,16,0.3); }
+.nc:hover { transform:translateY(-6px); box-shadow:0 20px 48px rgba(0,0,0,0.09); border-color:rgba(199,62,31,0.3); }
 .nc-img { width:100%; aspect-ratio:16/9; object-fit:cover; display:block; background:var(--bg2); transition:transform 0.45s cubic-bezier(0.22,1,0.36,1); }
 .nc:hover .nc-img { transform:scale(1.03); }
 .nc-img-wrap { overflow:hidden; flex-shrink:0; }
@@ -99,12 +99,12 @@ nav {
 .nc-body { padding:1.4rem; display:flex; flex-direction:column; flex:1; }
 .nc-meta { display:flex; align-items:center; gap:0.6rem; margin-bottom:0.75rem; flex-wrap:wrap; }
 .nc-tag { font-size:0.58rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; color:#fff; flex-shrink:0; }
-.tag-company  { background:rgba(234,109,16,0.85); }
+.tag-company  { background:rgba(199,62,31,0.85); }
 .tag-product  { background:rgba(59,130,246,0.85); }
 .tag-press    { background:rgba(168,85,247,0.85); }
 .tag-partner  { background:rgba(22,163,74,0.85); }
 .nc-date { font-size:0.67rem; font-weight:600; color:var(--textM); letter-spacing:0.04em; }
-.nc-title { font-family:var(--serif); font-size:1.05rem; font-weight:700; line-height:1.35; letter-spacing:-0.015em; margin-bottom:0.6rem; color:var(--text); }
+.nc-title { font-family:var(--serif); font-size:1.05rem; font-weight:400; line-height:1.35; letter-spacing:0.02em; margin-bottom:0.6rem; color:var(--text); }
 .nc-excerpt { font-size:0.82rem; color:var(--textS); line-height:1.7; flex:1; }
 .nc-footer { margin-top:1.2rem; display:flex; align-items:center; justify-content:space-between; }
 .nc-read { font-size:0.7rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--orange); display:flex; align-items:center; gap:4px; transition:gap 0.2s; }
@@ -137,6 +137,30 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
   footer { flex-direction:column; gap:1.5rem; text-align:center; }
   .foot-links { flex-wrap:wrap; justify-content:center; }
 }
+
+/* LABEL FRAME */
+.label-frame{position:fixed;inset:0;pointer-events:none;z-index:500;}
+.label-frame::before{content:'';position:absolute;inset:0;border:4px solid var(--orange, #C73E1F);border-right-width:16px;}
+@media(max-width:640px){.label-frame::before{border-width:3px;border-right-width:10px;}}
+/* NAV SWEEP */
+.nav-links a{position:relative;padding:0.5rem 0.85rem !important;border-radius:6px;overflow:hidden;z-index:1;transition:color 0.25s ease !important;}
+.nav-links a::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--sweep,#C73E1F);transform:scaleX(0);transform-origin:left center;transition:transform 0.35s cubic-bezier(0.22,1,0.36,1);border-radius:6px;}
+.nav-links a:hover{color:#FCFAF5 !important;}
+.nav-links a:hover::before{transform:scaleX(1);}
+.nav-links li:nth-child(1) a,.nav-links a:nth-child(1){--sweep:#C73E1F;}
+.nav-links li:nth-child(2) a,.nav-links a:nth-child(2){--sweep:#F5A623;}
+.nav-links li:nth-child(3) a,.nav-links a:nth-child(3){--sweep:#5A8F4A;}
+.nav-links li:nth-child(4) a,.nav-links a:nth-child(4){--sweep:#7A4A2A;}
+.nav-links li:nth-child(5) a,.nav-links a:nth-child(5){--sweep:#C0392B;}
+.nav-links li:nth-child(6) a,.nav-links a:nth-child(6){--sweep:#C73E1F;}
+/* PALETTE FOOTER */
+footer{background:#F5A623 !important;}
+footer *{color:#1E2A38;}
+footer .fclabel,footer .foot-copy,footer .fcopy{color:rgba(30,42,56,0.55) !important;}
+footer a{color:rgba(30,42,56,0.8) !important;}
+footer a:hover{color:#C73E1F !important;}
+footer .fb2,footer .foot-top{border-color:rgba(30,42,56,0.2) !important;}
+footer img[alt*="NAMA"]{mix-blend-mode:multiply;}
 </style>
 
 <script type="application/ld+json">
@@ -160,6 +184,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
 </script>
 </head>
 <body>
+<div class="label-frame"></div>
 
 <!-- NAV -->
 <nav>
@@ -328,6 +353,7 @@ footer { border-top:0.5px solid var(--border); padding:3rem; max-width:1280px; m
       <li><a href="/news">News</a></li>
       <li><a href="/privacy-policy">Privacy Policy</a></li>
       <li><a href="/data-deletion">Data Deletion</a></li>
+    <li><a href="/qr-guide">Redeem QR Code</a></li>
       <li><a href="javascript:void(0)" onclick="openSupportModal()">Contact</a></li>
     </ul>
     <div class="foot-copy">© 2025 Crave Robotics™</div>
