@@ -104,6 +104,18 @@ footer { border-top:0.5px solid var(--border); padding:1.5rem 3rem; display:flex
 .nav-links li:nth-child(4) a,.nav-links a:nth-child(4){--sweep:#7A4A2A;}
 .nav-links li:nth-child(5) a,.nav-links a:nth-child(5){--sweep:#C0392B;}
 .nav-links li:nth-child(6) a,.nav-links a:nth-child(6){--sweep:#C73E1F;}
+
+/* Structured footer (matches homepage) */
+footer{padding:3.5rem 3rem 2rem;display:block;width:100%;max-width:none;margin:0;}
+.foot-inner{max-width:1280px;margin:0 auto;}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2.5rem;padding-bottom:2.5rem;border-bottom:0.5px solid rgba(244,239,230,0.2);}
+.foot-brand{display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start;}
+.foot-brand-name{display:flex;align-items:center;gap:9px;font-weight:800;font-size:0.9rem;letter-spacing:0.05em;}
+.fcol .fclabel{font-size:0.62rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;padding:0;margin:0;}
+.fcol a{font-size:0.78rem;text-decoration:none;transition:color 0.2s;}
+.foot-copy{padding-top:1.5rem;font-size:0.68rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;}
+
 /* PALETTE FOOTER */
 footer{background:#5A8F4A !important;}
 footer *{color:#F4EFE6;}
@@ -112,6 +124,15 @@ footer a{color:rgba(244,239,230,0.8) !important;}
 footer a:hover{color:#FCFAF5 !important;text-decoration:underline;}
 footer .fb2,footer .foot-top{border-color:rgba(244,239,230,0.2) !important;}
 footer img[alt*="NAMA"]{mix-blend-mode:screen;}
+
+/* Mobile footer */
+@media(max-width:700px){
+  footer{padding:2.5rem 1.5rem 1.5rem !important;}
+  .foot-top{flex-direction:column;gap:1.8rem;}
+  .foot-copy{flex-direction:column;gap:0.3rem;}
+  footer img[alt*="NAMA"]{height:80px !important;}
+  .fcol ul{gap:0.5rem;}
+}
 </style>
 </head>
 <body>
@@ -277,21 +298,56 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
 </main>
 
 <!-- FOOTER -->
-<footer>
-  <a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--textM);font-weight:700;font-size:0.8rem;letter-spacing:0.04em;">
-    <img src="/icon.svg" alt="Crave Robotics" style="height:22px;width:auto;" /> CRAVE ROBOTICS
-  </a>
-  <ul class="foot-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/cravebot">CraveBot</a></li>
-    <li><a href="/menu">Menu</a></li>
-    <li><a href="/news">News</a></li>
-    <li><a href="/data-deletion">Data Deletion</a></li>
-    <li><a href="/qr-guide">Redeem QR Code</a></li>
-    <li><a href="javascript:void(0)" onclick="openSupportModal()">Contact</a></li>
-  </ul>
-  <div class="foot-copy">© 2025 Crave Robotics™</div>
-</footer>
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <div class="foot-brand-name"><img src="/icon.svg" alt="Crave Robotics" style="height:26px;width:auto;" />CRAVE ROBOTICS</div>
+          <a href="https://namanow.org/" target="_blank" rel="noopener">
+            <img src="/NAMA_Member_Mark_transparent.png" alt="Proud Member of NAMA" style="height:110px;width:auto;opacity:0.9;mix-blend-mode:screen;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'" />
+          </a>
+        </div>
+        <div class="fcol">
+          <div class="fclabel">Company</div>
+          <ul>
+            <li><a href="/cravebot">CraveBot</a></li>
+            <li><a href="/menu">Menu</a></li>
+            <li><a href="/craveos">CraveOS</a></li>
+            <li><a href="/news">News</a></li>
+            <li><a href="/NSF%20-%20DSS_SGSNA_26_GZ_00060.pdf" target="_blank">Certification</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <div class="fclabel">Legal</div>
+          <ul>
+            <li><a href="/privacy-policy">Privacy Policy</a></li>
+            <li><a href="/data-deletion">Data Deletion Request</a></li>
+            <li><a href="/qr-guide">Redeem QR Code</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <div class="fclabel">Connect</div>
+          <ul>
+            <li><a href="https://www.linkedin.com/company/craverobotics/" target="_blank">LinkedIn</a></li>
+            <li><a href="javascript:void(0)" onclick="openSupportModal()">Contact Support</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <div class="fclabel">Latest News</div>
+          <ul>
+            <li><a href="/news">Featured in Kiosk Marketplace — Certification Milestone</a></li>
+            <li><a href="/news">Featured in Retail Automation Systems — NAMA 2026</a></li>
+            <li><a href="/news">New Brand Partners: Sukhi's &amp; Tucson Foods</a></li>
+            <li><a href="/news" style="font-weight:700;">All news →</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-copy">
+        <span>© 2025 Crave Robotics™. All rights reserved.</span>
+        <span>635 W. Allen Ave., San Dimas, CA 91773</span>
+      </div>
+    </div>
+  </footer>
 
 <!-- CONTACT SUPPORT MODAL -->
 <div style="position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.3);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity 0.3s;" id="supportModal">

@@ -235,6 +235,33 @@ footer{background:#C73E1F;color:var(--bg);padding:3.5rem 3rem 2rem;}
   .bpcell{flex:0 0 50%;min-width:170px;}
 }
 @media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}}
+
+/* Mobile footer */
+@media(max-width:700px){
+  footer{padding:2.5rem 1.5rem 1.5rem !important;}
+  .foot-top{flex-direction:column;gap:1.8rem;}
+  .foot-copy{flex-direction:column;gap:0.3rem;}
+  footer img[alt*="NAMA"]{height:80px !important;}
+  .fcol ul{gap:0.5rem;}
+}
+
+/* Mobile nav */
+.nav-burger{display:none;background:none;border:1.5px solid var(--borderB);border-radius:7px;width:38px;height:38px;cursor:pointer;font-size:1rem;color:var(--text);align-items:center;justify-content:center;}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--white);border-bottom:2.5px solid var(--orange);z-index:190;flex-direction:column;padding:0.5rem 0;box-shadow:0 16px 40px rgba(30,42,56,0.14);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{padding:0.95rem 1.5rem;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);text-decoration:none;border-bottom:0.5px solid var(--border);}
+.mobile-menu a:last-child{border-bottom:none;}
+.mobile-menu a:active{background:var(--bg);color:var(--orange);}
+@media(max-width:640px){
+  .nav-burger{display:flex;}
+  .nav-cta{display:none;}
+  .hero{padding-top:4rem;}
+  .bpcta{flex-direction:column;align-items:flex-start;}
+  .bpcta .btn{width:100%;text-align:center;}
+  .hm-item{flex:1 1 40%;}
+  #leaflet-map{min-height:320px;}
+  .loc-list{max-height:260px;}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -558,7 +585,17 @@ footer{background:#C73E1F;color:var(--bg);padding:3.5rem 3rem 2rem;}
     <li><a href="/craveos">CraveOS</a></li>
   </ul>
   <button class="nav-cta" onclick="openM('General question')">Contact Us</button>
+  <button class="nav-burger" onclick="document.getElementById('mmenu').classList.toggle('open')" aria-label="Menu">☰</button>
 </nav>
+<div class="mobile-menu" id="mmenu">
+  <a href="/menu">Menu</a>
+  <a href="#how" onclick="document.getElementById('mmenu').classList.remove('open')">How It Works</a>
+  <a href="#locations" onclick="document.getElementById('mmenu').classList.remove('open')">Locations</a>
+  <a href="#partners" onclick="document.getElementById('mmenu').classList.remove('open')">Partners</a>
+  <a href="/cravebot">CraveBot</a>
+  <a href="/craveos">CraveOS</a>
+  <a href="javascript:void(0)" onclick="document.getElementById('mmenu').classList.remove('open');openM('General question')" style="color:var(--orange);">Contact Us</a>
+</div>
 
 <!-- HERO -->
 <header>

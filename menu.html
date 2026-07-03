@@ -200,6 +200,15 @@ footer img[alt*="NAMA"]{mix-blend-mode:multiply;}
 #grid .pc:nth-child(5n+5){--card-color:#7A4A2A;}
 #grid .pc .pc-name{font-family:var(--serif);font-size:1.25rem;font-weight:400;letter-spacing:0.02em;line-height:0.98;color:var(--card-color,#C73E1F);}
 #grid .pc .pc-price{font-family:var(--serif);font-weight:400;letter-spacing:0.02em;border-top:1px dashed rgba(30,42,56,0.18);padding-top:0.5rem;color:#1E2A38;}
+
+/* Mobile footer */
+@media(max-width:700px){
+  footer{padding:2.5rem 1.5rem 1.5rem !important;}
+  .foot-top{flex-direction:column;gap:1.8rem;}
+  .foot-copy{flex-direction:column;gap:0.3rem;}
+  footer img[alt*="NAMA"]{height:80px !important;}
+  .fcol ul{gap:0.5rem;}
+}
 </style>
 
 <!-- ── STRUCTURED DATA (SEO + AEO) ───────────────────────────────────── -->
