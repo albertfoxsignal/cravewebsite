@@ -18,6 +18,7 @@
     { "source": "/data-deletion",  "destination": "/data-deletion.html" },
     { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
     { "source": "/terms-of-service", "destination": "/terms-of-service.html" },
+    { "source": "/menu-form", "destination": "/menu-form.html" },
     { "source": "/qr-guide",       "destination": "/qr-guide.html" }
   ]
 }
