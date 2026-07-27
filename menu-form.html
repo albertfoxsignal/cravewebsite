@@ -71,7 +71,10 @@ textarea.finput{resize:vertical;min-height:90px;}
 /* ORDER TABLE */
 .cat-head{font-family:var(--serif);font-size:1.1rem;letter-spacing:0.1em;color:#fff;background:var(--cat-color,var(--orange));padding:0.5rem 1rem;border-radius:6px;margin:1.6rem 0 0.6rem;}
 .cat-head:first-of-type{margin-top:0;}
-.item-row{display:grid;grid-template-columns:1fr 90px 130px 90px;gap:0.8rem;align-items:center;padding:0.7rem 0.5rem;border-bottom:0.5px solid var(--border);}
+.item-row{display:grid;grid-template-columns:54px 1fr 90px 130px 90px;gap:0.8rem;align-items:center;padding:0.7rem 0.5rem;border-bottom:0.5px solid var(--border);}
+.item-thumb{width:54px;height:54px;border-radius:8px;object-fit:cover;display:block;background:var(--bg2);border:0.5px solid var(--border);}
+.item-thumb-ph{width:54px;height:54px;border-radius:8px;background:var(--bg2);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
+.veg-badge{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border:1.5px solid var(--green);border-radius:50%;color:var(--green);font-size:0.58rem;font-weight:800;margin-left:6px;vertical-align:middle;line-height:1;}
 .item-row:last-of-type{border-bottom:none;}
 .item-name{font-size:0.85rem;font-weight:600;}
 .item-soon{display:inline-block;font-size:0.52rem;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:#fff;background:var(--lemon);border-radius:4px;padding:2px 6px;margin-left:6px;vertical-align:middle;}
@@ -132,8 +135,9 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
 @media(max-width:640px){
   .page{padding:2.5rem 1.5rem 4rem;}
   .fgrid{grid-template-columns:1fr;}
-  .item-row{grid-template-columns:1fr 110px;grid-template-areas:"name name" "qty total";row-gap:0.4rem;}
-  .item-name{grid-area:name;}
+  .item-row{grid-template-columns:44px 1fr 100px;grid-template-areas:"img name name" "img qty total";row-gap:0.4rem;}
+  .item-thumb,.item-thumb-ph{grid-area:img;width:44px;height:44px;font-size:1.1rem;}
+  .item-name{grid-area:name;font-size:0.8rem;}
   .item-price{display:none;}
   .qty-wrap{grid-area:qty;}
   .line-total{grid-area:total;}
@@ -298,36 +302,37 @@ if (sessionStorage.getItem(GATE_KEY) === '1') document.getElementById('gate').cl
 /* ── MENU DATA (June 2026 priced menu + active inventory) ── */
 const MENU = [
   { cat:'Breakfast', color:'#F5A623', items:[
-    { id:'Z-027', name:'Meat Lovers Breakfast Bowl', price:8.00 },
+    { id:'Z-027', name:'Meat Lovers Breakfast Bowl', price:8.00, img:'/Meat_Lover-01-20250104161542.jpg' },
   ]},
   { cat:'Entrees', color:'#C73E1F', items:[
-    { id:'Z-023', name:'Eggplant Parmigiana', price:10.00 },
-    { id:'Z-022', name:'Riced Cauliflower Stir Fry', price:10.00 },
-    { id:'Z-026', name:'Chicken Teriyaki Bowl', price:10.00 },
-    { id:'Z-020', name:'Blackened Chicken Alfredo', price:12.00 },
-    { id:'Z-024', name:'Chicken Parmigiana With Spaghetti', price:10.00 },
-    { id:'Z-025', name:'Garlic Chicken Pasta', price:10.00 },
-    { id:'Z-017', name:'Four Cheese Mac & Cheese', price:10.00 },
-    { id:'—',     name:'Stewed Pork & Mushroom Rice Bowl', price:14.00 },
-    { id:'—',     name:'Braised Pork Belly Bowl', price:14.00 },
-    { id:'Z-014', name:"Sukhi's Chicken Tikka Masala Curry Bowl", price:12.99 },
-    { id:'Z-016', name:"Sukhi's Classic Chicken Curry Bowl", price:12.99 },
-    { id:'Z-015', name:"Sukhi's Butter Chicken Curry Bowl", price:12.99 },
-    { id:'—',     name:'MÌLà Sweet and Sour Pork Rice Bowl', price:12.00, soon:true },
-    { id:'—',     name:'MÌLà Black Pepper Beef Rice Bowl', price:12.00, soon:true },
-    { id:'—',     name:'MÌLà Chicken and Mushroom', price:12.00, soon:true },
+    { id:'Z-023', name:'Eggplant Parmigiana', price:10.00, img:'/Eggplant%20Parmigian.png', veg:true },
+    { id:'Z-022', name:'Riced Cauliflower Stir Fry', price:10.00, img:'/CAULIFLOWER%20RICED%20.png', veg:true },
+    { id:'Z-026', name:'Chicken Teriyaki Bowl', price:10.00, img:'/Teriyaki_Chicken_Rice_Box_(1)-20251029113749-20260209130244.png' },
+    { id:'Z-020', name:'Blackened Chicken Alfredo', price:12.00, img:'/blackened-chicken-alfredo.webp' },
+    { id:'Z-024', name:'Chicken Parmigiana With Spaghetti', price:10.00, img:'/Chicken%20Parmigian.png' },
+    { id:'Z-025', name:'Garlic Chicken Pasta', price:10.00, img:'/Garlic%20Chicken%20Pasta.png' },
+    { id:'Z-017', name:'Four Cheese Mac & Cheese', price:10.00, img:'/lucasjun92_photorealistic_image_of_Mac_and_cheese_in_a_white_pl_6b5fd588-002e-4d5f-b752-29062d020ce9-20250104154907.png', veg:true },
+    { id:'—',     name:'Stewed Pork & Mushroom Rice Bowl', price:14.00, icon:'🍲' },
+    { id:'—',     name:'Braised Pork Belly Bowl', price:14.00, img:'/braised%20pork%20belly%20rice.png' },
+    { id:'Z-014', name:"Sukhi's Chicken Tikka Masala Curry Bowl", price:12.99, img:'/Curry%20Bowl_CTM.jpg' },
+    { id:'Z-016', name:"Sukhi's Classic Chicken Curry Bowl", price:12.99, img:'/Curry%20Bowl_CCC.jpg' },
+    { id:'Z-015', name:"Sukhi's Butter Chicken Curry Bowl", price:12.99, img:'/sukhis-butter-chicken.webp' },
+    { id:'—',     name:'MÌLà Sweet and Sour Pork Rice Bowl', price:12.00, soon:true, icon:'🍚' },
+    { id:'—',     name:'MÌLà Black Pepper Beef Rice Bowl', price:12.00, soon:true, icon:'🍚' },
+    { id:'—',     name:'MÌLà Chicken and Mushroom', price:12.00, soon:true, icon:'🍚' },
   ]},
   { cat:'Snacks', color:'#5A8F4A', items:[
-    { id:'Z-007', name:'Deep Dish Pepperoni Pizza (5")', price:7.00 },
-    { id:'Z-008', name:'Deep Dish Four Cheese Pizza (5")', price:6.00 },
-    { id:'Z-021', name:'Angus Cheeseburger', price:6.00 },
-    { id:'Z-013', name:'Chicken Nuggets (8 Pieces)', price:6.00 },
-    { id:'Z-018', name:'MÌLà Chicken Soup Dumplings (6 Pieces)', price:8.00, soon:true },
-    { id:'—',     name:'MÌLà Chicken-Style BBQ Flavored Pork Bao Buns', price:6.00, soon:true },
+    { id:'Z-007', name:'Deep Dish Pepperoni Pizza (5")', price:7.00, img:'/red-baron-pepperoni-pizza.webp' },
+    { id:'Z-008', name:'Deep Dish Four Cheese Pizza (5")', price:6.00, img:'/red-baron-four-cheese-pizza.webp', veg:true },
+    { id:'Z-021', name:'Angus Cheeseburger', price:6.00, img:'/Angus_hamburger-with_background-20250117084228.png' },
+    { id:'Z-018', name:'Chicken Soup Dumplings (6 Pieces)', price:8.00, img:'/Steamed_Chicken_Soup_Dumplings-with_bg-20250513125922.png' },
+    { id:'—',     name:'MÌLà Chicken Soup Dumplings', price:9.00, soon:true, icon:'🥟' },
+    { id:'—',     name:'MÌLà Chicken-Style BBQ Flavored Pork Bao Buns', price:6.00, soon:true, icon:'🥟' },
   ]},
   { cat:'Desserts', color:'#7A4A2A', items:[
-    { id:'—',     name:'Lotte Snow Ice Milk Shake', price:6.00 },
-    { id:'Z-028', name:'Melona Ice Bar (Melon)', price:4.00 },
+    { id:'—',     name:'Lotte Snow Ice Milk Shake', price:6.00, img:'/lotte-snow-ice-milkshake.webp', veg:true },
+    { id:'Z-028', name:'Melona Ice Bar (Melon)', price:4.00, img:'/melona-ice-bar.webp', veg:true },
+    { id:'—',     name:'Yasso Bars', price:5.00, icon:'🍦', veg:true },
   ]},
 ];
 
@@ -345,7 +350,8 @@ MENU.forEach(group => {
     const row = document.createElement('div');
     row.className = 'item-row';
     row.innerHTML = `
-      <div class="item-name">${item.name}${item.soon ? '<span class="item-soon">Coming Soon</span>' : ''}</div>
+      ${item.img ? `<img class="item-thumb" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'item-thumb-ph\\'>${item.icon||'🍽'}</div>'" />` : `<div class="item-thumb-ph">${item.icon||'🍽'}</div>`}
+      <div class="item-name">${item.name}${item.veg ? '<span class="veg-badge" title="Vegetarian">V</span>' : ''}${item.soon ? '<span class="item-soon">Coming Soon</span>' : ''}</div>
       <div class="item-price">$${item.price.toFixed(2)}</div>
       <div class="qty-wrap">
         <button class="qty-btn" onclick="bump(${i},-1)" aria-label="Decrease">−</button>
@@ -452,10 +458,7 @@ Delivery:  ${date || '—'}
 ${lines.join('\n')}
 --------------------------------------------
 ORDER TOTAL: $${total.toFixed(2)}
-${notes ? '\nNotes:\n' + notes : ''}
-
---- CSV ---
-${csv}`;
+${notes ? '\nNotes:\n' + notes : ''}`;
 
   try {
     const res = await fetch('https://api.web3forms.com/submit', {
@@ -467,7 +470,12 @@ ${csv}`;
         from_name: 'Crave Partner Order Form',
         name: name,
         email: email,
+        replyto: email,
+        botcheck: false,
         message: orderText,
+        order_csv: csv,
+        order_total: '$' + total.toFixed(2),
+        machine_load: '70 items',
       })
     });
     const data = await res.json();
@@ -482,10 +490,10 @@ ${csv}`;
       document.getElementById('totalBar').style.display = 'none';
       document.getElementById('succ').classList.add('show');
       window.scrollTo({top:0, behavior:'smooth'});
-    } else { throw new Error('submit failed'); }
+    } else { throw new Error(data.message || 'Submission rejected'); }
   } catch(e) {
     btn.textContent = 'Submit Order →'; btn.disabled = false;
-    alert('Something went wrong sending your order. Please try again or email help@craverobotics.co.');
+    alert('Order could not be sent: ' + e.message + '\n\nPlease try again or email help@craverobotics.co.');
   }
 }
 recalc();
