@@ -71,7 +71,12 @@ textarea.finput{resize:vertical;min-height:90px;}
 /* ORDER TABLE */
 .cat-head{font-family:var(--serif);font-size:1.1rem;letter-spacing:0.1em;color:#fff;background:var(--cat-color,var(--orange));padding:0.5rem 1rem;border-radius:6px;margin:1.6rem 0 0.6rem;}
 .cat-head:first-of-type{margin-top:0;}
-.item-row{display:grid;grid-template-columns:54px 1fr 90px 130px 90px;gap:0.8rem;align-items:center;padding:0.7rem 0.5rem;border-bottom:0.5px solid var(--border);}
+.item-row{display:grid;grid-template-columns:54px 1fr 90px 130px;gap:0.8rem;align-items:center;padding:0.7rem 0.5rem;border-bottom:0.5px solid var(--border);}
+.item-rec{text-align:center;}
+.item-rec .rec-num{font-family:var(--serif);font-size:1.2rem;color:var(--textS);line-height:1;}
+.item-rec .rec-lbl{font-size:0.5rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--textM);display:block;}
+.rec-btn{background:transparent;color:var(--orange);border:1.5px solid var(--orange);border-radius:7px;font-family:var(--font);font-size:0.68rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:0.5rem 1rem;cursor:pointer;transition:background 0.2s,color 0.2s;}
+.rec-btn:hover{background:var(--orange);color:#fff;}
 .item-thumb{width:54px;height:54px;border-radius:8px;object-fit:cover;display:block;background:var(--bg2);border:0.5px solid var(--border);}
 .item-thumb-ph{width:54px;height:54px;border-radius:8px;background:var(--bg2);border:0.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;}
 .veg-badge{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border:1.5px solid var(--green);border-radius:50%;color:var(--green);font-size:0.58rem;font-weight:800;margin-left:6px;vertical-align:middle;line-height:1;}
@@ -135,12 +140,11 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
 @media(max-width:640px){
   .page{padding:2.5rem 1.5rem 4rem;}
   .fgrid{grid-template-columns:1fr;}
-  .item-row{grid-template-columns:44px 1fr 100px;grid-template-areas:"img name name" "img qty total";row-gap:0.4rem;}
+  .item-row{grid-template-columns:44px 1fr 64px;grid-template-areas:"img name name" "img qty rec";row-gap:0.4rem;}
   .item-thumb,.item-thumb-ph{grid-area:img;width:44px;height:44px;font-size:1.1rem;}
   .item-name{grid-area:name;font-size:0.8rem;}
-  .item-price{display:none;}
   .qty-wrap{grid-area:qty;}
-  .line-total{grid-area:total;}
+  .item-rec{grid-area:rec;}
   .total-bar{padding:0.9rem 1.2rem;flex-wrap:wrap;}
   .tb-val{font-size:1.5rem;}
 }
@@ -193,7 +197,10 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
 
     <!-- ORDER -->
     <div class="fcard">
-      <div class="fcard-title">Order — June 2026 Menu</div>
+      <div class="fcard-title" style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;">
+        <span>Order — June 2026 Menu</span>
+        <button class="rec-btn" onclick="useRecommended()" type="button">Use Recommended ✓</button>
+      </div>
       <div id="orderItems"></div>
     </div>
 
@@ -220,10 +227,6 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
     <div class="tb-label">Machine Load</div>
     <div class="tb-count" id="tbCount"><span class="cur" id="tbCur">0</span> / 70</div>
     <div class="tb-hint" id="tbHint">70 items remaining</div>
-  </div>
-  <div>
-    <div class="tb-label">Order Total</div>
-    <div class="tb-val" id="tbTotal">$0.00</div>
   </div>
   <button class="tb-btn" id="tbSubmit" onclick="submitOrder()" disabled>Submit Order →</button>
 </div>
@@ -302,16 +305,16 @@ if (sessionStorage.getItem(GATE_KEY) === '1') document.getElementById('gate').cl
 /* ── MENU DATA (June 2026 priced menu + active inventory) ── */
 const MENU = [
   { cat:'Breakfast', color:'#F5A623', items:[
-    { id:'Z-027', name:'Meat Lovers Breakfast Bowl', price:8.00, img:'/Meat_Lover-01-20250104161542.jpg' },
+    { id:'Z-027', name:'Meat Lovers Breakfast Bowl', rec:5, price:8.00, img:'/Meat_Lover-01-20250104161542.jpg' },
   ]},
   { cat:'Entrees', color:'#C73E1F', items:[
-    { id:'Z-023', name:'Eggplant Parmigiana', price:10.00, img:'/Eggplant%20Parmigian.png', veg:true },
-    { id:'Z-022', name:'Riced Cauliflower Stir Fry', price:10.00, img:'/CAULIFLOWER%20RICED%20.png', veg:true },
-    { id:'Z-026', name:'Chicken Teriyaki Bowl', price:10.00, img:'/Teriyaki_Chicken_Rice_Box_(1)-20251029113749-20260209130244.png' },
-    { id:'Z-020', name:'Blackened Chicken Alfredo', price:12.00, img:'/blackened-chicken-alfredo.webp' },
-    { id:'Z-024', name:'Chicken Parmigiana With Spaghetti', price:10.00, img:'/Chicken%20Parmigian.png' },
-    { id:'Z-025', name:'Garlic Chicken Pasta', price:10.00, img:'/Garlic%20Chicken%20Pasta.png' },
-    { id:'Z-017', name:'Four Cheese Mac & Cheese', price:10.00, img:'/lucasjun92_photorealistic_image_of_Mac_and_cheese_in_a_white_pl_6b5fd588-002e-4d5f-b752-29062d020ce9-20250104154907.png', veg:true },
+    { id:'Z-023', name:'Eggplant Parmigiana', rec:3, price:10.00, img:'/Eggplant%20Parmigian.png', veg:true },
+    { id:'Z-022', name:'Riced Cauliflower Stir Fry', rec:3, price:10.00, img:'/CAULIFLOWER%20RICED%20.png', veg:true },
+    { id:'Z-026', name:'Chicken Teriyaki Bowl', rec:6, price:10.00, img:'/kahiki%20chicken%20bowl..png' },
+    { id:'Z-020', name:'Blackened Chicken Alfredo', rec:8, price:12.00, img:'/blackened-chicken-alfredo.webp' },
+    { id:'Z-024', name:'Chicken Parmigiana With Spaghetti', rec:5, price:10.00, img:'/Chicken%20Parmigian.png' },
+    { id:'Z-025', name:'Garlic Chicken Pasta', rec:5, price:10.00, img:'/Garlic%20Chicken%20Pasta.png' },
+    { id:'Z-017', name:'Four Cheese Mac & Cheese', rec:5, price:10.00, img:'/lucasjun92_photorealistic_image_of_Mac_and_cheese_in_a_white_pl_6b5fd588-002e-4d5f-b752-29062d020ce9-20250104154907.png', veg:true },
     { id:'—',     name:'Stewed Pork & Mushroom Rice Bowl', price:14.00, icon:'🍲' },
     { id:'—',     name:'Braised Pork Belly Bowl', price:14.00, img:'/braised%20pork%20belly%20rice.png' },
     { id:'Z-014', name:"Sukhi's Chicken Tikka Masala Curry Bowl", price:12.99, img:'/Curry%20Bowl_CTM.jpg' },
@@ -322,16 +325,16 @@ const MENU = [
     { id:'—',     name:'MÌLà Chicken and Mushroom', price:12.00, soon:true, icon:'🍚' },
   ]},
   { cat:'Snacks', color:'#5A8F4A', items:[
-    { id:'Z-007', name:'Deep Dish Pepperoni Pizza (5")', price:7.00, img:'/red-baron-pepperoni-pizza.webp' },
-    { id:'Z-008', name:'Deep Dish Four Cheese Pizza (5")', price:6.00, img:'/red-baron-four-cheese-pizza.webp', veg:true },
-    { id:'Z-021', name:'Angus Cheeseburger', price:6.00, img:'/Angus_hamburger-with_background-20250117084228.png' },
-    { id:'Z-018', name:'Chicken Soup Dumplings (6 Pieces)', price:8.00, img:'/Steamed_Chicken_Soup_Dumplings-with_bg-20250513125922.png' },
+    { id:'Z-007', name:'Deep Dish Pepperoni Pizza (5")', rec:5, price:7.00, img:'/red-baron-pepperoni-pizza.webp' },
+    { id:'Z-008', name:'Deep Dish Four Cheese Pizza (5")', rec:5, price:6.00, img:'/red-baron-four-cheese-pizza.webp', veg:true },
+    { id:'Z-021', name:'Angus Cheeseburger', rec:5, price:6.00, img:'/Angus_hamburger-with_background-20250117084228.png' },
+    { id:'Z-018', name:'Chicken Soup Dumplings (6 Pieces)', rec:5, price:8.00, img:'/Steamed_Chicken_Soup_Dumplings-with_bg-20250513125922.png' },
     { id:'—',     name:'MÌLà Chicken Soup Dumplings', price:9.00, soon:true, icon:'🥟' },
     { id:'—',     name:'MÌLà Chicken-Style BBQ Flavored Pork Bao Buns', price:6.00, soon:true, icon:'🥟' },
   ]},
   { cat:'Desserts', color:'#7A4A2A', items:[
-    { id:'—',     name:'Lotte Snow Ice Milk Shake', price:6.00, img:'/lotte-snow-ice-milkshake.webp', veg:true },
-    { id:'Z-028', name:'Melona Ice Bar (Melon)', price:4.00, img:'/melona-ice-bar.webp', veg:true },
+    { id:'—',     name:'Lotte Snow Ice Milk Shake', rec:5, price:6.00, img:'/lotte-snow-ice-milkshake.webp', veg:true },
+    { id:'Z-028', name:'Melona Ice Bar (Melon)', rec:5, price:4.00, img:'/melona-ice-bar.webp', veg:true },
     { id:'—',     name:'Yasso Bars', price:5.00, icon:'🍦', veg:true },
   ]},
 ];
@@ -352,36 +355,36 @@ MENU.forEach(group => {
     row.innerHTML = `
       ${item.img ? `<img class="item-thumb" src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.outerHTML='<div class=\\'item-thumb-ph\\'>${item.icon||'🍽'}</div>'" />` : `<div class="item-thumb-ph">${item.icon||'🍽'}</div>`}
       <div class="item-name">${item.name}${item.veg ? '<span class="veg-badge" title="Vegetarian">V</span>' : ''}${item.soon ? '<span class="item-soon">Coming Soon</span>' : ''}</div>
-      <div class="item-price">$${item.price.toFixed(2)}</div>
+      <div class="item-rec">${item.rec ? `<span class="rec-num">${item.rec}</span><span class="rec-lbl">Suggested</span>` : '<span class="rec-num" style="color:var(--textM);">—</span>'}</div>
       <div class="qty-wrap">
         <button class="qty-btn" onclick="bump(${i},-1)" aria-label="Decrease">−</button>
         <input class="qty-in" id="qty${i}" type="number" min="0" step="1" value="0" oninput="recalc()" />
         <button class="qty-btn" onclick="bump(${i},1)" aria-label="Increase">+</button>
-      </div>
-      <div class="line-total" id="lt${i}">—</div>`;
+      </div>`;
     row.dataset.name = item.name;
-    row.dataset.price = item.price;
+    row.dataset.rec = item.rec || 0;
     row.dataset.sku = item.id;
     wrap.appendChild(row);
   });
 });
 const ROWS = Array.from(document.querySelectorAll('.item-row'));
 
+function useRecommended(){
+  ROWS.forEach((row, i) => {
+    document.getElementById('qty'+i).value = parseInt(row.dataset.rec) || 0;
+  });
+  recalc();
+}
 function bump(i, d){
   const el = document.getElementById('qty'+i);
   el.value = Math.max(0, (parseInt(el.value)||0) + d);
   recalc();
 }
 function recalc(){
-  let total = 0, count = 0;
+  let count = 0;
   ROWS.forEach((row, i) => {
-    const q = parseInt(document.getElementById('qty'+i).value) || 0;
-    const line = q * parseFloat(row.dataset.price);
-    const lt = document.getElementById('lt'+i);
-    if (q > 0) { lt.textContent = '$'+line.toFixed(2); lt.classList.add('active'); total += line; count += q; }
-    else { lt.textContent = '—'; lt.classList.remove('active'); }
+    count += parseInt(document.getElementById('qty'+i).value) || 0;
   });
-  document.getElementById('tbTotal').textContent = '$'+total.toFixed(2);
   const TARGET = 70;
   const fill = document.getElementById('tbFill');
   const cnt  = document.getElementById('tbCount');
@@ -400,25 +403,23 @@ function recalc(){
     hint.textContent = (TARGET - count) + ' items remaining';
   }
   document.getElementById('tbSubmit').disabled = count !== TARGET;
-  return { total, count };
+  return { count };
 }
 
 /* ── SUBMIT ── */
 function buildOrder(){
   const lines = [];
-  const csv = ['SKU,Item,Unit Price,Qty,Line Total'];
-  let total = 0;
+  const csv = ['SKU,Item,Qty'];
+  let count = 0;
   ROWS.forEach((row, i) => {
     const q = parseInt(document.getElementById('qty'+i).value) || 0;
     if (q === 0) return;
-    const price = parseFloat(row.dataset.price);
-    const line = q * price;
-    total += line;
-    lines.push(`${row.dataset.name}  —  ${q} × $${price.toFixed(2)}  =  $${line.toFixed(2)}`);
-    csv.push(`${row.dataset.sku},"${row.dataset.name}",${price.toFixed(2)},${q},${line.toFixed(2)}`);
+    count += q;
+    lines.push(`${row.dataset.name}  —  ${q}`);
+    csv.push(`${row.dataset.sku},"${row.dataset.name}",${q}`);
   });
-  csv.push(`,,,TOTAL,${total.toFixed(2)}`);
-  return { lines, csv: csv.join('\n'), total };
+  csv.push(`,TOTAL ITEMS,${count}`);
+  return { lines, csv: csv.join('\n'), count };
 }
 
 async function submitOrder(){
@@ -440,7 +441,7 @@ async function submitOrder(){
   const btn = document.getElementById('tbSubmit');
   btn.textContent = 'Sending…'; btn.disabled = true;
 
-  const { lines, csv, total } = buildOrder();
+  const { lines, csv, count } = buildOrder();
   const phone = document.getElementById('fPhone').value.trim();
   const loc = document.getElementById('fLocation').value.trim();
   const date = document.getElementById('fDate').value;
@@ -457,7 +458,7 @@ Delivery:  ${date || '—'}
 --------------------------------------------
 ${lines.join('\n')}
 --------------------------------------------
-ORDER TOTAL: $${total.toFixed(2)}
+TOTAL ITEMS: ${count} / 70
 ${notes ? '\nNotes:\n' + notes : ''}`;
 
   try {
@@ -466,7 +467,7 @@ ${notes ? '\nNotes:\n' + notes : ''}`;
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         access_key: '7b21dd42-bc8a-43b2-a645-8733ba987743',
-        subject: `Partner Menu Order — ${company} — $${total.toFixed(2)}`,
+        subject: `Partner Menu Order — ${company} — ${count} items`,
         from_name: 'Crave Partner Order Form',
         name: name,
         email: email,
@@ -474,7 +475,6 @@ ${notes ? '\nNotes:\n' + notes : ''}`;
         botcheck: false,
         message: orderText,
         order_csv: csv,
-        order_total: '$' + total.toFixed(2),
         machine_load: '70 items',
       })
     });
