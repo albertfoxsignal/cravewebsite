@@ -19,6 +19,7 @@
     { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
     { "source": "/terms-of-service", "destination": "/terms-of-service.html" },
     { "source": "/menu-form", "destination": "/menu-form.html" },
+    { "source": "/sms-optin", "destination": "/sms-optin.html" },
     { "source": "/qr-guide",       "destination": "/qr-guide.html" }
   ]
 }
