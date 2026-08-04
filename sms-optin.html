@@ -133,6 +133,33 @@ footer img[alt*="NAMA"]{mix-blend-mode:multiply;}
   footer img[alt*="NAMA"]{height:80px !important;}
   .fcol ul{gap:0.5rem;}
 }
+
+/* OPT-IN FORM */
+.optin-card{background:var(--white);border:2.5px solid var(--lemon);border-radius:12px;padding:2rem;margin:2.5rem 0;position:relative;overflow:hidden;}
+.optin-card::after{content:'';position:absolute;top:0;right:0;bottom:0;width:7px;background:var(--lemon);}
+.optin-title{font-family:var(--serif);font-size:1.7rem;letter-spacing:0.03em;margin-bottom:0.35rem;}
+.optin-sub{font-size:0.82rem;color:var(--textS);margin-bottom:1.4rem;}
+.optin-label{font-size:0.67rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--textS);display:block;margin-bottom:0.35rem;}
+.optin-input{width:100%;max-width:340px;background:var(--white);border:0.5px solid var(--borderB);border-radius:7px;padding:0.7rem 0.95rem;font-family:var(--font);font-size:0.95rem;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+.optin-input::placeholder{color:var(--textM);}
+.optin-input:focus{border-color:rgba(199,62,31,0.5);box-shadow:0 0 0 3px rgba(199,62,31,0.1);}
+.optin-input.err{border-color:var(--crimson, #C0392B);box-shadow:0 0 0 3px rgba(192,57,43,0.12);}
+.consent-row{display:flex;gap:0.8rem;align-items:flex-start;padding:0.9rem 0;border-bottom:0.5px solid var(--border);}
+.consent-row:last-of-type{border-bottom:none;}
+.consent-row input[type=checkbox]{appearance:none;-webkit-appearance:none;width:20px;height:20px;flex-shrink:0;margin-top:2px;border:1.5px solid var(--borderB);border-radius:5px;background:var(--white);cursor:pointer;position:relative;transition:border-color 0.15s,background 0.15s;}
+.consent-row input[type=checkbox]:checked{background:var(--orange);border-color:var(--orange);}
+.consent-row input[type=checkbox]:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:0.75rem;font-weight:800;}
+.consent-row label{font-size:0.8rem;color:var(--text);line-height:1.55;cursor:pointer;}
+.consent-row label strong{font-weight:700;}
+.optin-btn{background:var(--orange);color:#fff;font-family:var(--font);font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;border-radius:8px;padding:0.9rem 2.2rem;cursor:pointer;transition:opacity 0.2s;margin-top:1.2rem;}
+.optin-btn:hover{opacity:0.9;}
+.optin-btn:disabled{opacity:0.45;cursor:not-allowed;}
+.optin-disclosure{margin-top:1.4rem;padding-top:1.2rem;border-top:1px dashed var(--borderB);font-size:0.72rem;color:var(--textS);line-height:1.7;}
+.optin-disclosure a{color:var(--orange);}
+.optin-err{font-size:0.74rem;font-weight:600;color:var(--crimson, #C0392B);margin-top:0.6rem;min-height:1em;}
+.optin-success{display:none;text-align:center;padding:1.5rem 0 0.5rem;}
+.optin-success.show{display:block;}
+.optin-success .ok-ic{width:52px;height:52px;border-radius:50%;background:rgba(90,143,74,0.12);border:1.5px solid #5A8F4A;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin:0 auto 0.9rem;color:#5A8F4A;}
 </style>
 </head>
 <body>
@@ -153,9 +180,43 @@ footer img[alt*="NAMA"]{mix-blend-mode:multiply;}
   <h1 class="page-title">How We <em style="font-style:normal;color:var(--orange)">Text You</em></h1>
   <p class="page-meta">Last updated: July 23, 2026</p>
 
+  <!-- WEB OPT-IN FORM -->
+  <div class="optin-card" id="optinCard">
+    <div id="optinForm">
+      <div class="optin-title">Sign Up for Texts</div>
+      <p class="optin-sub">Enter your mobile number and choose which messages you'd like to receive. Both boxes are optional — check only what you want.</p>
+
+      <label class="optin-label" for="optinPhone">Mobile Phone Number *</label>
+      <input class="optin-input" id="optinPhone" type="tel" inputmode="tel" placeholder="(555) 555-5555" autocomplete="tel" />
+
+      <div style="margin-top:1.3rem;">
+        <div class="consent-row">
+          <input type="checkbox" id="consentMkt" />
+          <label for="consentMkt"><strong>Marketing messages.</strong> I agree to receive recurring automated marketing text messages from Crave Robotics — including discount &amp; QR promo codes, weekly trivia, and post-purchase surveys — at the phone number provided. Consent is not a condition of any purchase.</label>
+        </div>
+        <div class="consent-row">
+          <input type="checkbox" id="consentSup" />
+          <label for="consentSup"><strong>Customer support messages.</strong> I agree to receive customer-care text messages from Crave Robotics in response to my support inquiries at the phone number provided.</label>
+        </div>
+      </div>
+
+      <button class="optin-btn" id="optinBtn" onclick="submitOptin()" disabled>Sign Me Up</button>
+      <div class="optin-err" id="optinErr"></div>
+
+      <div class="optin-disclosure">
+        <strong>Crave Robotics SMS Program:</strong> recurring automated text messages including discount and QR promo codes, customer support replies, weekly trivia, and post-purchase surveys, sent to customers who opt in. Message frequency varies. Message and data rates may apply. Reply <strong>HELP</strong> for help. Reply <strong>STOP</strong> to cancel at any time. See our <a href="/terms-of-service">Terms of Service</a> and <a href="/privacy-policy">Privacy Policy</a>.
+      </div>
+    </div>
+    <div class="optin-success" id="optinSuccess">
+      <div class="ok-ic">✓</div>
+      <div class="optin-title">You're Signed Up</div>
+      <p class="optin-sub" style="max-width:380px;margin:0 auto;">Watch for a confirmation text shortly. Reply STOP at any time to unsubscribe, or HELP for help.</p>
+    </div>
+  </div>
+
   <div class="prose">
     <h2>Opting In</h2>
-    <p>Crave Robotics only sends text messages to customers who ask for them. You opt in by texting a keyword shown on the signage at a CraveBot vending machine — for example, texting a promo keyword to claim a discount, or texting "Support" to reach our team. That first message from you is your enrollment. We never auto-enroll phone numbers, purchase contact lists, or send unsolicited messages. If you never text us, you'll never hear from us.</p>
+    <p>Crave Robotics only sends text messages to customers who ask for them. You opt in either by using the sign-up form above, or by texting a keyword shown on the signage at a CraveBot vending machine — for example, texting a promo keyword to claim a discount, or texting "Support" to reach our team. We never auto-enroll phone numbers, purchase contact lists, or send unsolicited messages. If you never text us, you'll never hear from us.</p>
 
     <h2>What You'll Receive</h2>
     <p>Depending on what you signed up for, messages from Crave Robotics may include:</p>
@@ -177,7 +238,7 @@ footer img[alt*="NAMA"]{mix-blend-mode:multiply;}
         <div><strong style="font-family:var(--serif);font-size:1.15rem;letter-spacing:0.03em;font-weight:400;">Post-Purchase Surveys</strong><br><span style="font-size:0.85rem;color:var(--textS);">A quick "how was your meal?" after a purchase, so we can make things right if something was off.</span></div>
       </div>
     </div>
-    <p>Message frequency varies based on how you use our services. We keep it relevant — no spam, ever.</p>
+    <p>Message frequency varies. We keep it relevant — no spam, ever.</p>
 
     <h2>Opting Out</h2>
     <p>Reply <strong>STOP</strong> to any message at any time and you'll be unsubscribed immediately — one confirmation message will follow, then nothing further. Reply <strong>HELP</strong> for assistance, or reach us at <a href="mailto:help@craverobotics.co">help@craverobotics.co</a>.</p>
@@ -270,5 +331,51 @@ document.getElementById("supportModal").addEventListener("click",function(e){if(
 document.addEventListener("keydown",function(e){if(e.key==="Escape")closeSupportModal();});
 </script>
 
+<script>
+const pEl = document.getElementById('optinPhone');
+const mEl = document.getElementById('consentMkt');
+const sEl = document.getElementById('consentSup');
+const bEl = document.getElementById('optinBtn');
+function validOptin(){
+  const digits = pEl.value.replace(/\D/g,'');
+  const phoneOk = digits.length === 10 || (digits.length === 11 && digits[0] === '1');
+  bEl.disabled = !(phoneOk && (mEl.checked || sEl.checked));
+}
+[pEl, mEl, sEl].forEach(el => { el.addEventListener('input', validOptin); el.addEventListener('change', validOptin); });
+
+async function submitOptin(){
+  const digits = pEl.value.replace(/\D/g,'');
+  const phone = digits.length === 11 ? '+' + digits : '+1' + digits;
+  bEl.textContent = 'Signing Up…'; bEl.disabled = true;
+  const consents = [];
+  if (mEl.checked) consents.push('Marketing (promo codes, trivia, surveys)');
+  if (sEl.checked) consents.push('Customer support');
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '7b21dd42-bc8a-43b2-a645-8733ba987743',
+        subject: 'SMS Opt-In — ' + phone,
+        from_name: 'Crave SMS Opt-In Form',
+        botcheck: false,
+        phone_number: phone,
+        consents: consents.join(' + '),
+        opt_in_timestamp: new Date().toISOString(),
+        opt_in_url: 'https://www.craverobotics.co/sms-optin',
+        message: 'Web opt-in: ' + phone + '\nConsents: ' + consents.join(' + ') + '\nTimestamp: ' + new Date().toISOString(),
+      })
+    });
+    const data = await res.json();
+    if (data.success) {
+      document.getElementById('optinForm').style.display = 'none';
+      document.getElementById('optinSuccess').classList.add('show');
+    } else { throw new Error(data.message || 'Submission failed'); }
+  } catch(e) {
+    bEl.textContent = 'Sign Me Up'; validOptin();
+    document.getElementById('optinErr').textContent = 'Could not sign up: ' + e.message + ' — or text a keyword at any CraveBot machine instead.';
+  }
+}
+</script>
 </body>
 </html>
