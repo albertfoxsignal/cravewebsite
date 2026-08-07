@@ -86,11 +86,28 @@
     {
       "source": "/qr-guide",
       "destination": "/qr-guide.html"
+    },
+    {
+      "source": "/events",
+      "destination": "/events.html"
+    },
+    {
+      "source": "/promo",
+      "destination": "/promo.html"
     }
   ],
   "headers": [
     {
       "source": "/rcs-demo.mp4",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/promo",
       "headers": [
         {
           "key": "X-Robots-Tag",
