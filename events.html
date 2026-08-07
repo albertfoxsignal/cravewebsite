@@ -191,29 +191,19 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
    Add events to this array. Past-dated events hide automatically.
    date: 'YYYY-MM-DD'  ·  tag is optional (e.g. 'Free Samples')     */
 const EVENTS = [
-  {
-    date: '2026-08-24',
-    title: 'Fall Semester Launch Pop-Up',
-    location: 'Cal Poly Pomona — Bronco Student Center',
-    tag: 'Free Samples',
-    desc: 'Kick off the semester with us — free sample bites, SMS sign-up discounts, and a look at the newest menu items. [Sample event — replace with real details]'
-  },
-  {
-    date: '2026-09-12',
-    title: 'Campus Tasting Day',
-    location: 'University of La Verne',
-    tag: 'Promo Codes',
-    desc: 'Try the new fall menu and grab a QR discount code for your next CraveBot order. [Sample event — replace with real details]'
-  },
+  { date: null, title: 'CSUDH',               location: 'Cal State Dominguez Hills — Carson, CA', desc: 'CraveBot is coming to campus. Date and details to be announced.' },
+  { date: null, title: 'Pasadena Art Center', location: 'ArtCenter College of Design — Pasadena, CA', desc: 'CraveBot is coming to campus. Date and details to be announced.' },
+  { date: null, title: 'Cerritos',            location: 'Cerritos, CA', desc: 'CraveBot is coming soon. Date and details to be announced.' },
+  { date: null, title: 'CSULB',               location: 'Cal State Long Beach — Long Beach, CA', desc: 'CraveBot is coming to campus. Date and details to be announced.' },
 ];
 /* ─────────────────────────────────────────────── */
 
 const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 const today = new Date(); today.setHours(0,0,0,0);
 const upcoming = EVENTS
-  .map(e => ({...e, d: new Date(e.date + 'T00:00:00')}))
-  .filter(e => e.d >= today)
-  .sort((a,b) => a.d - b.d);
+  .map(e => ({...e, d: e.date ? new Date(e.date + 'T00:00:00') : null}))
+  .filter(e => e.d === null || e.d >= today)
+  .sort((a,b) => (a.d === null) - (b.d === null) || (a.d && b.d ? a.d - b.d : 0));
 
 const list = document.getElementById('evList');
 if (upcoming.length === 0) {
@@ -224,9 +214,9 @@ if (upcoming.length === 0) {
     card.className = 'ev-card';
     card.innerHTML = `
       <div class="ev-date">
-        <span class="ev-mon">${MONTHS[e.d.getMonth()]}</span>
-        <span class="ev-day">${e.d.getDate()}</span>
-        <span class="ev-year">${e.d.getFullYear()}</span>
+        ${e.d
+          ? `<span class="ev-mon">${MONTHS[e.d.getMonth()]}</span><span class="ev-day">${e.d.getDate()}</span><span class="ev-year">${e.d.getFullYear()}</span>`
+          : `<span class="ev-mon">Date</span><span class="ev-day" style="font-size:1.9rem;">TBD</span>`}
       </div>
       <div>
         <div class="ev-title">${e.title}${e.tag ? `<span class="ev-tag">${e.tag}</span>` : ''}</div>
