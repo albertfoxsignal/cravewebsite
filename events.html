@@ -151,6 +151,9 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
 .ev-meta{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--textS);margin-bottom:0.5rem;}
 .ev-desc{font-size:0.85rem;color:var(--textS);}
 .ev-tag{display:inline-block;font-size:0.55rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:#fff;background:var(--ev-color,#C0392B);border-radius:4px;padding:3px 8px;margin-left:8px;vertical-align:middle;}
+.ev-card.done{--ev-color:#9AA2AC !important;opacity:0.72;}
+.ev-card.done .ev-title{color:var(--textS);}
+.ev-tag.done-tag{background:var(--textM);}
 .ev-empty{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:3.5rem 2rem;text-align:center;}
 .ev-empty h3{font-family:var(--serif);font-size:1.8rem;letter-spacing:0.02em;margin-bottom:0.4rem;}
 .ev-empty p{font-size:0.85rem;color:var(--textS);}
@@ -240,23 +243,25 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
    Add events to this array. Past-dated events hide automatically.
    date: 'YYYY-MM-DD'  ·  tag is optional (e.g. 'Free Samples')     */
 const EVENTS = [
-  { date: '2026-08-24', title: 'CSU Long Beach',      location: 'Cal State Long Beach — Long Beach, CA', desc: 'Crave Events Team will be on site for fun activities!' },
-  { date: '2026-08-26', title: 'Cerritos College',    location: 'Cerritos College — Norwalk, CA', desc: 'Crave Events Team will be on site for fun activities!' },
-  { date: '2026-08-27', title: 'CSU Dominguez Hills', location: 'Cal State Dominguez Hills — Carson, CA', desc: 'Crave Events Team will be on site for fun activities!' },
-  { date: '2026-08-31', title: 'CSU Long Beach',      location: 'Cal State Long Beach — Long Beach, CA', desc: 'Crave Events Team will be on site for fun activities!' },
-  { date: '2026-09-02', title: 'CSU Dominguez Hills', location: 'Cal State Dominguez Hills — Carson, CA', desc: 'Crave Events Team will be on site for fun activities!' },
-  { date: '2026-09-03', title: 'Cerritos College',    location: 'Cerritos College — Norwalk, CA', desc: 'Crave Events Team will be on site for fun activities!' },
-  { date: '2026-09-10', title: 'ArtCenter',           location: 'ArtCenter College of Design — Pasadena, CA', desc: 'Crave Events Team will be on site for fun activities!' },
-  { date: '2026-09-15', title: 'ArtCenter',           location: 'ArtCenter College of Design — Pasadena, CA', desc: 'Crave Events Team will be on site for fun activities!' },
+  { date: '2026-09-10', time: '11:00 AM – 2:00 PM',  title: 'ArtCenter',            location: 'ArtCenter College of Design — Pasadena, CA', desc: 'Crave Events Team will be on site for fun activities!' },
+  { date: '2026-09-15', time: '12:00 PM – 2:00 PM',  title: 'LA City College',      location: 'LACC — Los Angeles, CA', desc: 'Crave Events Team will be on site for fun activities!' },
+  { date: '2026-09-16', time: '10:00 AM – 1:00 PM',  title: 'Cerritos College',     location: 'Cerritos College — Norwalk, CA', desc: 'Crave Events Team will be on site for fun activities!' },
+  { date: '2026-09-17', time: '12:30 PM – 3:30 PM',  title: 'Cal State LA',         location: 'CSULA — Los Angeles, CA', desc: 'Crave Events Team will be on site for fun activities!' },
+  { date: '2026-09-18', time: '3:30 PM – 6:30 PM',   title: 'Golden West College',  location: 'GWC — Huntington Beach, CA', desc: 'Crave Events Team will be on site for fun activities!' },
+  { date: '2026-09-24', time: '10:30 AM – 2:00 PM',  title: 'Cal Poly Pomona',      location: 'CPP — Pomona, CA', desc: 'Crave Events Team will be on site for fun activities!' },
+  { date: '2026-09-29', time: '11:00 AM – 2:00 PM',  title: 'San Bernardino Valley College', location: 'SBVC — San Bernardino, CA', desc: 'Crave Events Team will be on site for fun activities!' },
+  { date: '2026-10-01', time: '11:00 AM – 2:00 PM',  title: 'CSU Dominguez Hills',  location: 'CSUDH — Carson, CA', desc: 'Crave Events Team will be on site for fun activities!' },
 ];
 /* ─────────────────────────────────────────────── */
 
 const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 const today = new Date(); today.setHours(0,0,0,0);
-const upcoming = EVENTS
-  .map(e => ({...e, d: e.date ? new Date(e.date + 'T00:00:00') : null}))
-  .filter(e => e.d === null || e.d >= today)
-  .sort((a,b) => (a.d === null) - (b.d === null) || (a.d && b.d ? a.d - b.d : 0));
+const all = EVENTS.map(e => ({...e, d: e.date ? new Date(e.date + 'T00:00:00') : null, done: e.date ? new Date(e.date + 'T00:00:00') < today : false}));
+const upcoming = [
+  ...all.filter(e => !e.done && e.d).sort((a,b) => a.d - b.d),
+  ...all.filter(e => !e.d),
+  ...all.filter(e => e.done).sort((a,b) => b.d - a.d),
+];
 
 const list = document.getElementById('evList');
 if (upcoming.length === 0) {
@@ -264,7 +269,8 @@ if (upcoming.length === 0) {
 } else {
   upcoming.forEach(e => {
     const card = document.createElement('div');
-    card.className = 'ev-card';
+    card.className = 'ev-card' + (e.done ? ' done' : '');
+    const tag = e.done ? '<span class="ev-tag done-tag">Completed</span>' : (e.tag ? `<span class="ev-tag">${e.tag}</span>` : '');
     card.innerHTML = `
       <div class="ev-date">
         ${e.d
@@ -272,8 +278,8 @@ if (upcoming.length === 0) {
           : `<span class="ev-mon">Date</span><span class="ev-day" style="font-size:1.9rem;">TBD</span>`}
       </div>
       <div>
-        <div class="ev-title">${e.title}${e.tag ? `<span class="ev-tag">${e.tag}</span>` : ''}</div>
-        <div class="ev-meta">⚲ ${e.location}</div>
+        <div class="ev-title">${e.title}${tag}</div>
+        <div class="ev-meta">⚲ ${e.location}${e.time ? ` &nbsp;·&nbsp; ◷ ${e.time}` : ''}</div>
         <div class="ev-desc">${e.desc}</div>
       </div>`;
     list.appendChild(card);
