@@ -158,6 +158,10 @@ section{max-width:1280px;margin:0 auto;padding:5rem 3rem;}
 .lname { font-family:var(--serif); font-size:1.05rem; letter-spacing:0.03em; font-weight:400; color:var(--text); line-height:1.1; }
 .lcity { font-size:0.68rem; color:var(--textM); margin-top:1px; }
 .larr { color:var(--orange); font-size:0.85rem; transition:transform 0.2s; }
+.lg { font-size:0.6rem; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; color:var(--green); text-decoration:none; border:1.5px solid var(--green); border-radius:5px; padding:3px 7px; transition:background 0.15s,color 0.15s; }
+.lg:hover { background:var(--green); color:#fff; }
+.pop-g { display:inline-block; margin-top:7px; font-size:0.62rem; font-weight:800; letter-spacing:0.05em; text-transform:uppercase; color:var(--green) !important; text-decoration:none; }
+.pop-g:hover { text-decoration:underline; }
 .li:hover .larr { transform:translateX(4px); }
 
 /* Modal */
@@ -688,9 +692,9 @@ footer{background:#C73E1F;color:var(--bg);padding:3.5rem 3rem 2rem;}
     <div class="loc-list">
 <div class="li active" data-loc="0"><div><div class="lname">Cal State LA</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
         <div class="li" data-loc="1"><div><div class="lname">University of Southern California</div><div class="lcity">Los Angeles, CA</div></div><span class="larr">→</span></div>
-        <div class="li" data-loc="2"><div><div class="lname">Cal State Long Beach</div><div class="lcity">Long Beach, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="2"><div><div class="lname">Cal State Long Beach</div><div class="lcity">Long Beach, CA</div></div><span style="display:flex;align-items:center;gap:0.7rem;"><a class="lg" href="https://www.google.com/maps/search/?api=1&query=Crave%20Bot%20by%20Crave%20Robotics&query_place_id=ChIJb4TZMOAx3YARaukhR46t3Vc" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google ↗</a><span class="larr">→</span></span></div>
         <div class="li" data-loc="3"><div><div class="lname">Cal State Dominguez Hills — 3 machines</div><div class="lcity">Carson, CA</div></div><span class="larr">→</span></div>
-        <div class="li" data-loc="4"><div><div class="lname">Cerritos College — 2 machines</div><div class="lcity">Norwalk, CA</div></div><span class="larr">→</span></div>
+        <div class="li" data-loc="4"><div><div class="lname">Cerritos College — 2 machines</div><div class="lcity">Norwalk, CA</div></div><span style="display:flex;align-items:center;gap:0.7rem;"><a class="lg" href="https://www.google.com/maps/search/?api=1&query=Crave%20Bot%20by%20Crave%20Robotics&query_place_id=ChIJxeHsLcIt3YARYtjjCz_yvLk" target="_blank" rel="noopener" onclick="event.stopPropagation()">Google ↗</a><span class="larr">→</span></span></div>
         <div class="li" data-loc="5"><div><div class="lname">Cal State San Bernardino — 2 machines</div><div class="lcity">San Bernardino &amp; Palm Desert, CA</div></div><span class="larr">→</span></div>
         <div class="li" data-loc="6"><div><div class="lname">Relativity Space — 2 machines</div><div class="lcity">Long Beach, CA</div></div><span class="larr">→</span></div>
         <div class="li" data-loc="7"><div><div class="lname">Cal Poly Pomona</div><div class="lcity">Pomona, CA</div></div><span class="larr">→</span></div>
@@ -951,9 +955,9 @@ function scrollBP(dir){const el=document.getElementById('bpcarousel');const cell
   const LOCATIONS = [
     { name:'Cal State LA',                   city:'Los Angeles, CA',       lat:34.0656, lng:-118.1700 },
     { name:'University of Southern California', city:'Los Angeles, CA',    lat:34.0224, lng:-118.2851, status:'Coming July 2026' },
-    { name:'Cal State Long Beach',           city:'Long Beach, CA',        lat:33.7839, lng:-118.1141 },
+    { name:'Cal State Long Beach',           city:'Long Beach, CA',        lat:33.7839, lng:-118.1141, gmb:'https://www.google.com/maps/search/?api=1&query=Crave%20Bot%20by%20Crave%20Robotics&query_place_id=ChIJb4TZMOAx3YARaukhR46t3Vc' },
     { name:'Cal State Dominguez Hills',      city:'Carson, CA',            lat:33.8641, lng:-118.2546 },
-    { name:'Cerritos College',               city:'Norwalk, CA',           lat:33.8600, lng:-118.0650 },
+    { name:'Cerritos College',               city:'Norwalk, CA',           lat:33.8600, lng:-118.0650, gmb:'https://www.google.com/maps/search/?api=1&query=Crave%20Bot%20by%20Crave%20Robotics&query_place_id=ChIJxeHsLcIt3YARYtjjCz_yvLk' },
     { name:'Cal State San Bernardino',       city:'San Bernardino, CA',    lat:34.1825, lng:-117.3220 },
     { name:'Relativity Space',               city:'Long Beach, CA',        lat:33.7717, lng:-118.1937 },
     { name:'Cal Poly Pomona',                city:'Pomona, CA',            lat:34.0571, lng:-117.8213 },
@@ -1012,6 +1016,7 @@ function scrollBP(dir){const el=document.getElementById('bpcarousel');const cell
           <div class="pop-name">${loc.name}</div>
           <div class="pop-city">${loc.city}</div>
           <div class="pop-tag" style="${loc.status ? '' : ''}">${loc.status || 'CraveBot Active'}</div>
+          ${loc.gmb ? `<a class="pop-g" href="${loc.gmb}" target="_blank" rel="noopener">View on Google ↗</a>` : ''}
         `, { closeOnClick: false, autoClose: true });
 
       marker.on('click', () => focusLocation(i));
