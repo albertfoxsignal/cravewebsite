@@ -159,6 +159,20 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
   .ev-date{flex-direction:row;gap:0.5rem;border-right:none;border-bottom:1px dashed var(--borderB);padding:0 0 0.7rem;}
   .ev-day{font-size:1.8rem;}
 }
+
+/* EVENT HIGHLIGHTS GALLERY */
+.gal-section{margin-top:4.5rem;}
+.gal-title{font-family:var(--serif);font-size:clamp(2rem,4vw,2.8rem);letter-spacing:0.01em;line-height:0.95;margin-bottom:0.4rem;}
+.gal-sub{font-size:0.88rem;color:var(--textS);margin-bottom:2rem;}
+.gal-school{display:flex;align-items:center;gap:0.9rem;margin:2.2rem 0 1rem;}
+.gal-school-name{font-family:var(--serif);font-size:1.5rem;letter-spacing:0.04em;color:var(--gal-color,#C0392B);white-space:nowrap;}
+.gal-school-rule{flex:1;height:1px;border-top:1px dashed var(--borderB);}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0.9rem;}
+.gal-grid a{display:block;border:2.5px solid var(--gal-color,#C0392B);border-radius:10px;overflow:hidden;background:var(--white);transition:transform 0.3s cubic-bezier(0.22,1,0.36,1),box-shadow 0.3s;}
+.gal-grid a:hover{transform:translateY(-5px);box-shadow:0 16px 36px rgba(30,42,56,0.14);}
+.gal-grid img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:var(--bg2);}
+@media(max-width:900px){.gal-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.gal-grid{grid-template-columns:repeat(2,1fr);gap:0.6rem;}.gal-grid a{border-width:2px;border-radius:8px;}}
 </style>
 </head>
 <body>
@@ -184,6 +198,41 @@ footer img[alt*="NAMA"]{mix-blend-mode:screen;}
   <div class="ev-empty" id="evEmpty" style="display:none;">
     <h3>Nothing on the calendar right now</h3>
     <p>New events post here first. Check back soon — or catch us at a machine near you.</p>
+  </div>
+
+<!-- EVENT HIGHLIGHTS -->
+  <div class="gal-section">
+    <h2 class="gal-title">On <em style="font-style:normal;color:var(--orange)">Campus</em></h2>
+    <p class="gal-sub">Highlights from recent CraveBot launch events.</p>
+
+    <div class="gal-school" style="--gal-color:#C73E1F;">
+      <span class="gal-school-name" style="color:#C73E1F;">Cal State LA</span><span class="gal-school-rule"></span>
+    </div>
+    <div class="gal-grid" style="--gal-color:#C73E1F;">
+      <a href="/event-csula-1.webp" target="_blank"><img src="/event-csula-1.webp" alt="Students enjoying CraveBot meals at Cal State LA" loading="lazy" /></a>
+      <a href="/event-csula-2.webp" target="_blank"><img src="/event-csula-2.webp" alt="Students ordering at the Cal State LA CraveBot" loading="lazy" /></a>
+      <a href="/event-csula-3.webp" target="_blank"><img src="/event-csula-3.webp" alt="Student with a Yasso bar at Cal State LA" loading="lazy" /></a>
+      <a href="/event-csula-4.webp" target="_blank"><img src="/event-csula-4.webp" alt="Students at the Cal State LA CraveBot" loading="lazy" /></a>
+    </div>
+
+    <div class="gal-school" style="--gal-color:#F5A623;">
+      <span class="gal-school-name" style="color:#F5A623;">LA City College</span><span class="gal-school-rule"></span>
+    </div>
+    <div class="gal-grid" style="--gal-color:#F5A623;">
+      <a href="/event-lacc-1.webp" target="_blank"><img src="/event-lacc-1.webp" alt="Students lining up at the LACC CraveBot" loading="lazy" /></a>
+      <a href="/event-lacc-2.webp" target="_blank"><img src="/event-lacc-2.webp" alt="Crave Events Team at the LACC CraveBot launch" loading="lazy" /></a>
+    </div>
+
+    <div class="gal-school" style="--gal-color:#5A8F4A;">
+      <span class="gal-school-name" style="color:#5A8F4A;">Cerritos College</span><span class="gal-school-rule"></span>
+    </div>
+    <div class="gal-grid" style="--gal-color:#5A8F4A;">
+      <a href="/event-cerritos-1.webp" target="_blank"><img src="/event-cerritos-1.webp" alt="Crave Events Team at the Cerritos College CraveBot" loading="lazy" /></a>
+      <a href="/event-cerritos-2.webp" target="_blank"><img src="/event-cerritos-2.webp" alt="Students ordering at the Cerritos College CraveBot" loading="lazy" /></a>
+      <a href="/event-cerritos-3.webp" target="_blank"><img src="/event-cerritos-3.webp" alt="Cerritos scavenger hunt QR scanning" loading="lazy" /></a>
+      <a href="/event-cerritos-4.webp" target="_blank"><img src="/event-cerritos-4.webp" alt="Students with Melona bars at Cerritos College" loading="lazy" /></a>
+      <a href="/event-cerritos-5.webp" target="_blank"><img src="/event-cerritos-5.webp" alt="Scan-me shirt QR promo at Cerritos College" loading="lazy" /></a>
+    </div>
   </div>
 
 <script>
