@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CraveBot at APM Terminals — Crave Robotics</title>
+<meta name="description" content="The CraveBot is now in your APM Terminals Los Angeles breakroom — hot gourmet meals ready in under 3 minutes, open every shift, 24/7." />
+<link rel="canonical" href="https://www.craverobotics.co/apmterminals" />
+<meta property="og:title" content="CraveBot at APM Terminals — Crave Robotics" />
+<meta property="og:description" content="Hot gourmet meals in your breakroom, ready in under 3 minutes. Open 24/7." />
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F4EFE6; --bg2:#EDE7DB; --bg3:#E5DFD2; --white:#FCFAF5;
+  --border:rgba(30,42,56,0.1); --borderB:rgba(30,42,56,0.18);
+  --orange:#C73E1F; --lemon:#F5A623; --green:#5A8F4A; --brown:#7A4A2A; --crimson:#C0392B;
+  --text:#1E2A38; --textS:#5A6472; --textM:#9AA2AC;
+  --font:'Montserrat',sans-serif; --serif:'Bebas Neue',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:clip;}
+.label-frame{position:fixed;inset:0;pointer-events:none;z-index:500;}
+.label-frame::before{content:'';position:absolute;inset:0;border:4px solid var(--orange);border-right-width:16px;}
+@media(max-width:640px){.label-frame::before{border-width:3px;border-right-width:10px;}}
+
+nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(244,239,230,0.92);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-name{font-weight:800;font-size:0.92rem;letter-spacing:0.04em;color:var(--text);}
+.lang-toggle{display:flex;gap:0;border:1.5px solid var(--borderB);border-radius:8px;overflow:hidden;}
+.lang-btn{background:transparent;border:none;font-family:var(--font);font-size:0.7rem;font-weight:800;letter-spacing:0.08em;padding:0.5rem 1rem;cursor:pointer;color:var(--textS);transition:background 0.2s,color 0.2s;}
+.lang-btn.active{background:var(--orange);color:#fff;}
+@media(max-width:640px){nav{padding:0 1.5rem;}}
+
+.page{max-width:1060px;margin:0 auto;padding:3.5rem 3rem 5rem;}
+.eyebrow{font-size:0.68rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:0.8rem;}
+.hero{display:grid;grid-template-columns:1fr 200px;gap:2.5rem;align-items:center;margin-bottom:3rem;}
+.hero h1{font-family:var(--serif);font-size:clamp(2.8rem,6vw,4.6rem);font-weight:400;letter-spacing:0.01em;line-height:0.95;margin-bottom:1rem;}
+.hero-sub{font-size:0.95rem;color:var(--textS);max-width:600px;}
+.apm-badge{width:200px;height:auto;display:block;}
+@media(max-width:760px){.hero{grid-template-columns:1fr;}.apm-badge{width:150px;order:-1;}}
+
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2.5rem 0 3.5rem;}
+.feat-card{background:var(--white);border:2.5px solid var(--fc,var(--orange));border-radius:10px;overflow:hidden;position:relative;}
+.feat-card::after{content:'';position:absolute;top:0;right:0;bottom:0;width:5px;background:var(--fc,var(--orange));}
+.feat-card:nth-child(1){--fc:#C73E1F;}
+.feat-card:nth-child(2){--fc:#F5A623;}
+.feat-card:nth-child(3){--fc:#5A8F4A;}
+.feat-card:nth-child(4){--fc:#7A4A2A;}
+.feat-card img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;background:var(--bg2);}
+.feat-name{font-family:var(--serif);font-size:1.05rem;letter-spacing:0.03em;line-height:1.05;padding:0.7rem 0.9rem;color:var(--text);}
+@media(max-width:760px){.feat-grid{grid-template-columns:repeat(2,1fr);}}
+
+.sec-title{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3rem);letter-spacing:0.01em;line-height:0.95;margin-bottom:0.4rem;}
+.sec-kicker{font-size:0.64rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--textS);margin-bottom:2rem;}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-bottom:3.5rem;}
+.step{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.6rem 1.8rem;position:relative;}
+.step-num{position:absolute;top:1.3rem;right:1.5rem;font-family:var(--serif);font-size:2.6rem;line-height:1;color:var(--sc,var(--orange));opacity:0.28;}
+.step:nth-child(1){--sc:#C73E1F;}
+.step:nth-child(2){--sc:#F5A623;}
+.step:nth-child(3){--sc:#5A8F4A;}
+.step:nth-child(4){--sc:#7A4A2A;}
+.step h3{font-family:var(--serif);font-size:1.5rem;letter-spacing:0.03em;color:var(--sc,var(--orange));margin-bottom:0.35rem;}
+.step p{font-size:0.85rem;color:var(--textS);max-width:88%;}
+@media(max-width:700px){.steps{grid-template-columns:1fr;}}
+
+.support{background:var(--white);border:2.5px solid var(--orange);border-radius:12px;padding:2rem;position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;margin-bottom:3rem;}
+.support::after{content:'';position:absolute;top:0;right:0;bottom:0;width:7px;background:var(--orange);}
+.support h3{font-family:var(--serif);font-size:1.8rem;letter-spacing:0.02em;margin-bottom:0.3rem;}
+.support p{font-size:0.85rem;color:var(--textS);max-width:480px;}
+.sup-btn{display:inline-block;background:var(--orange);color:#fff;font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:8px;padding:0.95rem 1.9rem;text-decoration:none;white-space:nowrap;margin-right:1rem;}
+@media(max-width:700px){.support{grid-template-columns:1fr;}}
+
+.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:0.9rem;margin-bottom:1rem;}
+.chk{background:var(--bg2);border:0.5px solid var(--border);border-radius:9px;padding:0.9rem 1rem;font-size:0.7rem;font-weight:800;letter-spacing:0.09em;text-transform:uppercase;color:var(--text);display:flex;align-items:center;gap:8px;}
+.chk span{color:var(--green);font-size:0.9rem;}
+@media(max-width:760px){.checks{grid-template-columns:repeat(2,1fr);}}
+
+[data-lang]{display:none;}
+html[lang="en"] [data-lang="en"]{display:revert;}
+html[lang="es"] [data-lang="es"]{display:revert;}
+
+footer{padding:3.5rem 3rem 2rem;display:block;width:100%;max-width:none;margin:0;background:var(--orange);}
+.foot-inner{max-width:1280px;margin:0 auto;}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2.5rem;padding-bottom:2.5rem;border-bottom:0.5px solid rgba(244,239,230,0.2);}
+.foot-brand{display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start;}
+.foot-brand-name{display:flex;align-items:center;gap:9px;font-weight:800;font-size:0.9rem;letter-spacing:0.05em;color:#F4EFE6;}
+.fcol .fclabel{font-size:0.62rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;color:rgba(244,239,230,0.55);}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;padding:0;margin:0;}
+.fcol a{font-size:0.78rem;text-decoration:none;transition:color 0.2s;color:rgba(244,239,230,0.8);}
+.fcol a:hover{color:#FCFAF5;text-decoration:underline;}
+.foot-copy{padding-top:1.5rem;font-size:0.68rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;color:rgba(244,239,230,0.55);}
+footer .foot-brand a[aria-label]{color:#F4EFE6;}
+footer img[alt*="NAMA"]{mix-blend-mode:screen;}
+@media(max-width:700px){
+  footer{padding:2.5rem 1.5rem 1.5rem !important;}
+  .foot-top{flex-direction:column;gap:1.8rem;}
+  .foot-copy{flex-direction:column;gap:0.3rem;}
+  footer img[alt*="NAMA"]{height:80px !important;}
+  .page{padding:2.5rem 1.5rem 4rem;}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}}
+</style>
+</head>
+<body>
+<div class="label-frame"></div>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="/icon.svg" alt="Crave Robotics" style="height:30px;width:auto;" />
+    <span class="nav-logo-name">CRAVE ROBOTICS</span>
+  </a>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btnEs" onclick="setLang('es')">ES</button>
+  </div>
+</nav>
+
+<div class="page">
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <span class="eyebrow" data-lang="en">Now in Your Breakroom · APM Terminals Los Angeles</span>
+      <span class="eyebrow" data-lang="es">Ahora en tu sala de descanso · APM Terminals Los Angeles</span>
+      <h1 data-lang="en">Hot gourmet meals, <em style="font-style:normal;color:var(--orange)">ready in under 3 minutes.</em></h1>
+      <h1 data-lang="es">Comida gourmet caliente, <em style="font-style:normal;color:var(--orange)">lista en menos de 3 minutos.</em></h1>
+      <p class="hero-sub" data-lang="en">The CraveBot serves chef-crafted breakfasts, entrées, snacks &amp; desserts — heated fresh the moment you order. Open every shift, 24/7. No app, no account — just tap and eat.</p>
+      <p class="hero-sub" data-lang="es">El CraveBot sirve desayunos, comidas, snacks y postres — calentados al momento de ordenar. Abierto cada turno, 24/7. Sin app y sin cuenta — solo toca y come.</p>
+    </div>
+    <img class="apm-badge" src="/apm-terminals-la-badge.webp" alt="APM Terminals Los Angeles — Leading With Care" />
+  </div>
+
+  <!-- FEATURED -->
+  <div class="feat-grid">
+    <div class="feat-card"><img src="/blackened-chicken-alfredo.webp" alt="Blackened Chicken Alfredo" loading="lazy" /><div class="feat-name" data-lang="en">Blackened Chicken Alfredo</div><div class="feat-name" data-lang="es">Pasta Alfredo con Pollo</div></div>
+    <div class="feat-card"><img src="/Angus_hamburger-with_background-20250117084228.png" alt="Angus Cheeseburger" loading="lazy" /><div class="feat-name" data-lang="en">Angus Cheeseburger</div><div class="feat-name" data-lang="es">Hamburguesa Angus con Queso</div></div>
+    <div class="feat-card"><img src="/red-baron-pepperoni-pizza.webp" alt="Red Baron Pepperoni Pizza" loading="lazy" /><div class="feat-name" data-lang="en">Red Baron Pepperoni Pizza</div><div class="feat-name" data-lang="es">Pizza de Pepperoni Red Baron</div></div>
+    <div class="feat-card"><img src="/Steamed_Chicken_Soup_Dumplings-with_bg-20250513125922.png" alt="Chicken Soup Dumplings" loading="lazy" /><div class="feat-name" data-lang="en">Chicken Soup Dumplings</div><div class="feat-name" data-lang="es">Dumplings de Pollo</div></div>
+  </div>
+
+  <!-- STEPS -->
+  <h2 class="sec-title" data-lang="en">How to Use the <em style="font-style:normal;color:var(--orange)">CraveBot</em></h2>
+  <h2 class="sec-title" data-lang="es">Cómo Usar el <em style="font-style:normal;color:var(--orange)">CraveBot</em></h2>
+  <div class="sec-kicker" data-lang="en">Four Easy Steps · About 3 Minutes Total</div>
+  <div class="sec-kicker" data-lang="es">Cuatro Pasos Fáciles · Unos 3 Minutos en Total</div>
+
+  <div class="steps">
+    <div class="step"><span class="step-num">1</span>
+      <h3 data-lang="en">Tap the screen</h3><h3 data-lang="es">Toca la pantalla</h3>
+      <p data-lang="en">Browse the menu on the big touchscreen. Every item shows a photo and a price — take your time.</p>
+      <p data-lang="es">Explora el menú en la pantalla táctil. Cada platillo tiene foto y precio — tómate tu tiempo.</p>
+    </div>
+    <div class="step"><span class="step-num">2</span>
+      <h3 data-lang="en">Pick &amp; pay</h3><h3 data-lang="es">Elige y paga</h3>
+      <p data-lang="en">Choose your meal, then tap your card or phone on the reader. Credit &amp; debit, Apple Pay and Google Pay all work.</p>
+      <p data-lang="es">Escoge tu comida y acerca tu tarjeta o celular al lector. Aceptamos crédito, débito, Apple Pay y Google Pay.</p>
+    </div>
+    <div class="step"><span class="step-num">3</span>
+      <h3 data-lang="en">We heat it fresh</h3><h3 data-lang="es">La calentamos</h3>
+      <p data-lang="en">The CraveBot heats your meal to serving temperature. It's ready in under 3 minutes — the screen counts it down.</p>
+      <p data-lang="es">El CraveBot calienta tu comida a la temperatura ideal. Lista en menos de 3 minutos — la pantalla lleva la cuenta.</p>
+    </div>
+    <div class="step"><span class="step-num">4</span>
+      <h3 data-lang="en">Grab &amp; go</h3><h3 data-lang="es">Recoge y listo</h3>
+      <p data-lang="en">Take your hot meal from the pickup window, grab a fork, and enjoy. Careful — it comes out hot!</p>
+      <p data-lang="es">Toma tu comida de la ventanilla de entrega, agarra un tenedor y disfruta. ¡Cuidado — sale caliente!</p>
+    </div>
+  </div>
+
+  <!-- SUPPORT -->
+  <div class="support">
+    <div>
+      <h3 data-lang="en">Questions? We're a text away.</h3>
+      <h3 data-lang="es">¿Preguntas? Estamos a un texto.</h3>
+      <p data-lang="en">Machine trouble, a meal that didn't come out right, or a menu request — text us and a real person will make it right, fast.</p>
+      <p data-lang="es">¿Problemas con la máquina o una comida que no salió bien? Envíanos un texto y una persona real lo resolverá, rápido.</p>
+    </div>
+    <div>
+      <a class="sup-btn" href="sms:6266281392?body=Support" data-lang="en">Text Support → (626) 628-1392</a>
+      <a class="sup-btn" href="sms:6266281392?body=Support" data-lang="es">Envía Support → (626) 628-1392</a>
+    </div>
+  </div>
+
+  <!-- CHECKS -->
+  <div class="checks">
+    <div class="chk"><span>✓</span><span data-lang="en">Open 24/7</span><span data-lang="es">Abierto 24/7</span></div>
+    <div class="chk"><span>✓</span><span data-lang="en">45+ Rotating Items</span><span data-lang="es">45+ Opciones Rotativas</span></div>
+    <div class="chk"><span>✓</span><span data-lang="en">Restocked Weekly</span><span data-lang="es">Se Resurte Cada Semana</span></div>
+    <div class="chk"><a href="https://www.instagram.com/crave.robotics/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;display:flex;align-items:center;gap:8px;"><span>✓</span>@crave.robotics</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-brand-name"><img src="/icon.svg" alt="Crave Robotics" style="height:26px;width:auto;" />CRAVE ROBOTICS</div>
+        <a href="https://namanow.org/" target="_blank" rel="noopener">
+          <img src="/NAMA_Member_Mark_transparent.png" alt="Proud Member of NAMA" style="height:110px;width:auto;opacity:0.9;mix-blend-mode:screen;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'" />
+        </a>
+          <a href="https://www.instagram.com/crave.robotics/" target="_blank" rel="noopener" aria-label="Crave Robotics on Instagram" style="display:inline-flex;align-items:center;gap:8px;margin-top:0.9rem;text-decoration:none;opacity:0.9;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+            <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;">@crave.robotics</span>
+          </a>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Company</div>
+        <ul>
+          <li><a href="/cravebot">CraveBot</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/craveos">CraveOS</a></li>
+          <li><a href="/news">News</a></li>
+            <li><a href="/events">Events</a></li>
+          <li><a href="/NSF%20-%20DSS_SGSNA_26_GZ_00060.pdf" target="_blank">Certification</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Legal</div>
+        <ul>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms-of-service">Terms of Service</a></li>
+          <li><a href="/data-deletion">Data Deletion Request</a></li>
+            <li><a href="/sms-optin">SMS Opt-In</a></li>
+          <li><a href="/qr-guide">Redeem QR Code</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Connect</div>
+        <ul>
+          <li><a href="https://www.linkedin.com/company/craverobotics/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/crave.robotics/" target="_blank">Instagram</a></li>
+          <li><a href="sms:6266281392?body=Support">Contact Support</a></li>
+          <li><a href="/menu-form">Menu Form</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Latest News</div>
+        <ul>
+          <li><a href="/news">Featured in Kiosk Marketplace — Certification Milestone</a></li>
+          <li><a href="/news">Featured in Retail Automation Systems — NAMA 2026</a></li>
+          <li><a href="/news">New Brand Partners: Sukhi's &amp; Tucson Foods</a></li>
+          <li><a href="/news" style="font-weight:700;">All news →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-copy">
+      <span>© 2025 Crave Robotics™. All rights reserved.</span>
+      <span>635 W. Allen Ave., San Dimas, CA 91773</span>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+function setLang(l){
+  document.documentElement.setAttribute('lang', l);
+  document.getElementById('btnEn').classList.toggle('active', l === 'en');
+  document.getElementById('btnEs').classList.toggle('active', l === 'es');
+  try { localStorage.setItem('crv_lang', l); } catch(e) {}
+}
+try {
+  const saved = localStorage.getItem('crv_lang');
+  if (saved === 'es') setLang('es');
+} catch(e) {}
+</script>
+</body>
+</html>

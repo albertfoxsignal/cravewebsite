@@ -94,6 +94,10 @@
     {
       "source": "/promo",
       "destination": "/promo.html"
+    },
+    {
+      "source": "/apmterminals",
+      "destination": "/apmterminals.html"
     }
   ],
   "headers": [
