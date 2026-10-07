@@ -989,15 +989,17 @@ function scrollBP(dir){const el=document.getElementById('bpcarousel');const cell
       attributionControl: false,
     });
 
-    // CartoDB Positron — clean, minimal, no API key needed
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© OpenStreetMap © CARTO',
-      subdomains: 'abcd',
-      maxZoom: 19,
+    // Esri World Light Gray Canvas — muted, no API key at any zoom.
+    // Native tiles stop at z16; Leaflet upscales beyond that instead of
+    // showing "API key required" placeholders (the CARTO failure mode).
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Esri, HERE, Garmin, © OpenStreetMap contributors',
+      maxNativeZoom: 16,
+      maxZoom: 18,
     }).addTo(map);
 
     L.control.attribution({ position: 'bottomright', prefix: false })
-      .addAttribution('© <a href="https://www.openstreetmap.org/copyright">OSM</a> © <a href="https://carto.com/">CARTO</a>')
+      .addAttribution('© <a href="https://www.esri.com/">Esri</a> © <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors')
       .addTo(map);
 
     LOCATIONS.forEach((loc, i) => {
