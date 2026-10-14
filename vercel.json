@@ -98,6 +98,10 @@
     {
       "source": "/apmterminals",
       "destination": "/apmterminals.html"
+    },
+    {
+      "source": "/quote",
+      "destination": "/quote.html"
     }
   ],
   "headers": [

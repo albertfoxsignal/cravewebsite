@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Request a Quote — CraveBot for Your Location — Crave Robotics</title>
+<meta name="description" content="Share a few details about your location and get a tailored quote for a CraveBot placement, with clear next steps from the Crave Robotics team." />
+<link rel="canonical" href="https://www.craverobotics.co/quote" />
+<meta property="og:title" content="Request a Quote — CraveBot for Your Location — Crave Robotics" />
+<meta property="og:description" content="Share a few details about your location and get a tailored quote for a CraveBot placement, with clear next steps from the Crave Robotics team." />
+<link rel="icon" href="/icon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F4EFE6; --bg2:#EDE7DB; --bg3:#E5DFD2; --white:#FCFAF5;
+  --border:rgba(30,42,56,0.1); --borderB:rgba(30,42,56,0.18);
+  --orange:#C73E1F; --lemon:#F5A623; --green:#5A8F4A; --brown:#7A4A2A; --crimson:#C0392B;
+  --text:#1E2A38; --textS:#5A6472; --textM:#9AA2AC;
+  --font:'Montserrat',sans-serif; --serif:'Bebas Neue',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;overflow-x:clip;}
+.label-frame{position:fixed;inset:0;pointer-events:none;z-index:500;}
+.label-frame::before{content:'';position:absolute;inset:0;border:4px solid var(--orange);border-right-width:16px;}
+@media(max-width:640px){.label-frame::before{border-width:3px;border-right-width:10px;}}
+nav{position:sticky;top:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:68px;background:rgba(244,239,230,0.92);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-name{font-weight:800;font-size:0.92rem;letter-spacing:0.04em;color:var(--text);}
+.nav-back{font-size:0.73rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--textS);text-decoration:none;transition:color 0.2s;}
+.nav-back:hover{color:var(--orange);}
+@media(max-width:640px){nav{padding:0 1.5rem;}.nav-back{display:none;}}
+.page{max-width:1100px;margin:0 auto;padding:3.5rem 3rem 5rem;}
+.eyebrow{font-size:0.66rem;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:0.8rem;}
+.h1{font-family:var(--serif);font-size:clamp(2.8rem,6vw,4.4rem);font-weight:400;letter-spacing:0.01em;line-height:0.95;margin-bottom:1rem;}
+.h2{font-family:var(--serif);font-size:clamp(2rem,4.5vw,2.9rem);font-weight:400;letter-spacing:0.01em;line-height:0.95;margin-bottom:0.5rem;}
+.sub{font-size:0.95rem;color:var(--textS);max-width:640px;}
+.btn{display:inline-block;background:var(--orange);color:#fff;font-family:var(--font);font-size:0.76rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;border-radius:8px;padding:0.9rem 1.8rem;cursor:pointer;text-decoration:none;transition:opacity 0.2s;}
+.btn:hover{opacity:0.9;}
+.btn:disabled{opacity:0.45;cursor:not-allowed;}
+.btn-ghost{display:inline-block;background:transparent;color:var(--text);font-size:0.76rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:1.5px solid var(--borderB);border-radius:8px;padding:0.9rem 1.8rem;cursor:pointer;text-decoration:none;transition:border-color 0.2s,color 0.2s;}
+.btn-ghost:hover{border-color:var(--orange);color:var(--orange);}
+footer{padding:3.5rem 3rem 2rem;display:block;width:100%;max-width:none;margin:0;}
+.foot-inner{max-width:1280px;margin:0 auto;}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2.5rem;padding-bottom:2.5rem;border-bottom:0.5px solid rgba(244,239,230,0.2);}
+.foot-brand{display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start;}
+.foot-brand-name{display:flex;align-items:center;gap:9px;font-weight:800;font-size:0.9rem;letter-spacing:0.05em;color:#F4EFE6;}
+.fcol .fclabel{font-size:0.62rem;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:1rem;color:rgba(244,239,230,0.55);}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem;padding:0;margin:0;}
+.fcol a{font-size:0.78rem;text-decoration:none;transition:color 0.2s;color:rgba(244,239,230,0.8);}
+.fcol a:hover{color:#FCFAF5;text-decoration:underline;}
+.foot-copy{padding-top:1.5rem;font-size:0.68rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;color:rgba(244,239,230,0.55);}
+.foot-brand a[aria-label]{color:#F4EFE6;}
+footer img[alt*="NAMA"]{mix-blend-mode:screen;}
+footer{background:var(--orange);}
+@media(max-width:700px){
+  .page{padding:2.5rem 1.5rem 4rem;}
+  footer{padding:2.5rem 1.5rem 1.5rem !important;}
+  .foot-top{flex-direction:column;gap:1.8rem;}
+  .foot-copy{flex-direction:column;gap:0.3rem;}
+  footer img[alt*="NAMA"]{height:80px !important;}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:0.01ms!important;transition-duration:0.01ms!important;}}
+
+.hero{margin-bottom:3.5rem;}
+/* MACHINE HERO */
+.hero-machine{flex:0 0 300px;max-width:300px;text-align:center;}
+.hero-machine img{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 36px rgba(30,42,56,0.18));}
+.dims-strip{display:flex;justify-content:center;gap:0;margin-top:0.9rem;background:var(--white);border:0.5px solid var(--border);border-radius:9px;overflow:hidden;}
+.dim{flex:1;padding:0.55rem 0.4rem;text-align:center;}
+.dim + .dim{border-left:1px dashed var(--borderB);}
+.dim-k{display:block;font-size:0.54rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--textS);}
+.dim-v{font-family:var(--serif);font-size:1.15rem;letter-spacing:0.02em;color:var(--text);}
+.dims-cap{font-size:0.62rem;color:var(--textM);margin-top:0.45rem;}
+.dims-cap a{color:var(--orange);text-decoration:none;font-weight:700;}
+@media(max-width:860px){.hero-machine{flex:1 1 100%;max-width:240px;margin:0 auto;}}
+
+.hero-btns{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1.6rem;}
+/* benefit list */
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;margin:1.6rem 0 0;}
+@media(max-width:700px){.benefits{grid-template-columns:1fr;}}
+.benefit{display:flex;gap:0.9rem;align-items:flex-start;background:var(--white);border:0.5px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem;}
+.benefit .ic{flex-shrink:0;width:36px;height:36px;border:1.5px solid var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--orange);font-size:0.9rem;font-weight:800;}
+.benefit p{font-size:0.82rem;color:var(--textS);line-height:1.55;}
+/* ask cards */
+.ask-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:0.9rem;margin-top:1.6rem;}
+.ask{background:var(--white);border:2.5px solid var(--ac,var(--orange));border-radius:10px;padding:1.2rem 1.3rem;position:relative;overflow:hidden;}
+.ask::after{content:'';position:absolute;top:0;right:0;bottom:0;width:5px;background:var(--ac,var(--orange));}
+.ask:nth-child(1){--ac:#C73E1F;} .ask:nth-child(2){--ac:#F5A623;} .ask:nth-child(3){--ac:#5A8F4A;} .ask:nth-child(4){--ac:#7A4A2A;} .ask:nth-child(5){--ac:#C0392B;}
+.ask-t{font-family:var(--serif);font-size:1.2rem;letter-spacing:0.03em;color:var(--ac,var(--orange));margin-bottom:0.25rem;}
+.ask p{font-size:0.76rem;color:var(--textS);line-height:1.55;}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.6rem;}
+@media(max-width:700px){.steps{grid-template-columns:1fr;}}
+.step{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1.5rem 1.6rem;position:relative;}
+.step-num{position:absolute;top:1rem;right:1.2rem;font-family:var(--serif);font-size:2.4rem;line-height:1;color:var(--sc,var(--orange));opacity:0.25;}
+.step:nth-child(1){--sc:#C73E1F;} .step:nth-child(2){--sc:#F5A623;} .step:nth-child(3){--sc:#5A8F4A;}
+.step h3{font-family:var(--serif);font-size:1.35rem;letter-spacing:0.03em;color:var(--sc,var(--orange));margin-bottom:0.3rem;}
+.step p{font-size:0.8rem;color:var(--textS);max-width:90%;}
+.sec{margin-top:3.5rem;}
+/* FORM */
+.q-form{background:var(--white);border:2.5px solid var(--orange);border-radius:14px;padding:2.2rem;margin-top:1.8rem;position:relative;overflow:hidden;}
+.q-form::after{content:'';position:absolute;top:0;right:0;bottom:0;width:7px;background:var(--orange);}
+.q-sec-t{font-family:var(--serif);font-size:1.35rem;letter-spacing:0.03em;margin:1.6rem 0 0.9rem;padding-bottom:0.6rem;border-bottom:1px dashed var(--borderB);}
+.q-sec-t:first-child{margin-top:0;}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;}
+@media(max-width:700px){.fgrid{grid-template-columns:1fr;}}
+.fg{display:flex;flex-direction:column;gap:0.3rem;}
+.fg.full{grid-column:1/-1;}
+.flabel{font-size:0.65rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--textS);}
+.finput,.fselect,textarea.finput{background:var(--white);border:0.5px solid var(--borderB);border-radius:7px;padding:0.65rem 0.9rem;font-family:var(--font);font-size:0.88rem;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;width:100%;}
+.finput::placeholder{color:var(--textM);}
+.finput:focus,.fselect:focus{border-color:rgba(199,62,31,0.5);box-shadow:0 0 0 3px rgba(199,62,31,0.1);}
+textarea.finput{resize:vertical;min-height:90px;}
+.q-err{font-size:0.74rem;font-weight:600;color:var(--crimson);margin-top:0.7rem;min-height:1em;}
+/* success */
+.q-success{display:none;text-align:center;padding:2.5rem 0 1rem;}
+.q-success.show{display:block;}
+.q-success .ok-ic{width:56px;height:56px;border-radius:50%;background:rgba(90,143,74,0.12);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin:0 auto 1rem;color:var(--green);}
+/* cta band */
+.cta-band{background:var(--orange);border-radius:14px;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-top:3.5rem;}
+.cta-band .h2{color:#F4EFE6;margin-bottom:0.3rem;}
+.cta-band p{color:rgba(244,239,230,0.85);font-size:0.88rem;max-width:520px;}
+.cta-band .btn{background:var(--bg);color:var(--orange);white-space:nowrap;}
+
+</style>
+</head>
+<body>
+<div class="label-frame"></div>
+<nav>
+  <a href="/" class="nav-logo">
+    <img src="/icon.svg" alt="Crave Robotics" style="height:30px;width:auto;" />
+    <span class="nav-logo-name">CRAVE ROBOTICS</span>
+  </a>
+  <a href="/" class="nav-back">&larr; Back to Home</a>
+</nav>
+<div class="page">
+  <!-- HERO -->
+  <div class="hero" style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap;justify-content:space-between;">
+    <div style="flex:1 1 480px;min-width:0;">
+      <span class="eyebrow">Partner With Crave</span>
+      <h1 class="h1">Request a Quote for a <em style="font-style:normal;color:var(--orange)">CraveBot at Your Location</em></h1>
+      <p class="sub">Share a few details about your location so our team can confirm fit, outline your options, and recommend a launch plan.</p>
+      <div class="hero-btns">
+        <a class="btn" href="#form">Start Your Quote</a>
+        <a class="btn-ghost" href="/cravebot">See How the CraveBot Works</a>
+      </div>
+    </div>
+    <div class="hero-machine">
+      <img src="/cravebot-machine.png" alt="CraveBot Gen 2 automated hot food machine" loading="eager" />
+      <div class="dims-strip">
+        <div class="dim"><span class="dim-k">Height</span><span class="dim-v">78.39&Prime;</span></div>
+        <div class="dim"><span class="dim-k">Length</span><span class="dim-v">60.24&Prime;</span></div>
+        <div class="dim"><span class="dim-k">Depth</span><span class="dim-v">40.47&Prime;</span></div>
+      </div>
+      <div class="dims-cap">CraveBot Gen 2 &middot; H &times; L &times; D &middot; <a href="/cravebot">Full specs &rarr;</a></div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU GET -->
+  <div class="sec" style="margin-top:0;">
+    <h2 class="h2">What You Get When You <em style="font-style:normal;color:var(--orange)">Request a Quote</em></h2>
+    <p class="sub">Requesting a quote is the first step toward understanding whether a CraveBot is a strong fit for your location. After you submit the form, our team reviews your details and follows up to learn more about your goals.</p>
+    <div class="benefits">
+      <div class="benefit"><div class="ic">&#10003;</div><p>A conversation with our team about your location, audience, and rollout goals.</p></div>
+      <div class="benefit"><div class="ic">&#10003;</div><p>Guidance on whether a CraveBot is a good fit for your environment.</p></div>
+      <div class="benefit"><div class="ic">&#10003;</div><p>A clear view of next steps, timeline, and what&rsquo;s needed to move forward.</p></div>
+      <div class="benefit"><div class="ic">&#10003;</div><p>A no-pressure process focused on fit &mdash; not forcing a solution.</p></div>
+    </div>
+  </div>
+
+  <!-- WHAT WE ASK -->
+  <div class="sec">
+    <h2 class="h2">What We <em style="font-style:normal;color:var(--orange)">Ask From You</em></h2>
+    <p class="sub">To create a useful quote, we ask for a few details about your operation and goals. It takes just a couple of minutes.</p>
+    <div class="ask-grid">
+      <div class="ask"><div class="ask-t">Location Details</div><p>Type of facility, city, state, and where the machine might live.</p></div>
+      <div class="ask"><div class="ask-t">Audience &amp; Traffic</div><p>Who you serve, typical daily foot traffic, and peak times.</p></div>
+      <div class="ask"><div class="ask-t">Operating Context</div><p>Current food options on site, hours of operation, and staffing.</p></div>
+      <div class="ask"><div class="ask-t">Timeline</div><p>When you&rsquo;d like to launch and any target date or event.</p></div>
+      <div class="ask"><div class="ask-t">Contact Info</div><p>Who on your team should receive the quote and follow-up.</p></div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="sec">
+    <h2 class="h2">How the <em style="font-style:normal;color:var(--orange)">Quote Process Works</em></h2>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><h3>Submit your request</h3><p>Tell us about your location, audience, and goals.</p></div>
+      <div class="step"><span class="step-num">2</span><h3>We review your details</h3><p>Our team confirms fit and prepares a tailored quote.</p></div>
+      <div class="step"><span class="step-num">3</span><h3>Connect with our team</h3><p>We share the quote, answer questions, and outline the path to launch.</p></div>
+    </div>
+  </div>
+
+  <!-- TRUST -->
+  <div class="sec">
+    <h2 class="h2">Why Locations Choose <em style="font-style:normal;color:var(--orange)">CraveBot</em></h2>
+    <p class="sub">CraveBots are already feeding students and staff around the clock at universities and workplaces across Southern California &mdash; hot, chef-crafted meals in under 3 minutes, from a compact footprint, with no staffed kitchen.</p>
+    <div class="benefits">
+      <div class="benefit"><div class="ic">&#9832;</div><p>A simple way to expand food access without adding a staffed kitchen.</p></div>
+      <div class="benefit"><div class="ic">&#10687;</div><p>Built for high-traffic environments that need speed and convenience, 24/7.</p></div>
+      <div class="benefit"><div class="ic">&#10003;</div><p>A stronger food experience for employees, visitors, students, or guests.</p></div>
+      <div class="benefit"><div class="ic">&#9733;</div><p>Backed by real-person text support and vendor-managed restocking.</p></div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="sec" id="form">
+    <h2 class="h2">Start Your <em style="font-style:normal;color:var(--orange)">Quote</em></h2>
+    <p class="sub">A couple of minutes now gets you a tailored projection and a clear path to launch.</p>
+
+    <div class="q-form">
+      <div id="qFields">
+        <div class="q-sec-t">Contact Information</div>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel" for="qName">Full Name *</label><input class="finput" id="qName" placeholder="Your name" autocomplete="name" /></div>
+          <div class="fg"><label class="flabel" for="qCompany">Company / Organization *</label><input class="finput" id="qCompany" placeholder="Organization name" autocomplete="organization" /></div>
+          <div class="fg"><label class="flabel" for="qEmail">Email *</label><input class="finput" id="qEmail" type="email" placeholder="you@company.com" autocomplete="email" /></div>
+          <div class="fg"><label class="flabel" for="qPhone">Phone</label><input class="finput" id="qPhone" type="tel" placeholder="(555) 555-5555" autocomplete="tel" /></div>
+        </div>
+
+        <div class="q-sec-t">Location Details</div>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel" for="qType">Type of Facility *</label>
+            <select class="fselect" id="qType">
+              <option value="">Select one&hellip;</option>
+              <option>College / University</option>
+              <option>Hospital / Healthcare</option>
+              <option>Corporate Office / Campus</option>
+              <option>Warehouse / Industrial</option>
+              <option>Airport / Transit</option>
+              <option>Hotel / Hospitality</option>
+              <option>Government / Port Facility</option>
+              <option>Gym / Recreation</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label class="flabel" for="qCity">City, State *</label><input class="finput" id="qCity" placeholder="e.g. Long Beach, CA" /></div>
+          <div class="fg full"><label class="flabel" for="qSpot">Where Might the Machine Live?</label><input class="finput" id="qSpot" placeholder="e.g. Student union, breakroom, lobby" /></div>
+        </div>
+
+        <div class="q-sec-t">Audience &amp; Traffic</div>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel" for="qTraffic">Typical Daily Foot Traffic</label>
+            <select class="fselect" id="qTraffic">
+              <option value="">Select one&hellip;</option>
+              <option>Under 250 people/day</option>
+              <option>250&ndash;500 people/day</option>
+              <option>500&ndash;1,500 people/day</option>
+              <option>1,500&ndash;5,000 people/day</option>
+              <option>5,000+ people/day</option>
+            </select>
+          </div>
+          <div class="fg"><label class="flabel" for="qAudience">Who Do You Serve?</label><input class="finput" id="qAudience" placeholder="e.g. Students, staff, shift workers" /></div>
+        </div>
+
+        <div class="q-sec-t">Operating Context</div>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel" for="qFood">Current Food Options On Site</label><input class="finput" id="qFood" placeholder="e.g. Cafeteria closes at 3pm, snack vending only" /></div>
+          <div class="fg"><label class="flabel" for="qHours">Hours of Operation</label><input class="finput" id="qHours" placeholder="e.g. 24/7, M&ndash;F 7am&ndash;10pm" /></div>
+        </div>
+
+        <div class="q-sec-t">Timeline &amp; Notes</div>
+        <div class="fgrid">
+          <div class="fg"><label class="flabel" for="qWhen">When Would You Like to Launch?</label>
+            <select class="fselect" id="qWhen">
+              <option value="">Select one&hellip;</option>
+              <option>As soon as possible</option>
+              <option>Within 1&ndash;3 months</option>
+              <option>Within 3&ndash;6 months</option>
+              <option>6+ months / exploring</option>
+            </select>
+          </div>
+          <div class="fg"><label class="flabel" for="qHeard">How Did You Hear About Us?</label><input class="finput" id="qHeard" placeholder="Optional" /></div>
+          <div class="fg full"><label class="flabel" for="qNotes">Anything Else We Should Know?</label><textarea class="finput" id="qNotes" placeholder="Goals, specific events, questions&hellip;"></textarea></div>
+        </div>
+
+        <div style="margin-top:1.5rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+          <button class="btn" id="qSubmit" type="button">Submit Quote Request &rarr;</button>
+          <span style="font-size:0.7rem;color:var(--textM);">We&rsquo;ll follow up by email &mdash; no pressure, no spam.</span>
+        </div>
+        <div class="q-err" id="qErr"></div>
+      </div>
+
+      <div class="q-success" id="qSuccess">
+        <div class="ok-ic">&#10003;</div>
+        <h2 class="h2">Request Received</h2>
+        <p class="sub" style="margin:0 auto 1.4rem;">Thanks &mdash; our team will review your details and follow up by email to share a tailored quote and next steps.</p>
+        <a class="btn" href="/cravebot" style="text-decoration:none;">See the CraveBot in Detail &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <div>
+      <h2 class="h2">Want to See What&rsquo;s on the Menu?</h2>
+      <p>Chef-crafted breakfasts, entr&eacute;es, snacks, and desserts &mdash; rotating regularly and heated fresh to order in under 3 minutes.</p>
+    </div>
+    <a class="btn" href="/menu">Browse the Menu &rarr;</a>
+  </div>
+</div>
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-brand-name"><img src="/icon.svg" alt="Crave Robotics" style="height:26px;width:auto;" />CRAVE ROBOTICS</div>
+        <a href="https://namanow.org/" target="_blank" rel="noopener">
+          <img src="/NAMA_Member_Mark_transparent.png" alt="Proud Member of NAMA" style="height:110px;width:auto;opacity:0.9;mix-blend-mode:screen;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'" />
+        </a>
+          <a href="https://www.instagram.com/crave.robotics/" target="_blank" rel="noopener" aria-label="Crave Robotics on Instagram" style="display:inline-flex;align-items:center;gap:8px;margin-top:0.9rem;text-decoration:none;opacity:0.9;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.9'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5.2"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+            <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.06em;">@crave.robotics</span>
+          </a>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Company</div>
+        <ul>
+          <li><a href="/cravebot">CraveBot</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/craveos">CraveOS</a></li>
+          <li><a href="/news">News</a></li>
+            <li><a href="/events">Events</a></li>
+          <li><a href="/NSF%20-%20DSS_SGSNA_26_GZ_00060.pdf" target="_blank">Compliant with NSF &amp; UL Standards</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Legal</div>
+        <ul>
+          <li><a href="/privacy-policy">Privacy Policy</a></li>
+          <li><a href="/terms-of-service">Terms of Service</a></li>
+          <li><a href="/data-deletion">Data Deletion Request</a></li>
+            <li><a href="/sms-optin">SMS Opt-In</a></li>
+          <li><a href="/qr-guide">Redeem QR Code</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Connect</div>
+        <ul>
+          <li><a href="https://www.linkedin.com/company/craverobotics/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/crave.robotics/" target="_blank">Instagram</a></li>
+          <li><a href="sms:6266281392?body=Support">Contact Support</a></li>
+          <li><a href="/menu-form">Menu Form</a></li>
+        </ul>
+      </div>
+      <div class="fcol">
+        <div class="fclabel">Latest News</div>
+        <ul>
+          <li><a href="/news">Featured in Kiosk Marketplace — Certification Milestone</a></li>
+          <li><a href="/news">Featured in Retail Automation Systems — NAMA 2026</a></li>
+          <li><a href="/news">New Brand Partners: Sukhi's &amp; Tucson Foods</a></li>
+          <li><a href="/news" style="font-weight:700;">All news →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-copy">
+      <span>© 2025 Crave Robotics™. All rights reserved.</span>
+      <span>635 W. Allen Ave., San Dimas, CA 91773</span>
+    </div>
+  </div>
+</footer>
+<script>
+const $q = id => document.getElementById(id);
+async function submitQuote() {
+  const name = $q('qName').value.trim();
+  const company = $q('qCompany').value.trim();
+  const email = $q('qEmail').value.trim();
+  const type = $q('qType').value;
+  const city = $q('qCity').value.trim();
+  const err = $q('qErr');
+  err.textContent = '';
+  if (!name || !company || !email || !email.includes('@') || !type || !city) {
+    err.textContent = 'Please fill in the required fields: name, company, email, facility type, and city.';
+    [['qName',name],['qCompany',company],['qEmail',email.includes('@')?email:''],['qType',type],['qCity',city]].forEach(([id,v]) => {
+      const el = $q(id);
+      if (!v) { el.style.borderColor = 'rgba(192,57,43,0.6)'; setTimeout(() => { el.style.borderColor = ''; }, 2600); }
+    });
+    return;
+  }
+  const btn = $q('qSubmit');
+  btn.textContent = 'Sending\u2026'; btn.disabled = true;
+  const val = id => $q(id).value.trim() || '\u2014';
+  const message =
+`CRAVEBOT QUOTE REQUEST \u2014 ${company}
+============================================
+Contact:    ${name}
+Email:      ${email}
+Phone:      ${val('qPhone')}
+--------------------------------------------
+Facility:   ${type}
+City/State: ${city}
+Placement:  ${val('qSpot')}
+Traffic:    ${val('qTraffic')}
+Audience:   ${val('qAudience')}
+Food on site: ${val('qFood')}
+Hours:      ${val('qHours')}
+Launch:     ${val('qWhen')}
+Heard via:  ${val('qHeard')}
+--------------------------------------------
+Notes:
+${val('qNotes')}`;
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '7b21dd42-bc8a-43b2-a645-8733ba987743',
+        subject: `CraveBot Quote Request \u2014 ${company} \u2014 ${type}`,
+        from_name: 'Crave Quote Form',
+        name, email, replyto: email, botcheck: false,
+        ccemail: 'paul@craverobotics.co, jesse@craverobotics.co',
+        message,
+      })
+    });
+    const data = await res.json();
+    if (data.success) {
+      $q('qFields').style.display = 'none';
+      $q('qSuccess').classList.add('show');
+      document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
+    } else { throw new Error(data.message || 'Submission rejected'); }
+  } catch (e) {
+    btn.textContent = 'Submit Quote Request \u2192'; btn.disabled = false;
+    err.textContent = 'Could not send: ' + e.message + ' \u2014 or email help@craverobotics.co directly.';
+  }
+}
+$q('qSubmit').addEventListener('click', submitQuote);
+</script>
+</body>
+</html>
