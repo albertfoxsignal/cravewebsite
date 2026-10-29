@@ -427,7 +427,11 @@ ${val('qNotes')}`;
     const data = await res.json();
     if (data.success) {
       $q('qFields').style.display = 'none';
-      if (typeof gtag === 'function') gtag('event', 'generate_lead', { form: 'quote_request', facility_type: type });
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', { form: 'quote_request', facility_type: type });
+        // Google Ads conversion: Submit lead form
+        gtag('event', 'conversion', { 'send_to': 'AW-18540096072/X2COCP_kuasdEMjUzYhF', 'value': 1.0, 'currency': 'TWD' });
+      }
       $q('qSuccess').classList.add('show');
       document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
     } else { throw new Error(data.message || 'Submission rejected'); }
